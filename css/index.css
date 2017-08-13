@@ -1,0 +1,37 @@
+#app {
+	  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  text-align: center;
+	  color: #2c3e50;
+	  height: 100%;
+	 
+	}
+  .icon {
+	   width: 1em; height: 1em;
+	   vertical-align: -0.15em;
+	   fill: currentColor;
+	   overflow: hidden;
+	}
+	 ul,li{
+	  	list-style: none;
+	  }
+	  a{
+	  	text-decoration: none;
+	  }
+
+#app .bar {
+	z-index: 99999;
+}
+
+#app a.active {
+	color: #ea5503;
+}
+
+#app #w-car {
+	font-size: 2rem;
+}
+
+#app .tab-item.a.active.a.active {
+	color: #ea5503;
+}

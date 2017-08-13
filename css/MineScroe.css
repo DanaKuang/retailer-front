@@ -1,0 +1,135 @@
+.moneyTop {
+	width: 100%;
+	height: 173px;
+	background: #fff;
+	margin: 0 auto;
+}
+
+.moneyTop1 {
+	width: 86%;
+	height: 3rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin: 0 auto;
+	/*padding:0 15px 0 30px;*/
+	border-bottom: 0.5px solid #d2d2d2;
+	margin-bottom: 0.6rem;
+}
+
+.moneyTop1 a {
+	display: block;
+	width: 85px;
+	height: 2.5rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.moneyTop1 a img {
+	display: block;
+	width: 0.7rem;
+	height: 0.7rem;
+}
+
+.moneyTop1 span {
+	font-size: 0.6rem;
+	color: #030303;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.paiHangBang {
+	height: 3rem;
+	width: 86%;
+	margin: 0 auto;
+	/*background:red;*/
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.paiHangXiangQ {
+	/*height: 430px;*/
+	width: 100%;
+	background: #fff;
+	margin-top: 15px;
+	padding-bottom:2.5rem;
+}
+
+.paiHangXiangQ .ul {
+	display: flex;
+	width: 86%;
+	height: 74px;
+	justify-content: space-between;
+	align-items: center;
+	margin: 15px auto;
+	-webkit-padding-start: 0;
+	/*background:red;*/
+	border-bottom: 0.5px solid #d2d2d2;
+}
+
+.paiHangXiangQ .ul li {
+	width: 103px;
+	height: 76px;
+}
+
+.paiHangXiangQ .ul li .PShang {
+	margin-top:10px;
+	display: block;
+	font-size: 0.7rem;
+	color: #818085;
+}
+
+.paiHangXiangQ .ul li .PXia {
+	font-size: 0.75rem;
+	display: block;
+	line-height: 1rem;
+}
+
+.paiHangXiangQ .ul2 {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 86%;
+	height: 60px;
+	margin: 0 auto;
+	-webkit-padding-start: 0;
+}
+
+.paiHangXiangQ .ul2 li {
+	color: #828284;
+}
+
+.paiHangXiangQ .ul3 {
+	width: 86%;
+	margin: 0 auto;
+	background:#fff;
+	-webkit-padding-start: 0;
+	
+	
+	
+    transform: translate3d(0px, 0px, 0px) translateZ(0px);
+    transition-duration: 0ms;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.list1 {
+	border-bottom: 0.5px solid #d2d2d2;
+	-webkit-padding-start: 0;
+	margin: 0 auto 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 55px;
+	font-size: 0.7rem;
+}
+
+.span1 {
+	font-style: normal;
+}
+
+.span4 {
+	color: #ec5504;
+}
