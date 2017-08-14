@@ -178,6 +178,22 @@
 //}
 
 $(document).ready(function() {
+	//// 	钱包信息
+    $.ajax({
+		timeout : 10000, //超时时间设置，单位毫秒
+		type: "post",
+		url: "/seller-web/seller/select/mywallet",
+		header: "Access-Control-Allow-Origin: *",
+		async: true,
+		success: function(data) {
+			console.log(data);
+		//钱包信息
+		$("#totalIncome").html('(￥'+data.data.totalIncome+')');
+		$("#totalPay").html('(￥'+data.data.totalPay+')');
+
+			
+}
+	});
 
 	$(".shouYi").click(function(e) {
 

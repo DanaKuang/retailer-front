@@ -31,10 +31,56 @@
 .goldLeafInfoLeft{
 	width:32.42%;
 	height:10.75rem;
-	background:red;
+	/*background:red;*/
 }
 .goldLeafInfoRight{
 	width:67.58%;
 	height:10.75rem;
-	background:green;
+	padding-top:2.2rem;
+	margin-left:2%;
+/*	background:green;*/
+}
+.goldLeafInfoLeftTop{
+	overflow: hidden;
+	width:100%;
+	height:50%;
+	/*background: green;*/
+}
+.goldLeafInfoLeftFoot{
+	width:100%;
+	height:50%;
+	background: yellow;
+}
+.goldLeafLogo{
+	height:4.125rem;
+	width:65.6%;
+	border-radius:50%;
+	/*background:url(../static/img/TouXiangPicLogo.png) no-repeat center;*/
+	margin:1rem auto 0;
+}
+.goldLeafLogopic{
+	display:block;
+	height:100%;
+	width:100%;
+	border-radius:50%;
+}
+.goldLeafInfoLeftFoot{
+	width:80%;
+	height:3.25rem;
+	background:black;
+	margin:0.9rem auto;
+}
+.goldLeafInfoRightP1{
+	font-size:0.8rem;
+	display: block;
+	height:1.5rem;
+	margin:0;
+}
+.goldLeafInfoRightP1Span1{
+	color:#e84832;
+}
+.goldLeafInfoRightP1Span2{
+	color:#e90c51;
+	font-weight:900;
+	
 }
