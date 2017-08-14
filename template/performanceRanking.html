@@ -5,14 +5,9 @@
 		<meta charset="UTF-8">
 		<title>业绩排行榜</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
-		<link rel="stylesheet" href="../css/index.css" />
+		<!--<link rel="stylesheet" href="../css/index.css" />-->
 		<link rel="stylesheet" href="../css/performanceRanking.css" />
-		<script>
-			var bw = (document.documentElement.clientWidth / 320) * 20 + "px";
-			var htmlTag = document.getElementsByTagName("html")[0];
-			htmlTag.style.fontSize = bw;
-		</script>
+		
 	</head>
 
 	<body>
@@ -21,103 +16,95 @@
 			<!--中间内容区-->
 			<div class="content">
 			<div class="contentCenter">
-				<div class="topInfo" style="width:8.52rem;height:2.5rem;position:absolute;top:5.2rem;left:5.1rem;background:none;padding:0 0.8rem 0 1rem;">
-					<div class="TouXiang" style="width:2rem;height:2.5rem;">
-						<div class="TouXiangOne" style="width:2rem;height:2rem;">
-							<img src="../static/img/logo.jpg" alt="" style="display:block;width:2rem;height:2rem;border-radius:50%;margin-top:0.3rem;" />
+				<div class="topInfo" style="">
+					<div class="TouXiang">
+						<div class="TouXiangOne" >
+							<img id="TouXiangOneHeadImg" src="../static/img/logo.jpg" alt="" style="display:block;width:100%;height:2.875rem;border-radius:50%;margin-top:0.3rem;" />
 						</div>
-						<img src="../static/img/yirenzheng.png" alt="" style="width:46px;height:12px;display: block;margin-top:-0.45rem" />
+						<img src="../static/img/yirenzheng.png" alt="" style="width:100%;height:.66rem;display: block;margin-top:-0.5rem" />
 					</div>
-					<div class='top-center' style="width:100px;height:2.5rem;">
-						<p class="top-center-P1" style="height:1.25rem;width:100px;text-align: left;line-height: 1.25rem;font-size:0.6rem;">乐天便利零售店</p>
-						<div class="YuHongInfo" style="width:100px;height:1.25rem;">
-							<div class="YuHongInfo-1" style="width:50px;height:1.25rem;">
-								<i style="font-size:0.5rem;">123.00</i>
-								<span style="font-size:0.4rem;">账户余额</span>
+					<div class='top-center' style="width:51%;height:3rem;margin-right: 1rem;padding:0.3rem 0;">
+						<p class="top-center-P1" style="height:1.5rem;width:100%;text-align: center;line-height: 1.5rem;font-size:0.8rem;"></p>
+						<div class="YuHongInfo" style="width:100%;height:1.375rem;">
+							<div class="YuHongInfo-1" style="width:51%;height:1.3755rem;">
+								<i id="UserYuE" style="font-size:0.7rem;text-align: center;"></i>
+								<span style="font-size:0.6rem;">账户余额</span>
 							</div>
-							<div class="YuHongInfo-2" style="width:45px;height:1.25rem;">
-								<p class="YuHongInfo-2-P1" style="font-size:0.5rem;">
-									<i>90</i>
+							<div class="YuHongInfo-2" style="width:49%;height:1.375rem;">
+								<p class="YuHongInfo-2-P1" style="font-size:0.7rem;text-align: center;">
+									<i id="NumberMoneyHong"></i>
 									<span>个</span>
 								</p>
-								<p class="YuHongInfo-2-P2" style="font-size:0.4rem;">红包</p>
+								<p class="YuHongInfo-2-P2" style="font-size:0.6rem;text-align: center;">红包</p>
 							</div>
 						</div>
 					</div>
 
 				</div>
 
-				<i style="font-style:normal;position:absolute;top:9.8rem;left:1.87rem;font-size:1.7rem;color:#b53335;">5</i>
-				<ul style="width:268px;height:32px;display: flex;align-items: center;justify-content: space-between;-webkit-padding-start: 0;position:absolute;top:10.75rem;left:4.3rem;margin:0 auto;">
-					<li style="width:33.33%;color:#fff;">100</li>
-					<li style="width:33.33%;color:#fff;">800</li>
-					<li style="width:33.33%;color:#fff;">12000</li>
+				<i id="MyOrder" style="font-style:normal;position:absolute;top:15rem;left:12.27%;font-size:1.91rem;color:#b53335;"></i>
+				<ul style="width:72%;height:2rem;display: flex;align-items: center;justify-content: space-between;-webkit-padding-start: 0;position:absolute;list-style:none;top:15.75rem;left:27.73%;margin:0 auto;">
+					<li class="weekTotalNum" style="width:33.33%;color:#fff;text-align: center;font-size: 1.2rem;"></li>
+					<li class="monthTotalNum" style="width:33.33%;color:#fff;text-align: center;font-size: 1.2rem;"></li>
+					<li class="totalNum" style="width:33.33%;color:#fff;text-align: center;font-size: 1.2rem;"></li>
 				</ul>
 
 				<div class="InfoList">
 					<div class="InfoListCenter">
 						<ul class="InfoListUl">
-							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">莲花超市</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
+							<!--<li>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span id="NumberOneName" style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;"></span>
+								<span id="NumberOneYeJi" style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;"></span>
 							</li>
 							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span id="NumberTwoName" style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;"></span>
+								<span id="NumberTwoYeJi" style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;"></span>
 							</li>
 							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span id="NumberThreeName" style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;"></span>
+								<span id="NumberThreeYeJi" style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;"></span>
+							</li>-->
+							
+							<!--<li>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;">莲花超市</span>
+								<span style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;">12333</span>
+							</li>-->
+							<!--<li>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;">莲花超市</span>
+								<span style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;">12333</span>
 							</li>
 							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;">莲花超市</span>
+								<span style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;">12333</span>
 							</li>
 							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;">莲花超市</span>
+								<span style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;">12333</span>
 							</li>
 							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;">莲花超市</span>
+								<span style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;">12333</span>
 							</li>
 							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;">莲花超市</span>
+								<span style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;">12333</span>
 							</li>
 							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
-							</li>
-							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
-							</li>
-							<li>
-								<span style="width:67px;height:46px;"></span>
-								<span style="width:108px;height:46px;line-height:46px;">乐天便利店</span>
-								<span style="width:86px;height:46px;line-height:46px;">12333</span>
-								<span style="width:80px;height:46px;line-height:46px;">苹果7</span>
-							</li>
+								<span style="width:22.81%;height:2.9375rem;display: block;"></span>
+								<span style="width:41.96%;height:2.9375rem;line-height:2.9375rem;display: block;text-align: center;">莲花超市</span>
+								<span style="display:block;width:35.23%;height:2.9375rem;line-height:2.9375rem;text-align: center;">12333</span>
+							</li>-->
 						</ul>
+						
 					</div>
 				</div>
 			</div>
@@ -125,8 +112,12 @@
 
 		</div>
 
-		<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
-		<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+		<!--<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>-->
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/performanceRanking.js"></script>
+			
+		
 	</body>
 
 </html>
