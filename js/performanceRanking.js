@@ -42,8 +42,8 @@ $(document).ready(function() {
 //			$("#NumberTwoYeJi").html(data.data.dataList[1].scanNum);
 //			$("#NumberThreeName").html(data.data.dataList[2].shopName);
 //			$("#NumberThreeYeJi").html(data.data.dataList[2].scanNum);
-						var len=data.data.dataList.length;
-			for(var i = 0; i < len; i++) {
+//						var len=data.data.dataList.length;
+			for(var i = 0; i < 10; i++) {
 			  var li = document.createElement('li');
 				  li.innerHTML=
 						'<span style="width:22.81%;height:2.9375rem;display: block;">'+
