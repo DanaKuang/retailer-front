@@ -285,6 +285,7 @@ $(document).ready(function() {
 					toolbarTemplate: '<header class="bar bar-nav">\
 <button class="button button-link pull-right close-picker" id="button-link">确定</button>\
 	</header>',
+					
 					cols: [{
 						textAlign: 'center',
 						displayValues: ['食杂店', '便利店', '超市', '商场', '烟酒商店', '娱乐服务', '其他'],
@@ -296,8 +297,7 @@ $(document).ready(function() {
 						$('#picker').attr('value', displayValue);
 						return displayValue;
 					}
-				});
-				
+				}); 
 //				$("#picker").click(function(e){
 //					$("#yeTaiZheZhaoCeng").show();
 //					$("#yeTaiZheZhaoCeng").on('touchmove',function(event) { event.preventDefault(); }, false);
