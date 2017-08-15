@@ -17,6 +17,7 @@
 .topInfo .TouXiang .TouXiangOne {
 	width: 72.5px;
 	height: 72.5px;
+	/*height: 4.53125rem;*/
 }
 
 .TouXiangTwo img {
@@ -33,8 +34,10 @@
 }
 
 .top-center {
-	width: 158.5px;
-	height: 79px;
+	/*width: 158.5px;*/
+	width: 46.94%;
+	/*height: 79px;*/
+	height: 3.95rem;
 }
 
 .top-center .top-center-P1 {
@@ -42,7 +45,7 @@
 	;
 	display: block;
 	height: 38px;
-	width: 158.5px;
+	width: 100%;
 	text-align: center;
 	line-height: 38px;
 	/*background:red;*/
@@ -51,7 +54,7 @@
 }
 
 .YuHongInfo {
-	width: 158.5px;
+	width: 100%;
 	height: 41px;
 	display: flex;
 	justify-content: space-between;
@@ -111,12 +114,12 @@
 
 .identificationState {
 	display: block;
-	width: 72.5px;
-	height: 30px;
+	width: 65px;
+	height: 1.515rem;
 	/*background: #d7ae5c;*/
 	border: none;
 	text-align: center;
-	line-height: 30px;
+	line-height: 1.515rem;
 	font-size: 0.7rem;
 	color: #fff;
 	border-radius: 0.3rem;
@@ -138,22 +141,25 @@
 
 .ErWeiMaManage li {
 	margin-top: 1rem;
-	width: 74px;
-	height: 110px;
+	/*width: 74px;*/
+	width: 22.1%;
+	/*height: 110px;*/
+	height: 5.5rem;
 	
 }
 
 .ErWeiMaManage li div {
 	display: block;
-	width: 74px;
-	height: 72px;
+	width: 100%;
+	/*height: 72px;*/
+	height: 3.6rem;
 	position:relative;
 }
 
 .ErWeiMaManage li div img {
 	display: block;
-	width: 74px;
-	height: 72px;
+	width: 100%;
+	height: 3.6rem;
 }
 
 

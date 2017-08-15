@@ -90,6 +90,9 @@ $(document).ready(function() {
 		async: true,
 		success: function(data) {
 			console.log(data);
+			if(!data.ok){
+			$("#submitApply").attr('disabled',true);
+		}
 			var sellerInfo=data.data.sellerInfo;
 			$("#ImgTan").attr('src',sellerInfo.headImg);
 			$("#ownerName").val(sellerInfo.ownerName);
@@ -155,8 +158,9 @@ $(document).ready(function() {
 
 
 	
-
+	
 	$("#submitApply").click(function() {
+		
 		//							表单验证
 					if(!$("#headImg").val()) {
 						Zepto.toast("请上传头像");
@@ -240,6 +244,7 @@ $(document).ready(function() {
 				}
 			}
 		})
+		
 
 	});
 
