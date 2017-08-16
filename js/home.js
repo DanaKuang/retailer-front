@@ -244,7 +244,7 @@ $(document).ready(function() {
 				$(".JinYinRenNameSpan").html(sellerInfo.ownerName);
 				$(".phoneNumber").html(sellerInfo.contactPhone);
 				$(".sex").html(wxInfo.sex);
-				$(".nickname").html(wxInfo.nickname);
+				$(".contactName").html(wxInfo.contactName);
 				$(".contactPhone").html(sellerInfo.contactPhone);
 				$(".shopName").html(sellerInfo.shopName);
 				$(".applyTime").html(new Date(sellerInfo.applyTime).Format('yyyy-MM-dd'));
