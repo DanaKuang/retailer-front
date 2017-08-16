@@ -14,7 +14,6 @@ $(document).ready(function() {
 			for(var i = 0; i < result.length; i++) {
 				stroption += '<option value=' + result[i].code + '>';
 				stroption += result[i].shortName;
-				stroption += '</option>';
 			}
 			$('#addrProvince').html(stroption);
 		}

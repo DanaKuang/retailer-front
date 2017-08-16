@@ -148,6 +148,8 @@ $(document).ready(function() {
 	});
 
 	$("#submitApply").click(function() {
+					$("#submitApply").attr('disabled', true);
+		
 		//							表单验证
 		if(!$("#headImg").val()) {
 			Zepto.toast("请上传头像");
@@ -217,10 +219,15 @@ $(document).ready(function() {
 			contentType: false,
 			async: true,
 			success: function(result) {
+
+				
 				console.log(result);
 				if(result.ok) {
+
+					
 					$("#SuccessRenZheng").show();
 					$("#SuccessRenZheng").on('touchmove', function(event) { event.preventDefault(); }, false);
+
 					$("#KnowSoTahts").click(function(e) {
 						window.location.href = "/template/home.html";
 					});
@@ -230,7 +237,6 @@ $(document).ready(function() {
 				}
 			}
 		})
-
 	});
 
 	var uploader = WebUploader.create({
