@@ -160,6 +160,7 @@ $(document).ready(function() {
 	
 	
 	$("#submitApply").click(function() {
+		$("#submitApply").attr('disabled', true);
 		
 		//							表单验证
 					if(!$("#headImg").val()) {

@@ -104,8 +104,8 @@ $(document).ready(function() {
 			$('.YiXuanChangeRadio').eq(i).attr("checked", true);
 		});
 	});
-
 	$("#submitApply").click(function() {
+		$("#submitApply").attr('disabled', true);
 
 		//							表单验证
 		if(!$("#headImg").val()) {
