@@ -90,6 +90,9 @@ $(document).ready(function() {
 		async: true,
 		success: function(data) {
 			console.log(data);
+			if(!data.ok){
+			$("#submitApply").attr('disabled',true);
+		}
 			var sellerInfo=data.data.sellerInfo;
 			$("#ImgTan").attr('src',sellerInfo.headImg);
 			$("#ownerName").val(sellerInfo.ownerName);
