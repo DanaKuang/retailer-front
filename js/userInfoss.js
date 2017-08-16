@@ -318,4 +318,10 @@ $(document).ready(function() {
 		}
 	});
 
+
+
+	if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') 
+{ 
+     $(".footer").css("position", "static"); 
+};
 });

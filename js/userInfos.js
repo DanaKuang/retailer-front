@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var YeTai=['食杂店', '便利店', '超市', '商场', '烟酒商店', '娱乐服务', '其他'];
+	var YeTai = ['食杂店', '便利店', '超市', '商场', '烟酒商店', '娱乐服务', '其他'];
 	//	var jq=$.noConflict();
 	//省,市,区三级联动
 	$.ajax({
@@ -76,10 +76,6 @@ $(document).ready(function() {
 	$('#XuKeZhengPost').click(function() {
 		$('.xuKeZhengPupup').hide();
 	});
-	
-	
-	
-	
 
 	//加载重新编辑默认选项
 	$.ajax({
@@ -90,133 +86,128 @@ $(document).ready(function() {
 		async: true,
 		success: function(data) {
 			console.log(data);
-			if(!data.ok){
-			$("#submitApply").attr('disabled',true);
-		}
-			var sellerInfo=data.data.sellerInfo;
-			$("#ImgTan").attr('src',sellerInfo.headImg);
+			if(!data.ok) {
+				$("#submitApply").attr('disabled', true);
+			}
+			var sellerInfo = data.data.sellerInfo;
+			$("#ImgTan").attr('src', sellerInfo.headImg);
 			$("#ownerName").val(sellerInfo.ownerName);
 			$("#phoneNo").val(sellerInfo.contactPhone);
-			
-			$(".contactGender").each(function(i,value){
-				if($(this).val() == sellerInfo.contactGender){
-					$(this).attr("checked",true);
+
+			$(".contactGender").each(function(i, value) {
+				if($(this).val() == sellerInfo.contactGender) {
+					$(this).attr("checked", true);
 				};
 			});
 			$("#contactName").val(sellerInfo.contactName);
 			$("#contactPhone").val(sellerInfo.contactPhone);
 			$("#shopName").val(sellerInfo.shopName);
 			$("#addrDetail").val(sellerInfo.addrDetail);
-			$("#ImgTanFJ").attr('src',sellerInfo.licenceImg);
+			$("#ImgTanFJ").attr('src', sellerInfo.licenceImg);
 			$("#licenceImg").val(sellerInfo.licenceImg);
 			$("#licenceNo").val(sellerInfo.licenceNo);
 			$("#headImg").val(sellerInfo.headImg);
-			
-			$(".district").each(function(i,value){
-				if($(this).val() == sellerInfo.district){
-					$(this).attr("checked",true);
+
+			$(".district").each(function(i, value) {
+				if($(this).val() == sellerInfo.district) {
+					$(this).attr("checked", true);
 				};
 			});
-			
-			
-			$(".qrStyle").each(function(i,value){
-				if($(this).val() == sellerInfo.qrStyle){
-					$(this).attr("checked",true);
+
+			$(".qrStyle").each(function(i, value) {
+				if($(this).val() == sellerInfo.qrStyle) {
+					$(this).attr("checked", true);
 				};
 			});
-//			picker
-//
+			//			picker
+			//
 			//设置三级联动的值
-					$("#addrProvince").val(sellerInfo.addrProvince);
-					$("#addrProvince").trigger('change');
-					$("#addrCity").val(sellerInfo.addrCity);
-					$("#addrCity").trigger('change');
-					$("#addrArea").val(sellerInfo.addrArea);
-					$("#picker").val(YeTai[sellerInfo.commercial-1]);
-					$("#sellerId").val(sellerInfo.sellerId);
-					$("#commercial").val(sellerInfo.commercial);
-					
-			
+			$("#addrProvince").val(sellerInfo.addrProvince);
+			$("#addrProvince").trigger('change');
+			$("#addrCity").val(sellerInfo.addrCity);
+			$("#addrCity").trigger('change');
+			$("#addrArea").val(sellerInfo.addrArea);
+			$("#picker").val(YeTai[sellerInfo.commercial - 1]);
+			$("#sellerId").val(sellerInfo.sellerId);
+			$("#commercial").val(sellerInfo.commercial);
 
 		}
-		
-	});
-	
-	//	二维码选择跟下面已选相对应
-	$(".changeRadio").each(function(i){
-		
-		$(this).click(function(){
-			$('.YiXuanChangeRadio').each(function(j){	
-			 $(this).attr("checked",false);
-		})
-       
-         $('.YiXuanChangeRadio').eq(i).attr("checked",true);
-		});	
+
 	});
 
+	//	二维码选择跟下面已选相对应
+	$(".changeRadio").each(function(i) {
+
+		$(this).click(function() {
+			$('.YiXuanChangeRadio').each(function(j) {
+				$(this).attr("checked", false);
+			})
+
+			$('.YiXuanChangeRadio').eq(i).attr("checked", true);
+		});
+	});
 
 	$("#submitApply").click(function() {
 		//							表单验证
-					if(!$("#headImg").val()) {
-						Zepto.toast("请上传头像");
-						return;
-					};
-					if(!$("#ownerName").val()) {
-						Zepto.toast("经营人名称不能为空！");
-						return;
-					};
+		if(!$("#headImg").val()) {
+			Zepto.toast("请上传头像");
+			return;
+		};
+		if(!$("#ownerName").val()) {
+			Zepto.toast("经营人名称不能为空！");
+			return;
+		};
 
-					if($("#phoneNo").val().length == 0) {
-						Zepto.toast('手机号码不能为空！');
-						return false;
-					}
-					if($("#phoneNo").val().length != 11) {
-						Zepto.toast('请输入有效的手机号码，需是11位！');
-						return false;
-					}
+		if($("#phoneNo").val().length == 0) {
+			Zepto.toast('手机号码不能为空！');
+			return false;
+		}
+		if($("#phoneNo").val().length != 11) {
+			Zepto.toast('请输入有效的手机号码，需是11位！');
+			return false;
+		}
 
-					var myreg =/^1[34578]\d{9}$/;
-					if(!myreg.test($("#phoneNo").val())) {
-						Zepto.toast('请输入有效的手机号码！');
-						return false;
-					}
+		var myreg = /^1[34578]\d{9}$/;
+		if(!myreg.test($("#phoneNo").val())) {
+			Zepto.toast('请输入有效的手机号码！');
+			return false;
+		}
 
-					if(!$("#shopName").val()) {
-						Zepto.toast("店铺名称不能为空！");
-						return;
-					};
-					 if(!$("#addrProvince").val()) {
-						Zepto.toast("请选择门店省地址！");
-						return;
-					};
-					if(!$("#addrCity").val()) {
-						Zepto.toast("请选择门店市地址！");
-						return;
-					};
-					if(!$("#addrArea").val()) {
-						Zepto.toast("请选择门店区地址！");
-						return;
-					};
-					
-					
-					if(!$("#licenceImg").val()) {
-						Zepto.toast("请上传烟草专卖零售许可证件照");
-							return;
-						};
+		if(!$("#shopName").val()) {
+			Zepto.toast("店铺名称不能为空！");
+			return;
+		};
+		if(!$("#addrProvince").val()) {
+			Zepto.toast("请选择门店省地址！");
+			return;
+		};
+		if(!$("#addrCity").val()) {
+			Zepto.toast("请选择门店市地址！");
+			return;
+		};
+		if(!$("#addrArea").val()) {
+			Zepto.toast("请选择门店区地址！");
+			return;
+		};
 
-						if(!$("#licenceNo").val()) {
-							Zepto.toast('烟草专卖零售许可证件号不能为空!');
-							return false;
-						}; 
-						var zmnumReg = /^[0-9a-zA-Z]*$/;
-						if(!zmnumReg.test($("#licenceNo").val())) { 
-							Zepto.toast('许可证件号只能是字母或者数字!');
-							return false;
-						};
+		if(!$("#licenceImg").val()) {
+			Zepto.toast("请上传烟草专卖零售许可证件照");
+			return;
+		};
+
+		if(!$("#licenceNo").val()) {
+			Zepto.toast('烟草专卖零售许可证件号不能为空!');
+			return false;
+		};
+		var zmnumReg = /^[0-9a-zA-Z]*$/;
+		if(!zmnumReg.test($("#licenceNo").val())) {
+			Zepto.toast('许可证件号只能是字母或者数字!');
+			return false;
+		};
 		var form = new FormData($('#tf')[0]);
 		//		var form={};
 		$.ajax({
-			timeout : 10000, //超时时间设置，单位毫秒
+			timeout: 10000, //超时时间设置，单位毫秒
 			type: "post",
 			url: "/seller-web/seller/apply/certification",
 			//      url: "/seller-web/seller/apply/certification",
@@ -229,7 +220,7 @@ $(document).ready(function() {
 				console.log(result);
 				if(result.ok) {
 					$("#SuccessRenZheng").show();
-					$("#SuccessRenZheng").on('touchmove',function(event) { event.preventDefault(); }, false);
+					$("#SuccessRenZheng").on('touchmove', function(event) { event.preventDefault(); }, false);
 					$("#KnowSoTahts").click(function(e) {
 						window.location.href = "/template/home.html";
 					});
@@ -311,5 +302,7 @@ $(document).ready(function() {
 			return displayValue;
 		}
 	});
-
+	if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') {
+		$(".footer").css("position", "static");
+	};
 });
