@@ -214,9 +214,11 @@ $(document).ready(function() {
 					$("#KnowSoTahts").click(function(e) {
 						window.location.href = "/template/home.html";
 					});
-
+					return;
 				} else {
+//					$("#submitApply").attr('disabled', true);
 					alert(result.msg);
+					return;
 				}
 			}
 		})
