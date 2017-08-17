@@ -215,9 +215,12 @@ $(document).ready(function() {
 					$(".identificationState").css('background', '#d7ae5c');
 
 					//					错误提示滚动条弹窗显示
-					$("#FalseWarn").show();
+					$("#FalseWarn").toggle();
 					$("#FalseWarnFont").html(data.data.faillog.failReason);
-
+					var swiper = new Swiper('.swiper-container', {
+				slidesPerView: 'auto',
+				grabCursor: true
+			});
 					$(".identificationState").click(function(e) {
 						window.location.href = "/template/userInfos.html";
 						return;
