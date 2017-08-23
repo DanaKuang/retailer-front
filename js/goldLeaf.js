@@ -64,10 +64,6 @@ $(document).ready(function () {
                 }
             });
         });
-
-        document.getElementById('sao2').onclick = function () {
-
-        }
     });
 });
 		
