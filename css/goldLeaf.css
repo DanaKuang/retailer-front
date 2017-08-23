@@ -12,6 +12,7 @@
 	height:130px;
 	/*background:blue;*/
 	margin:0 auto;
+	overflow: hidden;
 	text-align: center;
 }
 .SaoYiSaoButton{
@@ -89,5 +90,5 @@
 
 #sao2 {
 	display: block;
-	margin: 0 auto;
+	margin: 5px auto 0;
 }
