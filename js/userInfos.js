@@ -135,18 +135,6 @@ $(document).ready(function() {
 
 	});
 
-	//	二维码选择跟下面已选相对应
-	$(".changeRadio").each(function(i) {
-
-		$(this).click(function() {
-			$('.YiXuanChangeRadio').each(function(j) {
-				$(this).attr("checked", false);
-			})
-
-			$('.YiXuanChangeRadio').eq(i).attr("checked", true);
-		});
-	});
-
 	$("#submitApply").click(function() {
 
 		//表单验证
@@ -205,6 +193,13 @@ $(document).ready(function() {
 			Zepto.toast('许可证件号只能是字母或者数字!');
 			return false;
 		};
+
+
+		var qrStyleValue = $("input[name='qrStyle']:checked").val();
+		if(!qrStyleValue){
+			Zepto.toast('请选择二维码标牌样式!');
+			return false;
+		}
 
 		$("#submitApply").attr('disabled', true);
 
