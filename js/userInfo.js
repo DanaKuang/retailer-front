@@ -98,8 +98,9 @@ $(document).ready(function() {
 
 		$(this).click(function() {
 			$('.YiXuanChangeRadio').each(function(j) {
+				console.log("===当前i=="+i);
 				$(this).attr("checked", false);
-			})
+			});
 
 			$('.YiXuanChangeRadio').eq(i).attr("checked", true);
 		});
