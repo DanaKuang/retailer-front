@@ -219,8 +219,6 @@ $(document).ready(function() {
 				
 				console.log(result);
 				if(result.ok) {
-
-					
 					$("#SuccessRenZheng").show();
 					$("#SuccessRenZheng").on('touchmove', function(event) { event.preventDefault(); }, false);
 

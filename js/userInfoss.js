@@ -128,12 +128,9 @@ $(document).ready(function () {
             $("#sellerId").val(sellerInfo.sellerId);
             $("#commercial").val(sellerInfo.commercial);
 
-            $(".qrStyle").each(function (i, value) {
-                if ($(this).val() == sellerInfo.qrStyle) {
-                    $(this).attr("checked", true);
-                }
-                ;
-            });
+            if(sellerInfo.qrStyle){
+                $("input[name='qrStyle']").eq(sellerInfo.qrStyle-1).attr('checked','checked');
+            }
 
         }
 
@@ -200,9 +197,7 @@ $(document).ready(function () {
         if (!$("#addrArea").val()) {
             Zepto.toast("请选择门店区地址！");
             return;
-        }
-        ;
-
+        };
 
         if (!$("#licenceImg").val()) {
             Zepto.toast("请上传烟草专卖零售许可证件照");
@@ -220,6 +215,12 @@ $(document).ready(function () {
             Zepto.toast('许可证件号只能是字母或者数字!');
             return false;
         };
+
+        var qrStyleValue = $("input[name='qrStyle']:checked").val();
+        if(!qrStyleValue){
+            Zepto.toast('请选择二维码标牌样式!');
+            return false;
+        }
 
         $("#submitApply").attr('disabled', true);
 
