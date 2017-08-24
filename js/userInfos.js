@@ -116,7 +116,7 @@ $(document).ready(function() {
 
 
 			if(sellerInfo.qrStyle){
-				$("input[name='qrStyle']").eq(sellerInfo.qrStyl-1).attr('checked',true);
+				$("input[name='qrStyle']").eq(sellerInfo.qrStyl-1).attr('checked','checked');
 			}
 			//			picker
 			//
