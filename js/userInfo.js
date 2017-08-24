@@ -65,19 +65,6 @@ $(document).ready(function() {
 	$("#addrProvince").val(410000);
 	$("#addrProvince").trigger('change');
 
-	//			$(".radio :checked").val();
-	//			alert($(".YiXuanChangeRadio :checked").val());
-	//	//设置三级联动的值
-	//					$("#addrProvince").val(sellerInfo.addrProvince);
-	//					$("#addrProvince").trigger('change');
-	//					$("#addrCity").val(sellerInfo.addrCity);
-	//					$("#addrCity").trigger('change');
-	//					$("#addrArea").val(sellerInfo.addrArea);
-	//					$("#picker").val(YeTai[sellerInfo.commercial-1]);
-	//					$("#sellerId").val(sellerInfo.sellerId);
-	//					$("#commercial").val(sellerInfo.commercial);
-	//	上传照片弹窗
-
 	$('#picPost').click(function() {
 		$('#paiZhaoPupup').show();
 	});
@@ -93,21 +80,13 @@ $(document).ready(function() {
 		$('.xuKeZhengPupup').hide();
 	});
 
-	//	二维码选择跟下面已选相对应
-	//$(".changeRadio").each(function(i) {
-    //
-	//	$(this).click(function() {
-	//		$('.YiXuanChangeRadio').each(function(j) {
-	//			console.log("===当前i=="+i);
-	//			//$(this).attr("checked", false);
-	//		});
-    //
-	//		$("input:radio[name='qrStyle']").attr("checked",false);
-	//		//$('.YiXuanChangeRadio').eq(i).attr("checked", true);
-	//		$("input:radio[name='qrStyle']").eq(i).attr("checked",true);
-	//	});
-	//});
+
+
 	$("#submitApply").click(function() {
+
+
+		var qrStyleValue = $("input[name='qrStyle']:checked").val();
+		console.log("qrStyleValue===="+qrStyleValue);
 
 		//表单验证
 		if(!$("#headImg").val()) {
@@ -192,10 +171,15 @@ $(document).ready(function() {
 			return;
 		};
 
-		if(!$(".YiXuanChangeRadio[checked=checked]").val()) {
-			Zepto.toast('请选择二维码标牌样式!');
-			return false;
-		};
+		//if(!$(".YiXuanChangeRadio[checked=checked]").val()) {
+		//	Zepto.toast('请选择二维码标牌样式!');
+		//	return false;
+		//};
+
+		var qrStyleValue = $("input[name='qrStyle']:checked").val();
+		console.log("qrStyleValue===="+qrStyleValue);
+
+		return ;
 
 		$("#submitApply").attr('disabled', true);
 
