@@ -94,19 +94,19 @@ $(document).ready(function() {
 	});
 
 	//	二维码选择跟下面已选相对应
-	$(".changeRadio").each(function(i) {
-
-		$(this).click(function() {
-			$('.YiXuanChangeRadio').each(function(j) {
-				console.log("===当前i=="+i);
-				//$(this).attr("checked", false);
-			});
-
-			$("input:radio[name='qrStyle']").attr("checked",false);
-			//$('.YiXuanChangeRadio').eq(i).attr("checked", true);
-			$("input:radio[name='qrStyle']").eq(i).attr("checked",true);
-		});
-	});
+	//$(".changeRadio").each(function(i) {
+    //
+	//	$(this).click(function() {
+	//		$('.YiXuanChangeRadio').each(function(j) {
+	//			console.log("===当前i=="+i);
+	//			//$(this).attr("checked", false);
+	//		});
+    //
+	//		$("input:radio[name='qrStyle']").attr("checked",false);
+	//		//$('.YiXuanChangeRadio').eq(i).attr("checked", true);
+	//		$("input:radio[name='qrStyle']").eq(i).attr("checked",true);
+	//	});
+	//});
 	$("#submitApply").click(function() {
 
 		//表单验证
