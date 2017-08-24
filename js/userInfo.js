@@ -84,10 +84,6 @@ $(document).ready(function() {
 
 	$("#submitApply").click(function() {
 
-
-		var qrStyleValue = $("input[name='qrStyle']:checked").val();
-		console.log("qrStyleValue===="+qrStyleValue);
-
 		//表单验证
 		if(!$("#headImg").val()) {
 			Zepto.toast("请上传头像");
@@ -171,15 +167,12 @@ $(document).ready(function() {
 			return;
 		};
 
-		//if(!$(".YiXuanChangeRadio[checked=checked]").val()) {
-		//	Zepto.toast('请选择二维码标牌样式!');
-		//	return false;
-		//};
 
 		var qrStyleValue = $("input[name='qrStyle']:checked").val();
-		console.log("qrStyleValue===="+qrStyleValue);
-
-		return ;
+		if(!qrStyleValue){
+			Zepto.toast('请选择二维码标牌样式!');
+			return false;
+		}
 
 		$("#submitApply").attr('disabled', true);
 
