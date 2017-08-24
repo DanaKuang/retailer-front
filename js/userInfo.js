@@ -84,6 +84,9 @@ $(document).ready(function() {
 
 	$("#submitApply").click(function() {
 
+		var qrStyleValue = $("input[name='qrStyle']:checked").val();
+		alert(qrStyleValue);
+
 		//表单验证
 		if(!$("#headImg").val()) {
 			Zepto.toast("请上传头像");
@@ -168,8 +171,7 @@ $(document).ready(function() {
 		};
 
 
-		var qrStyleValue = $("input[name='qrStyle']:checked").val();
-		alert(qrStyleValue);
+
 		if(!qrStyleValue){
 			Zepto.toast('请选择二维码标牌样式!');
 			return false;
