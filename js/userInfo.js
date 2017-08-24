@@ -102,6 +102,7 @@ $(document).ready(function() {
 				//$(this).attr("checked", false);
 			});
 
+			$("input:radio[name='qrStyle']").attr("checked",false);
 			//$('.YiXuanChangeRadio').eq(i).attr("checked", true);
 			$("input:radio[name='qrStyle']").eq(i).attr("checked",true);
 		});
