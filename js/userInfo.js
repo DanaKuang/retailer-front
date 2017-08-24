@@ -169,6 +169,7 @@ $(document).ready(function() {
 
 
 		var qrStyleValue = $("input[name='qrStyle']:checked").val();
+		alert(qrStyleValue);
 		if(!qrStyleValue){
 			Zepto.toast('请选择二维码标牌样式!');
 			return false;
