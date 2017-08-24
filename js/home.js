@@ -222,7 +222,7 @@ $(document).ready(function() {
 				grabCursor: true
 			});
 					$(".identificationState").click(function(e) {
-						window.location.href = "/template/userInfos.html";
+						window.location.href = "/template/userInfos.html?date="+new date().valueOf();
 						return;
 					});
 					$(".listImgEWM").click(function(e) {
@@ -337,7 +337,7 @@ $(document).ready(function() {
 							$("#GoShoppingSad").click(function(e) {
 								$("#cancelOrderManage").hide();
 								$("#orderManage").hide();
-								window.location.href = "/template/home.html";
+								window.location.href = "/template/home.html?date="+new date().valueOf();
 							})
 
 						});
@@ -392,7 +392,7 @@ $(document).ready(function() {
 								alert("抱歉！您提交失败！");
 							}
 							
-							window.location.href="/template/home.html";
+							window.location.href="/template/home.html?date="+new date().valueOf();
 						}
 					});
 
@@ -408,7 +408,7 @@ $(document).ready(function() {
 				$("#ShouCinoRenZheng").show();
 				$("#ShouCinoRenZheng").on('touchmove', function(event) { event.preventDefault(); }, false);
 				$("#KnowSoTahts").click(function(e) {
-					window.location.href = "/template/userInfo.html";
+					window.location.href = "/template/userInfo.html?date="+new date().valueOf();
 				});
 
 			}
@@ -446,7 +446,7 @@ $(document).ready(function() {
 						$("#SuccessShenQing").toggle();
 						$("#Logistics").hide();
 						$("#mineKnow").click(function(e) {
-							window.location.href = "/template/home.html";
+							window.location.href = "/template/home.html?date="+new date().valueOf();
 							$("#SuccessShenQing").toggle();
 						})
 
