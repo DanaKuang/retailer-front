@@ -85,7 +85,9 @@ $(document).ready(function() {
 	$("#submitApply").click(function() {
 
 		var qrStyleValue = $("input[name='qrStyle']:checked").val();
-		alert(qrStyleValue);
+		Zepto.toast(qrStyleValue);
+
+		return;
 
 		//表单验证
 		if(!$("#headImg").val()) {
