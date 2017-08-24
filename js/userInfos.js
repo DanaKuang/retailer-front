@@ -114,11 +114,10 @@ $(document).ready(function() {
 				};
 			});
 
-			$(".qrStyle").each(function(i, value) {
-				if($(this).val() == sellerInfo.qrStyle) {
-					$(this).attr("checked", true);
-				};
-			});
+
+			if(sellerInfo.qrStyle){
+				$("input[name='qrStyle']").eq(sellerInfo.qrStyl-1).attr('checked',true);
+			}
 			//			picker
 			//
 			//设置三级联动的值
