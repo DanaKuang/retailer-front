@@ -105,9 +105,8 @@ $(document).ready(function() {
 		});
 	});
 	$("#submitApply").click(function() {
-		$("#submitApply").attr('disabled', true);
 
-		//							表单验证
+		//表单验证
 		if(!$("#headImg").val()) {
 			Zepto.toast("请上传头像");
 			return;
@@ -194,6 +193,8 @@ $(document).ready(function() {
 			Zepto.toast('请选择二维码标牌样式!');
 			return false;
 		};
+
+		$("#submitApply").attr('disabled', true);
 
 		var form = new FormData($('#tf')[0]);
 		//		var form={};

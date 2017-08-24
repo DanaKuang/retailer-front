@@ -148,9 +148,8 @@ $(document).ready(function() {
 	});
 
 	$("#submitApply").click(function() {
-		$("#submitApply").attr('disabled', true);
-		
-		//							表单验证
+
+		//表单验证
 		if(!$("#headImg").val()) {
 			Zepto.toast("请上传头像");
 			return;
@@ -206,6 +205,9 @@ $(document).ready(function() {
 			Zepto.toast('许可证件号只能是字母或者数字!');
 			return false;
 		};
+
+		$("#submitApply").attr('disabled', true);
+
 		var form = new FormData($('#tf')[0]);
 		//		var form={};
 		$.ajax({
