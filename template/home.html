@@ -5,10 +5,8 @@
 		<meta charset="UTF-8">
 		<title>门店中心</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<!--<meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no">-->
 		<link rel="stylesheet" href="../css/index.css" />
 		<link rel="stylesheet" href="../css/home.css" />
-		<!--<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">-->
 		<link rel="stylesheet" href="../css/sm.css" />
 		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" />
 		<script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
@@ -310,55 +308,66 @@
 			</nav>
 			<!--未认证弹窗-->
 			<div id="noRenZheng" style="display:none;">
-				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:110000;padding: 0;table-layout:fixed;    backface-visibility: hidden;">
+				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;padding: 0;table-layout:fixed;backface-visibility: hidden;">
 				</div>
-				<div style="z-index: 110001;width: 70%;height: 11rem;padding: 0;top:9rem;left:15%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.8rem 0 1.5rem 0;">
+				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.6rem 0 2.8rem; ">
 					<div>
-						<span style="font-size:1rem;font-weight:900;color:#e3590e;display:block;width:100%;margin:0 auto;">您还未认证成功</span>
+						<img src="../static/img/qurenzhengxiaoren.png" alt="" style="align-self: .125rem;height:4.125rem;"/>
+						<span style="font-size:1.2rem;font-weight:500;color:#b3815c;display:block;width:100%;margin:0 auto;">您还没有完成认证</span>
 
-						<span style="font-size:0.6rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">不准领取二维码标牌哦!</span>
+						<span style="font-size:0.9rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">请点击<i style="font-style: normal;color:#b3815c;">"去认证"</i>完善个人信息</span>
 					</div>
-					<div id="KnowSoTaht" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">去认证</div>
+					<p style="color:#b3815c;font-size:0.9rem;">两分钟即可完成认证</p>
+					<!--<div id="KnowSoTaht" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">去认证</div>-->
+					<img src="../static/img/qurenzhenganniu.png" alt="" id="KnowSoTaht" style="width:10rem;height:2.25rem;"/>
 				</div>
 			</div>
 
 			<!--首次进入未认证弹窗-->
 			<div id="ShouCinoRenZheng" style="display:none;">
-				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:110000;padding: 0;table-layout:fixed;    backface-visibility: hidden;">
+				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;padding: 0;table-layout:fixed;    backface-visibility: hidden;">
 				</div>
-				<div style="z-index: 110001;width: 70%;height: 11rem;padding: 0;top:9rem;left:15%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.8rem 0 1.5rem 0;">
+				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.6rem 0 2.8rem; ">
 					<div>
-						<span style="font-size:1.2rem;font-weight:900;color:#e3590e;display:block;width:100%;margin:0 auto;">您还没有完成认证</span>
+						<img src="../static/img/qurenzhengxiaoren.png" alt="" style="align-self: .125rem;height:4.125rem;"/>
+						<span style="font-size:1.2rem;font-weight:500;color:#b3815c;display:block;width:100%;margin:0 auto;">您还没有完成认证</span>
 
-						<span style="font-size:0.7rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">请点击<i style="font-style: normal;color:#e3590e;">"去认证"</i>完善个人信息</span>
+						<span style="font-size:0.9rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">请点击<i style="font-style: normal;color:#b3815c;">"去认证"</i>完善个人信息</span>
 					</div>
-					<div id="KnowSoTahts" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">去认证</div>
+					<p style="color:#b3815c;font-size:0.9rem;">两分钟即可完成认证</p>
+					<!--<div id="KnowSoTahts" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">去认证</div>-->
+					<img src="../static/img/qurenzhenganniu.png" alt="" id="KnowSoTahts" style="width:10rem;height:2.25rem;"/>
 				</div>
 			</div>
 			<!--未认证二维码弹窗-->
 			<div id="noRenZhengDianMa" style="display:none;">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
 				</div>
-				<div style="z-index: 100001;width: 70%;height: 11rem;padding: 0;top:9rem;left:15%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.8rem 0 1.5rem 0;">
+				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.6rem 0 2.8rem; ">
 					<div>
-						<span style="font-size:1rem;font-weight:900;color:#e3590e;display:block;width:100%;margin:0 auto;">您还未认证成功</span>
+						<img src="../static/img/gantanhao.png" alt="" style="width:: 5.53rem;height:5.53rem;"/>
+						<span style="font-size:1.15625rem;font-weight:500;color:#a8846a;display:block;width:100%;margin:0.5rem auto 0;">您还未认证成功</span>
 
-						<span id="ChaKanShopMa" style="font-size:0.6rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">不能查看店码哦!</span>
+						<span id="ChaKanShopMa" style="font-size:0.9rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">不能查看店码哦!</span>
 					</div>
-					<div id="KnowSoTahtDianMa" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">我知道了</div>
+					<!--<div id="KnowSoTahtDianMa" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">我知道了</div>-->
+					
+					<img id="KnowSoTahtDianMa" src="../static/img/iKnow.png" alt="" style="width:6.8rem;height:2.4rem;"/>
 				</div>
 			</div>
 			<!--未认证二维码弹窗点击标牌样式符号-->
 			<div id="noRenZhengDianMas" style="display:none;">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
 				</div>
-				<div style="z-index: 100001;width: 70%;height: 11rem;padding: 0;top:9rem;left:15%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.8rem 0 1.5rem 0;">
+				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.6rem 0 2.8rem; ">
 					<div>
-						<span style="font-size:1rem;font-weight:900;color:#e3590e;display:block;width:100%;margin:0 auto;">您还未认证成功</span>
+						<img src="../static/img/gantanhao.png" alt="" style="width:: 5.53rem;height:5.53rem;"/>
+						<span style="font-size:1.15625rem;font-weight:500;color:#a8846a;display:block;width:100%;margin:0.5rem auto 0;">您还未认证成功</span>
 
-						<span style="font-size:0.6rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">不能选择二维码标牌样式哦!</span>
+						<span id="ChaKanShopMa" style="font-size:0.9rem;color:#656160;display:block;width:100%;margin:0.3rem auto;">不能领取二维码标牌哦!</span>
 					</div>
-					<div id="KnowSoTahtDianMas" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">我知道了</div>
+					<!--<div id="KnowSoTahtDianMas" style="border:1px solid #e3590e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#ee5f63;width:45%;height:1.8rem;margin:0 auto;line-height:1.8rem;">我知道了</div>-->
+					<img id="KnowSoTahtDianMas" src="../static/img/iKnow.png" alt="" style="width:6.8rem;height:2.4rem;"/>
 				</div>
 			</div>
 
@@ -400,18 +409,21 @@
 
 					<div id="ButtonBtnQueRen" style="display:inline-block;border:none;color:#fff;background:#ddba90;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:1.31rem;margin-top:1.2rem;">确认支付</div>
 				</div>
-			</div <!--恭喜您申请成功-->
+			</div> 
+				
+			<!--恭喜您申请成功-->
 			<div id="SuccessShenQing" style="display:none;">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
 				</div>
-				<div style="z-index: 100001;width: 70%;height: 11rem;padding: 0;top:11rem;left:15%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.8rem 0 0 0;">
+			
+				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.6rem 0 2.8rem; ">
 					<div>
-						<span style="font-size:1rem;font-weight:400;color:#e3641e;display:block;width:100%;margin:0 auto;">恭喜您申请成功</span>
+						<img src="../static/img/tanchuduihao.png" alt="" style="width:5.4rem;height:5.4rem;"/>
+						<span style="font-size:1.2rem;font-weight:500;color:#636162;display:block;width:100%;margin:0.7rem auto 4rem;">恭喜您申请成功</span>
 
-					</div>
-
-					<p id="mineKnow" style="color:#f15855;font-size: 0.8rem;display:block;width:40%;border-radius:1rem;border:0.5px solid #f15855;">我知道了</p>
-				</div>
+					<img src="../static/img/iknow.png" alt="" id="mineKnow" style="width:6.69rem;height:2.375rem;"/>
+			</div>
+			</div>
 			</div>
 
 			<!--标牌判断弹窗-->
@@ -453,23 +465,26 @@
 			</div>
 
 			<!--重新认证确认弹窗-->
-			<div id="Recertification " style="display:none; ">
+			<div id="Recertification " style="display:none;">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000; ">
 				</div>
-				<div style="z-index: 100001;width: 80%;height: 13.5rem;padding: 0;top:6rem;left:10%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:2rem 0 2rem 0; ">
+				
+					<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.5rem 0 2.3rem; ">
 					<div>
-						<span style="font-size:1rem;font-weight:900;color:#e3641e;display:block;width:100%;margin:0 auto; ">您已成功认证，且店码已生成</span>
+						<img src="../static/img/aginNo.png" alt="" style="height:4.4375rem;width:3.75rem;"/>
+						<span style="font-size:1.125rem;font-weight:500;color:#b7977e;display:block;width:100%;margin:0 auto; ">您已成功认证，且店码已生成</span>
 
-						<span style="font-size:1rem;color:#e3590e;font-weight:900;display:block;width:100%;margin:0.3rem auto; ">再次认证会重新审核</span>
-						<span style="color:#63625e;font-size: 1rem; ">请谨慎操作!</span>
+						<span style="font-size:1rem;color:#b7977e;font-weight:900;display:block;width:100%;margin:0.3rem auto; ">再次认证会重新审核</span>
+						<span style="color:#636260;font-size: 1.125rem; ">请谨慎操作!</span>
 					</div>
 					<div style="display: flex;width:100%;justify-content: space-between;padding:0 1.5rem; ">
-						<span id="RecertificationButton " style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#fff;color:#e3641e;width:5rem;height:1.7rem;line-height:1.7rem; ">再次认证</span>
-						<span id="GoBackRecertification " style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#e5570f;color:#fff;width:5rem;height:1.7rem;line-height:1.7rem; ">
+						<!--<span id="RecertificationButton" style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#fff;color:#e3641e;width:5rem;height:1.7rem;line-height:1.7rem; ">再次认证</span>-->
+						<img id="RecertificationButton" src="../static/img/aginRenzheng.png" alt="" style="width:6.78rem;height:2.25rem;"/>
+						<!--<span id="GoBackRecertification" style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#e5570f;color:#fff;width:5rem;height:1.7rem;line-height:1.7rem; ">
 						返回
-					</span>
+					</span>-->
+					<img id="GoBackRecertification" src="../static/img/goback.png" alt="" style="width:6.78rem;height:2.25rem;"/>
 					</div>
-					<!--<p style="color:#a4a2a3;font-size: 0.6rem;margin-top:0.3rem; ">返回</p>-->
 				</div>
 			</div>
 			<!--二维码弹窗-->
@@ -497,34 +512,35 @@
 			<!--<img id="BigCenterImg " src=" " alt=" " style="display:block;width:100%;height:217px;border:0.5px solid #ebebeb; " />
 					<p style="display:block;margin:0;line-height:1.8rem;font-size:0.7rem;color:#626264; ">长按保存二维码到手机相册</p>
 				</div>
-			</div>-->-->
+			</div>-->
 
 			<!--跳转到物流界面-->
 
 			<div id="Logistics " style="display:none; ">
 				<!--添加FORM表单-->
 				<form id="FormDetail " method="post ">
-					<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100; ">
+					<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000; ">
 					</div>
-					<div class="wuLiu " style="z-index: 100001;width: 100%;height: 30.47rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;display:flex;flex-direction: column;justify-content: space-between;align-items: center;padding-bottom:3rem;">
-						<div style="height:2rem;background:green;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem; ">
-							<div style="display:block;width:4rem;height:2rem;line-height:2rem;text-align: left;font-size:1.125rem;color:#717171;font-weight:500;">店码:</div>
+					<div class="wuLiu " style="z-index: 100001;width: 100%;height: 30.47rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;">
+						<div style="height:2rem;width:100%;display:flex;justify-content: space-between;align-items: flex-end;padding-right:0.5rem; ">
+							<div style="display:block;width:4rem;height:2rem;line-height:2rem;text-align: left;font-size:1.125rem;color:#717171;font-weight:500;margin-left:0.3rem;">店码:</div>
 							<img src="../static/img/close.png " alt=" " style="display:block;width:1.375rem;height:1.375rem; " id="close " />
 						</div>
-						<div style="height:8.4rem;background:red;width:100%;display:flex;justify-content: center;align-items: center; ">
-							<!--<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc; ">
+						<div style="height:8.4rem;width:100%;display:flex;justify-content: center;align-items: center; ">
+							<div style="width:9.12rem;height:7.875rem;display:flex;justify-content: center;align-items: center; ">
 								<img src="../static/img/TanErweima.png " alt=" " style="width:100%;height:100%;display:block;margin:auto; " />
-							</div>-->
+							</div>
 						</div>
-						<span style="display:block;width:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;">(提供精美标牌设计包装)</span>
+						<!--<span style="display:block;width:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;">(提供精美标牌设计包装)</span>-->
 
 						<!--收货地址-->
-						<div style="height:54px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
-							<span style="display:block;height:54px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">收货地址:</span>
-							<div style="display: flex;width:8rem;height:41px;margin-left:1rem;justify-content: space-between;align-items: flex-start; ">
+						<div style="height:2.75rem;width:100%;margin:0.5rem auto 0;padding:0 1rem; ">
+							<div style="width:100%;height:2.75rem;border-top:0.5px solid #eeeeee;display: flex;justify-content: space-between;align-items: center;">
+							<span style="display:block;height:2.75rem;line-height:2.75rem;width:31.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">收货地址:</span>
+							<div style="display: flex;width:8rem;height:2.75rem;margin-left:1rem;justify-content: space-between;align-items: center; ">
 								<div style="display: flex; ">
 
-									<select name="addrProvince " id="addrProvince " style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
+									<select name="addrProvince " id="addrProvince " style="width:2.6rem;height:1.125rem;font-size:0.8rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem;">
 										<option>省</option>
 
 									</select>
@@ -533,42 +549,50 @@
 
 								</div>
 								<div style="display: flex;margin:0 0.3rem; ">
-									<select name="addrCity " id="addrCity " style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
+									<select name="addrCity " id="addrCity " style="width:2.6rem;height:1.125rem;font-size:0.8rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
 										<option>市</option>
 
 									</select>
 									<!--<img src="../static/img/shengshi.png " alt=" " style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem; " />-->
 								</div>
 								<div style="display: flex; ">
-									<select name="addrArea " id="addrArea " style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
+									<select name="addrArea" id="addrArea " style="width:2.6rem;height:1.125rem;font-size:0.8rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
 										<option>区</option>
 
 									</select>
 									<!--<img src="../static/img/shengshi.png " alt=" " style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem; " />-->
 								</div>
 							</div>
+							</div>
 						</div>
-						<textarea name="addrDetail " id="addrDetail " placeholder="请输入详细地址，精确到街道门牌号 " style="color:#000;font-size:0.6rem;display:block;width:58.7%;height:60px;margin:-20px 0 0 5.3rem;border:0.5px solid #c6c6c8;border-radius:0.3rem;padding:0.3rem; "></textarea>
+						<div style="width:100%;height:2.75rem;padding:0 1rem;">
+						<input name="addrDetail " id="addrDetail " placeholder="请输入详细地址，精确到街道门牌号 " style="color:#000;font-size:0.78rem;border:0.5px solid #eeeeee;display:block;border-left:none;border-right:none;border-bottom:none;width:100%;height:2.75rem; ">
+						</div>
 						<!--联系人姓名-->
-						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
-							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人姓名:</span>
+						<div style="height:2.75rem;display:flex;justify-content:space-between;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;border-left:none;border-right:none;">
+							<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">联系人姓名:</span>
 
-							<input type="text " value=" " name="contactName " id="contactName " style="border:none;width:190px;font-size:0.8rem;color:#000;border-bottom:0.5px solid #b7b7b9;margin-left:-15px; " />
+							<input type="text " value=" " name="contactName " id="contactName " style="border:none;display:inline-block;line-height:2.75rem;width:10.4rem;font-size:1.125rem;color:#000;text-align: right;" />
 						</div>
-
+						</div>
 						<!--联系人电话-->
-						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
-							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人电话:</span>
-							<input name="contactPhone " id="contactPhone " type="text " value=" " style="border:none;width:190px;font-size:0.8rem;color:#000;border-bottom:0.5px solid #b7b7b9;margin-left:-15px; " />
+						<div style="height:2.75rem;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;border-top:none;border-left:none;border-right:none;">
+							<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">联系人姓名:</span>
+							<input name="contactPhone " id="contactPhone " type="text " value=" " style="border:none;width:11rem;font-size:1.125rem;text-align:right;color:#000;" />
+						</div>
 						</div>
 
 						<!--打印费用-->
-						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
-							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">打印费用:</span>
-							<span style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "><span id="showFee "></span> <span>元</span></span>
+						<div style="height:2.75rem;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;border:none;">
+							<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">打印费用:</span>
+							<span style="display:block;float: left;width:62.8%;height:2.75rem;line-height:2.75rem;font-size:1.125rem;color:#ddba92;text-align: right;font-weight:500; "><span id="showFee "></span> <span>元</span></span>
+						</div>
 						</div>
 
-						<div id="ButtonBtns " style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:0.8rem;margin-top:1.2rem; ">确认</div>
+						<div id="ButtonBtns " style="display:inline-block;border:none;color:#fff;background:#ddba92;width:89%;border-radius:0.2rem;line-height:2.75rem;height:2.75rem;font-size:1.375rem;margin-top:2rem;">确 &nbsp;认</div>
 					</div>
 					<input type="hidden " id="isFree " name="isFree " />
 					<input type="hidden " id="amount " name="amount " />
