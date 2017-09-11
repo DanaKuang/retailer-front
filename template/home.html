@@ -5,9 +5,11 @@
 		<meta charset="UTF-8">
 		<title>门店中心</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--<meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no">-->
 		<link rel="stylesheet" href="../css/index.css" />
 		<link rel="stylesheet" href="../css/home.css" />
-		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+		<!--<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">-->
+		<link rel="stylesheet" href="../css/sm.css" />
 		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" />
 		<script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
 		<script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
@@ -29,6 +31,10 @@
 		})(document, window);
 	</script>
 	<style>
+		html {
+			font-size: 16px;
+		}
+		
 		.swiper-container {
 			width: 100%;
 			height: 1.2rem;
@@ -288,7 +294,7 @@
 			</div>
 			<!--底部工具栏-->
 
-			<nav style="bottom: 0;width: 100%;height: 3.25rem;position: absolute;right: 0;left:0;z-index: 10;table-layout: fixed;background:url(../static/img/footBackground.png) no-repeat center;background-size:100% 100%;display: flex;">
+			<nav style="bottom: 0;width: 100%;height: 3.25rem;position: absolute;right: 0;left:0;z-index: 10;position:fixed;background:url(../static/img/footBackground.png) no-repeat center;background-size:100% 100%;display: flex;">
 				<a href="home.html" style="display:block;width:33.33%;height:3.25rem;display: flex;flex-direction:column;justify-content: center;align-items: center;">
 					<img src="../static/img/icon-home1.png" alt="" style="display:block;width:1.5rem;height:1.34375rem;margin-top:0.4rem;" />
 					<span style="font-size: 0.625rem;color:#6a3314;margin-top:0.3rem;">门店中心</span>
@@ -360,19 +366,19 @@
 			<div id="QueRenZhiFu" style="display:none;">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
 				</div>
-				<div class="wuLiu" style="z-index: 100001;width: 100%;height: 25.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;display:flex;flex-direction: column;justify-content: space-between;align-items: center;padding-bottom:3rem;">
+				<div class="wuLiu" style="z-index: 100001;width: 100%;height: 30.47rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;display:flex;flex-direction: column;justify-content: space-between;align-items: center;padding-bottom:3rem;">
 
 					<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem;">
-						<img src="../static/img/close.png" alt="" style="display:block;width:1rem;height:1rem;" id="closeTwo" />
+						<img src="../static/img/close.png" alt="" style="display:block;width:1.4rem;height:1.4rem;" id="closeTwo" id="closeTwo" />
 					</div>
 					<div>
-						<p style="color:#cacaca;font-size: 0.7rem;margin:0; ">温馨提示:&nbsp;您即将进行支付，请确认</p>
+						<p style="color:#939393;font-size: 0.9375rem;margin:0; ">温馨提示:&nbsp;您即将进行支付，请确认</p>
 						<p style="color:#000;font-size: 1.1rem;">中烟草零售户店码打印</p>
 					</div>
 
-					<div style="display:block;margin:0;width:100%;height:7rem;font-size: 3rem;color:#e95503;"><span id="daYinMuch" style="font-size: 3rem;color:#e95503;"></span><span style="font-size: 1rem;color:#e95503;">元</span></div>
+					<div style="display:block;margin:0;width:100%;height:7rem;font-size: 3rem;color:#e95503;"><span id="daYinMuch" style="font-size: 3rem;color:#b08461;font-weight: 500;"></span><span style="font-size: 1rem;color:#b08461;">元</span></div>
 
-					<div id="ButtonBtnQueRen" style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:0.8rem;margin-top:1.2rem;">确认支付</div>
+					<div id="ButtonBtnQueRen" style="display:inline-block;border:none;color:#fff;background:#ddba90;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:1.31rem;margin-top:1.2rem;">确认支付</div>
 				</div>
 			</div>
 
@@ -383,16 +389,16 @@
 				<div class="wuLiu" style="z-index: 100001;width: 100%;height: 30.47rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;display:flex;flex-direction: column;justify-content: space-between;align-items: center;padding-bottom:3rem;">
 
 					<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem;">
-						<img src="../static/img/close.png" alt="" style="display:block;width:1rem;height:1rem;" id="closeTwo" />
+						<img src="../static/img/close.png" alt="" style="display:block;width:1.4rem;height:1.4rem;" id="closeTwo" />
 					</div>
 					<div>
-						<p style="color:#cacaca;font-size: 0.7rem;margin:0; ">温馨提示:&nbsp;您即将进行支付，请确认</p>
+						<p style="color:#939393;font-size: 0.9375rem;margin:0; ">温馨提示:&nbsp;您即将进行支付，请确认</p>
 						<p style="color:#000;font-size: 1.1rem;">中烟草零售户店码打印</p>
 					</div>
 
-					<div style="display:block;margin:0;width:100%;height:7rem;font-size: 3rem;color:#e95503;"><span id="daYinMuch" style="font-size: 3rem;color:#e95503;"></span><span style="font-size: 1rem;color:#e95503;">元</span></div>
+					<div style="display:block;margin:0;width:100%;height:7rem;font-size: 3rem;color:#e95503;"><span id="daYinMuch" style="font-size: 3rem;color:#b08461;font-weight: 500;"></span><span style="font-size: 1rem;color:#b08461;">元</span></div>
 
-					<div id="ButtonBtnQueRen" style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:0.8rem;margin-top:1.2rem;">确认支付</div>
+					<div id="ButtonBtnQueRen" style="display:inline-block;border:none;color:#fff;background:#ddba90;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:1.31rem;margin-top:1.2rem;">确认支付</div>
 				</div>
 			</div <!--恭喜您申请成功-->
 			<div id="SuccessShenQing" style="display:none;">
@@ -413,7 +419,7 @@
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
 				</div>
 				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:0">
-					<img src="../static/img/aginNo.png" alt="" style="width:3.8rem;height:4.275rem;margin:1.5rem auto 0;"/>
+					<img src="../static/img/aginNo.png" alt="" style="width:3.8rem;height:4.275rem;margin:1.5rem auto 0;" />
 					<div>
 						<span style="font-size:1.1rem;font-weight:400;color:#af8261;display:block;width:100%;margin:0 auto; ">您已免费购买过一次标牌</span>
 
@@ -421,7 +427,7 @@
 					</div>
 					<!--<div id="GoShopping " style="border:1px solid #e3641e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#e3641e;width:40%;height:1.6rem;margin:3rem auto 0;line-height:1.6rem; ">去购买
 					</div>-->
-					<img id="GoShopping" src="../static/img/goshopimg.png" alt="" style="width:10.1rem;height:2.2rem;margin:3rem auto 0;"/>
+					<img id="GoShopping" src="../static/img/goshopimg.png" alt="" style="width:10.1rem;height:2.2rem;margin:3rem auto 0;" />
 					<p style="color:#686868;font-size: 0.94rem;margin-top:0.3rem; ">上次购买记录</p>
 				</div>
 			</div>
@@ -433,7 +439,7 @@
 				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:3.375rem 0 2.8rem; ">
 
 					<!--<h3 style="color:#e5590e;font-size:3rem;margin:0;font-style: italic; ">好可惜!</h3>-->
-					<img src="../static/img/haokexi.png " alt=" " style="width:12rem;height:3.47rem; "/>
+					<img src="../static/img/haokexi.png " alt=" " style="width:12rem;height:3.47rem; " />
 					<div>
 						<span style="font-size:0.85rem;font-weight:400;color:#626061;display:block;width:100%;margin:0 auto; ">您已取消了精美标牌定制化服务,</span>
 
@@ -441,7 +447,7 @@
 					</div>
 					<!--<div id="GoShoppingSad " style="border:1px solid #e3641e;border-radius:1rem;font-size:1rem;background:#fff;color:#e3641e;width:45%;height:2rem;margin:1rem auto 0;line-height:2rem; ">我知道了
 					</div>-->
-					<img id="GoShoppingSad " src="../static/img/iknowPic.png " alt=" " style="display:block;width:7rem;height:2.25rem;margin:0 auto; "/>
+					<img id="GoShoppingSad " src="../static/img/iknowPic.png " alt=" " style="display:block;width:7rem;height:2.25rem;margin:0 auto; " />
 
 				</div>
 			</div>
@@ -467,12 +473,11 @@
 				</div>
 			</div>
 			<!--二维码弹窗-->
-			<div id="bigErWeiMa " style="display:none; ">
+			<!--<div id="bigErWeiMa " style="display:none; ">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000; ">
 				</div>
 				<img id="guanbiImg " src="../static/img/guanbiimg.jpg " alt=" " style="z-index:100005;display:block;width:1.5rem;height:1.5rem;border-radius:50%;top:8.5rem;border:1px solid red;right:2.9rem;position:absolute; " />
 				<div class="bigErWeiMa-center " style="z-index: 100001;width: 76%;height: 16.5rem;top:8rem;left:12%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:0 30px; ">
-					<!--头部信息-->
 					<div class="EWMInfoSmall ">
 						<div class="TouXiangSmall ">
 							<div class="TouXiangOneSmall ">
@@ -489,10 +494,10 @@
 						</div>
 					</div>
 					<!--中间二维码-->
-					<img id="BigCenterImg " src=" " alt=" " style="display:block;width:100%;height:217px;border:0.5px solid #ebebeb; " />
+			<!--<img id="BigCenterImg " src=" " alt=" " style="display:block;width:100%;height:217px;border:0.5px solid #ebebeb; " />
 					<p style="display:block;margin:0;line-height:1.8rem;font-size:0.7rem;color:#626264; ">长按保存二维码到手机相册</p>
 				</div>
-			</div>
+			</div>-->-->
 
 			<!--跳转到物流界面-->
 
@@ -501,17 +506,17 @@
 				<form id="FormDetail " method="post ">
 					<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100; ">
 					</div>
-					<div class="wuLiu " style="z-index: 99999;width: 100%;height: 25.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white; ">
-						<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem; ">
-							<img src="../static/img/close.png " alt=" " style="display:block;width:1rem;height:1rem; " id="close " />
+					<div class="wuLiu " style="z-index: 100001;width: 100%;height: 30.47rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;display:flex;flex-direction: column;justify-content: space-between;align-items: center;padding-bottom:3rem;">
+						<div style="height:2rem;background:green;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem; ">
+							<div style="display:block;width:4rem;height:2rem;line-height:2rem;text-align: left;font-size:1.125rem;color:#717171;font-weight:500;">店码:</div>
+							<img src="../static/img/close.png " alt=" " style="display:block;width:1.375rem;height:1.375rem; " id="close " />
 						</div>
-						<div style="height:100px;width:100%;display:flex;justify-content: space-between;align-items: center;padding:0 1rem;margin-bottom:1rem; ">
-							<h4 style="display:block;width:104px;height:100px;text-align: left;font-size:0.8rem;color:#717171;font-weight:500; ">店码:</h4>
-							<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc; ">
-								<img src="../static/img/TanErweima.png " alt=" " style="width:61px;height:60px;display:block;margin:auto; " />
-							</div>
-							<span style="display: block;width:90px;height:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;padding-top:2.5rem; ">提供精美标牌设计包装</span>
+						<div style="height:8.4rem;background:red;width:100%;display:flex;justify-content: center;align-items: center; ">
+							<!--<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc; ">
+								<img src="../static/img/TanErweima.png " alt=" " style="width:100%;height:100%;display:block;margin:auto; " />
+							</div>-->
 						</div>
+						<span style="display:block;width:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;">(提供精美标牌设计包装)</span>
 
 						<!--收货地址-->
 						<div style="height:54px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
