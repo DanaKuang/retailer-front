@@ -1,29 +1,37 @@
+
+html,body{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	font-family: PingFangSC-Regular, sans-serif !important;
+}
 .topInfo {
 	width: 100%;
-	height: 117px;
-	background: url(../static/img/JinZiTa.jpg) no-repeat center;
-	background-size: 100% 117px;
+	height: 7.34375rem;
+	background: url(../static/img/JinZiTa.png) no-repeat center;
+	background-size: 100% 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 19px;
+	padding: 0 1.375rem;
 }
 
 .topInfo .TouXiang {
-	width: 72.5px;
-	height: 79px;
+	width: 4.4375rem;
+	height: 4.6875rem;
 }
 
 .topInfo .TouXiang .TouXiangOne {
-	width: 72.5px;
-	height: 72.5px;
+	width: 4.4375rem;
+	height: 4.4375rem;
 	/*height: 4.53125rem;*/
 }
 
 .TouXiangTwo img {
 	display: block;
-	height: 19px;
-	width: 72.5px;
+	height: 1.125rem;
+	width: 4.4375rem;
 	/*line-height:19px;*/
 	/*font-size: 0.6rem;*/
 	border-radius: 6px;
@@ -35,94 +43,98 @@
 
 .top-center {
 	/*width: 158.5px;*/
-	width: 46.94%;
+	width: 9.72rem;
 	/*height: 79px;*/
-	height: 3.95rem;
+	height: 4.82rem;
 }
 
 .top-center .top-center-P1 {
 	margin: 0 auto;
 	;
 	display: block;
-	height: 38px;
+	height: 2.375rem;
 	width: 100%;
 	text-align: center;
-	line-height: 38px;
+	line-height: 2.375rem;
 	/*background:red;*/
-	font-size: 0.7rem;
+	font-size: 1.0625rem;
 	border-bottom: 0.5px solid #8b8a8f;
 }
 
 .YuHongInfo {
 	width: 100%;
-	height: 41px;
+	height: 2.375rem;
 	display: flex;
 	justify-content: space-between;
 }
 
 .YuHongInfo .YuHongInfo-1 {
-	width: 80px;
-	height: 41px;
+	width: 5rem;
+	height: 2.375rem;
 }
 
 .YuHongInfo .YuHongInfo-1 i {
 	margin: 0 auto;
 	display: block;
-	font-size: 0.7rem;
+	font-size: 1.0625rem;
+	height:1.5rem;
+	text-align: center;
+	line-height:1.5rem;
 	font-style: normal;
 }
 
 .YuHongInfo .YuHongInfo-1 span {
 	display: block;
-	font-size: 0.5rem;
+	font-size: 0.78rem;
 	color: #8b8a8f;
 	margin: 0 auto;
 }
 
 .YuHongInfo .YuHongInfo-2 {
-	width: 78.5px;
-	height: 41px;
+	width: 4.9rem;
+	height: 2.375rem;
 }
 
 .YuHongInfo .YuHongInfo-2 .YuHongInfo-2-P1 {
-	width: 78.5px;
-	height: 24px;
+	width: 4.9rem;
+	height: 1.5rem;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 30%;
-	font-size: 0.7rem;
+	font-size: 1.0625rem;
 }
 
 .YuHongInfo-2-P1 i {
 	font-style: normal;
+	font-size:1.0625rem;
 }
 
 .YuHongInfo-2-P1 span {
-	font-size: 0.7rem;
+	font-size: 1.0625rem;
 }
 
 .YuHongInfo-2-P2 {
 	display: block;
-	font-size: 0.5rem;
-	width: 78.5px;
-	height: 17.33px;
+	font-size: 0.78rem;
+	/*width: 4.9rem;
+	height: 1.083rem;*/
 	color: #8b8a8f;
 	margin: 0 auto;
 }
 
 .identificationState {
 	display: block;
-	width: 65px;
-	height: 1.515rem;
+	width: 4.5rem;
+	height: 1.97rem;
 	/*background: #d7ae5c;*/
 	border: none;
 	text-align: center;
-	line-height: 1.515rem;
-	font-size: 0.7rem;
+	line-height: 1.97rem;
+	font-size: 0.9375rem;
 	color: #fff;
-	border-radius: 0.3rem;
+	border-radius: 0.4rem;
 }
 
 .ErWeiMaManage {
@@ -183,17 +195,18 @@
 				}*/
 
 .SuccessState {
-	width: 60px;
-	height: 35px;
+	width: 3.23rem;
+	height: 2.1875rem;
 	/*background:red;*/
 	display: flex;
 	justify-content: space-between;
 }
 
 .SuccessState .SuccessStateCenter {
-	width: 40px;
-	height: 35px;
-	line-height: 36px;
+	width: 2.5rem;
+	height: 2.1875rem;
+	line-height: 2.1875rem;
+	text-align: right;
 	/*background:green;*/
 }
 
@@ -205,18 +218,19 @@ img {
 /*ajax加载的样式*/
 
 .JinYinRenName {
-	width: 119px;
-	height: 33px;
+	width: 8rem;
+	height: 2.8125rem;
+	margin-left:1.7rem;
 }
 
 .JinYinRenNameSpan {
 	display: block;
-	line-height: 33px;
-	width: 119px;
-	height: 33px;
-	font-size: .55rem;
+	width: 8rem;
+	height: 2.8125rem;
+	font-size: 0.84375rem;
 	color: #676767;
-	text-align: left;
+	line-height: 2.8125rem;
+	text-align: right;
 	font-weight: 400;
 }
 #bigErWeiMa .bigErWeiMa-center .EWMInfo{

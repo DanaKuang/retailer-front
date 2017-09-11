@@ -1,15 +1,21 @@
+html,body{
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+}
 .goldLeafContent{
 	overflow: hidden;
 	width:100%;
 	/*height:474px;*/
-	height:29.65rem;
+	height:37.8125rem;
 	background: url(../static/img/huangjinye.png) no-repeat center;
 	background-size:100% 100%;
 	margin:0 auto;
 }
 .SaoYiSao{
 	width:100%;
-	height:130px;
+	/*height:130px;*/
 	/*background:blue;*/
 	margin:0 auto;
 	overflow: hidden;
@@ -25,9 +31,9 @@
 }
 .goldLeafInfo{
 	display: flex;
-	width:86.4%;
+	width:18.375rem;
 	height:10.75rem;
-	margin:16.1rem auto 0;
+	margin:13.1rem auto 0;
 	/*background:green;*/
 }
 .goldLeafInfoLeft{
@@ -38,52 +44,54 @@
 .goldLeafInfoRight{
 	width:67.58%;
 	height:10.75rem;
-	padding-top:2.2rem;
+	/*padding-top:1.2rem;*/
 	margin-left:2%;
 /*	background:green;*/
 }
-.goldLeafInfoLeftTop{
+/*.goldLeafInfoLeftTop{
 	overflow: hidden;
 	width:100%;
-	height:50%;
+	/*height:50%;*/
 	/*background: green;*/
-}
+}*/
 .goldLeafInfoLeftFoot{
 	width:100%;
 	height:50%;
 	/*background: yellow;*/
 }
 .goldLeafLogo{
-	height:4.125rem;
-	width:65.6%;
-	border-radius:50%;
-	/*background:url(../static/img/TouXiangPicLogo.png) no-repeat center;*/
-	margin:1rem auto 0;
+	height:3.8125rem;
+	width:4.15rem;
+	/*border-radius:50%;*/
+	/*background:red;*/
+	margin:1.9rem auto 0;
 }
 .goldLeafLogopic{
 	display:block;
-	height:100%;
-	width:100%;
+	height:3.6rem;
+	width:3.6rem;
+	margin:0 auto;
 	border-radius:50%;
 }
 .goldLeafInfoLeftFoot{
 	width:80%;
 	height:3.25rem;
 	/*background:black;*/
-	margin:0.9rem auto;
+	margin:0.8rem auto;
 }
 .goldLeafInfoRightP1{
-	font-size:0.8rem;
+	font-size:0.625rem;
 	display: block;
-	height:1.5rem;
+	height:1.35rem;
 	margin:0;
 }
 .goldLeafInfoRightP1Span1{
 	color:#e84832;
+	font-weight:600;
 }
 .goldLeafInfoRightP1Span2{
-	color:#e90c51;
-	font-weight:900;
+	color:#f22c67;
+	font-weight:400;
 	
 }
 

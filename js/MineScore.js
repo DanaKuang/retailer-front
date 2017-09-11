@@ -97,6 +97,7 @@ Zepto("#dateEnd").calendar({
     });
     
     lastThreeMonth();
+//  pullupRefresh();
 	
 	/**
 	 * 上拉加载具体业务实现
@@ -126,9 +127,9 @@ Zepto("#dateEnd").calendar({
 
 					'<i style="font-style: normal;"></i>' +
 					'</li>' +
-					'<li class="Span2"  style="color:#818183;">'+
-					 new Date(tmpdata.ctime).Format('yyyy-MM-dd hh:mm:ss')
-					 +'</li><li class="Span3">'+tmpdata.num
+					'<li class="Span2"  style="color:#666666;font-size:0.75rem">'+
+					 new Date(tmpdata.ctime).Format('yyyy-MM-dd hh:mm')
+					 +'</li><li class="Span3">'+tmpdata.num+'条'
 					 +'</li>' +
 					'<li class="Span4" style="color:#ec5504;">'+tmpdata.fxAmount+'元</li>';
 				    table.appendChild(li);

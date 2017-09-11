@@ -198,9 +198,9 @@ $(document).ready(function() {
 	$(".shouYi").click(function(e) {
 
 		$(".tiXian").css('background','#fff');
-		$(".tiXian>p").css('color','#f15755');
-		$(".shouYi").css('background','#f15755');
-		$(".shouYi>p").css('color','#fff');
+		$(".tiXian>p").css('color','#ac815f');
+		$(".shouYi").css('background','#f0dac2');
+		$(".shouYi>p").css('color','#ac815f');
 		var current_count = 0;
 		var startTime = 0;
 		var endTime = 0;
@@ -362,9 +362,9 @@ $(document).ready(function() {
 	$(".tiXian").click(function(e) {
 
 		$(".shouYi").css('background', '#fff');
-		$(".shouYi>p").css('color', '#f15755');
-		$(".tiXian").css('background', '#f15755');
-		$(".tiXian>p").css('color', '#fff');
+		$(".shouYi>p").css('color', '#ac815f');
+		$(".tiXian").css('background', '#f0dac2');
+		$(".tiXian>p").css('color', '#ac815f');
 		var current_count = 0;
 		var startTime = 0;
 		var endTime = 0;

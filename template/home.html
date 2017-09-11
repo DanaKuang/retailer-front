@@ -7,23 +7,28 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="../css/index.css" />
 		<link rel="stylesheet" href="../css/home.css" />
-		<link rel="stylesheet" href="../static/iconfont/iconfont.css" />
 		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
 		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" />
 		<script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
 		<script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
-		<!--<script>
-			var bw = (document.documentElement.clientWidth / 320) * 20 + "px";
-			var htmlTag = document.getElementsByTagName("html")[0];
-			htmlTag.style.fontSize = bw;
-		</script>-->
+
 	</head>
+	<script>
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					var clientWidth = docEl.clientWidth;
+					if(!clientWidth) return;
+					docEl.style.fontSize = 16 * (clientWidth / 375) + 'px';
+
+				};
+			if(!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+	</script>
 	<style>
-		body {
-			margin: 0;
-			padding: 0;
-		}
-		
 		.swiper-container {
 			width: 100%;
 			height: 1.2rem;
@@ -59,7 +64,7 @@
 				<div class="topInfo">
 					<div class="TouXiang">
 						<div class="TouXiangOne">
-							<img id="headImgUrl" src="../static/img/TouXiangPicLogo.png" alt="" style="display:block;width:72.5px;height:72.5px;border-radius:50%;" />
+							<img id="headImgUrl" src="../static/img/TouXiangPicLogo.png" alt="" style="display:block;width: 4.4375rem;height:4.4375rem;border-radius:50%;" />
 						</div>
 						<div class="TouXiangTwo">
 							<img src="" alt="" id="headImgFooter" />
@@ -69,7 +74,7 @@
 						<p class="top-center-P1">门店名称</p>
 						<div class="YuHongInfo">
 							<div class="YuHongInfo-1">
-								<i class="balance" style="height:24px;line-height:24px;">0.00</i>
+								<i class="balance" style="">0.00</i>
 								<span>账户余额</span>
 							</div>
 							<div class="YuHongInfo-2">
@@ -95,84 +100,77 @@
 					</div>
 				</div>
 
-				<a href="MoneyManage.html" class="mineMoney" style="display:flex;justify-content:space-between;align-items:center;padding:0 1rem 0 0.7rem;height:54px;width:100%;background:#fff;">
-					<img src="../static/img/icon-qianbao.jpg" alt="" class="Img1" style="display:block;width:54px;height:54px;" />
-					<p style="display:block;width:247px;height:54px;margin:0;color:#000;text-align: left;line-height:54px;font-size:0.8rem;">我的钱包</p>
-					<p style="color:#89898b;">&gt</p>
+				<a href="MoneyManage.html" class="mineMoney" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;">
+					<img src="../static/img/icon-qianbao.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:19rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">我的钱包</p>
+					<!--<p style="color:#89898b;"></p>-->
+					<img src="../static/img/dayuhao.png" alt="" style="display:block;width:0.625rem;height:0.625rem;" />
 				</a>
 
-				<div class="Select" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:45px;width:100%;background:#fff;margin-top:15px;">
-					<img src="../static/img/icon-fangdajing.jpg" alt="" class="Img1" style="display:block;width:45px;height:45px;" />
-					<p style="display:block;width:247px;height:54px;margin:0;color:#000;text-align: left;line-height:54px;font-size:0.8rem;">选择二维码标牌样式</p>
-					<img id="BtnErWeiMa" src="../static/img/icon-jiantou.jpg" alt="" class="Img2" style="display:block;width:45px;height:45px;" />
+				<div class="Select" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;margin-top:1.25rem;">
+					<img src="../static/img/icon-fangdajing.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:19rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">我的二维码</p>
+					<img id="BtnErWeiMa" src="../static/img/dayuhao.png" alt="" class="Img2" style="display:block;width:0.625rem;height:0.625rem;" />
 
 					<span id="sureShow" style="display:none;height:0.9rem;width:45px;font-size:0.6rem;text-align: center;border:0.5px solid #000;border-radius: 0.5rem;margin-right:15px;">
 						确认
 					</span>
 				</div>
 
-				<ul class="ErWeiMaManage" style="">
+				<!--<ul class="ErWeiMaManage" style="">
 					<li>
-						<div >
+						<div>
 							<img class="listImgEWM" src="../static/img/ErWeiMa1.jpg" alt="1" />
-							<img class="FakeDiv"  src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;"/>
+							<img class="FakeDiv" src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;" />
 						</div>
 						<p class="listErWeiMa" style="margin: 0 auto;width: 74px;height: 38px;display: flex;justify-content: space-around;padding: 0 0.3rem;align-items: center;display:none;">
-							<!--<img src="../static/img/DuiHao.png" alt="" style="display: block;width: 0.7rem;height: 0.7rem;" />
-							<span style="display: block;font-size: 0.7rem;">已选</span>-->
-							<input type="radio" value="1" name="qrStyle" class="qrStyle"  ;/>已选
+							<input type="radio" value="1" name="qrStyle" class="qrStyle" ;/>已选
 						</p>
 					</li>
 					<li>
-						<div >
+						<div>
 							<img class="listImgEWM" src="../static/img/ErWeiMa3.jpg" alt="2" />
-							<img  class="FakeDiv" src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;"/>
+							<img class="FakeDiv" src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;" />
 						</div>
 						<p class="listErWeiMa" style="margin: 0 auto;width: 74px;height: 38px;display: flex;justify-content: space-around;padding: 0 0.3rem;align-items: center;display:none;">
-							<!--<img src="" alt="" style="display:none;" />
-							<span style="display:none;">已选</span>-->
 							<input type="radio" value="2" name="qrStyle" class="qrStyle" />已选
 						</p>
 					</li>
 					<li>
-						<div >
+						<div>
 							<img class="listImgEWM" src="../static/img/ErWeiMa4.jpg" alt="3" />
-							<img class="FakeDiv" src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;"/>
+							<img class="FakeDiv" src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;" />
 						</div>
 						<p class="listErWeiMa" style="margin: 0 auto;width: 74px;height: 38px;display: flex;justify-content: space-around;padding: 0 0.3rem;align-items: center;display:none;">
-							<!--<img src="" alt="" style="display:none;" />
-							<span style="display:none;">已选</span>-->
 							<input type="radio" value="3" name="qrStyle" class="qrStyle" />已选
 						</p>
 					</li>
 					<li>
 						<div>
 							<img class="listImgEWM" src="../static/img/ErWeiMa2.jpg" alt="4" />
-							<img class="FakeDiv" src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;"/>
+							<img class="FakeDiv" src="../static/img/logo.jpg" alt="2" style="width:74px;height:72px;display:none;position:absolute;top:0;left:0;opacity: 0;" />
 						</div>
 						<p class="listErWeiMa" style="margin: 0 auto;width: 74px;height: 38px;display: flex;justify-content: space-around;padding: 0 0.3rem;align-items: center;display:none;">
-							<!--<img src="" alt="" style="display:none;" />
-							<span style="display:none;">已选</span>-->
 							<input type="radio" value="4" name="qrStyle" class="qrStyle" />已选
 						</p>
 					</li>
-				</ul>
+				</ul>-->
 
-				<to to="" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.5rem 0 0.6rem;height:59px;width:100%;background:#fff;">
-					<img src="../static/img/icon-book.jpg" alt="" class="Img1" style="display:block;width:59px;height:59px;" />
-					<p id="yanZheng" style="display:block;width:247px;height:59px;margin:0;color:#000;text-align: left;line-height:59px;font-size:0.8rem;">领取标牌<span style="font-size: 0.55rem;color:#676767;margin-left:0.2rem;">(还剩<i id="DayResidue" style="font-style: normal;"></i>免费)</span></p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-top:0.5px solid #e4e4e4;">
+					<img src="../static/img/dayin.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p id="yanZheng" style="display:block;width:19rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">领取标牌<span style="font-size: 0.9rem;color:#656565;margin-left:0.2rem;">(还剩<i id="DayResidue" style="font-style: normal;"></i>免费)</span></p>
 					<div class="SuccessState">
 						<div class="SuccessStateCenter">
-							<p id="biaopaiZhuangTai" style="font-size: 0.6rem;color:#ea5503;display:block;margin:0 auto;"></p>
+							<p id="biaopaiZhuangTai" style="font-size: 0.84375rem;color:#ea5503;display:block;width:3rem;height:2.1875rem;margin:0 auto;line-height: 2.1875rem;text-align: right;"></p>
 
 						</div>
-						<p id="DaYuHaoJianTou" style="color:#676767;display:block;margin:auto;">&gt</p>
+						<!--<p id="DaYuHaoJianTou" style="color:#676767;display:block;margin:auto;">&gt</p>-->
 					</div>
-				</to>
+				</div>
 				<!--经营人名称-->
-				<div id="JYRMC" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;margin-top:15px;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-mingcheng.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">经营人名称</p>
+				<div id="JYRMC" class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;margin:0 auto;background:#fff;margin-top:1.25rem;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-mingcheng.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:10rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">经营人名称</p>
 					<!--					<p id="dddd"></p>-->
 					<div class="JinYinRenName">
 						<span class="JinYinRenNameSpan"></span>
@@ -180,25 +178,23 @@
 					</div>
 				</div>
 				<!--手机号-->
-				<div class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-shoujihao.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">手机号</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-shoujihao.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:10rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">手机号</p>
 
-					<div style="width:119px;height:33px;">
-						<span class="phoneNumber" style="display:block;line-height:33px;width:86px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;"></span>
-						<div style="width:33px;height:33px;"></div>
+					<div style="width: 8rem;height: 2.8125rem;margin-left:1.7rem;">
+						<span class="phoneNumber" style="display: block;width: 8rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;line-height: 2.8125rem;text-align: right;font-weight: 400;"></span>
 					</div>
 				</div>
 				<!--性别-->
-				<to to="" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-sex.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">性别</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-sex.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:10rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">性别</p>
 
-					<div style="width:119px;height:33px;">
-						<span class="sex" style="display:block;line-height:33px;width:86px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;"></span>
-						<div style="width:33px;height:33px;"></div>
+					<div style="width: 8rem;height: 2.8125rem;margin-left:1.7rem;">
+						<span class="sex" style="display: block;width: 8rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;line-height: 2.8125rem;text-align: right;font-weight: 400;"></span>
 					</div>
-				</to>
+				</div>
 				<!--联系人微信名-->
 				<!--<to to="" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
 					<img src="../static/img/icon-weixin.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
@@ -210,43 +206,41 @@
 					</div>
 				</to>-->
 				<!--联系人姓名-->
-				<to to="" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-mingcheng.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">联系人姓名</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-mingcheng.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:10rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">联系人姓名</p>
 
-					<div style="width:119px;height:33px;">
-						<span style="display:block;line-height:33px;width:86px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;" class="contactName"></span>
-						<div style="width:33px;height:33px;"></div>
+					<div style="width: 8rem;height: 2.8125rem;margin-left:1.7rem;">
+						<span style="display: block;width: 8rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;line-height: 2.8125rem;text-align: right;font-weight: 400;" class="contactName"></span>
 					</div>
-				</to>
+				</div>
 				<!--联系人电话-->
-				<to to="" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-shoujihao.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">联系人电话</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-shoujihao.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:10rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">联系人电话</p>
 
-					<div style="width:119px;height:33px;">
-						<span style="display:block;line-height:33px;width:86px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;" class="contactPhone"></span>
-						<div style="width:33px;height:33px;"></div>
+					<div style="width: 8rem;height: 2.8125rem;margin-left:1.7rem;">
+						<span style="display: block;width: 8rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;line-height: 2.8125rem;text-align: right;font-weight: 400;" class="contactPhone"></span>
 					</div>
-				</to>
+				</div>
 				<!--店铺名称-->
-				<to to="" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;margin-top:15px;">
-					<img src="../static/img/icon-shopname.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">店铺名称</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-shopname.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:10rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">店铺名称</p>
 
-					<div style="width:119px;height:33px;">
-						<span style="display:block;line-height:33px;width:119px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;" class="shopName"></span>
+					<div style="width: 8rem;height: 2.8125rem;margin-left:1.7rem;">
+						<span style="display: block;width: 8rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;line-height: 2.8125rem;text-align: right;font-weight: 400;" class="shopName"></span>
 
 					</div>
-				</to>
+				</div>
 				<!--烟草专卖零售许可证件照-->
-				<div class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:65px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-xukezheng1.jpg" alt="" class="Img1" style="display:block;width:35px;height:64px;" />
-					<p style="display:block;width:160px;height:65px;margin:0;color:#000;text-align: left;line-height:65px;font-size:0.6rem;">烟草专卖零售许可证件照</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-xukezheng1.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:15rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">烟草专卖零售许可证件照</p>
 
-					<div style="width:119px;height:65px;">
-						<span class="licenceImg" style="display:flex;align-items:center;line-height:65px;width:119px;height:65px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;">
-					<img id="licenceImg" src="" alt="" style="width:80px;height:53px;display:block;"/>
+					<div style="width: 5rem;height: 2.8125rem;margin-left:1.5rem;">
+						<span class="licenceImg" style="display: flex;justify-content:flex-end;align-items:center;width: 5rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;">
+					<img id="licenceImg" src="" alt="" style="width:3.28rem;height:2.1875rem;display:block;"/>
 					
 				</span>
 
@@ -254,65 +248,58 @@
 				</div>
 
 				<!--烟草专卖零售许可证件号-->
-				<div class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-xukezheng2.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.6rem;">烟草专卖零售许可证件号</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-xukezheng2.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:13rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">烟草专卖零售许可证件号</p>
 
-					<div style="width:119px;height:33px;">
-						<span style="display:block;line-height:33px;width:119px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;" class="licenceNo"></span>
+					<div style="width: 5rem;height: 2.8125rem;margin-left:1.7rem;">
+						<span style="display: block;width: 5rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;line-height: 2.8125rem;text-align: right;font-weight: 400;" class="licenceNo"></span>
 
 					</div>
 				</div>
 				<!--申请时间-->
-				<to to="" class="" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-time.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">申请时间</p>
+				<div class="" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-time.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:13rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">申请时间</p>
 
-					<div style="width:119px;height:33px;">
-						<span style="display:block;line-height:33px;width:119px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;" class="applyTime"></span>
+					<div style="width: 5rem;height: 2.8125rem;margin-left:1.7rem;">
+						<span style="display: block;width: 5rem;height: 2.8125rem;font-size: 0.84375rem;color: #676767;line-height: 2.8125rem;text-align: right;font-weight: 400;" class="applyTime"></span>
 
 					</div>
-				</to>
+				</div>
 
 				<!--活动说明-->
-				<a href="activityExplain.html" id="activityExplain" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-shengming.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">活动说明</p>
-
-					<div style="width:119px;height:33px;">
-						<span style="display:block;line-height:33px;width:119px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;"></span>
-
-					</div>
+				<a href="activityExplain.html" id="activityExplain" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-shengming.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:19rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">活动说明</p>
+					<img src="../static/img/dayuhao.png" alt="" style="display:block;width:0.625rem;height:0.625rem;" />
 				</a>
 
 				<!--业绩说明-->
-				<a href="achievementExplain.html" id="achievementExplain" style="display:flex;justify-content:space-between;align-items:center;padding:0 0.3rem 0 0.9rem;height:33px;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
-					<img src="../static/img/icon-shengming.jpg" alt="" class="Img1" style="display:block;width:32px;height:32px;" />
-					<p style="display:block;width:160px;height:33px;margin:0;color:#000;text-align: left;line-height:33px;font-size:0.7rem;">业绩说明</p>
+				<a href="achievementExplain.html" id="achievementExplain" style="display:flex;justify-content:flex-start;align-items:center;padding:0 1.25rem 0 0.625rem;height:2.8125rem;width:100%;background:#fff;border-bottom:0.5px solid #e4e4e4;">
+					<img src="../static/img/icon-shengming.png" alt="" class="Img1" style="display:block;width:1.25rem;height:1.25rem;" />
+					<p style="display:block;width:19rem;height:2.8125rem;margin:0;color:#000;text-align: left;line-height:2.8125rem;font-size:0.9375rem;margin-left:0.75rem;">业绩说明</p>
 
-					<div style="width:119px;height:33px;">
-						<span style="display:block;line-height:33px;width:119px;height:33px;font-size:.55rem;color:#676767;text-align: left;font-weight:400;"></span>
-
-					</div>
+					<img src="../static/img/dayuhao.png" alt="" style="display:block;width:0.625rem;height:0.625rem;" />
 				</a>
 
-				<div style="height:42px;background:#fff;margin-bottom:2.5rem;"></div>
+				<div style="height:2rem;margin-bottom:2.5rem;"></div>
 
 			</div>
 			<!--底部工具栏-->
 
-			<nav style="bottom: 0;width: 100%;height: 2.5rem;padding: 0;position: absolute;right: 0;left:0;z-index: 10;table-layout: fixed;background:#fff;display: flex;border-top:0.5px solid #929292;">
-				<a href="home.html" style="display:block;width:33.33%;height:2.5rem;display: flex;flex-direction:column;justify-content: center;align-items: center;">
-					<img src="../static/img/icon-home1.png" alt="" style="display:block;width:1.2rem;height:1rem;" />
-					<span style="font-size: 0.55rem;color:#ea5503;margin-top:0.3rem;">门店中心</span>
+			<nav style="bottom: 0;width: 100%;height: 3.25rem;position: absolute;right: 0;left:0;z-index: 10;table-layout: fixed;background:url(../static/img/footBackground.png) no-repeat center;background-size:100% 100%;display: flex;">
+				<a href="home.html" style="display:block;width:33.33%;height:3.25rem;display: flex;flex-direction:column;justify-content: center;align-items: center;">
+					<img src="../static/img/icon-home1.png" alt="" style="display:block;width:1.5rem;height:1.34375rem;margin-top:0.4rem;" />
+					<span style="font-size: 0.625rem;color:#6a3314;margin-top:0.3rem;">门店中心</span>
 				</a>
-				<a href="MineScore.html" style="display:block;width:33.33%;height:2.5rem;display: flex;flex-direction:column;justify-content: center;align-items: center;">
-					<img src="../static/img/icon-yeji2.png" alt="" style="display:block;width:1.2rem;height:1rem;" />
-					<span style="font-size: 0.55rem;color:#929292;margin-top:0.3rem;">我的业绩</span>
+				<a href="MineScore.html" style="display:block;width:33.33%;height:3.25rem;display: flex;flex-direction:column;justify-content: center;align-items: center;">
+					<img src="../static/img/icon-yeji2.png" alt="" style="display:block;width:1.5rem;height:1.34375rem;margin-top:0.4rem;" />
+					<span style="font-size: 0.625rem;color:#af8360;margin-top:0.3rem;">我的业绩</span>
 				</a>
-				<a href="MoneyManage.html" style="display:block;width:33.33%;height:2.5rem;display: flex;flex-direction:column;justify-content: center;align-items: center;">
-					<img src="../static/img/icon-qianbao2.png" alt="" style="display:block;width:1.2rem;height:1rem;" />
-					<span style="font-size: 0.55rem;color:#929292;margin-top:0.3rem;">我的钱包</span>
+				<a href="MoneyManage.html" style="display:block;width:33.33%;height:3.25rem;display: flex;flex-direction:column;justify-content: center;align-items: center;">
+					<img src="../static/img/icon-qianbao2.png" alt="" style="display:block;width:1.5rem;height:1.34375rem;margin-top:0.4rem;" />
+					<span style="font-size: 0.625rem;color:#af8360;margin-top:0.3rem;">我的钱包</span>
 				</a>
 			</nav>
 			<!--未认证弹窗-->
@@ -393,7 +380,7 @@
 			<div id="removeOrder" style="display:none;">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
 				</div>
-				<div class="wuLiu" style="z-index: 100001;width: 100%;height: 25.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;display:flex;flex-direction: column;justify-content: space-between;align-items: center;padding-bottom:3rem;">
+				<div class="wuLiu" style="z-index: 100001;width: 100%;height: 30.47rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;display:flex;flex-direction: column;justify-content: space-between;align-items: center;padding-bottom:3rem;">
 
 					<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem;">
 						<img src="../static/img/close.png" alt="" style="display:block;width:1rem;height:1rem;" id="closeTwo" />
@@ -425,220 +412,224 @@
 			<div id="BiaoPaiPanDuan" style="display:none;">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
 				</div>
-				<div style="z-index: 100001;width: 70%;height: 11rem;padding: 0;top:11rem;left:15%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.8rem 0 0 0;">
+				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:0">
+					<img src="../static/img/aginNo.png" alt="" style="width:3.8rem;height:4.275rem;margin:1.5rem auto 0;"/>
 					<div>
-						<span style="font-size:0.8rem;font-weight:400;color:#e3641e;display:block;width:100%;margin:0 auto;">您已免费购买过一次标牌</span>
+						<span style="font-size:1.1rem;font-weight:400;color:#af8261;display:block;width:100%;margin:0 auto; ">您已免费购买过一次标牌</span>
 
-						<span style="font-size:0.9rem;color:#e3590e;font-weight:900;display:block;width:100%;margin:0.3rem auto;">再次购买不免费哦!</span>
+						<span style="font-size:1.1rem;color:#af8261;font-weight:900;display:block;width:100%;margin:0.3rem auto; ">再次购买不免费哦!</span>
 					</div>
-					<div id="GoShopping" style="border:1px solid #e3641e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#e3641e;width:40%;height:1.6rem;margin:3rem auto 0;line-height:1.6rem;">去购买
-					</div>
-					<p style="color:#a4a2a3;font-size: 0.6rem;margin-top:0.3rem;">上次领取记录</p>
+					<!--<div id="GoShopping " style="border:1px solid #e3641e;border-radius:1rem;font-size:0.8rem;background:#fff;color:#e3641e;width:40%;height:1.6rem;margin:3rem auto 0;line-height:1.6rem; ">去购买
+					</div>-->
+					<img id="GoShopping" src="../static/img/goshopimg.png" alt="" style="width:10.1rem;height:2.2rem;margin:3rem auto 0;"/>
+					<p style="color:#686868;font-size: 0.94rem;margin-top:0.3rem; ">上次购买记录</p>
 				</div>
 			</div>
 
 			<!--好可惜取消订单弹窗-->
-			<div id="cancelOrderManage" style="display:none;">
-				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100007;">
+			<div id="cancelOrderManage " style="display:none; ">
+				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100007; ">
 				</div>
-				<div style="z-index: 100009;width: 70%;height: 15rem;padding: 0;top:11rem;left:15%;table-layout: fixed;position: absolute;border:1px solid #e96012;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:1.8rem 0;">
+				<div style="z-index: 100009;width: 19.22rem;height: 19.22rem;top:0;left:0;right:0;bottom:0;margin:auto;table-layout: fixed;position: absolute;border:2px solid #ddba90;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:3.375rem 0 2.8rem; ">
 
-					<h3 style="color:#e5590e;font-size:3rem;margin:0;font-style: italic;">好可惜!</h3>
+					<!--<h3 style="color:#e5590e;font-size:3rem;margin:0;font-style: italic; ">好可惜!</h3>-->
+					<img src="../static/img/haokexi.png " alt=" " style="width:12rem;height:3.47rem; "/>
 					<div>
-						<span style="font-size:0.75rem;font-weight:400;color:#626061;display:block;width:100%;margin:0 auto;">您已取消了精美标牌定制化服务,</span>
+						<span style="font-size:0.85rem;font-weight:400;color:#626061;display:block;width:100%;margin:0 auto; ">您已取消了精美标牌定制化服务,</span>
 
-						<span style="font-size:0.75rem;color:#e6580e;font-weight:300;display:block;width:100%;margin:0 auto;">如果后悔,还可以重新提交</span>
+						<span style="font-size:0.85rem;color:#dcb78d;font-weight:300;display:block;width:100%;margin:0 auto; ">如果后悔,还可以重新提交</span>
 					</div>
-					<div id="GoShoppingSad" style="border:1px solid #e3641e;border-radius:1rem;font-size:1rem;background:#fff;color:#e3641e;width:45%;height:2rem;margin:1rem auto 0;line-height:2rem;">我知道了
-					</div>
+					<!--<div id="GoShoppingSad " style="border:1px solid #e3641e;border-radius:1rem;font-size:1rem;background:#fff;color:#e3641e;width:45%;height:2rem;margin:1rem auto 0;line-height:2rem; ">我知道了
+					</div>-->
+					<img id="GoShoppingSad " src="../static/img/iknowPic.png " alt=" " style="display:block;width:7rem;height:2.25rem;margin:0 auto; "/>
 
 				</div>
 			</div>
 
 			<!--重新认证确认弹窗-->
-			<div id="Recertification" style="display:none;">
-				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
+			<div id="Recertification " style="display:none; ">
+				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000; ">
 				</div>
-				<div style="z-index: 100001;width: 80%;height: 13.5rem;padding: 0;top:6rem;left:10%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:2rem 0 2rem 0;">
+				<div style="z-index: 100001;width: 80%;height: 13.5rem;padding: 0;top:6rem;left:10%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:2rem 0 2rem 0; ">
 					<div>
-						<span style="font-size:1rem;font-weight:900;color:#e3641e;display:block;width:100%;margin:0 auto;">您已成功认证，且店码已生成</span>
+						<span style="font-size:1rem;font-weight:900;color:#e3641e;display:block;width:100%;margin:0 auto; ">您已成功认证，且店码已生成</span>
 
-						<span style="font-size:1rem;color:#e3590e;font-weight:900;display:block;width:100%;margin:0.3rem auto;">再次认证会重新审核</span>
-						<span style="color:#63625e;font-size: 1rem;">请谨慎操作!</span>
+						<span style="font-size:1rem;color:#e3590e;font-weight:900;display:block;width:100%;margin:0.3rem auto; ">再次认证会重新审核</span>
+						<span style="color:#63625e;font-size: 1rem; ">请谨慎操作!</span>
 					</div>
-					<div style="display: flex;width:100%;justify-content: space-between;padding:0 1.5rem;">
-						<span id="RecertificationButton" style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#fff;color:#e3641e;width:5rem;height:1.7rem;line-height:1.7rem;">再次认证</span>
-						<span id="GoBackRecertification" style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#e5570f;color:#fff;width:5rem;height:1.7rem;line-height:1.7rem;">
+					<div style="display: flex;width:100%;justify-content: space-between;padding:0 1.5rem; ">
+						<span id="RecertificationButton " style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#fff;color:#e3641e;width:5rem;height:1.7rem;line-height:1.7rem; ">再次认证</span>
+						<span id="GoBackRecertification " style="border:1px solid #e3641e;border-radius:1rem;font-size:0.85rem;background:#e5570f;color:#fff;width:5rem;height:1.7rem;line-height:1.7rem; ">
 						返回
 					</span>
 					</div>
-					<!--<p style="color:#a4a2a3;font-size: 0.6rem;margin-top:0.3rem;">返回</p>-->
+					<!--<p style="color:#a4a2a3;font-size: 0.6rem;margin-top:0.3rem; ">返回</p>-->
 				</div>
 			</div>
 			<!--二维码弹窗-->
-			<div id="bigErWeiMa" style="display:none;">
-				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000;">
+			<div id="bigErWeiMa " style="display:none; ">
+				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100000; ">
 				</div>
-				<img id="guanbiImg" src="../static/img/guanbiimg.jpg" alt="" style="z-index:100005;display:block;width:1.5rem;height:1.5rem;border-radius:50%;top:8.5rem;border:1px solid red;right:2.9rem;position:absolute;" />
-				<div class="bigErWeiMa-center" style="z-index: 100001;width: 76%;height: 16.5rem;top:8rem;left:12%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:0 30px;">
+				<img id="guanbiImg " src="../static/img/guanbiimg.jpg " alt=" " style="z-index:100005;display:block;width:1.5rem;height:1.5rem;border-radius:50%;top:8.5rem;border:1px solid red;right:2.9rem;position:absolute; " />
+				<div class="bigErWeiMa-center " style="z-index: 100001;width: 76%;height: 16.5rem;top:8rem;left:12%;table-layout: fixed;position: absolute;border-radius:1rem;background:white;display: flex;flex-direction:column;justify-content:space-between ;align-items: center;padding:0 30px; ">
 					<!--头部信息-->
-					<div class="EWMInfoSmall">
-						<div class="TouXiangSmall">
-							<div class="TouXiangOneSmall">
-								<img id="headImgUrlSmall" src="" alt="" style="display:block;width:48px;height:48px;border-radius:50%;margin-top:10px;" />
+					<div class="EWMInfoSmall ">
+						<div class="TouXiangSmall ">
+							<div class="TouXiangOneSmall ">
+								<img id="headImgUrlSmall " src=" " alt=" " style="display:block;width:48px;height:48px;border-radius:50%;margin-top:10px; " />
 							</div>
-							<div class="TouXiangTwoSmall">
-								<img src="../static/img/yirenzheng.png" alt="" id="headImgFooter" />
+							<div class="TouXiangTwoSmall ">
+								<img src="../static/img/yirenzheng.png " alt=" " id="headImgFooter " />
 							</div>
 						</div>
 
-						<div class="" style="width:160px;height:80px;display: flex;flex-direction: column;justify-content: space-between;padding:15px 0;">
-							<p id="shopNameTanChuang" style="font-size:0.9rem;font-weight:600;margin:0;display:block;text-align: left;">乐天便利零售店</p>
-							<p style="margin:0;display:block;color:#8a8a8a;font-size:0.65rem;text-align: left;">烟草专卖便利店</p>
+						<div class=" " style="width:160px;height:80px;display: flex;flex-direction: column;justify-content: space-between;padding:15px 0; ">
+							<p id="shopNameTanChuang " style="font-size:0.9rem;font-weight:600;margin:0;display:block;text-align: left; ">乐天便利零售店</p>
+							<p style="margin:0;display:block;color:#8a8a8a;font-size:0.65rem;text-align: left; ">烟草专卖便利店</p>
 						</div>
 					</div>
 					<!--中间二维码-->
-					<img id="BigCenterImg" src="" alt="" style="display:block;width:100%;height:217px;border:0.5px solid #ebebeb;" />
-					<p style="display:block;margin:0;line-height:1.8rem;font-size:0.7rem;color:#626264;">长按保存二维码到手机相册</p>
+					<img id="BigCenterImg " src=" " alt=" " style="display:block;width:100%;height:217px;border:0.5px solid #ebebeb; " />
+					<p style="display:block;margin:0;line-height:1.8rem;font-size:0.7rem;color:#626264; ">长按保存二维码到手机相册</p>
 				</div>
 			</div>
 
 			<!--跳转到物流界面-->
 
-			<div id="Logistics" style="display:none;">
+			<div id="Logistics " style="display:none; ">
 				<!--添加FORM表单-->
-				<form id="FormDetail" method="post">
-					<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100;">
+				<form id="FormDetail " method="post ">
+					<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100; ">
 					</div>
-					<div class="wuLiu" style="z-index: 99999;width: 100%;height: 25.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;">
-						<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem;">
-							<img src="../static/img/close.png" alt="" style="display:block;width:1rem;height:1rem;" id="close" />
+					<div class="wuLiu " style="z-index: 99999;width: 100%;height: 25.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white; ">
+						<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem; ">
+							<img src="../static/img/close.png " alt=" " style="display:block;width:1rem;height:1rem; " id="close " />
 						</div>
-						<div style="height:100px;width:100%;display:flex;justify-content: space-between;align-items: center;padding:0 1rem;margin-bottom:1rem;">
-							<h4 style="display:block;width:104px;height:100px;text-align: left;font-size:0.8rem;color:#717171;font-weight:500;">店码:</h4>
-							<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc;">
-								<img src="../static/img/TanErweima.png" alt="" style="width:61px;height:60px;display:block;margin:auto;" />
+						<div style="height:100px;width:100%;display:flex;justify-content: space-between;align-items: center;padding:0 1rem;margin-bottom:1rem; ">
+							<h4 style="display:block;width:104px;height:100px;text-align: left;font-size:0.8rem;color:#717171;font-weight:500; ">店码:</h4>
+							<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc; ">
+								<img src="../static/img/TanErweima.png " alt=" " style="width:61px;height:60px;display:block;margin:auto; " />
 							</div>
-							<span style="display: block;width:90px;height:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;padding-top:2.5rem;">提供精美标牌设计包装</span>
+							<span style="display: block;width:90px;height:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;padding-top:2.5rem; ">提供精美标牌设计包装</span>
 						</div>
 
 						<!--收货地址-->
-						<div style="height:54px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-							<span style="display:block;height:54px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">收货地址:</span>
-							<div style="display: flex;width:8rem;height:41px;margin-left:1rem;justify-content: space-between;align-items: flex-start;">
-								<div style="display: flex;">
+						<div style="height:54px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+							<span style="display:block;height:54px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">收货地址:</span>
+							<div style="display: flex;width:8rem;height:41px;margin-left:1rem;justify-content: space-between;align-items: flex-start; ">
+								<div style="display: flex; ">
 
-									<select name="addrProvince" id="addrProvince" style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem;">
+									<select name="addrProvince " id="addrProvince " style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
 										<option>省</option>
 
 									</select>
 
-									<!--<img src="../static/img/shengshi.png" alt="" style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem;" />-->
+									<!--<img src="../static/img/shengshi.png " alt=" " style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem; " />-->
 
 								</div>
-								<div style="display: flex;margin:0 0.3rem;">
-									<select name="addrCity" id="addrCity" style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem;">
+								<div style="display: flex;margin:0 0.3rem; ">
+									<select name="addrCity " id="addrCity " style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
 										<option>市</option>
 
 									</select>
-									<!--<img src="../static/img/shengshi.png" alt="" style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem;" />-->
+									<!--<img src="../static/img/shengshi.png " alt=" " style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem; " />-->
 								</div>
-								<div style="display: flex;">
-									<select name="addrArea" id="addrArea" style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem;">
+								<div style="display: flex; ">
+									<select name="addrArea " id="addrArea " style="width:2.6rem;height:1rem;font-size:0.6rem;border:0.5px solid #dcdcdc;border-radius:0.3rem 0 0 0.3rem;text-align: center;appearance:none;-moz-appearance:none;-webkit-appearance:none;line-height:1rem;background:url(../static/img/shengshi.png) no-repeat right;background-size:0.8rem 1rem; ">
 										<option>区</option>
 
 									</select>
-									<!--<img src="../static/img/shengshi.png" alt="" style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem;" />-->
+									<!--<img src="../static/img/shengshi.png " alt=" " style="display:block;width:0.8rem;height:0.8rem;margin-left:-0.6rem; " />-->
 								</div>
 							</div>
 						</div>
-						<textarea name="addrDetail" id="addrDetail" placeholder="请输入详细地址，精确到街道门牌号" style="color:#000;font-size:0.6rem;display:block;width:58.7%;height:60px;margin:-20px 0 0 5.3rem;border:0.5px solid #c6c6c8;border-radius:0.3rem;padding:0.3rem;"></textarea>
+						<textarea name="addrDetail " id="addrDetail " placeholder="请输入详细地址，精确到街道门牌号 " style="color:#000;font-size:0.6rem;display:block;width:58.7%;height:60px;margin:-20px 0 0 5.3rem;border:0.5px solid #c6c6c8;border-radius:0.3rem;padding:0.3rem; "></textarea>
 						<!--联系人姓名-->
-						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">联系人姓名:</span>
+						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人姓名:</span>
 
-							<input type="text" value="" name="contactName" id="contactName" style="border:none;width:190px;font-size:0.8rem;color:#000;border-bottom:0.5px solid #b7b7b9;margin-left:-15px;" />
+							<input type="text " value=" " name="contactName " id="contactName " style="border:none;width:190px;font-size:0.8rem;color:#000;border-bottom:0.5px solid #b7b7b9;margin-left:-15px; " />
 						</div>
 
 						<!--联系人电话-->
-						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">联系人电话:</span>
-							<input name="contactPhone" id="contactPhone" type="text" value="" style="border:none;width:190px;font-size:0.8rem;color:#000;border-bottom:0.5px solid #b7b7b9;margin-left:-15px;" />
+						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人电话:</span>
+							<input name="contactPhone " id="contactPhone " type="text " value=" " style="border:none;width:190px;font-size:0.8rem;color:#000;border-bottom:0.5px solid #b7b7b9;margin-left:-15px; " />
 						</div>
 
 						<!--打印费用-->
-						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">打印费用:</span>
-							<span style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500;"><span id="showFee"></span> <span>元</span></span>
+						<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+							<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">打印费用:</span>
+							<span style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "><span id="showFee "></span> <span>元</span></span>
 						</div>
 
-						<div id="ButtonBtns" style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:0.8rem;margin-top:1.2rem;">确认</div>
+						<div id="ButtonBtns " style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;line-height:45px;height:45px;font-size:0.8rem;margin-top:1.2rem; ">确认</div>
 					</div>
-					<input type="hidden" id="isFree" name="isFree" />
-					<input type="hidden" id="amount" name="amount" />
-					<input type="hidden" id="provinceName" name="provinceName" />
-					<input type="hidden" id="cityName" name="cityName" />
-					<input type="hidden" id="areaName" name="areaName" />
+					<input type="hidden " id="isFree " name="isFree " />
+					<input type="hidden " id="amount " name="amount " />
+					<input type="hidden " id="provinceName " name="provinceName " />
+					<input type="hidden " id="cityName " name="cityName " />
+					<input type="hidden " id="areaName " name="areaName " />
 				</form>
 			</div>
 
 			<!--跳转到物流界面-->
-			<div id="orderManage" style="display:none;">
-				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100;">
+			<div id="orderManage " style="display:none; ">
+				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100; ">
 				</div>
-				<div class="wuLiu" style="z-index: 99999;width: 100%;height: 25.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;">
-					<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem;">
-						<img src="../static/img/close.png" alt="" style="display:block;width:1rem;height:1rem;" id="closeThree" />
+				<div class="wuLiu " style="z-index: 99999;width: 100%;height: 25.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white; ">
+					<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem; ">
+						<img src="../static/img/close.png " alt=" " style="display:block;width:1rem;height:1rem; " id="closeThree " />
 					</div>
-					<div style="height:100px;width:100%;display:flex;justify-content: space-between;align-items: center;padding:0 1rem;margin-bottom:1rem;">
-						<h4 style="display:block;width:104px;height:100px;text-align: left;font-size:0.8rem;color:#717171;font-weight:500;">店码:</h4>
-						<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc;">
-							<img src="../static/img/TanErweima.png" alt="" style="width:61px;height:60px;display:block;margin:auto;" />
+					<div style="height:100px;width:100%;display:flex;justify-content: space-between;align-items: center;padding:0 1rem;margin-bottom:1rem; ">
+						<h4 style="display:block;width:104px;height:100px;text-align: left;font-size:0.8rem;color:#717171;font-weight:500; ">店码:</h4>
+						<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc; ">
+							<img src="../static/img/TanErweima.png " alt=" " style="width:61px;height:60px;display:block;margin:auto; " />
 						</div>
-						<span style="display: block;width:90px;height:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;padding-top:2.5rem;">提供精美标牌设计包装</span>
+						<span style="display: block;width:90px;height:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;padding-top:2.5rem; ">提供精美标牌设计包装</span>
 					</div>
 
 					<!--收货地址-->
-					<div style="height:54px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-						<span style="display:block;height:54px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">收货地址:</span>
-						<span id="shippingAddress" style="display:block;float: left;width:68.1%;height:54px;font-size:0.8rem;color:#000;text-align: left;font-weight:500;"></span>
+					<div style="height:54px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+						<span style="display:block;height:54px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">收货地址:</span>
+						<span id="shippingAddress " style="display:block;float: left;width:68.1%;height:54px;font-size:0.8rem;color:#000;text-align: left;font-weight:500; "></span>
 					</div>
 
 					<!--联系人姓名-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">联系人姓名:</span>
-						<span id="orderManageUserName" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#000;margin-left:0.2rem;text-align: left;font-weight:500;"></span>
+					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人姓名:</span>
+						<span id="orderManageUserName " style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#000;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
 					</div>
 
 					<!--联系人电话-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">联系人电话:</span>
-						<span id="orderManageTellPhone" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#000;margin-left:0.2rem;text-align: left;font-weight:500;"></span>
+					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人电话:</span>
+						<span id="orderManageTellPhone " style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#000;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
 					</div>
 
 					<!--打印费用-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">打印费用:</span>
-						<div style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500;"><span id="orderManageDaYinMoney"></span><span>元</span>
+					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">打印费用:</span>
+						<div style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "><span id="orderManageDaYinMoney "></span><span>元</span>
 						</div>
 					</div>
 					<!--快递单号-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">快递单号:</span>
-						<span id="orderManageTrackingNumber" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500;"></span>
+					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">快递单号:</span>
+						<span id="orderManageTrackingNumber " style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
 					</div>
 					<!--支付状态-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem;">
-						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171;">支付状态:</span>
-						<span id="orderManageZhiFuState" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500;"></span>
+					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">支付状态:</span>
+						<span id="orderManageZhiFuState " style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
 					</div>
 					<!--查询物流进度-->
-					<button id="orderManageCancelState" style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;height:45px;font-size:0.8rem;">取消订单</button>
+					<button id="orderManageCancelState " style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;height:45px;font-size:0.8rem; ">取消订单</button>
 				</div>
 			</div>
 		</div>
-		<!--<script src="https://cdn.bootcss.com/jquery/1.4.4/jquery.min.js"></script>-->
-		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/jquery/1.4.4/jquery.min.js "></script>-->
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js "></script>
 		<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 		<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 		<script type='text/javascript' src='../js/home.js'></script>

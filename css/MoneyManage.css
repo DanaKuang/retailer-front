@@ -1,89 +1,109 @@
+html{
+	font-size:16px;
+}
+html,body{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+}
 .walletInfo {
 	margin: 0 auto;
-	height: 219px;
+	height: 13.8125rem;
 	width: 100%;
-	background: #f15755;
+	background: url(../static/img/moneyDiTu.png) no-repeat center;
 }
 
 .walletInfo .walletInfoContent {
 	width: 84%;
-	height: 219px;
+	height: 13.8125rem;
 	margin: 0 auto;
 }
 
 .walletInfo .walletInfoContent .topAll {
-	height: 117px;
+	height: 7.4rem;
 	width: 100%;
-	display: flex;
-	justify-content: space-between;
+	/*display: flex;
+	justify-content: center;*/
+	/*align-items: center;*/
 }
 
 .walletInfo .walletInfoContent .topAll .top1 {
 	display: flex;
 	width: 100px;
-	height: 117px;
-
-	align-items: center;
+	height: 3rem;
+	/*background: red;*/
+	margin:0 auto;
+	justify-content: center;
+	align-items: flex-end;
 }
 
 .walletInfo .walletInfoContent .topAll .top1 p {
 	color: #fff;
 	font-size: 0.8rem;
+	display:block;
+	line-height:0;
+	/*background:green;*/
 }
 
-.walletInfo .walletInfoContent .topAll .top2 {
+.walletInfo .walletInfoContent.top2 {
 	width: 148px;
 	height: 117px;
 
 	padding-top: 1.7rem;
 }
 
-.walletInfo .walletInfoContent .topAll .top2 .button {
+.walletInfo .walletInfoContent .top2 .button {
 
 	border: none;
-	width: 100%;
-	height: 48px;
-	background: #fff;
-	border-radius: 2rem;
-	color: #f15755;
-	font-size: 0.8rem;
-	text-align: center;
-	line-height: 48px;
+	width: 8.5rem;
+	height: 3.3125rem;
+	/*margin-top:1.65rem;*/
+	margin:0 auto;
+	/*background: #fff;*/
+	/*border-radius: 2rem;*/
+	/*color: #f15755;*/
+	/*font-size: 0.8rem;*/
+	/*text-align: center;
+	line-height: 48px;*/
 }
 
-.walletInfo .walletInfoContent .topAll .top2 i {
+/*.walletInfo .walletInfoContent .top2 i {
 	color: #fff;
 	font-size: 0.6rem;
 	font-style: normal;
-}
+}*/
 
-.walletInfo .walletInfoContent .top3 {
+.walletInfo .walletInfoContent .topAll .top3 {
 	display: flex;
-	justify-content: flex-start;
-	align-items: flex-end;
-	height: 49px;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
 	width: 100%;
-	border-bottom: 0.5px solid #eea19b;
+	margin:0.5rem auto 0;
+	/*border-bottom: 0.5px solid #eea19b;*/
 }
 
-.walletInfo .walletInfoContent .top3 i {
-	font-size: 1rem;
+.walletInfo .walletInfoContent .topAll .top3 i {
+	font-size: 2.75rem;
+	/*font-size: 1rem;*/
 	font-style: normal;
 	color: #fff;
 	margin-bottom: 0.25rem;
 }
 
-.walletInfo .walletInfoContent span {
-	font-size: 1.5rem;
+.walletInfo .walletInfoContent .topAll span {
+	font-size: 2.75rem;
 	font-style: normal;
 	color: #fff;
 	margin-bottom: 0.25rem;
 }
 
 .walletInfo .walletInfoContent .top4 {
-	height: 52px;
+	height: 3.25rem;
 	width: 100%;
 	display: flex;
+	margin-top:1.65rem;
 	justify-content: space-between;
 	align-items: center;
 	font-size: 0.7rem;
@@ -94,7 +114,7 @@
 	color: #fff;
 }*/
 
- .walletInfo .walletInfoContent .top4 p i {
+ .walletInfo .walletInfoContent .top4 div i {
 	font-style: normal;
 }
 
