@@ -164,11 +164,11 @@ $(document).ready(function() {
 						//						});
 					});
 
-					$('.listImgEWM').click(function(e) {
+					$('.Select').click(function(e) {
 						$('#bigErWeiMa').show();
 						$("#bigErWeiMa").on('touchmove', function(event) { event.preventDefault(); }, false);
 						//获取二维码接口
-						var style = $(this).attr('alt');
+						var style = 1;
 						$.ajax({
 							type: "post",
 							url: "/seller-web/seller/qr/style",
@@ -176,7 +176,7 @@ $(document).ready(function() {
 							success: function(data) {
 
 								console.log(data);
-								$("#BigCenterImg").attr("src", data);
+								$("#erweimaImg").attr("src", data);
 
 							},
 						})
