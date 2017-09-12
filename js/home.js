@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 					});
 
-					$("#BtnErWeiMa").click(function(e) {
+					$(".Select").click(function(e) {
 						$("#noRenZhengDianMas").show();
 
 					});
@@ -191,9 +191,7 @@ $(document).ready(function() {
 
 					})
 
-					$("#guanbiImg").click(function(e) {
-						$('#bigErWeiMa').hide();
-					})
+					
 
 					//	二维码切换	
 					$("#BtnErWeiMa").click(function(e) {
@@ -226,7 +224,7 @@ $(document).ready(function() {
 						return;
 					});
 					$(".listImgEWM").click(function(e) {
-						$("#noRenZhengDianMa").show();
+						$("#bigErWeiMa").show();
 
 					});
 					$("#KnowSoTahtDianMa").click(function(e) {
@@ -235,7 +233,7 @@ $(document).ready(function() {
 
 					})
 
-					$("#BtnErWeiMa").click(function(e) {
+					$(".Select").click(function(e) {
 						$("#noRenZhengDianMas").show();
 
 					});
@@ -270,14 +268,15 @@ $(document).ready(function() {
 				//领取二维码标牌
 
 				$("#yanZheng").click(function(e) {
-
 					$("#provinceName").val($("#addrProvince").text());
 					$("#cityName").val($("#addrCity").text());
 					$("#provinceName").val($("#addrArea").text());
-					$("#Logistics").on('touchmove', function(event) { event.preventDefault(); }, false);
+					
 					if(isFree == 1) {
 						//弹出 信息框						
 						$("#Logistics").toggle();
+						$("#Logistics").on('touchmove', function(event) { event.preventDefault(); }, false);
+//						alert(1)
 					} else {
 						//提示框
 						//弹出信息框
@@ -421,11 +420,13 @@ $(document).ready(function() {
 	//		$("#Logistics").toggle();
 	//
 	//	});
-
+	$("#guanbiImg").click(function(e) {
+						$('#bigErWeiMa').hide();
+					})
 	$("#ButtonBtns").click(function(e) {
-		var addrProvince = $("#addrProvince :checked").text();
-		var addrCity = $("#addrCity :checked").text();
-		var addrArea = $("#addrArea :checked").text();
+		var addrProvince = $("#addrProvince:checked").text();
+		var addrCity = $("#addrCity:checked").text();
+		var addrArea = $("#addrArea:checked").text();
 		$("#provinceName").val(addrProvince);
 		$("#cityName").val(addrCity);
 		$("#areaName").val(addrArea);
@@ -443,6 +444,7 @@ $(document).ready(function() {
 				var orderId = data.data.orderId;
 				if(data.ok) {
 					if(isFree == 1) {
+						alert(1)
 						$("#SuccessShenQing").toggle();
 						$("#Logistics").hide();
 						$("#mineKnow").click(function(e) {

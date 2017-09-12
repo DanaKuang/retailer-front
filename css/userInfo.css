@@ -10,27 +10,28 @@ html,body{
 }
 .writeInfoTop {
 	width: 100%;
-	height: 53px;
+	height: 2.7rem;
 	background: #fff;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	padding: 0 0.6rem;
 }
 
 .writeInfoTop img {
 	display: block;
-	width: 53px;
-	height: 53px;
+	width: 1.3125rem;
+	height: 1.3125rem;
 }
 
 .writeInfoTop .span1 {
-	font-size: 0.8rem;
+	font-size: 1.0625rem;
 	color: #f76d22;
+	margin:0 0.6rem;
 }
 
 .writeInfoTop .span2 {
-	font-size: 0.6rem;
+	font-size: 0.75rem;
 	color: #a09fa4;
 }
 
