@@ -125,7 +125,7 @@ $(document).ready(function() {
 				$("#addrCity").val(sellerInfo.addrCity);
 				$("#addrCity").trigger('change');
 				$("#addrArea").val(sellerInfo.addrArea);
-				if(sellerInfo.authStatus == 2) {
+				if(sellerInfo.authStatus == 1) {
 					$("#headImgFooter").attr("src", "../static/img/RenzhengIng.png");
 					$(".identificationState").html('去认证');
 					$(".identificationState").css('background', '#9e9e9e');
@@ -148,7 +148,7 @@ $(document).ready(function() {
 						$("#noRenZhengDianMas").hide();
 					});
 
-				} else if(sellerInfo.authStatus == 1) {
+				} else if(sellerInfo.authStatus == 2) {
 					$("#headImgFooter").attr("src", "../static/img/yirenzheng.png");
 					$(".identificationState").html('重新编辑');
 					$(".identificationState").css('background', '#d7ae5c');
