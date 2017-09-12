@@ -135,7 +135,6 @@ $(document).ready(function() {
 	});
 
 	$("#submitApply").click(function() {
-
 		//表单验证
 		if(!$("#headImg").val()) {
 			Zepto.toast("请上传头像");
@@ -160,7 +159,25 @@ $(document).ready(function() {
 			Zepto.toast('请输入有效的手机号码！');
 			return false;
 		}
+		if(!$("#contactName").val()) {
+			Zepto.toast("联系人姓名不能为空！");
+			return;
+		};
 
+		if($("#contactPhone").val().length == 0) {
+			Zepto.toast('联系人电话不能为空！');
+			return false;
+		}
+		if($("#contactPhone").val().length != 11) {
+			Zepto.toast('请输入有效的联系人电话，需是11位！');
+			return false;
+		}
+
+		var myregs = /^1[34578]\d{9}$/;
+		if(!myregs.test($("#contactPhone").val())) {
+			Zepto.toast('请输入有效的联系人电话！');
+			return false;
+		}
 		if(!$("#shopName").val()) {
 			Zepto.toast("店铺名称不能为空！");
 			return;
@@ -175,6 +192,10 @@ $(document).ready(function() {
 		};
 		if(!$("#addrArea").val()) {
 			Zepto.toast("请选择门店区地址！");
+			return;
+		};
+		if(!$("#addrDetail").val()) {
+			Zepto.toast("请输入详细地址！");
 			return;
 		};
 
@@ -192,13 +213,79 @@ $(document).ready(function() {
 			Zepto.toast('许可证件号只能是字母或者数字!');
 			return false;
 		};
-
+		if(!$("#commercial").val()) {
+			Zepto.toast("请选择业态内容！");
+			return;
+		};
 
 		var qrStyleValue = $("input[name='qrStyle']:checked").val();
 		if(!qrStyleValue){
 			Zepto.toast('请选择二维码标牌样式!');
 			return false;
 		}
+		//表单验证
+//		if(!$("#headImg").val()) {
+//			Zepto.toast("请上传头像");
+//			return;
+//		};
+//		if(!$("#ownerName").val()) {
+//			Zepto.toast("经营人名称不能为空！");
+//			return;
+//		};
+//
+//		if($("#phoneNo").val().length == 0) {
+//			Zepto.toast('手机号码不能为空！');
+//			return false;
+//		}
+//		if($("#phoneNo").val().length != 11) {
+//			Zepto.toast('请输入有效的手机号码，需是11位！');
+//			return false;
+//		}
+//
+//		var myreg = /^1[34578]\d{9}$/;
+//		if(!myreg.test($("#phoneNo").val())) {
+//			Zepto.toast('请输入有效的手机号码！');
+//			return false;
+//		}
+//
+//		if(!$("#shopName").val()) {
+//			Zepto.toast("店铺名称不能为空！");
+//			return;
+//		};
+//		if(!$("#addrProvince").val()) {
+//			Zepto.toast("请选择门店省地址！");
+//			return;
+//		};
+//		if(!$("#addrCity").val()) {
+//			Zepto.toast("请选择门店市地址！");
+//			return;
+//		};
+//		if(!$("#addrArea").val()) {
+//			Zepto.toast("请选择门店区地址！");
+//			return;
+//		};
+//
+//		if(!$("#licenceImg").val()) {
+//			Zepto.toast("请上传烟草专卖零售许可证件照");
+//			return;
+//		};
+//
+//		if(!$("#licenceNo").val()) {
+//			Zepto.toast('烟草专卖零售许可证件号不能为空!');
+//			return false;
+//		};
+//		var zmnumReg = /^[0-9a-zA-Z]*$/;
+//		if(!zmnumReg.test($("#licenceNo").val())) {
+//			Zepto.toast('许可证件号只能是字母或者数字!');
+//			return false;
+//		};
+//
+//
+//		var qrStyleValue = $("input[name='qrStyle']:checked").val();
+//		if(!qrStyleValue){
+//			Zepto.toast('请选择二维码标牌样式!');
+//			return false;
+//		}
 
 		$("#submitApply").attr('disabled', true);
 
