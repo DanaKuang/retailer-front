@@ -102,7 +102,8 @@ $(document).ready(function() {
 				}
 				//设置领取二维码标牌订单内容
 				$("#contactPhone").val(sellerInfo.contactPhone);
-				$("#addrDetail").html(sellerInfo.addrDetail);
+				$("#addrDetail").val(sellerInfo.addrDetail);
+				console.log($("#addrDetail").val());
 				$("#contactName").val(sellerInfo.contactName);
 				if(param.qrFreeNum > 0 && param.isGetFreeQr != 1) {
 
@@ -270,7 +271,7 @@ $(document).ready(function() {
 				$("#yanZheng").click(function(e) {
 					$("#provinceName").val($("#addrProvince").text());
 					$("#cityName").val($("#addrCity").text());
-					$("#provinceName").val($("#addrArea").text());
+					$("#areaName").val($("#addrArea").text());
 					
 					if(isFree == 1) {
 						//弹出 信息框						
@@ -424,14 +425,15 @@ $(document).ready(function() {
 						$('#bigErWeiMa').hide();
 					})
 	$("#ButtonBtns").click(function(e) {
-		var addrProvince = $("#addrProvince:checked").text();
-		var addrCity = $("#addrCity:checked").text();
-		var addrArea = $("#addrArea:checked").text();
+		var addrProvince = $("#addrProvince>option:selected").text();
+		var addrCity = $("#addrCity>option:selected").text();
+		var addrArea = $("#addrArea>option:selected").text();
 		$("#provinceName").val(addrProvince);
 		$("#cityName").val(addrCity);
 		$("#areaName").val(addrArea);
 		//		alert(addrProvince);
 		var form = $("#FormDetail");
+		console.log(form.serialize());
 		$.ajax({
 			timeout: 10000, //超时时间设置，单位毫秒
 			type: "post",
@@ -444,7 +446,7 @@ $(document).ready(function() {
 				var orderId = data.data.orderId;
 				if(data.ok) {
 					if(isFree == 1) {
-						alert(1)
+//						alert(1)
 						$("#SuccessShenQing").toggle();
 						$("#Logistics").hide();
 						$("#mineKnow").click(function(e) {
