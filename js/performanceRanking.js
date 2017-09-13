@@ -92,7 +92,7 @@ $(document).ready(function() {
 				
 					
 			}
-			if(data.ok || data.data.dataList.length==0){
+			if(!data.ok || data.data.dataList.length==0){
 					mui('#pullrefreshmdg').pullRefresh().endPullupToRefresh(true); 
 				}else{
 					mui('#pullrefreshmdg').pullRefresh().endPullupToRefresh(false);				
