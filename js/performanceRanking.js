@@ -33,7 +33,7 @@ $(document).ready(function() {
 		pullRefresh: {
 			container: '#pullrefreshmdg',
 			up: {
-				//						contentrefresh: '正在加载...',
+//										contentrefresh: '正在加载',
 				callback: pullupRefresh
 			}
 		}
@@ -58,7 +58,7 @@ $(document).ready(function() {
 		type: "post",
 		url: "/seller-web/statis/scan/count",
 		async: true,
-		data:{pageSize:2,startPos:current_count},
+//		data:{pageSize:2,startPos:current_count},
 		success: function(data) {
 			
 			console.log(data);
