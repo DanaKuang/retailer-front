@@ -123,7 +123,7 @@ Zepto("#dateEnd").calendar({
 					var tmpdata  = d[i];
 				  var li = document.createElement('li');
 				      li.className = 'list1';
-				      li.innerHTML = '<li class="Span1">' +tmpdata.awardName+
+				      li.innerHTML = '<li class="Span1">' +tmpdata.specification+
 					'<i style="font-style: normal;"></i>' +
 					'</li>' +
 					'<li class="Span2"  style="color:#666666;font-size:0.75rem">'+
