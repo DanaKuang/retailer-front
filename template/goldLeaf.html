@@ -7,6 +7,21 @@
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <link rel="stylesheet" href="../css/goldLeaf.css"/>
     <title>黄金叶</title>
+    <script>
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					var clientWidth = docEl.clientWidth;
+					if(!clientWidth) return;
+					docEl.style.fontSize = 16 * (clientWidth / 375) + 'px';
+
+				};
+			if(!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+	</script>
 </head>
 
 <body>
@@ -29,7 +44,7 @@
         </div>
 		
         <div class="goldLeafInfoRight">
-        	<a href="" style="width:1.2rem;height:1.815rem;margin-left:10.3rem;" >
+        	<a href="" style="width:1.2rem;height:1.815rem;margin-left:10.3rem;visibility: hidden;" >
         		<img src="../static/img/guize.png" alt="" style="width:1.2rem;height:1.815rem;"/>
         	</a>
             <p class="goldLeafInfoRightP1">
