@@ -413,15 +413,15 @@ $(document).ready(function() {
 		}
 
 		//	下拉刷新
-		mui.init({
-			pullRefresh: {
-				container: '#pullrefresh',
-				up: {
-					//						contentrefresh: '正在加载...',
-					callback: pullupRefresh
-				}
-			}
-		});
+//		mui.init({
+//			pullRefresh: {
+//				container: '#pullrefresh',
+//				up: {
+//					//						contentrefresh: '正在加载...',
+//					callback: pullupRefresh
+//				}
+//			}
+//		});
 
 		//加载详情 数据
 		$("#ThreeMonthTwo").click(function(e) {
@@ -484,8 +484,8 @@ $(document).ready(function() {
 				console.log(endTime);
 				$.ajax({
 					type: "post",
-					url: "/seller-web/seller/select/income-and-expenses",
-					data: { startTime: startTime, endTime: endTime, pageSize: 10, startPos: current_count },
+					url: "/seller-web/seller/select/expenses",
+					data: { startTime: startTime, endTime: endTime},
 					success: function(data) {
 						console.log(data);
 
@@ -498,21 +498,21 @@ $(document).ready(function() {
 							list.className = 'sellMoneyCenter1';
 							list.innerHTML = '<div class="sellMoneyCenter1">' +
 								'<div class="left">' +
-								'<span class="left-p1">' + tmpdata.typeName + '</span>' +
-								'<span class="left-p2">' + new Date(tmpdata.optTime).Format('yyyy-MM-dd hh:mm:ss') + '</span>' +
+								'<span class="left-p1">' + '提现' + '</span>' +
+								'<span class="left-p2">' + new Date(tmpdata.opt_finish_time).Format('yyyy-MM-dd hh:mm:ss') + '</span>' +
 								'</div>' +
 
-								'<span style="color:green;">' + -tmpdata.amount + '元' + '</span>' +
+								'<span style="color:green;">' + -tmpdata.tx_amount + '元' + '</span>' +
 								'</div>';
 							table.appendChild(list);
 
 							current_count++;
 						}
-						if(!data.ok || data.data.length == 0) {
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-						} else {
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
-						}
+//						if(!data.ok || data.data.length == 0) {
+//							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+//						} else {
+//							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+//						}
 					}
 				});
 
