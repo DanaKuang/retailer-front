@@ -121,7 +121,7 @@ $(document).ready(function() {
 							'</div>';
 
 						if(tmpdatas.type == 1) {
-							innerHTML += '<span class="spanList"style="color:red;">' + '+' + tmpdatas.amount + '元' + '</span>';
+							innerHTML += '<span class="spanList" style="color:red;">' + '+' + tmpdatas.amount + '元' + '</span>';
 
 						} else {
 							innerHTML += '<span class="spanList" style="color:green;">' + -tmpdatas.amount + '元' + '</span>';

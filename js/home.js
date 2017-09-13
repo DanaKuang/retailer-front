@@ -154,15 +154,15 @@ $(document).ready(function() {
 					$(".identificationState").css('background', '#d7ae5c');
 					$(".identificationState").click(function(e) {
 						
-												$("#Recertification").show();
-												$("#RecertificationButton").click(function(e){
+//												$("#Recertification").show();
+//												$("#RecertificationButton").click(function(e){
 						window.location.href = "/template/userInfoss.html?t=" + new Date().valueOf();
 						return;
-												});
-												$("#GoBackRecertification").click(function(e){
-												$("#Recertification").hide();
-													
-												});
+//												});
+//												$("#GoBackRecertification").click(function(e){
+//												$("#Recertification").hide();
+//													
+//												});
 					});
 
 					$('.Select').click(function(e) {
@@ -314,7 +314,7 @@ $(document).ready(function() {
 					if(data.data.orderInfo.isPay == 1) {
 						$("#orderManageZhiFuState").html("已支付");
 
-					} else if(data.data.orderInfo.isPay == 2) {
+					} else{
 						$("#orderManageZhiFuState").html("未支付");
 					}
 					if(data.data.orderInfo.orderStatus == 1 || data.data.orderInfo.orderStatus == 2) {

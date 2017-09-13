@@ -55,12 +55,17 @@ Zepto("#dateEnd").calendar({
 		success: function(data) {
 			console.log(data);
 			//业绩信息
-			if(!data.data.unitNumList){
+			if(data.data.unitNumList){
 				
-			$(".listSpan").html(data.data.unitNumList[0].num);
-			$(".list1I").html(data.data.unitNumList[0].unit);
-			$(".listSpanTwo").html(data.data.unitNumList[1].num);
-			$(".list1ITwo").html(data.data.unitNumList[1].unit);
+				if(data.data.unitNumList.length>0){
+					$(".listSpan").html(data.data.unitNumList[0].num);
+			        $(".list1I").html(data.data.unitNumList[0].unit);
+				}
+				
+				if(data.data.unitNumList.length>1){
+					$(".listSpanTwo").html(data.data.unitNumList[1].num);
+			        $(".list1ITwo").html(data.data.unitNumList[1].unit);
+				}
 			}
 			$("#PXiaNum1").html(data.data.weekTotalNum);
 			$("#PXiaNum2").html(data.data.monthTotalNum);
