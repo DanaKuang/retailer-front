@@ -160,6 +160,7 @@ $(document).ready(function () {
         ;
         if (!$("#ownerName").val()) {
             Zepto.toast("经营人名称不能为空！");
+            console.log($("#ownerName").val())
             return;
         }
         ;
@@ -222,7 +223,7 @@ $(document).ready(function () {
             return false;
         }
 
-        $("#submitApply").attr('disabled', true);
+//      $("#submitApply").attr('disabled', true);
 
         var form = new FormData($('#tf')[0]);
         //		var form={};
