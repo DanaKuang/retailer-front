@@ -70,7 +70,8 @@ $(document).ready(function() {
 		header: "Access-Control-Allow-Origin: *",
 		async: true,
 		success: function(data) {
-
+				console.log(data);
+			
 			$("#headImgFooter").attr("src", "../static/img/weirenzheng.png");
 			$(".identificationState").html('去认证');
 			$(".identificationState").css('background', '#d6ad59');
