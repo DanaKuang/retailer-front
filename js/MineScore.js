@@ -123,13 +123,12 @@ Zepto("#dateEnd").calendar({
 					var tmpdata  = d[i];
 				  var li = document.createElement('li');
 				      li.className = 'list1';
-				      li.innerHTML = '<li class="Span1">' +tmpdata.goods+
-
+				      li.innerHTML = '<li class="Span1">' +tmpdata.awardName+
 					'<i style="font-style: normal;"></i>' +
 					'</li>' +
 					'<li class="Span2"  style="color:#666666;font-size:0.75rem">'+
 					 new Date(tmpdata.ctime).Format('yyyy-MM-dd hh:mm')
-					 +'</li><li class="Span3">'+tmpdata.num+'条'
+					 +'</li><li class="Span3">'+tmpdata.num
 					 +'</li>' +
 					'<li class="Span4" style="color:#ec5504;">'+tmpdata.fxAmount+'元</li>';
 				    table.appendChild(li);
