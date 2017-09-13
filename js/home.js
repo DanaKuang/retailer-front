@@ -245,7 +245,7 @@ $(document).ready(function() {
 				};
 				//经营人信息
 				$(".JinYinRenNameSpan").html(sellerInfo.ownerName);
-				$(".phoneNumber").html(sellerInfo.contactPhone);
+				$(".phoneNumber").html(sellerInfo.phoneNo);
 				$(".sex").html(wxInfo.sex);
 				$(".contactName").html(sellerInfo.contactName);
 				$(".contactPhone").html(sellerInfo.contactPhone);
