@@ -92,7 +92,7 @@ $(document).ready(function() {
 			var sellerInfo = data.data.sellerInfo;
 			$("#ImgTan").attr('src', sellerInfo.headImg);
 			$("#ownerName").val(sellerInfo.ownerName);
-			$("#phoneNo").val(sellerInfo.contactPhone);
+			$("#phoneNo").val(sellerInfo.phoneNo);
 
 			$(".contactGender").each(function(i, value) {
 				if($(this).val() == sellerInfo.contactGender) {
