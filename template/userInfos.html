@@ -379,7 +379,6 @@
 			// liubin 2017-10-12
 			var windowHeight = document.body.clientHeight;
 			window.onresize = function () {
-				alert('H: '+windowHeight+' DH:'+document.body.clientHeight);
 				if (document.body.clientHeight < windowHeight) {
 					document.getElementsByTagName("nav")[0].style.display = 'none';
 				} else {
