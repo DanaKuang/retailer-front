@@ -394,12 +394,12 @@ $(document).ready(function() {
 	};
 	// liubin 2017-10-12
 	var windowHeight = $(document).height();
-	$(window).resize(function () {
+	window.onresize = function () {
 		alert('H: '+windowHeight+' DH:'+$(document).height());
 		if ($(document).height() < windowHeight) {
 			$("nav").hide();
 		} else {
 			$("nav").show();
 		}
-	})
+	}
 });
