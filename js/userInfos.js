@@ -394,8 +394,8 @@ $(document).ready(function() {
 	};
 	// liubin 2017-10-12
 	$("input").focus(function () {
-		$(".footer").hide();
+		$("nav").hide();
 	}).blur(function () {
-		$(".footer").show();
+		$("nav").show();
 	});
 });
