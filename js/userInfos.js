@@ -393,9 +393,11 @@ $(document).ready(function() {
 		$(".footer").css("position", "static");
 	};
 	// liubin 2017-10-12
-	$("input").on('focus', function () {
+	$("input[type='text']").mouseup(function (e) {
+	    e.preventDefault();
+	}).focus(function () {
 		$("nav").hide();
-	}).on('blur', function () {
+	}).blur(function () {
 		$("nav").show();
 	});
 });
