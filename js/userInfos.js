@@ -303,7 +303,7 @@ $(document).ready(function() {
 			async: true,
 			success: function(result) {
 
-				
+
 				console.log(result);
 				if(result.ok) {
 					$("#SuccessRenZheng").show();
@@ -392,4 +392,10 @@ $(document).ready(function() {
 	if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') {
 		$(".footer").css("position", "static");
 	};
+	// liubin 2017-10-12
+	$("input").focus(function () {
+		$(".footer").hide();
+	}).blur(function () {
+		$(".footer").show();
+	});
 });
