@@ -111,7 +111,7 @@ Zepto("#dateEnd").calendar({
 		setTimeout(function() {
 
 			var table = document.body.querySelector('.ul3');
-            $(table).height($(document).height()-$(".moneyTop").height()-$("#id_PShang").height()-$(".ul2").height()-$("nav").height());
+            $(table).height($(document).height()-$(".moneyTop").height()-$("#id_PShang").height()-$(".ul2").height()-$("nav").height()-$(".mui-pull-bottom-pocket").height()-60);
 			console.log(startTime);
 			console.log(endTime);
 			$.ajax({
