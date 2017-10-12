@@ -378,14 +378,14 @@
 		<script type="text/javascript">
 			// liubin 2017-10-12
 			var windowHeight = document.body.clientHeight;
-			window.addEventListener('resize', function () {
+			window.onresize = function () {
 				alert('H: '+windowHeight+' DH:'+document.body.clientHeight);
 				if (document.body.clientHeight < windowHeight) {
 					document.getElementsByTagName("nav")[0].style.display = 'none';
 				} else {
 					document.getElementsByTagName("nav")[0].style.display = 'flex';
 				}
-			});
+			}
 		</script>
 		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 		<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
