@@ -27,13 +27,13 @@
 		</script>
 		<script type="text/javascript">
 			// liubin 2017-10-12
-			var windowHeight = $(document).height();
+			var windowHeight = document.body.clientHeight;
 			window.addEventListener('resize', function () {
-				alert('H: '+windowHeight+' DH:'+$(document).height());
-				if ($(document).height() < windowHeight) {
-					$("nav").hide();
+				alert('H: '+windowHeight+' DH:'+document.body.clientHeight);
+				if (document.body.clientHeight < windowHeight) {
+					document.getElementsByTagName("nav")[0].style.display = 'none';
 				} else {
-					$("nav").show();
+					document.getElementsByTagName("nav")[0].style.display = 'flex';
 				}
 			});
 		</script>
