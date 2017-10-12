@@ -393,13 +393,11 @@ $(document).ready(function() {
 		$(".footer").css("position", "static");
 	};
 	// liubin 2017-10-12
-	var windowHeight = $(document).height();
-	window.onresize = function () {
-		alert('H: '+windowHeight+' DH:'+$(document).height());
-		if ($(document).height() < windowHeight) {
-			$("nav").hide();
-		} else {
-			$("nav").show();
-		}
-	}
+	$("input[type='text']").mouseup(function (e) {
+	    e.preventDefault();
+	}).focus(function () {
+		$("nav").hide();
+	}).blur(function () {
+		$("nav").show();
+	});
 });
