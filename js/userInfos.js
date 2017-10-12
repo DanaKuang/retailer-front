@@ -392,14 +392,4 @@ $(document).ready(function() {
 	if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') {
 		$(".footer").css("position", "static");
 	};
-	// liubin 2017-10-12
-	var windowHeight = $(document).height();
-	window.addEventListener('resize', function () {
-		alert('H: '+windowHeight+' DH:'+$(document).height());
-		if ($(document).height() < windowHeight) {
-			$("nav").hide();
-		} else {
-			$("nav").show();
-		}
-	})
 });
