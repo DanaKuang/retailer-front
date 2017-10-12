@@ -393,9 +393,9 @@ $(document).ready(function() {
 		$(".footer").css("position", "static");
 	};
 	// liubin 2017-10-12
-	var windowHeight = $(window).height();
+	var windowHeight = $(document).height();
 	$(window).resize(function () {
-		if ($(window).height() < windowHeight) {
+		if ($(document).height() < windowHeight) {
 			$("nav").hide();
 		} else {
 			$("nav").show();
