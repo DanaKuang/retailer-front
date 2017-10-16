@@ -565,7 +565,7 @@
 						<!--联系人电话-->
 						<div style="height:2.75rem;width:100%;margin:0 auto;padding:0 1rem; ">
 							<div style="border:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;border-top:none;border-left:none;border-right:none;">
-								<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">联系人姓名:</span>
+								<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">联系人电话:</span>
 								<input name="contactPhone" id="contactPhone" type="text" value=" " style="border:none;width:11rem;font-size:1.125rem;text-align:right;color:#000;" />
 							</div>
 						</div>
@@ -592,54 +592,91 @@
 			<div id="orderManage" style="display:none; ">
 				<div style="width:100%;height:100%;background:black;opacity: 0.2;position:absolute;left:0;top:0;bottom:0;right:0;z-index:100; ">
 				</div>
-				<div class="wuLiu" style="z-index: 99999;width: 100%;height: 30.3rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white; ">
-					<div style="height:1.7rem;width:100%;display:flex;justify-content: flex-end;align-items: flex-end;padding-right:0.5rem; ">
-						<img src="../static/img/close.png " alt=" " style="display:block;width:1rem;height:1rem; " id="closeThree" />
-					</div>
-					<div style="height:100px;width:100%;display:flex;justify-content: space-between;align-items: center;padding:0 1rem;margin-bottom:1rem; ">
-						<h4 style="display:block;width:104px;height:100px;text-align: left;font-size:0.8rem;color:#717171;font-weight:500; ">店码:</h4>
-						<div style="width:100px;height:100px;display:flex;justify-content: center;align-items: center;background:#dcdcdc; ">
-							<img src="../static/img/TanErweima.png " alt=" " style="width:61px;height:60px;display:block;margin:auto; " />
+				<div class="wuLiu" style="z-index: 100009;width: 100%;height: 34.47rem;padding: 0;table-layout: fixed;position: absolute;bottom:0;background:white;">
+						<div style="height:2rem;width:100%;display:flex;justify-content: space-between;align-items: flex-end;padding-right:0.5rem; ">
+							<div style="display:block;width:4rem;height:2rem;line-height:2rem;text-align: left;font-size:1.125rem;color:#717171;font-weight:500;margin-left:1rem;">店码:</div>
+							<img src="../static/img/close.png" alt="" style="display:block;width:1.375rem;height:1.375rem; " id="closeThree" />
 						</div>
-						<span style="display: block;width:90px;height:100px;display:block;font-size:0.55rem;color:#aaaaac;text-align: left;padding-top:2.5rem; ">提供精美标牌设计包装</span>
-					</div>
+						<div style="height:8.4rem;width:100%;display:flex;justify-content: center;align-items: center; ">
+							<div style="width:9.12rem;height:7.875rem;display:flex;justify-content: center;align-items: center; ">
+								<img src="../static/img/TanErweima.png " alt=" " style="width:100%;height:100%;display:block;margin:auto; " />
+							</div>
+						</div>
 
 					<!--收货地址-->
-					<div style="height:54px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
-						<span style="display:block;height:54px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">收货地址:</span>
-						<span id="shippingAddress" style="display:block;float: left;width:68.1%;height:54px;font-size:0.8rem;color:#000;text-align: left;font-weight:500; "></span>
+					<div style="height:4.2rem;width:100%;margin:0.5rem auto 0;padding:0 1rem; ">
+							<div style="width:100%;height:4.2rem;border-top:0.5px solid #eeeeee;display: flex;justify-content: space-between;">
+								<span style="display:block;height:2.75rem;padding-top:0.8rem;width:31.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">收货地址:</span>
+						<span id="shippingAddress" style="display:block;width:68.1%;height:4.2rem;padding-top:0.8rem;font-size:1.125rem;color:#000;text-align: left;font-weight:500; "></span>
+					</div>
 					</div>
 
 					<!--联系人姓名-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
-						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人姓名:</span>
-						<span id="orderManageUserName" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#000;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
-					</div>
+					<div style="height:2.75rem;display:flex;justify-content:space-between;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;border-left:none;border-right:none;">
+								<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">联系人姓名:</span>
 
+								<span id="orderManageUserName" style="border:none;display:inline-block;line-height:2.75rem;width:10.4rem;font-size:1.125rem;color:#000;text-align: right;" /></span>
+							</div>
+						</div>
 					<!--联系人电话-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+					<!--<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
 						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">联系人电话:</span>
 						<span id="orderManageTellPhone" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#000;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
-					</div>
+					</div>-->
+					<div style="height:2.75rem;display:flex;justify-content:space-between;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border-bottom:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;">
+								<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">联系人电话:</span>
 
-					<!--打印费用-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
-						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">打印费用:</span>
-						<div style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "><span id="orderManageDaYinMoney"></span><span>元</span>
+								<span id="orderManageTellPhone" style="border:none;display:inline-block;line-height:2.75rem;width:10.4rem;font-size:1.125rem;color:#000;text-align: right;" /></span>
+							</div>
 						</div>
-					</div>
+					<!--打印费用-->
+					<!--<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">打印费用:</span>
+						<div style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "><span id="orderManageTellPhone"></span><span>元</span>
+						</div>
+					</div>-->
+					
+					<div style="height:2.75rem;display:flex;justify-content:space-between;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border-bottom:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;">
+								<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">打印费用:</span>
+								<div style="border:none;display:inline-block;line-height:2.75rem;width:10.4rem;font-size:1.125rem;color:#ddba92;text-align: right;">
+								<span id="orderManageTellPhone" ></span><span>元</span>
+								</div>
+							</div>
+						</div>
 					<!--快递单号-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+					<!--<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
 						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">快递单号:</span>
 						<span id="orderManageTrackingNumber" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
-					</div>
+					</div>-->
+					
+					<div style="height:2.75rem;display:flex;justify-content:space-between;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border-bottom:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;">
+								<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">快递单号:</span>
+								<div style="border:none;display:inline-block;line-height:2.75rem;width:10.4rem;font-size:1.125rem;color:#ddba92;text-align: right;">
+								<span id="orderManageTrackingNumber" ></span>
+								</div>
+							</div>
+						</div>
 					<!--支付状态-->
-					<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
+					<!--<div style="height:34px;width:100%;margin:0.5rem auto;padding:0 1rem; ">
 						<span style="display:block;height:34px;width:31.6%;text-align: left;float:left;font-size:0.8rem;color:#717171; ">支付状态:</span>
 						<span id="orderManageZhiFuState" style="display:block;float: left;width:62.8%;height:34px;font-size:0.8rem;color:#ea5503;margin-left:0.2rem;text-align: left;font-weight:500; "></span>
-					</div>
+					</div>-->
+					
+					
+					<div style="height:2.75rem;display:flex;justify-content:space-between;width:100%;margin:0 auto;padding:0 1rem; ">
+							<div style="border-bottom:0.5px solid #eeeeee;width:100%;display:flex;justify-content:space-between;">
+								<span style="display:block;line-height:2.75rem;height:2.75rem;width:33.6%;text-align: left;float:left;font-size:1.125rem;color:#717171; ">支付状态:</span>
+								<div style="border:none;display:inline-block;line-height:2.75rem;width:10.4rem;font-size:1.125rem;color:#ddba92;text-align: right;">
+								<span id="orderManageZhiFuState" ></span>
+								</div>
+							</div>
+						</div>
 					<!--查询物流进度-->
-					<button id="orderManageCancelState" style="display:inline-block;border:none;color:#fff;background:#ea5503;width:89%;border-radius:0.2rem;height:45px;font-size:0.8rem; ">取消订单</button>
+					<button id="orderManageCancelState" style="display:inline-block;border:none;color:#fff;background:#ddba92;width:21.875rem;border-radius:0.2rem;height:2.6875rem;font-size:1.375rem;margin-top:2rem;">取消订单</button>
 				</div>
 			</div>
 		</div>

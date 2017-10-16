@@ -335,6 +335,7 @@ $(document).ready(function() {
 							});
 
 							$("#cancelOrderManage").show();
+							$("#orderManage").hide();
 							$("#GoShoppingSad").click(function(e) {
 								$("#cancelOrderManage").hide();
 								$("#orderManage").hide();

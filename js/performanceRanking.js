@@ -5,7 +5,7 @@ $(document).ready(function() {
 		url: "/seller-web/seller/main",
 		async: true,
 		success: function(data) {
-			//			console.log(data);
+						console.log(data);
 
 			//				
 			$("#TouXiangOneHeadImg").attr('src', data.data.sellerInfo.headImg);
@@ -62,6 +62,7 @@ $(document).ready(function() {
 		success: function(data) {
 			
 			console.log(data);
+			$("#MyOrder").html(data.data.myOrder)
 			for(var i = 0; i < 10; i++) {
 				var li = document.createElement('li');
 				li.className = 'listStyle';

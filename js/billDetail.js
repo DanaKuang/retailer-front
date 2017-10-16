@@ -29,6 +29,7 @@ $(document).ready(function() {
 		
 		Zepto("#dateStartTwo").calendar({
 			value: [new Date().valueOf()],
+			maxDate:[new Date()],
 			onChange: function(p, values, displayValues) {
 				current_count = 0;
 				$(".sellMoneyCenter").html("");
@@ -39,6 +40,7 @@ $(document).ready(function() {
 		});
 		Zepto("#dateEndTwo").calendar({
 			value: [new Date().valueOf()],
+			maxDate:[new Date()],
 			onChange: function(p, values, displayValues) {
 				current_count = 0;
 				$(".sellMoneyCenter").html("");
@@ -140,9 +142,10 @@ $(document).ready(function() {
 $(".shouYi").click(function(e) {
 	window.location.reload();
 })
-//	点击提现按钮
-	$(".tiXian").click(function(e) {
 
+//	点击提现按钮
+	$(".tiXian").click(function tixian(e) {
+//		if(tixian(e)){
 		$(".shouYi").css('background', '#fff');
 		$(".shouYi>p").css('color', '#ac815f');
 		$(".tiXian").css('background', '#f0dac2');
@@ -245,8 +248,10 @@ $(".shouYi").click(function(e) {
 
 			}, 300);
 		}
-
+//	}
+	
 	})
+
 })
 
 Date.prototype.Format = function(fmt) { //author: meizz   
