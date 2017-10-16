@@ -1,11 +1,11 @@
 
 
 $(document).ready(function() {
-	
+
 	var current_count = 0;
     var startTime = 0;
     var endTime = 0;
-	
+
 	Zepto("#dateStart").calendar({
     value: [new Date().valueOf()],
      maxDate:[new Date()],
@@ -32,20 +32,20 @@ Zepto("#dateEnd").calendar({
 });
 
  function lastThreeMonth(){
- 	
+
  	startTime = addDate(new Date(), -90).valueOf();
 	endTime = new Date().valueOf();
-	
+
 		current_count = 0;
     	$(".ul3").html("");
-    	
+
     	mui('#pullrefresh').pullRefresh().refresh(true);
-    
+
     pullupRefresh();
- 	
+
  }
 
-   
+
 
 	$.ajax({
 		type: "post",
@@ -56,12 +56,12 @@ Zepto("#dateEnd").calendar({
 			console.log(data);
 			//业绩信息
 			if(data.data.unitNumList){
-				
+
 				if(data.data.unitNumList.length>0){
 					$(".listSpan").html(data.data.unitNumList[0].num);
 			        $(".list1I").html(data.data.unitNumList[0].unit);
 				}
-				
+
 				if(data.data.unitNumList.length>1){
 					$(".listSpanTwo").html(data.data.unitNumList[1].num);
 			        $(".list1ITwo").html(data.data.unitNumList[1].unit);
@@ -73,7 +73,7 @@ Zepto("#dateEnd").calendar({
 		}
 	});
 
-	
+
 	function addDate(dd, dadd) {
 		var a = new Date(dd)
 		a = a.valueOf()
@@ -93,23 +93,23 @@ Zepto("#dateEnd").calendar({
 		}
 	});
 
-    
+
     //加载详情 数据
     $("#TreeMonth").click(function(e){
-      	  
+
     lastThreeMonth();
-    	
+
     });
-    
+
     lastThreeMonth();
 //  pullupRefresh();
-	
+
 	/**
 	 * 上拉加载具体业务实现
 	 */
 	function pullupRefresh() {
 		setTimeout(function() {
-			
+
 			var table = document.body.querySelector('.ul3');
 			console.log(startTime);
 			console.log(endTime);
@@ -118,13 +118,13 @@ Zepto("#dateEnd").calendar({
 			type: "post",
 			url: "/seller-web/seller/select/income/detail",
 			data: { startTime: startTime, endTime: endTime,pageSize:2,startPos:current_count},
-			success: function(data) { 
+			success: function(data) {
 				console.log(data);
-				
+
 				var d = data.data;
-				
+
 				for(var i=0;i<d.length;i++){
-					
+
 					var tmpdata  = d[i];
 				  var li = document.createElement('li');
 				      li.className = 'list1';
@@ -137,20 +137,20 @@ Zepto("#dateEnd").calendar({
 					 +'</li>' +
 					'<li class="Span4" style="color:#ec5504;">'+tmpdata.fxAmount+'元</li>';
 				    table.appendChild(li);
-				    
-				    current_count++;	
+
+				    current_count++;
 				}
-				
+
 				if(!data.ok || data.data.length==0){
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); 
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				}else{
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);				
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
 				}
 			}
 		});
-			
-			
-			
+
+
+
 		}, 300);
 	}
 
@@ -158,24 +158,24 @@ Zepto("#dateEnd").calendar({
 })
 
 
-Date.prototype.Format = function(fmt)   
-{ //author: meizz   
-  var o = {   
-    "M+" : this.getMonth()+1,                 //月份   
-    "d+" : this.getDate(),                    //日   
-    "h+" : this.getHours(),                   //小时   
-    "m+" : this.getMinutes(),                 //分   
-    "s+" : this.getSeconds(),                 //秒   
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
-    "S"  : this.getMilliseconds()             //毫秒   
-  };   
-  if(/(y+)/.test(fmt))   
-    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
-  for(var k in o)   
-    if(new RegExp("("+ k +")").test(fmt))   
-  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
-  return fmt;   
-}  
+Date.prototype.Format = function(fmt)
+{ //author: meizz
+  var o = {
+    "M+" : this.getMonth()+1,                 //月份
+    "d+" : this.getDate(),                    //日
+    "h+" : this.getHours(),                   //小时
+    "m+" : this.getMinutes(),                 //分
+    "s+" : this.getSeconds(),                 //秒
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度
+    "S"  : this.getMilliseconds()             //毫秒
+  };
+  if(/(y+)/.test(fmt))
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+  for(var k in o)
+    if(new RegExp("("+ k +")").test(fmt))
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+  return fmt;
+}
 
 
 

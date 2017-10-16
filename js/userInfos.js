@@ -303,7 +303,7 @@ $(document).ready(function() {
 			async: true,
 			success: function(result) {
 
-				
+
 				console.log(result);
 				if(result.ok) {
 					$("#SuccessRenZheng").show();
