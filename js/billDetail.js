@@ -160,7 +160,7 @@ $(".shouYi").click(function(e) {
 				current_count = 0;
 				$(".sellMoneyCenters").html("");
 				startTime = values[0];
-				mui('#pullrefresh').pullRefresh().refresh(true);
+//				mui('#pullrefresh').pullRefresh().refresh(true);
 				pullupRefresh();
 			}
 		});
@@ -170,7 +170,7 @@ $(".shouYi").click(function(e) {
 				current_count = 0;
 				$(".sellMoneyCenters").html("");
 				endTime = values[0];
-				mui('#pullrefresh').pullRefresh().refresh(true);
+//				mui('#pullrefresh').pullRefresh().refresh(true);
 				pullupRefresh();
 			}
 		});
@@ -183,7 +183,7 @@ $(".shouYi").click(function(e) {
 			current_count = 0;
 			$(".sellMoneyCenters").html("");
 
-			mui('#pullrefresh').pullRefresh().refresh(true);
+//			mui('#pullrefresh').pullRefresh().refresh(true);
 
 			pullupRefresh();
 
@@ -199,7 +199,7 @@ $(".shouYi").click(function(e) {
 
 		//加载详情 数据
 		$("#ThreeMonthTwo").click(function(e) {
-
+//			$(".sellMoneyCenters").html()
 			lastThreeMonth();
 
 		});

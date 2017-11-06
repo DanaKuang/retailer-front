@@ -6,6 +6,7 @@ html,body{
 	height:100%;
 	margin:0;
 	padding:0;
+	overflow: hidden;
 }
 .moneyTop {
 	width: 100%;
@@ -25,7 +26,11 @@ html,body{
 	border-bottom: 0.5px solid #d2d2d2;
 	/*margin-bottom: 0.6rem;*/
 }
-
+#pullrefreshTop{
+	height:20rem;
+	/*background:red;*/
+	overflow-y: scroll;
+}
 .moneyTop1 a {
 	display: block;
 	width: 5.5125rem;

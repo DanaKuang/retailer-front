@@ -96,7 +96,8 @@ html,body{
 
 .sellMoney {
 	width: 100%;
-	/*height: 350px;*/
+	height: 30rem;
+	overflow-y: scroll;
 	background: #fff;
 	padding-bottom:2.5rem;
 	
