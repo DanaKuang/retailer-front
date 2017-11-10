@@ -154,7 +154,7 @@ html,body{
 	height: 2.1875rem;
 	width: 100%;
 	color: #000;
-	line-height: 2.1875rem;
+	line-height: 3rem;
 	;
 	text-align: left;
 }
@@ -166,6 +166,8 @@ html,body{
 	font-size: 0.82rem;
 	color: #949494;
 	text-align: left;
+	display: block;
+	line-height: 2.1875rem;
 }
 
 .sellMoneyCenter1 span {
