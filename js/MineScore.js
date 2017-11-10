@@ -67,9 +67,9 @@ Zepto("#dateEnd").calendar({
 			        $(".list1ITwo").html(data.data.unitNumList[1].unit);
 				}
 			}
-			$("#PXiaNum1").html(data.data.weekTotalNum+data.data.unitNumList[0].unit);
-			$("#PXiaNum2").html(data.data.monthTotalNum+data.data.unitNumList[0].unit);
-			$("#PXiaNum3").html(data.data.totalNum+data.data.unitNumList[0].unit);
+			$("#PXiaNum1").html(data.data.weekTotalNum+'盒');
+			$("#PXiaNum2").html(data.data.monthTotalNum+'盒');
+			$("#PXiaNum3").html(data.data.totalNum+'盒');
 		}
 	});
 

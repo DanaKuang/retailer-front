@@ -117,7 +117,7 @@ $(document).ready(function() {
 							lists.className = 'sellMoneyCenter1';
 							lists.innerHTML = '<div class="sellMoneyCenter1">' +
 								'<div class="left">' +
-								'<span class="left-p1">销售返现</span>' +
+								'<span class="left-p1">鼓励金</span>' +
 								'<span class="left-p2">' + new Date(tmpdatas.ctime).Format('yyyy-MM-dd hh:mm:ss') + '</span>' +
 								'</div>' +
 
