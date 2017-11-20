@@ -149,6 +149,9 @@ html,body{
 .InfoListUl {
 	background:#fff;
 	-webkit-padding-start: 0;
+	height:420px;
+	/*overflow: hidden;*/
+	overflow-y: scroll;
 }
 
 .InfoListUl li {

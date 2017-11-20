@@ -61,9 +61,9 @@ $(document).ready(function() {
 //		data:{pageSize:2,startPos:current_count},
 		success: function(data) {
 			
-			console.log(data);
+			console.log(data.data.dataList.length);
 			$("#MyOrder").html(data.data.myOrder)
-			for(var i = 0; i < 10; i++) {
+			for(var i = 0; i < data.data.dataList.length; i++) {
 				var li = document.createElement('li');
 				li.className = 'listStyle';
 				li.innerHTML =
