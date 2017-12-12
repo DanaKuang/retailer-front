@@ -68,7 +68,7 @@ nav {
 				width: .587rem;
 			}
 			a {
-				line-height: 2;
+				line-height: 1.6;
 			}
 		}
 	}

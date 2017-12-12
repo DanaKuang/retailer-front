@@ -1,0 +1,44 @@
+.border-box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.flex {
+	display: flex;
+	align-items: center;
+}
+.uni-pop {
+	padding: .72rem .2rem .7rem;
+	width: 8.2667rem;
+	height: 7.4667rem; 
+	text-align: center;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+}
+.disabled-btn {
+	background-color: #e8dfe2!important;
+}
+.avatar:after {
+	content: '';
+	position: absolute;
+	bottom: -.1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 1.213rem;
+	height: .44rem;
+}
+.avatar.certified:after {
+	background: url('../image/common/icon_certified.png');
+	background-size: 100%;
+}
+.avatar.yetcertified:after {
+	background: url('../image/common/icon_yetcertified.png');
+	background-size: 100%;
+}
+.avatar.waiting:after {
+	background: url('../image/common/icon_waiting.png');
+	background-size: 100%;	
+}
