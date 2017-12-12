@@ -1,0 +1,205 @@
+body {
+  overflow-x: hidden;
+  width: 100%;
+  background: #F5F5F9;
+}
+.font-color {
+	color: #7D1A53!important;
+}
+.theme-bg-color {
+	background: #7D1A53;
+}
+.theme-bg-color_lighter {
+	background: #B96E88;
+}
+input[type="radio"]:checked ~.radio {
+	background: #6A3314; /* 比如用在radio里面 */
+}
+
+.theme-mask-bgColor {
+	background: rgba(185,110,136,.6);
+}
+.border-color {
+	border-color: #7D1A53;
+}
+.nav-bg-color {
+	background: #fff;
+}
+/*.nav-scan {
+	background: url('../image/shankun/nav_icon_scan.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}*/
+/*.nav-scan.active {
+	background: url('../image/shankun/nav_icon_scan-active.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}
+.nav-storecenter {
+	background: url('../image/shankun/nav_icon_storecenter.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}
+.nav-storecenter.active {
+	background: url('../image/shankun/nav_icon_storecenter-active.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}
+.nav-performance {
+	background: url('../image/shankun/nav_icon_performance.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}
+.nav-performance.active {
+	background: url('../image/shankun/nav_icon_performance-active.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}
+.nav-wallet {
+	background: url('../image/shankun/nav_icon_wallet.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}
+.nav-wallet.active {
+	background: url('../image/shankun/nav_icon_wallet-active.png') no-repeat;
+	background-position: top center;
+	background-size: .587rem;
+}*/
+
+/* 门店中心 */
+.main-info, .credits .top {
+	background: url('../image/shankun/index_bg.png') top repeat;
+	background-size: 100%;
+}
+.menulist .credits .item {
+	background: url('../image/shankun/icon_credits.png') left no-repeat;
+	background-size: .48rem .48rem;
+}
+.menulist .wallet .item {
+	background: url('../image/shankun/icon_wallet.png') left no-repeat;
+	background-size: .48rem .48rem;	
+}
+.menulist .order .item {
+	background: url('../image/shankun/icon_orderlist.png') left no-repeat;
+	background-size: .48rem .48rem;	
+}
+.menulist .qr .item {
+	background: url('../image/shankun/icon_qrcode.png') left no-repeat;
+	background-size: .48rem .48rem;	
+}
+.menulist .sign .item {
+	background: url('../image/shankun/icon_getlabel.png') left no-repeat;
+	background-size: .48rem .48rem;	
+}
+.menulist .promotion .item {
+	background: url('../image/shankun/icon_info.png') left no-repeat;
+	background-size: .48rem .48rem;	
+}
+.menulist .performance .item {
+	background: url('../image/shankun/icon_performance_rule.png') left no-repeat;
+	background-size: .48rem .48rem;	
+}
+
+/* 填写信息 */
+#info .title p {
+	background: url('../image/shankun/icon_info.png') left no-repeat;
+	background-size: .48rem .48rem;	
+}
+.info .button {
+	background: #F5F5F9;
+}
+
+/* 排行榜 */ 
+.rank {
+	background: url('../image/shankun/rank_bg.png') top no-repeat;
+	background-size: 100%;
+}
+
+/* 我的业绩 */
+.icon-performance {
+	width: .6667rem;
+	height: .54667rem;
+	background: url('../image/shankun/icon_performance.png');
+	background-size: cover;
+}
+.icon-down {
+	width: .493rem;
+	height: .493rem;
+	background: url('../image/shankun/icon_down.png');
+	background-size: cover;
+}
+.icon-rank {
+	width: 3.74667rem;
+	height: 1.38667rem;
+	background: url('../image/shankun/icon_rank.png') center no-repeat;
+	background-size: contain;
+}
+
+.bg-wallet {
+	height: 5.227rem;
+	background: url('../image/shankun/bg_wallet.png') no-repeat;
+	background-size: cover;
+}
+
+/* 订单管理页 */
+.orderlist .tabpanel:after {
+	background: #7D1A53;
+}
+
+/* 扫码入库 */
+.warehouse {
+	background: url('../image/henan/bg_warehouse.png') no-repeat;
+	background-position: 50% 30%;
+	background-size: 4.68rem 3rem;
+}
+
+/* 排行榜 */
+.box-shadow-inner {
+	-webkit-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
+	-moz-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
+	-ms-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
+	box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
+}
+
+/* 我的二维码 */
+.myqrpost {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding-top: 5.33rem;
+	width: 100%;
+	text-align: center;
+	background: url('../image/shankun/bg_myqr.png') top no-repeat;
+	background-size: 100% 100%;
+}
+.myqrpost .storename {
+	color: #6E3E2B;
+}
+.myqresult {
+	
+}
+
+/* 成功弹窗 */
+.uni-pop.success .modal-wrap {
+	padding-top: 2rem;
+	background: url('../image/shankun/success.png') no-repeat;
+	background-position: 50% 10%;
+	background-size: 2.667rem 1.92rem;
+}
+/* 失败弹窗 */
+.uni-pop.fail .modal-wrap {
+	padding-top: 2rem;
+	background: url('../image/shankun/fail.png') no-repeat;
+	background-position: 50% 10%;
+	background-size: 2.667rem 1.92rem;
+}
+
+/* 去认证弹窗 */
+.yetcertifiedpop .modal-wrap {
+	padding-top: 1.8rem;
+	background: url('../image/shankun/verifyicon.png') no-repeat;
+	background-position: 50% 10%;
+	background-size: 1.76rem 1.76rem;	
+}
