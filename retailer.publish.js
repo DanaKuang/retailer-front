@@ -12,8 +12,6 @@ module.export = function () {
         del        = require('del'), // "del"
         gulp       = require('gulp'), // "gulp"
         zip        = require('gulp-zip'), // "gulp-zip"
-        imagemin   = require('gulp-imagemin'), //"gulp-imagemin"
-        pngquant   = require('imagemin-pngquant'), //"imagemin-pngquant"
         node_ssh   = require('node-ssh'), // "node-ssh"
         colors     = require('colors/safe'), //"colors"
         dateFormat = require('dateformat'),
@@ -80,7 +78,7 @@ module.export = function () {
             var deferred = Q.defer();
             process.stdout.write(colors.green('2. copy -> \n'));
             process.stdout.write(colors.blue('\x20\x20\x20 copy...\n'));
-            gulp.src(['./**', '!dist/**', '!retailer.publish.js', '!node_modules/**', './.babelrc'])
+            gulp.src(['./**', '!dist/**', '!retailer.publish.js', '!node_modules/**'])
                 .pipe(gulp.dest('zip/retailer-front'))
                 .on('finish', function () {
                     process.stdout.write(colors.green('\x20\x20\x20 copy successfully!\n'));
@@ -183,9 +181,9 @@ module.export = function () {
         }
 
         // 第九步，删除打包文件
-        var DEvarESERVERFILE = function (file) {
+        var DELZIPSERVERFILE = function (file) {
             var deferred = Q.defer();
-            process.stdout.write(colors.green('9. devare zip.file: \n'));
+            process.stdout.write(colors.green('9. del zip.file: \n'));
             center.exec('rm -rf ' + file + ' ' + O + '/').then(function (result) {
                 process.stdout.write(colors.blue('\x20\x20\x20 del successfully!\n'));
                 deferred.resolve(true);
@@ -215,7 +213,7 @@ module.export = function () {
             .then(CONNECT)
             .then(UNZIPFILE)
             .then(COPYTOSERVER)
-            .then(DEvarESERVERFILE)
+            .then(DELZIPSERVERFILE)
             .then(SUCCESS)
             .catch(ERROR_CATCH)
             .done()
