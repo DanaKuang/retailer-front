@@ -5,98 +5,151 @@
 				<div class="flex-item trophy">
 					<a href=""><img :src="trophy" alt=""></a>
 					<p class="trophy-name">我的排名</p>
-					<p class="my-rank">5</p>
+					<p class="my-rank">{{myrank}}</p>
 				</div>
 				<div class="flex-item">
 					<p>本周扫码业绩</p>
-					<span>100</span>
+					<span>{{overview.weekTotalNum}}</span>
 				</div>
 				<div class="flex-item">
 					<p>本月扫码业绩</p>
-					<span>500</span>
+					<span>{{overview.monthTotalNum}}</span>
 				</div>
 				<div class="flex-item">
 					<p>总扫码业绩</p>
-					<span>4200</span>
+					<span>{{overview.totalNum}}</span>
 				</div>
 			</div>
-			<div class="rules">活动规则</div>
+			<div class="rules"><router-link :to="{path: '/retailer/rewardintro', query: {sellerId: sellerId}}">活动规则</router-link></div>
 			<div class="title">冠军排行榜</div>
 		</div>
-		<ul class="list border-color border-box box-shadow-outer">
-			<li class="title flex">
-				<span class="flex-item">名次</span>
-				<span class="flex-item">零售店</span>
-				<span class="flex-item">扫码业绩</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num"><img src="./../assets/image/common/first.png" alt=""></span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num"><img src="./../assets/image/common/second.png" alt=""></span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num"><img src="./../assets/image/common/third.png" alt=""></span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-			<li class="flex">
-				<span class="flex-item num">1</span>
-				<span class="flex-item">永辉烟草专卖</span>
-				<span class="flex-item">10000</span>
-			</li>
-		</ul>
+		<div class="page-infinite-wrapper list border-color border-box">
+			<ul 
+				v-infinite-scroll="loadMore"
+		        infinite-scroll-disabled="loading"
+		        infinite-scroll-distance="50"
+		        infinite-scroll-immediate-check="false">
+				<li class="title flex">
+					<span class="flex-item">名次</span>
+					<span class="flex-item">零售店</span>
+					<span class="flex-item">扫码业绩</span>
+				</li>
+				<li class="flex" v-for="(item, idx) in list">
+					<span class="flex-item num">{{ idx < 3 ? '' : idx + 1}}<img v-if="idx < 3" :src="topthreeImage[idx]" alt=""></span>
+					<span class="flex-item">{{item.shopName}}</span>
+					<span class="flex-item">{{item.num}}</span>
+				</li>
+			</ul>			
+		</div>
 	</div>
 </template>
 
 <script>
+import Http from 'assets/lib/http.js'
+import { InfiniteScroll } from 'mint-ui';
 import trophy from './../assets/image/common/trophy.png'
+
 export default {
 	name: 'Rank',
 	data () {
 		return {
-			trophy: trophy
+			trophy: trophy,
+			myrank: '',
+			list: [],
+			overview: {
+				weekTotalNum: 0,
+  				monthTotalNum: 0,
+  				totalNum: 0
+			},
+			topthreeImage: [],
+			page: 1,
+			loading: true,
+  			isEnd: false,
+  			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || ''
 		}
-	}
+	},
+	created() {
+		this.showRank()
+		this.showOverview()
+		this.showranklist()
+	},
+	mounted() {
+		this.$parent.loadingPage = false; //去掉loading
+	},
+	methods: {
+		showRank() {
+			Http.get('/seller-web/seller/rankPos')
+				.then(res => {
+					const Data = res.data;
+					if (Data.ok) {
+						this.myrank = Data.data;
+					}
+				}) 
+		},
+		showOverview() {
+			Http.get('/seller-web/seller/select/income/count')
+  				.then(res => {
+  					const Data = res.data;
+  					if (Data.ok) {
+  						let data = Data.data;
+  						let me = this;
+  						this.overview.weekTotalNum = data.weekTotalNum;
+  						this.overview.monthTotalNum = data.monthTotalNum;
+  						this.overview.totalNum = data.totalNum;
+  					}
+  				})
+		},
+		showranklist(loading) {
+			Http.get('/seller-web/income/statis', {
+				params: {
+					pageNo: this.page,
+  					pageSize: 10
+	 			}
+			}).then(res => {
+				const Data = res.data;
+				if (Data.ok) {
+					if (Data.data.list.length > 0) {
+						if (loading) {
+							let me = this;
+							Data.data.list.forEach(function (n, i) {
+								me.list.push(n)
+							})
+						} else {
+							this.list = Data.data.list;
+							for (var i = 0; i < 3; i++) {
+								var item = this.list[i];
+								if (item) {
+									if (i == 0) {
+										this.topthreeImage[i] = '/src/assets/image/common/first.png'
+									} else if (i == 1) {
+										this.topthreeImage[i] = '/src/assets/image/common/second.png'
+									} else if (i == 2) {
+										this.topthreeImage[i] = '/src/assets/image/common/third.png'
+									}
+								}
+							}							
+						}
+					} else {
+						if (loading) {
+							// 没有更多
+							this.isEnd = true;
+						} else {
+							// 暂无内容
+						}
+					}
+					this.loading = false
+				}
+			})
+		},
+		loadMore() {
+			if (this.list.length == 0) return
+			if (!this.isEnd && !this.loading) {
+				this.loading = true;
+			  	this.page = this.page + 1;
+			  	this.showranklist(true);
+			}
+		}
+	}	
 }
 </script>
 
@@ -108,10 +161,18 @@ export default {
 	border-radius: $num;
 }
 .rank {
-	padding-bottom: .3rem;
+	overflow: hidden;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	top: 0;
+	z-index: -2;
+	-webkit-user-select: none;
 	.top {
-		padding-top: 3.4667rem;
 		position: relative;
+		padding-top: 3.4667rem;
+		height: 5rem;
 		.rough {
 			position: relative;
 			margin: 0 auto;
@@ -163,8 +224,12 @@ export default {
 				}
 				.my-rank {
 					position: absolute;
-					left: 1.04rem;
-					top: -2.8rem;
+					left: 50%;
+					top: -2.7rem;
+					-webkit-transform: translateX(-39%);
+					-moz-transform: translateX(-39%);
+					-ms-transform: translateX(-39%);
+					transform: translateX(-39%);
 					font-size: .813rem;
 					color: #eb0507;
 				}
@@ -175,7 +240,7 @@ export default {
 				top: 50%;
 				z-index: -1;
 				width: 0.2667rem;
-				height: 0.72rem;
+				height: 0.52rem;
 				background-color: #32241A;
 				@include border-radius(50%);
 				-webkit-transform: translateY(-50%);
@@ -216,12 +281,20 @@ export default {
 		}
 	}
 	.list {
+		position: absolute;
+		top: 5rem;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		transform: translateX(-50%);
 		overflow-y: scroll;
-		margin: 0 auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-overflow-scrolling: touch;
 		padding: 0 .2rem;
 		width: 9.2rem;
-		height: 12.4rem;
-		max-height: 12.4rem;
+		height: calc(100% - 5.2667rem);
 		border-width: .2667rem;
 		border-style: solid;
 		background: #fff;

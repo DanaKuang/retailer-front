@@ -12,13 +12,17 @@ import Rank from '@/views/Rank.vue'
 import Warehousing from '@/views/Warehousing.vue'
 import Activation from '@/views/Activation.vue'
 import Myqresult from '@/views/Myqresult.vue'
+import MyQrpost from '@/views/MyQrpost.vue'
+import ActivityIntro from '@/views/ActivityIntro.vue'
+import RewardIntro from '@/views/RewardIntro.vue'
+import Abnormal from '@/views/Abnormal.vue'
 
 Vue.use(Router)
 
 import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)
 
-const routes = [{
+var routes = [{
 	path: '/retailer/scan',
 	component: Scan,
 	name: 'Scan',
@@ -101,6 +105,34 @@ const routes = [{
 	name: 'Myqresult',
 	meta: {
 		title: '门店中心'
+	}
+}, {
+	path: '/retailer/myqrpost',
+	component: MyQrpost,
+	name: 'MyQrpost',
+	meta: {
+		title: '我的二维码'
+	}
+}, {
+	path: '/retailer/activityintro',
+	component: ActivityIntro,
+	name: 'ActivityIntro',
+	meta: {
+		title: '活动说明'
+	}
+}, {
+	path: '/retailer/rewardintro',
+	component: RewardIntro,
+	name: 'RewardIntro',
+	meta: {
+		title: '业绩说明'
+	}
+}, {
+	path: '/retailer/abnormal',
+	component: Abnormal,
+	name: 'Abnormal',
+	meta: {
+		title: ''
 	}
 }]
 

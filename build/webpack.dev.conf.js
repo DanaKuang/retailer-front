@@ -32,17 +32,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,
     proxy: {
         '/seller-web/*' : {
-            target: 'https://t.taozuike.com',
+            target: 'https://sk.saotx.cn',
             changeOrigin: true,
             secure: false
         },
         '/seller-manager/*' : {
-            target: 'https://t.taozuike.com',
+            target: 'https://sk.saotx.cn',
             changeOrigin: true,
             secure: false     
         },
         '/admin/login/*' : {
-            target: 'http://portal.v2.taozuike.com/',
+            target: 'https://sk.saotx.cn',
             changeOrigin: true,
             secure: false         
         }

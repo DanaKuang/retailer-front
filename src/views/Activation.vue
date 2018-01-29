@@ -3,34 +3,35 @@
 		<div class="item-wrap">
 			<div class="item">
 				<span class="name">经营人姓名</span>：
-				<div class="content">{{user.retailerName}}</div>
+				<div class="content">{{user.ownerName}}</div>
 			</div>
 			<div class="item">
 				<span class="name">手机号</span>：
-				<div class="content">{{user.tel}}</div>
+				<div class="content">{{user.phoneNo}}</div>
 			</div>
 			<div class="item">
 				<span class="name">店铺名称</span>：
-				<div class="content">{{user.storeName}}</div>
+				<div class="content">{{user.shopName}}</div>
 			</div>
 			<div class="item">
 				<span class="name">门店地址</span>：
-				<div class="content">{{user.address}}</div>
+				<div class="content">{{user.addrDetail}}</div>
 			</div>
 			<div class="item certificate">
-				<span class="name">烟草专卖零售<br>许可证件号</span>：
-				<div class="content">{{user.certificateNumber}}</div>
+				<span class="name">烟草专卖零售许可证件号</span>：
+				<div class="content">{{user.licenceNo}}</div>
 			</div>
 			<div class="item">
 				<span class="name">区域</span>：
-				<div class="content">{{user.area}}</div>
+				<div class="content">{{user.districtName}}</div>
 			</div>
 			<div class="item">
 				<span class="name">业态</span>：
-				<div class="content">{{user.business}}</div>
+				<div class="content">{{user.commercialName}}</div>
 			</div>
 		</div>
 		<button class="confirm theme-bg-color_lighter" :disabled="confirmDisable" :class="{'disabled-btn': confirmDisable}" @click="confirm">确认信息并激活</button>
+
 		<!-- 发送验证码弹窗 -->
 		<mt-popup
 		class="uni-pop pop border-box"
@@ -42,11 +43,11 @@
 				<div class="verify">
 					<label for="">
 						<input class="vcode border-box" type="text" v-model="vcode" :disabled="vcodeInputDisable">
-						<input class="theme-bg-color_lighter vcode-btn" type="text" v-model="vcodeBtnMsg" readonly="true" @click="send" :disabled="vcodeBtnDisable" :class="{'disabled-btn': vcodeBtnDisable}">
+						<input class="theme-bg-color_lighter vcode-btn border-box" type="button" v-model="vcodeBtnMsg" readonly="true" @click="send" :disabled="vcodeBtnDisable" :class="{'disabled-btn': vcodeBtnDisable}">
 					</label>
 				</div>
 				<p class="font-color tip1">请获取验证码</p>
-  				<p class="tip3">验证码会发送到<span class="font-color">{{user.tel}}</span>手机里</p>
+  				<p class="tip3">验证码会发送到<span class="font-color">{{user.phoneNo}}</span>手机里</p>
 				<button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
     		</pop-modal>
 		</mt-popup>
@@ -69,7 +70,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Http from 'assets/lib/http.js'
 import popModal from '../components/pop-modal'
 
 export default {
@@ -88,9 +89,7 @@ export default {
 			count: 60,
 			timer: null,
 			sellerId: this.$route.query.sellerId,
-			user: {
-				retailerName: ''  // 必须赋值一个属性才不会报错
-			},
+			user: {},
 			activateState: {
 				text: ''
 			}
@@ -110,17 +109,12 @@ export default {
 	},
 	methods: {
 		getRetailerInfo() {
-			let me = this;
-			axios.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId)
+			Http.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId)
 	            .then(res => {
 	                const Data = res.data;
 	                if (Data.ok) {
-	                	let data = Data.data;
-						me.user.retailerName = data.ownerName,
-		                me.user.tel = data.phoneNo,
-		                me.user.storeName = data.shopName,
-		                me.user.address = data.addrDetail,
-		                me.user.certificateNumber = data.licenceNo;
+	                	this.$parent.loadingPage = false;
+	                	this.user = Data.data;
 	                }
 	            })
 		},
@@ -141,10 +135,14 @@ export default {
 	          			me.vcodeBtnMsg = me.count + '秒';
 	          		}
 	        	}, 1000);
-        		axios.get('/admin/login/getDynamicCode?oc=1&mobile=' + me.user.tel)
+        		Http.get('/admin/login/getDynamicCode?oc=1&mobile=' + me.user.phoneNo)
 	        		.then(res => {
 	        			const Data = res.data
-	        			me.user.vcode = Data.data
+	        			if (Data.ret != 200000) {
+	        				alert(Data.message)
+	        			} else {
+	        				me.user.vcode = Data.data
+	        			}
 	        		})
         	}
       	},
@@ -153,7 +151,7 @@ export default {
       		if (!this.vcodeVerifyDisable) {
       			this.vcodeVerifyDisable = true;
       			let me = this;
-      			axios.get('/admin/login/checkDynamicCode?mobile=' + me.user.tel + '&code=' + me.vcode)
+      			Http.get('/admin/login/checkDynamicCode?mobile=' + me.user.phoneNo + '&code=' + me.vcode)
 	        		.then(res => {
 	        			const Data = res.data
 	        			if (Data.data) {
@@ -172,7 +170,7 @@ export default {
       		if (!this.confirmDisable) {
       			this.confirmDisable = true;
       			let me = this;
-      			axios.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + me.vcode + me.user.tel + '1' + me.vcode.length)
+      			Http.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + me.vcode + me.user.phoneNo + '1' + me.vcode.length)
 	        		.then(res => {
 	        			const Data = res.data;
 	        			me.confirmPop = true;
@@ -221,13 +219,13 @@ export default {
 		font-size: .42667rem;
 		span {
 			float: left;
-			width: 2.6rem;
+			width: 3rem;
 			color: #666;
 			text-align-last: justify;
 		}
 		.content {
 			float: right;
-			width: 6.3rem;
+			width: 5.8rem;
 		}
 		&:not(:last-child) {
 			border-bottom: 1px solid rgba(204,204,204,.4);
@@ -262,22 +260,35 @@ export default {
 			margin: .8rem auto 0;
 			width: 7.24rem;
 			height: 1.04rem;
-			line-height: 1.04rem;
+			font-size: 0;
 			.vcode {
 				float: left;
+				margin: 0;
 				text-align: center;
-				width: 4.62rem;
+				width: 4.6rem;
 				height: 100%;
 				font-size: .48rem;
 				background: #CACACA;
+				-webkit-border-radius: 0;
+				-moz-border-radius: 0;
+				-ms-border-radius: 0;
+				border-radius: 0;
 			}
 			.vcode-btn {
-				float: right;
-				width: 2.56rem;
-				height: 100%;
-				font-size: .48rem;
+				float: left;
+				margin: 0;
+				width: calc(100% - 4.7rem);
+				height: 1.04rem;
+				padding: 0.03rem .05rem;
+				font-size: .42rem;
 				text-align: center;
 				color: #fff;
+				-webkit-border-radius: 0;
+				-moz-border-radius: 0;
+				-ms-border-radius: 0;
+				border-radius: 0;
+				-webkit-user-select: none;
+				user-select: none;
 			}
 		}
 		img {

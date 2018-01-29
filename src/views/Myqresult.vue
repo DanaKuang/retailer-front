@@ -2,49 +2,101 @@
 	<div class="myqresult border-box">
 		<div class="info border-box">
 			<div class="left">
-				<div class="avatar certified"><a href="javascript:;"><img src="" alt=""></a></div>
-				<div class="certificate"><img src="" alt=""></div>
+				<div class="avatar certified"><a href="javascript:;"><img :src="user.headImg" alt=""></a></div>
+				<div class="certificate"><img :src="user.licenceImg" alt=""></div>
 			</div>
 			<div class="right">
 				<div class="item">
-					<span class="name">经营人姓名</span>：
-					<div class="content">张三</div>
+					<span class="name">经营人姓名:</span>
+					<div class="content">{{user.ownerName}}<span></span></div>
 				</div>
 				<div class="item">
-					<span class="name">手机号</span>：
-					<div class="content">15889898899</div>
+					<span class="name">手机号:</span>
+					<div class="content">{{user.phoneNo}}<span></span></div>
 				</div>
 				<div class="item">
-					<span class="name">店铺名称</span>：
-					<div class="content">张三的店</div>
+					<span class="name">店铺名称:</span>
+					<div class="content">{{user.shopName}}<span></span></div>
 				</div>
 				<div class="item">
-					<span class="name">门店地址</span>：
-					<div class="content">河南省郑州市管城区创新文月99号十里堡酒店</div>
+					<span class="name">门店地址:</span>
+					<div class="content">{{user.addrDetail}}<span></span></div>
 				</div>
 				<div class="certificate-number">
-					<span class="name">烟草专卖零售许可证件号</span>：
-					<div class="content">1234567891021201201</div>
+					<span class="name">烟草专卖零售许可证件号</span>:
+					<div class="content">{{user.licenceNo}}</div>
 				</div>
 			</div>
 		</div>
-		<button class="scan theme-bg-color"><img src="" alt="">扫一扫</button>
-		<p class="tip font-color">绑定店码后，扫烟包二维码，中奖概率提升10%</p>
+		<button class="scan theme-bg-color" @click="scan"><img src="" alt="">扫一扫</button>
+		<p class="tip font-color-lighter">绑定店码后，扫烟包二维码，中奖概率提升10%</p>
 	</div>
 </template>
 <script>
-	
+import Http from 'assets/lib/http.js'
+import wx from 'weixin-js-sdk'
+
+export default {
+	name: 'Myresult',
+	data() {
+		return {
+			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
+			user: {}
+		}
+	},
+	created() {
+		this.showUserInfo()
+	},
+	methods: {
+		showUserInfo() {
+			Http.get('/seller-web/seller/main/' + this.sellerId)
+			.then(res => {
+				const Data = res.data;
+				if (Data.ok) {
+					this.$parent.loadingPage = false; //去掉loading
+					this.user = Data.data.sellerInfo;
+				}
+			})
+		},
+		scan() {
+			// 调起微信扫一扫
+			wx.config({
+                debug: false,
+                appId: sessionStorage.getItem('appid'),
+                timestamp: sessionStorage.getItem('timestamp'),
+                nonceStr: sessionStorage.getItem('noncestr'),
+                signature: sessionStorage.getItem('signature'),
+                jsApiList: ['scanQRCode']
+            });
+            wx.ready(function () {
+                wx.scanQRCode({
+                    needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                    scanType: ["qrCode", "barCode"], 
+                    // 可以指定扫二维码还是一维码，默认二者都有
+                    success: function(res) {
+                         // 当needResult 为 1 时，扫码返回的结果
+                    }
+                })
+            })
+		}
+	}
+}
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .myqresult {
-	padding-top: 5.09rem;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	.info {
 		display: flex;
-		margin: 0 auto;
-		padding: .8rem .3rem;
+		margin: 6.3rem auto 0;
+		padding: 0 .3rem;
 		width: 7.8667rem;
 		height: 5.33rem;
 		.left {
+			margin-right: .3rem;
 			width: 2rem;
 			.avatar {
 				position: relative;
@@ -60,6 +112,7 @@
 					-moz-border-radius: 50%;
 					-ms-border-radius: 50%;
 					border-radius: 50%;
+					border: 1px solid #ccc;
 					img {
 						width: 100%;
 						vertical-align: middle;
@@ -67,31 +120,42 @@
 				}
 			}
 			.certificate {
-				margin: .6rem auto;
+				margin: .4rem auto;
 				width: 1.76rem;
 				height: 1.2rem;
+				border: 1px solid #ccc;
+				text-align: center;
+				img {
+					max-width: 100%;
+					max-height: 100%;
+				}
 			}
 		}
 		.right {
 			flex: 1;
 			color: #E4341D;
-			font-size: .293rem;
 			.name {
-				font-weight: bold;
+				font-weight: 500;
 			}
 			.item {
 				overflow: hidden;
 				margin-bottom: .18rem;
+				font-size: .293rem;
 				.name {
 					float: left;
-					width: 2.09rem;
-					text-align-last: justify;
+					width: 1.65rem;
+					/*text-align-last: justify;*/
+					text-align: justify;
 				}
 				.content {
+					margin-top: .05rem;
 					float: right;
-					width: 2.8rem;
+					width: calc(100% - 1.7rem);
 					text-align: left;
 					line-height: 1.2;
+					span {
+						display: inline-block;
+					}
 				}
 			}
 			.certificate-number {
@@ -103,7 +167,7 @@
 	}
 	.scan {
 		display: block;
-		margin: 1.4266rem auto .4rem;
+		margin: 1rem auto .4rem;
 		width: 4.54667rem;
 		height: 1.1733rem;
 		font-size: .613rem;

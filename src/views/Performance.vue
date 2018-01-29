@@ -4,19 +4,19 @@
 			<div class="overall-performance flex">
 				<div class="performance flex-item">
 					<div class="icon-performance"></div>
-					<p class="desc">总销量：<em>2条5盒</em></p>
+					<p class="desc">总销量：<em>{{overview.overview}}</em></p>
 				</div>
 				<div class="icon-rank flex-item"><router-link :to="{path: '/retailer/rank', query: {sellerId: '3000016'}}"></router-link></div>
 			</div>
 			<div class="overview flex">
-				<div class="flex-item">本周扫码业绩<p class="week">50</p></div>
-				<div class="flex-item">本月扫码业绩<p class="month">150</p></div>
-				<div class="flex-item">总扫码业绩<p class="total">550</p></div>
+				<div class="flex-item">本周扫码业绩<p class="week">{{overview.weekTotalNum}}</p></div>
+				<div class="flex-item">本月扫码业绩<p class="month">{{overview.monthTotalNum}}</p></div>
+				<div class="flex-item">总扫码业绩<p class="total">{{overview.totalNum}}</p></div>
 			</div>
 		</div>
 		<form class="search-form" @submit.prevent="submit" name="searchform">
 			<div class="date-input-wrap">
-				<date-input></date-input>
+				<date-input ref="date" v-on:receiveStartDate="receiveStartDate" v-on:receiveEndDate="receiveEndDate" v-on:receiveDefaultDate="receiveDefaultDate"></date-input>
 			</div>
 			<div class="result-wrap">
 				<div class="title flex">
@@ -25,61 +25,179 @@
 					<p class="flex-item exchange-number">数量</p>
 					<p class="flex-item return-money">返现</p>
 				</div>
-				<ul class="result">
-					<li class="flex">
-						<p class="flex-item product-name">黄金叶（黄金）</p>
-						<p class="flex-item exchange-date">2017.07.23 12：30</p>
-						<p class="flex-item exchange-number">1条</p>
-						<p class="flex-item return-money">+5</p>
-					</li>
-					<li class="flex">
-						<p class="flex-item product-name">黄金叶（黄金）</p>
-						<p class="flex-item exchange-date">2017.08.01 10：15</p>
-						<p class="flex-item exchange-number">5盒</p>
-						<p class="flex-item return-money">+15</p>
+				<ul 
+				class="result"
+				v-infinite-scroll="loadMore"
+                infinite-scroll-disabled="loading"
+                infinite-scroll-distance="0"
+                infinite-scroll-immediate-check="false">
+					<li class="flex" v-for="item in performancelist">
+						<p class="flex-item product-name">{{item.goods}}</p>
+						<p class="flex-item exchange-date">{{item.cousumerScTime | convertDate}}</p>
+						<p class="flex-item exchange-number">{{item.unit}}</p>
+						<p class="flex-item return-money">+{{item.fxAmount}}</p>
 					</li>
 				</ul>
+
+				<!-- 加载数据loading -->
+		        <loading-ing v-if="loading"></loading-ing>
+		        <!-- 没有更多 -->
+		        <no-more v-if="nomore" class="font-color"></no-more>
+		        <!-- 暂无内容 -->
+		        <no-thing v-if="nothing" class="font-color"></no-thing>
 			</div>
 		</form>
-		<bottom-nav :queryvariate="sellerId"></bottom-nav>
 	</div>
 </template>
 <script>
-import axios from 'axios'
-import bottomNav from '../components/bottom-nav'
-import dateTime from '../components/date-time'
+import Http from 'assets/lib/http.js'
 import dateInput from '../components/date-input'
+import loadingIng from '../components/loading-ing'
+import noMore from '../components/no-more'
+import noThing from '../components/no-thing'
+import { InfiniteScroll } from 'mint-ui';
 
 export default {
   	name: 'Performance',
   	data() {
   		return {
-  			sellerId: this.$route.query.sellerId
+  			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
+  			overview: {
+  				overview: '0盒0条',
+  				weekTotalNum: 0,
+  				monthTotalNum: 0,
+  				totalNum: 0
+  			},
+  			performancelist: [],
+  			startTimeMM: '',
+ 			endTimeMM: '',
+  			page: 1,
+  			loading: true,
+  			nomore: false,
+  			nothing: false,
+  			isEnd: false
   		}
   	},
   	created () {
   		this.showOverviewPerformance()
   	},
   	mounted () {
-
+  		this.startTimeMM = this.$refs.date.emitStartTimeMM;
+        this.endTimeMM = this.$refs.date.emitEndTimeMM;
+        this.showPerformanceList();
   	},
   	methods: {
   		showOverviewPerformance() {
-
-  		}
+  			Http.get('/seller-web/seller/select/income/count')
+  				.then(res => {
+  					const Data = res.data;
+  					if (Data.ok) {
+  						this.$parent.loadingPage = false; //去掉loading
+  						
+  						let data = Data.data;
+  						let me = this;
+  						if (data.unitNumList.length > 0) {
+  							me.overview.overview = '';
+  							data.unitNumList.forEach(function(n,i){
+  								me.overview.overview += n.num + n.unit 
+  							})
+  						}
+  						this.overview.weekTotalNum = data.weekTotalNum;
+  						this.overview.monthTotalNum = data.monthTotalNum;
+  						this.overview.totalNum = data.totalNum;
+  					}
+  				})
+  		},
+  		showPerformanceList(loading) {
+  			Http.get('/seller-web/income/detail', {
+  				params: {
+  					startTime: this.startTimeMM,
+  					endTime: this.endTimeMM,
+  					pageNo: this.page,
+  					pageSize: 10
+  				}
+  			}).then(res => {
+  				const Data = res.data;
+  				if (Data.ok) {
+  					if (Data.data.list && Data.data.list.length > 0) {
+  						if (loading) {
+  							// push
+  							let me = this;
+  							 Data.data.list.forEach(function (n, i){
+  							 	me.performancelist.push(n)
+  							 })
+  						} else {
+  							this.performancelist = Data.data.list;
+  						}
+  					} else {
+  						if (loading) {
+  							// 没有更多
+  							this.isEnd = true;
+  							this.nomore = true;
+  						} else {
+							// 暂无内容
+							this.nothing = true;
+  						}
+  					}
+  					this.loading = false
+  				}
+  			})
+  		},
+  		init() {
+			// 日期重新搜索，init变量
+            this.page = 1;
+            this.isEnd = false;
+            this.loading = true;
+            this.nomore = false;
+            this.nothing = false;
+            this.performancelist.length = 0;
+  		},
+  		loadMore() {
+  			if (this.performancelist.length == 0) {
+	  			return 
+  			} else {
+  				if (!this.isEnd && !this.loading) {
+	  				this.loading = true;
+				  	this.page = this.page + 1;
+				  	this.showPerformanceList(true);
+	  			}
+  			}
+		},
+  		receiveStartDate (val) {
+  			this.init();
+            this.startTimeMM = val.receiveSTMM;
+            this.showPerformanceList()
+        },
+        receiveEndDate (val) {
+        	this.init();
+            this.endTimeMM = val.receiveETMM;
+            this.showPerformanceList()
+        },
+        receiveDefaultDate (val) {
+        	this.init();
+            this.startTimeMM = val.receiveSTMM;
+            this.endTimeMM = val.receiveETMM;
+            this.showPerformanceList();
+        }
   	},
-  	computed: {
-
+  	filters: {
+  		convertDate(val) {
+			return val ? new Date(val).toLocaleString().replace(/\//g, '-') : ''
+		}
   	},
   	components: { 
-  		bottomNav,
-  		dateTime,
-  		dateInput
+  		dateInput,
+  		loadingIng,
+        noMore,
+        noThing
   	}
 }
 </script>
 
 <style lang="scss">
+#performance {
+	-webkit-user-select: none;
+}
 .date-input-wrap {
 	border-bottom: 1px solid #ccc;
 }
@@ -136,6 +254,7 @@ export default {
 	background: #fff;
 }
 .result-wrap {
+	margin-bottom: 1.4rem;
 	.flex {
 		justify-content: space-between;
 		margin-left: .3rem;
@@ -171,6 +290,7 @@ export default {
 		width: 20%;
 	}
 	.result {
+		margin-bottom: 1rem;
 		font-size: .373rem;
 		li:not(:last-of-type) {
 			border-bottom: 1px solid #ccc;

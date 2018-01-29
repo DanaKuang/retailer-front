@@ -6,11 +6,17 @@ body {
 .font-color {
 	color: #AF8360!important;
 }
+.font-color-lighter {
+	color: #ECD097!important;
+}
 .theme-bg-color {
 	background: #DDBA90;
 }
 .theme-bg-color_lighter {
 	background: #DDBA90;
+}
+.disabled-btn {
+	background-color: #e1dbd6!important;
 }
 input[type="radio"]:checked ~.radio {
 	background: #6A3314; /* 比如用在radio里面 */
@@ -22,35 +28,17 @@ input[type="radio"]:checked ~.radio {
 	border-color: #DDBA90;
 }
 .nav-bg-color {
-	background: -webkit-linear-gradient(to bottom, #F0DDC3, #E9CFB1);
+	background: #fff;
+	/*background: -webkit-linear-gradient(to bottom, #F0DDC3, #E9CFB1);
 	background: -moz-linear-gradient(to bottom, #F0DDC3, #E9CFB1);
 	background: -ms-linear-gradient(to bottom, #F0DDC3, #E9CFB1);
-	background: linear-gradient(to bottom, #F0DDC3, #E9CFB1);
-}
-.nav-scan {
-	background: url('../image/henan/nav_icon_scan.png') no-repeat;
-	background-position: top center;
-	background-size: .6133rem .56rem;
-}
-.nav-storecenter {
-	background: url('../image/henan/nav_icon_storecenter-active.png') no-repeat;
-	background-position: top center;
-	background-size: .64rem .573rem;
-}
-.nav-performance {
-	background: url('../image/henan/nav_icon_performance.png') no-repeat;
-	background-position: top center;
-	background-size: .56rem .56rem;
-}
-.nav-wallet {
-	background: url('../image/henan/nav_icon_wallet.png') no-repeat;
-	background-position: top center;
-	background-size: 1rem .693rem;
+	background: linear-gradient(to bottom, #F0DDC3, #E9CFB1);*/
 }
 
+
 /* 门店中心 */
-.main-info, .credits .top, .rank .top {
-	background: url('../image/henan/index_bg.png') center repeat;
+.main-info, .credits .top {
+	background: url('../image/henan/h_index_bg.png') center repeat;
 	background-size: 100%;
 }
 .menulist .credits .item {
@@ -120,9 +108,6 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 扫码入库 */
-.warehouse-wrap {
-	background: #fff;
-}
 .warehouse {
 	background: url('../image/henan/bg_warehouse.png') no-repeat;
 	background-position: 50% 30%;
@@ -130,14 +115,19 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 排行榜 */
-.box-shadow-inner {
-	-webkit-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
-	-moz-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
-	-ms-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
-	box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
+.rank {
+	background: url('../image/henan/h_rank_bg.png') top no-repeat;
+	background-size: cover;
 }
 
-.box-shadow-outer {
+.box-shadow-inner {
+	-webkit-box-shadow: inset 0 0 20px rgba(222, 186, 145, .4);
+	-moz-box-shadow: inset 0 0 20px rgba(222, 186, 145, .4);
+	-ms-box-shadow: inset 0 0 20px rgba(222, 186, 145, .4);
+	box-shadow: inset 0 0 20px rgba(222, 186, 145, .4);
+}
+
+/*.box-shadow-outer {
 	-webkit-box-shadow: -7px 0 0 3px rgba(125, 26, 83, .1),
 		5px 0 0 3px rgba(125, 26, 83, .1);
 	-moz-box-shadow: -7px 0 0 3px rgba(125, 26, 83, .1),
@@ -146,19 +136,52 @@ input[type="radio"]:checked ~.radio {
 		5px 0 0 3px rgba(125, 26, 83, .1);
 	box-shadow: -7px 0 0 3px rgba(125, 26, 83, .1),
 		5px 0 0 3px rgba(125, 26, 83, .1);
+}*/
+
+/* 我的二维码 */
+.myqrpost, .activityintro, .rewardintro {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.myqrpost .storename {
+	color: #6E3E2B;
+}
+.myqresult {
+	background: url('../image/henan/h_bg_myqresult.png') top no-repeat;
+	background-size: cover;
+	background-clip: border-box;
 }
 
 /* 成功弹窗 */
 .uni-pop.success .modal-wrap {
 	padding-top: 2rem;
-	background: url('../image/shankun/success.png') no-repeat;
+	background: url('../image/henan/success.png') no-repeat;
 	background-position: 50% 10%;
 	background-size: 2.667rem 1.92rem;
 }
 /* 失败弹窗 */
 .uni-pop.fail .modal-wrap {
 	padding-top: 2rem;
-	background: url('../image/shankun/fail.png') no-repeat;
+	background: url('../image/henan/fail.png') no-repeat;
 	background-position: 50% 10%;
 	background-size: 2.667rem 1.92rem;
+}
+
+/* 去认证弹窗 */
+.uni-pop.yetcertifiedpop .modal-wrap {
+	padding-top: 1.4rem;
+	background: url('../image/henan/verifyicon.png') no-repeat;
+	background-position: 50% 6%;
+	background-size: 1.76rem 1.76rem;	
+}
+
+/* 完善资料弹窗 */
+.uni-pop.completeinfo .modal-wrap {
+	padding-top: 2rem;
+	background: url('../image/henan/verifyicon.png') no-repeat;
+	background-position: 50% 10%;
+	background-size: 1.76rem 1.76rem;
 }

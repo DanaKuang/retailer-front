@@ -41,6 +41,9 @@ input[type="submit"], input[type="button"] {
 input, textarea {
 	-webkit-user-modify: read-write-plaintext-only;
 }
+input, select {
+	-webkit-appearance: none;
+}
 
 a, img {
 	-webkit-touch-callout: none;

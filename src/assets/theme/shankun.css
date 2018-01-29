@@ -6,16 +6,21 @@ body {
 .font-color {
 	color: #7D1A53!important;
 }
+.font-color-lighter {
+	color: #7D1A53!important;
+}
 .theme-bg-color {
 	background: #7D1A53;
 }
 .theme-bg-color_lighter {
 	background: #B96E88;
 }
+.disabled-btn {
+	background-color: #e8dfe2!important;
+}
 input[type="radio"]:checked ~.radio {
 	background: #6A3314; /* 比如用在radio里面 */
 }
-
 .theme-mask-bgColor {
 	background: rgba(185,110,136,.6);
 }
@@ -109,12 +114,6 @@ input[type="radio"]:checked ~.radio {
 	background: #F5F5F9;
 }
 
-/* 排行榜 */ 
-.rank {
-	background: url('../image/shankun/rank_bg.png') top no-repeat;
-	background-size: 100%;
-}
-
 /* 我的业绩 */
 .icon-performance {
 	width: .6667rem;
@@ -153,7 +152,12 @@ input[type="radio"]:checked ~.radio {
 	background-size: 4.68rem 3rem;
 }
 
-/* 排行榜 */
+/* 排行榜 */ 
+.rank {
+	background: url('../image/shankun/rank_bg.png') top no-repeat;
+	background-size: cover;
+}
+
 .box-shadow-inner {
 	-webkit-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
 	-moz-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
@@ -162,23 +166,20 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 我的二维码 */
-.myqrpost {
+.myqrpost, .activityintro, .rewardintro {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	padding-top: 5.33rem;
-	width: 100%;
-	text-align: center;
-	background: url('../image/shankun/bg_myqr.png') top no-repeat;
-	background-size: 100% 100%;
 }
 .myqrpost .storename {
 	color: #6E3E2B;
 }
 .myqresult {
-	
+	background: url('../image/shankun/bg_myqresult.png') top no-repeat;
+	background-size: cover;
+	background-clip: border-box;
 }
 
 /* 成功弹窗 */
@@ -198,7 +199,22 @@ input[type="radio"]:checked ~.radio {
 
 /* 去认证弹窗 */
 .yetcertifiedpop .modal-wrap {
-	padding-top: 1.8rem;
+	padding-top: 1.4rem;
+	background: url('../image/shankun/verifyicon.png') no-repeat;
+	background-position: 50% 6%;
+	background-size: 1.76rem 1.76rem;	
+}
+/* 完善资料弹窗 */
+.uni-pop.completeinfo .modal-wrap {
+	padding-top: 2rem;
+	background: url('../image/shankun/verifyicon.png') no-repeat;
+	background-position: 50% 10%;
+	background-size: 1.76rem 1.76rem;
+}
+
+/* 去激活弹窗 */
+.uni-pop.activatepop .modal-wrap {
+	padding-top: 2rem;
 	background: url('../image/shankun/verifyicon.png') no-repeat;
 	background-position: 50% 10%;
 	background-size: 1.76rem 1.76rem;	

@@ -1,73 +1,101 @@
-<template>
+<template> 
 	<div class="warehouse-wrap">
 		<div class="warehouse">
-			<p class="name">恭喜！成功入库6条奖励积分600分</p>
-			<p class="tip">积分可在个人中心查看或使用</p>
+			<p class="name">{{text}}</p>
+			<p class="tip">{{tip}}</p>
 			<div class="btns">
-				<button class="theme-bg-color">查看积分</button>
-				<button class="theme-bg-color">继续扫码</button>
+				<button class="theme-bg-color" @click="gotocredit">查看积分</button>
+				<button class="theme-bg-color" @click="scanputinStorage">继续扫码</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import Http from 'assets/lib/http.js'
+import wx from 'weixin-js-sdk'
+
 export default {
 	data () {
-		return {}
+		return {
+			text: '',
+			tip: '',
+            appid: '',
+            noncestr: '',
+            signature: '',
+            timestamp: ''
+		}
 	},
-	//实例初始化最之前，无法获取到data里的数据
-	// beforeCreate(){
-	// 	console.log('beforeCreate')
-	// 	debugger
-
-	// },
-	// //在挂载开始之前被调用
-	// beforeMount(){
-	// 	console.log('beforeMount')
-	// 	debugger
-
-	// },
-	// created() {
-	// 	console.log('created')
-	// 	debugger
-	// },
-	// //已成功挂载，相当ready()
-	// mounted(){
-	// 	console.log('mounted')
-	// 	debugger
-	// },
+	created() {
+        this.$parent.loadingPage = false; //去掉loading
+        this.scan()
+	},
 	//相关操作事件
 	methods: {
-
+		scanputinStorage() {
+            this.scan()
+		},
+        scan() {
+        	let me = this;
+            wx.scanQRCode({
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                desc: 'scanQRCode desc',
+                scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function(res) {
+                    me.successScan(res)
+                },
+                error: function (res) {
+                    me.failScan();
+                    if (res.errMsg.indexOf('function_not_exist') > 0) {
+                       alert('版本过低请升级')
+                       return
+                    }
+                }
+            })
+        },
+        successScan(res) {
+        	var me = this,
+        		resultStr = res.resultStr,
+                sellerId = sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '';
+        	Http.get('/seller-web/consumer/canInstoreQr', {
+                params: {
+                    content: resultStr,
+                    sellerId: sellerId
+                }
+        	}).then(res => {
+        		const Data = res.data;
+                if (Data.ok) {
+                    me.text = '恭喜！成功入库1条';
+                    me.tip = '积分可在个人中心查看或使用';
+                } else {
+                    me.text = Data.msg;
+                    me.tip = '点击右下方按钮继续扫码';
+                    // 此商品已入库，不可重复入库
+                    // 不支持此商品入库
+                }
+        	})
+        },
+        failScan() {
+			this.text = '扫码失败，点击下方按钮继续扫码或查看积分'
+        },
+        gotocredit() {
+            var hostname = location.hostname;
+            if (hostname == 'sk.saotx.cn') {
+                // 山昆
+                location.href = '/a/p/scoremall002-score-integral.html?t=' + (+new Date)
+            } else if (hostname == 'weiop.taozuike.com') {
+                // 河南
+                location.href = '/a/p/score-integral.html?sourceId=3001?t=' + (+new Date);
+            } else if (hostname === 'hbz.saotx.cn') {
+                // 河北
+                location.href = '/app-hebei/views/menus/shop-integral.html?t=' + (+new Date)
+            }
+        }
 	}
 }
-// ,
-//   //实例初始化最之前，无法获取到data里的数据
-//   beforeCreate(){
-//     debugger
-
-//   },
-//   //在挂载开始之前被调用
-//   beforeMount(){
-//     debugger
-
-//   },
-//   created() {
-//     debugger
-//   },
-//   //已成功挂载，相当ready()
-//   mounted(){
-//     debugger
-//   },
-//   //相关操作事件
-//   methods: {
-
-//   }
-	
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @mixin border-radius($num) {
 	-webkit-border-radius: $num;
 	-moz-border-radius: $num;

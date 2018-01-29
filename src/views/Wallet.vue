@@ -2,84 +2,208 @@
 	<div id="wallet">
 		<div class="bg-wallet top border-box">
 			<div class="total-money">
-				<span class="font-color">可体现余额(元)</span>
-				<p class="font-color">0.00</p>
+				<span class="font-color">可提现余额(元)</span>
+				<p class="font-color">{{wallet.balance | filtertoFixed}}</p>
 			</div>
 			<div class="balance-wrap flex">
 				<div class="flex-item income-m">
 					<span class="font-color">总收益(元)</span>
-					<p class="font-color">0.00</p>
+					<p class="font-color">{{wallet.totalIncome | filtertoFixed}}</p>
 				</div>
 				<div class="flex-item withdraw-m">
 					<span class="font-color">总提现(元)</span>
-					<p class="font-color">0.00</p>
+					<p class="font-color">{{wallet.totalPay | filtertoFixed}}</p>
 				</div>
 			</div>
-			<button id="withdraw" class="withdraw theme-bg-color">提现到微信</button>
+			<button id="withdraw" class="withdraw theme-bg-color" @click="withdrawmoney">提现到微信</button>
 		</div>
 		<div class="latest">
 			<span class="">最近三天明细</span>
 			<div class="show-more"><router-link :to="{path: '/retailer/exchangedetail', query: {sellerId: sellerId}}">更多 <em>>></em></router-link></div>
 		</div>
-		<div class="wallet-detail">
-			<wallet-detail></wallet-detail>
+		<div class="wallet-detail" v-if="isListTrue">
+			<wallet-detail
+				v-infinite-scroll="loadMore"
+		  		infinite-scroll-disabled="loading"
+		  		infinite-scroll-distance="0"
+		  		infinite-scroll-immediate-check="false"
+			 	:balance="latest">
+			</wallet-detail>
+
+			<!-- 加载数据loading -->
+            <loading-ing v-if="loading"></loading-ing>
+            <!-- 没有更多 -->
+            <no-more v-if="nomore" class="font-color"></no-more>
+            <!-- 暂无内容 -->
+            <no-thing v-if="nothing" class="font-color"></no-thing>
 		</div>
-		<bottom-nav :queryvariate="sellerId"></bottom-nav>
+
 		<!-- 领取成功/领取失败弹窗 -->
 		<mt-popup
 		class="uni-pop pop border-box"
+		:class="{success: successWithdraw, fail: !successWithdraw}"
 		v-if="popupVisible"
 		v-model="popupVisible"
 		position="center"
 		pop-transition="popup-fade">
 			<pop-modal :variate="popupVisible">
-				<img slot="image" src="../assets/image/shankun/success.png" alt="">
-				<p class="tip2">余额不足1元无法提现</p>
-				<p class="tip4">请注意查收</p>
-				<button slot="button" class="theme-bg-color_lighter">我知道了</button>
+				<p class="tip2">{{tip1}}</p>
+				<p class="tip4">{{tip2}}</p>
+				<button slot="button" class="theme-bg-color_lighter" @click="iget">我知道了</button>
     		</pop-modal>
 		</mt-popup>
 	</div>
 </template>
 <script>
-import axios from 'axios'
-import bottomNav from '../components/bottom-nav'
+import Http from 'assets/lib/http.js'
 import walletDetail from '../components/wallet-detail'
 import { Popup } from 'mint-ui'
 import popModal from '../components/pop-modal'
+import loadingIng from '../components/loading-ing'
+import noMore from '../components/no-more'
+import noThing from '../components/no-thing'
+import { InfiniteScroll } from 'mint-ui';
 
 export default {
   	name: 'Wallet',
   	data () {
   		return {
+  			sellerId: this.$route.query.sellerId || '',
   			popupVisible: false,
-  			val: '',
-  			sellerId: this.$route.query.sellerId
+  			successWithdraw: false,
+  			wallet: {},
+  			latest: [],
+  			isListTrue: false,
+  			loading: true,
+  			nomore: false,
+  			nothing: false,
+  			page: 1,
+  			isEnd: false,
+  			tip1: '余额不足1元无法提现',
+  			tip2: '请注意查收'
   		}
   	},
+  	watch: {
+
+  	},
   	created () {
-  		
+  		this.showWalletOverview();
   	},
   	mounted () {
-		this.showWalletOverview()
+		this.latestThreeDays();
+  	},
+  	beforeDestroy () {
+
   	},
   	methods: {
   		showpopup: function () {
-  			this.popupVisible = true
+  			this.popupVisible = true;
   		},
   		showWalletOverview() {
-  			axios.get('/seller-web/seller/select/mywallet')
+  			Http.get('/seller-web/seller/select/mywallet')
   				.then(res => {
-  					// 500 server error
-  				}).catch(res => {
-
+  					const Data = res.data;
+  					if (Data.ok) {
+  						var data = Data.data;
+  						this.wallet = data;
+  						this.$parent.loadingPage = false; //去掉loading
+  					} 
   				})
+  		},
+  		latestThreeDays(bool) {
+  			let me = this;
+  			Http.get('/seller-web/seller/select/income-and-expenses', {
+  				params: {
+  					startTime: (+new Date() - 3*24*3600*1000),
+  					endTime: +new Date(),
+  					pageNo: this.page,
+  					pageSize: 10
+  				}
+  			}).then(res => {
+  				const Data = res.data;
+  				if (Data.ok) {
+	  				me.isListTrue = true;
+	  				if (Data.data.list && Data.data.list.length > 0) {
+	  					if (bool) {
+							Data.data.forEach(function(n) {
+	                            me.latest.push(n)
+	                        })  
+	  					} else {
+							me.latest = Data.data.list
+	  					}
+	  				} else { 
+	  					if (bool) {
+	  						// 没有更多
+	  						me.isEnd = true;
+	                        me.nomore = true
+	  					} else {
+	  						// 暂无内容
+	  						me.nothing = true
+	  					}
+	  				}
+	  				me.loading = false;
+  				}
+  			})
+  		},
+  		loadMore() {
+  			if (this.latest.length == 0) {
+  				return
+  			} else {
+	  			if (!this.isEnd && !this.loading) {
+	  				this.loading = true;
+				  	this.page = this.page + 1;
+				  	this.latestThreeDays(true);
+	  			}
+  			}
+		},
+		withdrawmoney() {
+			var txAmount = this.wallet.balance;
+			if (txAmount < 1) {
+				this.popupVisible = true;
+				this.tip2 = '';
+			} else {
+				Http.get('/seller-web/seller/wallet/tx', {
+					params: {
+						txAmount: txAmount
+					}
+				}).then(res => {
+					const Data = res.data;
+					if (Data.ok) {
+						this.successWithdraw = true;
+						this.popupVisible = true;
+						this.tip1 = '已成功提现至零钱包';
+
+						// 再调用一次最近三天明细接口
+						this.latest.length = 0;
+						this.isListTrue = false;
+						this.showWalletOverview();
+						this.latestThreeDays();
+					} else {
+						this.tip1 = Data.msg
+						this.tip2 = '';
+						this.popupVisible = true;
+					}
+				})
+			}
+		},
+		iget() {
+			this.popupVisible = false;
+		}
+  	},
+  	filters: {
+  		filtertoFixed(val) {
+  			return val ? val.toFixed(2) : '0.00'
   		}
   	},
+  	computed: {
+
+  	},
    	components: { 
-  		bottomNav,
   		walletDetail,
-  		popModal
+  		popModal,
+  		loadingIng,
+        noMore,
+        noThing
   	}
 }
 </script>
@@ -90,6 +214,9 @@ export default {
 	-moz-border-radius: $num;
 	-ms-border-radius: $num;
 	border-radius: $num;
+}
+#wallet {
+	-webkit-user-select: none;
 }
 .top {
 	padding-top: .6rem;
@@ -127,10 +254,10 @@ export default {
 		font-size: .48rem;
 		color: #fff;
 		@include border-radius(50px);
-    -webkit-box-shadow: 0 0 0 6px #eee;
-    -moz-box-shadow: 0 0 0 6px #eee;
-    -ms-box-shadow: 0 0 0 6px #eee;
-    box-shadow: 0 0 0 6px #eee;
+	    -webkit-box-shadow: 0 0 0 6px #eee;
+	    -moz-box-shadow: 0 0 0 6px #eee;
+	    -ms-box-shadow: 0 0 0 6px #eee;
+	    box-shadow: 0 0 0 6px #eee;
 	}
 }	
 .latest {
@@ -157,15 +284,15 @@ export default {
 		height: 1.92rem;
 	}
 	.tip2 {
-		margin-top: .74667rem;
+		margin-top: .74667rem!important;
 	}
 	.tip4 {
-		margin-top: -.8rem;
+		margin-top: -.6rem!important;
 		font-size: .453rem;
 		color: #DEBA91;
 	}
 	button {
-		margin-top: 1.4rem;
+		margin-top: 1.2rem!important;
 	}
 }
 

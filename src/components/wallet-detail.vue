@@ -1,38 +1,43 @@
 <template>
 	<ul class="list">
-		<li>
+		<li v-for="item in myBalance">
 			<div class="item">
-				<p class="name">销售鼓励金</p>
-				<p class="money plus">+5</p>
+				<p class="name">{{item.typeName}}</p>
+				<p class="money plus" :class="[{plus: item.type == 1}, {minus: item.type == -1}]">{{item | processNum}}</p>
 			</div>
-			<div class="exchange-time">2017-07-18 12:09:09</div>
-		</li>
-		<li>
-			<div class="item">
-				<p class="name">提现</p>
-				<p class="money minus">-15</p>
-			</div>
-			<div class="exchange-time">2017-07-20 12:00:30</div>
-		</li>
-		<li>
-			<div class="item">
-				<p class="name">提现</p>
-				<p class="money minus">-15</p>
-			</div>
-			<div class="exchange-time">2017-07-20 12:00:30</div>
-		</li>
-		<li>
-			<div class="item">
-				<p class="name">提现</p>
-				<p class="money minus">-15</p>
-			</div>
-			<div class="exchange-time">2017-07-20 12:00:30</div>
+			<div class="exchange-time">{{item.optTime | convertDate}}</div>
 		</li>
 	</ul>
 </template>
 <script>
 export default {
-	name: 'wallet-detail'
+	name: 'wallet-detail',
+	props: ['balance'],
+	data() {
+		return {
+			myBalance: this.balance
+		}
+	},
+	watch: {
+
+	},
+	created() {
+		
+	},
+	mounted() {
+
+	},
+	methods: {
+		
+	},
+	filters: {
+		convertDate(val) {
+			return val ? new Date(val).toLocaleString().replace(/\//g, '-') : ''
+		},
+		processNum(obj) {
+			return obj.type == 1 ? obj.amount : '-' + obj.amount
+		}
+	}
  }
 </script>
 <style lang="scss">
@@ -43,6 +48,7 @@ export default {
 	color: #04bd08;
 }
 .list {
+	margin-bottom: 1.3rem;
 	background: #fff;
 	li {
 		margin: 0 .3rem;

@@ -6,18 +6,20 @@ const path = require('path')
 
 module.exports = {
     dev: {
+        env: require('./dev.env'),
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {},
 
         // Various Dev Server settings
-        host: 'localhost', // can be overwritten by process.env.HOST
+        host: '172.16.1.192', // can be overwritten by process.env.HOST
+        // 192.168.1.105 home // 172.17.15.164, 172.17.15.160, 172.17.15.176 server // 172.16.1.192 company
         port: 17777, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: true,
-        errorOverlay: true,
-        notifyOnErrors: true,
-        poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+        // errorOverlay: true,
+        // notifyOnErrors: true,
+        // poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
         // Use Eslint Loader?
         // If true, your code will be linted during bundling and
@@ -32,12 +34,12 @@ module.exports = {
          */
 
         // https://webpack.js.org/configuration/devtool/#development
-        devtool: 'eval-source-map',
+        // devtool: 'eval-source-map',
 
         // If you have problems debugging vue-files in devtools,
         // set this to false - it *may* help
         // https://vue-loader.vuejs.org/en/options.html#cachebusting
-        cacheBusting: true,
+        // cacheBusting: true,
 
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
@@ -45,20 +47,20 @@ module.exports = {
         // In our experience, they generally work as expected,
         // just be aware of this issue when enabling this option.
         cssSourceMap: false,
-        },
+    },
 
-        build: {
+    build: {
         // Template for index.html
         index: path.resolve(__dirname, '../dist/index.html'),
 
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
+        assetsPublicPath: './',
 
         /**
          * Source Maps
-         */
+        */
 
         productionSourceMap: true,
         // https://webpack.js.org/configuration/devtool/#production
