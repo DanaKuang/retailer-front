@@ -181,7 +181,8 @@ export default {
 						}else if(detailData.status == 3){
 							this.successWithdraw = true;
 							this.popupVisible = true;
-							this.tip1 = '后台审批拒绝';
+							this.tip1 = '抱歉，您的提现已被拒绝';
+							this.tip2 = '';
 						}
 						
 						// 再调用一次最近三天明细接口
