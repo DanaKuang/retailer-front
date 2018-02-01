@@ -160,6 +160,7 @@ export default {
 			var txAmount = this.wallet.balance;
 			if (txAmount < 1) {
 				this.popupVisible = true;
+				this.tip1 = '余额不足1元无法提现';
 				this.tip2 = '';
 			} else {
 				Http.get('/seller-web/seller/wallet/tx', {
