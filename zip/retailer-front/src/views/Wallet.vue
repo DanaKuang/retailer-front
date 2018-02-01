@@ -48,7 +48,7 @@
 		pop-transition="popup-fade">
 			<pop-modal :variate="popupVisible">
 				<p class="tip2">{{tip1}}</p>
-				<p class="tip4">{{tip2}}</p>
+				<p class="tip4" v-show="tip2 != ''">{{tip2}}</p>
 				<button slot="button" class="theme-bg-color_lighter" @click="iget">我知道了</button>
     		</pop-modal>
 		</mt-popup>
@@ -80,7 +80,7 @@ export default {
   			page: 1,
   			isEnd: false,
   			tip1: '余额不足1元无法提现',
-  			tip2: '请注意查收'
+			tip2: '请注意查收'
   		}
   	},
   	watch: {
@@ -169,10 +169,22 @@ export default {
 				}).then(res => {
 					var Data = res.data;
 					if (Data.ok) {
-						this.successWithdraw = true;
-						this.popupVisible = true;
-						this.tip1 = '已成功提现至零钱包';
-
+						var detailData = Data.data;
+						if(detailData.status == 1){
+							this.successWithdraw = true;
+							this.popupVisible = true;
+							this.tip1 = '工作人员会在24小时内将佣金打入到您的微信账户内。';
+						}else if(detailData.status == 2 && detailData.isFinish == 1){
+							this.successWithdraw = true;
+							this.popupVisible = true;
+							this.tip1 = '已成功提现至零钱包';
+						}else if(detailData.status == 3){
+							this.successWithdraw = true;
+							this.popupVisible = true;
+							this.tip1 = '抱歉，您的提现已被拒绝';
+							this.tip2 = '';
+						}
+						
 						// 再调用一次最近三天明细接口
 						this.latest.length = 0;
 						this.isListTrue = false;
@@ -285,6 +297,7 @@ export default {
 	}
 	.tip2 {
 		margin-top: .74667rem!important;
+		padding: 0 1rem;
 	}
 	.tip4 {
 		margin-top: -.6rem!important;
@@ -292,7 +305,7 @@ export default {
 		color: #DEBA91;
 	}
 	button {
-		margin-top: 1.2rem!important;
+		margin-top: .7rem!important;
 	}
 }
 
