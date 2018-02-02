@@ -16,4 +16,14 @@ module.exports = [
 //     routepath: '/admin/login',
 //     proxyTarget: 'https://sk.saotx.cn'   
 // }
+    {
+        routepath: '/seller-web',
+        proxyTarget: 'http://hbh.saotx.cn'
+    }, {
+        routepath: '/seller-manager',
+        proxyTarget: 'http://hbh.saotx.cn'    
+    }, {
+        routepath: '/admin/login',
+        proxyTarget: 'https://sk.saotx.cn'   
+    }
 ];

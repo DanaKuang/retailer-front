@@ -14,14 +14,14 @@ var publicMethod = {
     }
 }
 
-var token = publicMethod.getCookie('uuu-token') || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTcxMDU0MDk1OTQsInBheWxvYWQiOiJ7XCJpZFwiOm51bGwsXCJvcGVuSWRcIjpcIm9BYlNSMUNCdlJTOUV5VE9iZUx2Z3JYdTFwWUlcIixcIm5pY2tuYW1lXCI6bnVsbCxcImxhbmd1YWdlXCI6bnVsbCxcInByb3ZpbmNlXCI6bnVsbCxcImNpdHlcIjpudWxsLFwiaGVhZEltZ1VybFwiOm51bGwsXCJzZXhcIjpudWxsLFwic2V4SWRcIjpudWxsLFwiY291bnRyeVwiOm51bGwsXCJ1bmlvbklkXCI6bnVsbCxcInJlbWFya1wiOm51bGwsXCJhcHBJZFwiOlwid3g2Y2E3OGIyNjkwNWU0MDZhXCJ9In0.cbX10c2s0aaaxmAequaSHZNpxdrsDHTjvtcptxmL-D8';
+var token = publicMethod.getCookie('uuu-token') || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTgxNDI0MTMxODAsInBheWxvYWQiOiJ7XCJpZFwiOm51bGwsXCJvcGVuSWRcIjpcIm9WMzJsMFdxbldqYjRUSF9NTVJfUnN4OHlINGtcIixcIm5pY2tuYW1lXCI6bnVsbCxcImxhbmd1YWdlXCI6bnVsbCxcInByb3ZpbmNlXCI6bnVsbCxcImNpdHlcIjpudWxsLFwiaGVhZEltZ1VybFwiOm51bGwsXCJzZXhcIjpudWxsLFwic2V4SWRcIjpudWxsLFwiY291bnRyeVwiOm51bGwsXCJ1bmlvbklkXCI6bnVsbCxcInJlbWFya1wiOm51bGwsXCJhcHBJZFwiOlwid3g0YTE5MzMwYTBjNGM4MTZjXCJ9In0.Ep5pQY9cvVHbQSkiYZwNOxQDNTXs7IC3WU2vxLTKCi8';
 
 
 // http请求拦截器
 axios.interceptors.request.use(config => {
-    // config.headers = Object.assign({}, config.headers, {
-    //     token: token
-    // }) 
+    config.headers = Object.assign({}, config.headers, {
+        token: token
+    }) 
     config['X-Requested-With'] = 'XMLHttpRequest'
     config.timeout = 20000;
     return config
