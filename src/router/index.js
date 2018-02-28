@@ -16,6 +16,7 @@ import MyQrpost from '@/views/MyQrpost.vue'
 import ActivityIntro from '@/views/ActivityIntro.vue'
 import RewardIntro from '@/views/RewardIntro.vue'
 import Abnormal from '@/views/Abnormal.vue'
+import YantaiScanCode from '@/views/YantaiScanCode.vue'
 
 Vue.use(Router)
 
@@ -98,7 +99,7 @@ var routes = [{
   name: 'Activation',
   meta: {
     title: '零售户激活'
-  } 
+  }
 }, {
   path: '/retailer/myqresult',
   component: Myqresult,
@@ -133,6 +134,13 @@ var routes = [{
   name: 'Abnormal',
   meta: {
     title: ''
+  }
+}, {
+  path: '/retailer/ytscancode',
+  component: YantaiScanCode,
+  name: 'YantaiScanCode',
+  meta: {
+    title: '扫码'
   }
 }]
 

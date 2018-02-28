@@ -53,22 +53,22 @@
           <button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
         </pop-modal>
       </mt-popup>
-
-      <!-- 成功/失败弹窗 -->
-      <mt-popup
-        class="uni-pop pop border-box"
-        v-if="confirmPop"
-        v-model="confirmPop"
-        :class="{success: successActivate, fail: !successActivate}"
-        :closeOnClickModal="false"
-        position="center">
-        <pop-modal>
-          <p class="font-color tip1">{{activateState.text}}</p>
-          <p class="tip3">{{activateState.tips}}</p>
-          <button slot="button" class="theme-bg-color_lighter" @click="iget">确认</button>
-        </pop-modal>
-      </mt-popup>
     </div>
+
+    <!-- 成功/失败弹窗 -->
+    <mt-popup
+      class="uni-pop pop border-box"
+      v-if="confirmPop"
+      v-model="confirmPop"
+      :class="{success: successActivate, fail: !successActivate}"
+      :closeOnClickModal="false"
+      position="center">
+      <pop-modal>
+        <p class="font-color tip1">{{activateState.text}}</p>
+        <p class="tip3">{{activateState.tips}}</p>
+        <button slot="button" class="theme-bg-color_lighter" @click="iget">确认</button>
+      </pop-modal>
+    </mt-popup>
 
     <!-- 老韩：烟台接到河南 -->
     <div v-if="isYanTai" class="zhazhazha">
@@ -231,9 +231,10 @@ export default {
                   return
                 }
               } else { // 烟台
-                if (Data.data) {
-                  // 跳到填写信息
-                  me.$router.push({path:'/retailer/info?sellerId=' + me.$route.query.sellerId})
+                if (Data.data) { // true
+                  // 调用确认激活方法
+                  me.confirm();
+                  console.log(123)
                 } else {
                   alert(Data.message);
                   return
@@ -257,31 +258,44 @@ export default {
 
     // 确认激活
     confirm () {
-      if (!this.confirmDisable) {
-        this.confirmDisable = true;
-        var me = this;
-        Http.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + me.vcode + me.user.phoneNo + '1' + me.vcode.length)
-            .then(res => {
-              var Data = res.data;
-              me.confirmPop = true;
-              if (Data.ok) {
-                // 激活成功
-                me.successActivate = true;
-                me.activateState.text = '恭喜您，激活成功！';
-                me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
-              } else {
-                // 激活失败
-                me.activateState.text = '很抱歉激活失败！';
-                me.activateState.tips = '请重新激活'
-              }
-            })
+		  console.log(777)
+      this.confirmDisable = true;
+      var me = this;
+      // 原来
+      if (!this.isYanTai) {
+        var phone = me.user.phoneNo,
+          code = me.vcode;
+      } else { // 烟台
+        var phone = me.ytPhone,
+          code = me.ytVcode;
       }
+      Http.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + code + phone + '1' + code.length)
+      .then(res => {
+        var Data = res.data;
+        me.confirmPop = true;
+        if (Data.ok) {
+          // 激活成功
+          me.successActivate = true;
+          me.activateState.text = '恭喜您，激活成功！';
+          me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
+        } else {
+          // 激活失败
+          me.activateState.text = '很抱歉激活失败！';
+          me.activateState.tips = '请重新激活'
+        }
+      })
     },
 
     // 激活与否的弹窗，确认按钮
     iget () {
       if (this.successActivate) {
-        this.$router.push({path:'/retailer/index?sellerId=' + this.$route.query.sellerId})
+        // 原来
+        if (!this.isYanTai) {
+          this.$router.push({path:'/retailer/index?sellerId=' + this.$route.query.sellerId})
+        } else { // 烟台
+          // 跳到填写信息
+          me.$router.push({path:'/retailer/info?sellerId=' + me.$route.query.sellerId})
+        }
       } else {
         this.confirmPop = false;
         this.confirmDisable = false
