@@ -6,7 +6,9 @@
 </template>
 
 <script>
-export default {
+  import wx from 'weixin-js-sdk'
+
+  export default {
 	name: 'YantaiScanCode',
 	data () {
 		return {
