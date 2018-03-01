@@ -234,7 +234,6 @@ export default {
                 if (Data.data) { // true
                   // 调用确认激活方法
                   me.confirm();
-                  console.log(123)
                 } else {
                   alert(Data.message);
                   return
@@ -258,7 +257,6 @@ export default {
 
     // 确认激活
     confirm () {
-		  console.log(777)
       this.confirmDisable = true;
       var me = this;
       // 原来
@@ -294,7 +292,7 @@ export default {
           this.$router.push({path:'/retailer/index?sellerId=' + this.$route.query.sellerId})
         } else { // 烟台
           // 跳到填写信息
-          me.$router.push({path:'/retailer/info?sellerId=' + me.$route.query.sellerId})
+          this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
         }
       } else {
         this.confirmPop = false;
