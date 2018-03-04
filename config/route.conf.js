@@ -6,14 +6,14 @@
 'use strict'
 
 module.exports = [
-// {
-//     routepath: '/seller-web',
-//     proxyTarget: 'https://sk.saotx.cn'
-// }, {
-//     routepath: '/seller-manager',
-//     proxyTarget: 'https://sk.saotx.cn'    
-// }, {
-//     routepath: '/admin/login',
-//     proxyTarget: 'https://sk.saotx.cn'   
-// }
+	// {
+	//     routepath: '/seller-web',
+	//     proxyTarget: 'https://hbh.saotx.cn'
+	// }, {
+	//     routepath: '/seller-manager',
+	//     proxyTarget: 'https://hbh.saotx.cn'    
+	// }, {
+	//     routepath: '/admin/login',
+	//     proxyTarget: 'https://sk.saotx.cn'   
+	// }
 ];

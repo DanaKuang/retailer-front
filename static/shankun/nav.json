@@ -1,13 +1,6 @@
 {
 	"menu": [
 		{
-			"name": "扫码入库",
-			"className": "warehousing",
-			"img": "/static/image/common/nav_icon_scan.png",
-			"imgactive": "/static/image/shankun/nav_icon_scan-active.png",
-			"path": "/retailer/warehousing"
-		},
-		{
 			"name": "门店中心",
 			"className": "storecenter",
 			"img": "/static/image/common/nav_icon_storecenter.png",

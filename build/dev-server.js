@@ -115,8 +115,8 @@ var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsS
 app.use(staticPath, express.static('./static'))
 
 // var uri = 'http://localhost:' + port // 本地
-var uri = 'http://172.17.15.176:' + port // 测试
-// var uri = 'http://172.17.15.176:' + port; // 正式
+// var uri = 'http://172.17.15.176:' + port // 测试
+var uri = 'http://172.17.15.160:' + port; // 正式
 // 172.16.1.192
 // 172.17.15.176 测试
 // 172.17.15.160 正式
