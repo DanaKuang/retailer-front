@@ -133,6 +133,7 @@ export default {
       ytVcode: '', // 验证码
       ytVcodeBtnDisable: false, // 验证码获取按钮
       ytVcodeVerifyDisable: true, // 验证码校验按钮
+      sellerInfo: {}
 		}
 	},
 	created () {
@@ -159,8 +160,7 @@ export default {
                     this.$parent.loadingPage = false; //去掉loading
                     this.user = Data.data;
                     if(this.isYanTai) {
-                      let sellerInfo = Data.data;
-                      sessionStorage.setItem('user', JSON.stringify(sellerInfo))
+                      this.sellerInfo = Data.data;
                     }
                 }
             })
@@ -279,6 +279,10 @@ export default {
                         me.successActivate = true;
                         me.activateState.text = '恭喜您，激活成功！';
                         me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
+                        if (this.isYanTai) {
+                          this.sellerInfo.authStatus = 2;
+                          sessionStorage.setItem('user', JSON.stringify(this.sellerInfo))
+                        }
                     } else {
                         // 激活失败
                         me.activateState.text = '很抱歉激活失败！';
