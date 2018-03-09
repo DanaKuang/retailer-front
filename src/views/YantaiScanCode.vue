@@ -53,6 +53,21 @@
           }
         })
       })
+
+      pushHistory();
+
+      window.addEventListener("popstate", function(e) {  //回调函数中实现需要的功能
+        alert("我监听到了浏览器的返回按钮事件啦");
+        location.href='你要跳转的链接';  //在这里指定其返回的地址
+      }, false);
+      
+      function pushHistory() {
+        var state = {
+          title: "title",
+          url: "__SELF__"
+        };
+        window.history.pushState(state, state.title, state.url);
+      }
     }
 	},
 }
