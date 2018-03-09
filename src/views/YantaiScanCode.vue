@@ -34,25 +34,24 @@
           scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
           success: function(res) {
             // 当needResult 为 1 时，扫码返回的结果
+            window.addEventListener("popstate", function(e) {
+              WeixinJSBridge.call('closeWindow');
+              alert("我监听到了浏览器的返回按钮事件啦");
+            }, false);
           }
         })
       })
 
 
-      pushHistory();
-
-      window.addEventListener("popstate", function(e) {
-        WeixinJSBridge.call('closeWindow');
-        alert("我监听到了浏览器的返回按钮事件啦");
-      }, false);
-
-      function pushHistory() {
-        var state = {
-          title: "myCenter",
-          url: "__SELF__"
-        };
-        window.history.pushState(state, state.title, state.url);
-      }
+//      pushHistory();
+//
+//      function pushHistory() {
+//        var state = {
+//          title: "myCenter",
+//          url: "__SELF__"
+//        };
+//        window.history.pushState(state, state.title, state.url);
+//      }
     }
 	},
 }
