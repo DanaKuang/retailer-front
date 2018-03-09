@@ -296,7 +296,7 @@ export default {
                 } else {
                     // 烟台
                     // 跳到填写信息
-//                    this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
+                    this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
                 }
             } else {
                 this.confirmPop = false;
