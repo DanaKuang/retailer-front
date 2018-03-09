@@ -35,6 +35,7 @@
           success: function(res) {
             // 当needResult 为 1 时，扫码返回的结果
             window.addEventListener("popstate", function(e) {
+              window.history.go(-1)
               WeixinJSBridge.call('closeWindow');
               alert("我监听到了浏览器的返回按钮事件啦");
             }, false);
