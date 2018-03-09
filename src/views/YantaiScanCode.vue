@@ -37,20 +37,22 @@
           }
         })
       })
-      
 
-      function pushHistory(){
-        var state = {
-          title: "title",
-          url: "#"
-        }
-        window.history.pushState(state, "title", "#");
-      }
-      pushHistory()
 
-      window.addEventListener("popstate", function(){
+      pushHistory();
+
+      window.addEventListener("popstate", function(e) {
+        WeixinJSBridge.call('closeWindow');
         alert("我监听到了浏览器的返回按钮事件啦");
-      }, false)
+      }, false);
+
+      function pushHistory() {
+        var state = {
+          title: "myCenter",
+          url: "__SELF__"
+        };
+        window.history.pushState(state, state.title, state.url);
+      }
     }
 	},
 }
