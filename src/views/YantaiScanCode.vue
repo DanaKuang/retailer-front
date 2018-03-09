@@ -36,9 +36,11 @@
             // 当needResult 为 1 时，扫码返回的结果
           },
           cancel: function(res) {
+            alert(1)
             window.history.go(-1);
           },
           trigger: function(res) {
+            alert(2)
             window.history.go(-1);
           }
         })
