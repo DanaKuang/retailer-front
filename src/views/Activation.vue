@@ -278,8 +278,10 @@ export default {
                         // 激活成功
                         me.successActivate = true;
                         me.activateState.text = '恭喜您，激活成功！';
-                        me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
-                        if (this.isYanTai) {
+                        if (!this.isYanTai) {
+                          me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
+                        } else {
+                          me.activateState.tips = '赶紧去完善基本信息吧！'
                           this.sellerInfo.authStatus = 2;
                           sessionStorage.setItem('user', JSON.stringify(this.sellerInfo))
                         }
