@@ -48,7 +48,7 @@
             window.history.go(-1);
           },
           complete: function(res) {
-            alert(4)
+//            alert(4)
             window.history.go(-1);
           }
         })
@@ -58,6 +58,7 @@
 
       window.addEventListener("popstate", function(e) {  //回调函数中实现需要的功能
         window.history.go(-1);
+        wx.closeWindow();
         alert("我监听到了浏览器的返回按钮事件啦");
 //        location.href='你要跳转的链接';  //在这里指定其返回的地址
       }, false);
