@@ -125,22 +125,21 @@ export default {
 				text: ''
 			},
 
-            // 烟台接入河南
-            isYanTai: this.$route.query.actFlag == 't1', // 区分是否烟台，是的话为 t1
-            ytCodePop: true, // 弹窗
-            ytLicenceNo: this.$route.query.licenceNo, // 烟草证号
-            ytPhone: this.$route.query.phone, // 手机号
-            ytVcode: '', // 验证码
-            ytVcodeBtnDisable: false, // 验证码获取按钮
-            ytVcodeVerifyDisable: true, // 验证码校验按钮
+      // 烟台接入河南
+      isYanTai: this.$route.query.actFlag == 't1', // 区分是否烟台，是的话为 t1
+      ytCodePop: true, // 弹窗
+      ytLicenceNo: this.$route.query.licenceNo, // 烟草证号
+      ytPhone: this.$route.query.phone, // 手机号
+      ytVcode: '', // 验证码
+      ytVcodeBtnDisable: false, // 验证码获取按钮
+      ytVcodeVerifyDisable: true, // 验证码校验按钮
 		}
 	},
 	created () {
-        if(!this.isYanTai) {
-            this.getRetailerInfo();
-        } else {
-            this.$parent.loadingPage = false; //去掉loading
-        }
+    this.getRetailerInfo();
+    if(this.isYanTai) {
+      this.$parent.loadingPage = false; //去掉loading
+    }
 	},
 	mounted () {
 
@@ -159,6 +158,10 @@ export default {
                 if (Data.ok) {
                     this.$parent.loadingPage = false; //去掉loading
                     this.user = Data.data;
+                    if(this.isYanTai) {
+                      let sellerInfo = Data.data;
+                      sessionStorage.setItem('user', JSON.stringify(sellerInfo))
+                    }
                 }
             })
 		},
@@ -237,7 +240,7 @@ export default {
                         } else {
                             alert(Data.message);
                             return
-                        }   
+                        }
                     }
                 })
             }
@@ -290,10 +293,10 @@ export default {
                 // 原来
                 if (!this.isYanTai) {
                     this.$router.push({path:'/retailer/index?sellerId=' + this.$route.query.sellerId})
-                } else { 
-                // 烟台
-                // 跳到填写信息
-                this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
+                } else {
+                    // 烟台
+                    // 跳到填写信息
+//                    this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
                 }
             } else {
                 this.confirmPop = false;
