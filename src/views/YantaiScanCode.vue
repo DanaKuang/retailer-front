@@ -34,24 +34,23 @@
           scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
           success: function(res) {
             // 当needResult 为 1 时，扫码返回的结果
-
           }
         })
       })
+      
 
-      pushHistory();
-      window.addEventListener("popstate", function(e) {  //回调函数中实现需要的功能
-        wx.closeWindow();
-        alert("我监听到了浏览器的返回按钮事件啦");
-        location.href='www.baidu.com';  //在这里指定其返回的地址
-      }, false);
-      function pushHistory() {
+      function pushHistory(){
         var state = {
           title: "title",
-          url: "__SELF__"
-        };
-        window.history.pushState(state, state.title, state.url);
+          url: "#"
+        }
+        window.history.pushState(state, "title", "#");
       }
+      pushHistory()
+
+      window.addEventListener("popstate", function(){
+        alert("我监听到了浏览器的返回按钮事件啦");
+      }, false)
     }
 	},
 }
