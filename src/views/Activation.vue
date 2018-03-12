@@ -86,7 +86,7 @@
           <!-- 手机号、获取验证码 -->
           <label for="">
             <input class="yt-phone vcode" type="text" v-model="ytPhone" disabled="true" placeholder="手机号"/>
-            <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" readonly="true" @click="send" :disabled="ytVcodeBtnDisable" :class="{'disabled-btn': ytVcodeBtnDisable}">
+            <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" @click="send" :disabled="ytVcodeBtnDisable" :class="{'disabled-btn': ytVcodeBtnDisable}">
           </label>
 
           <!-- 验证码输入 -->
@@ -107,7 +107,7 @@ export default {
 	name: 'Activation',
 	data () {
 		return {
-            // 原来
+      // 原来
 			vcode: '',
 			codePop: true, // 验证码弹窗
 			confirmPop: false, // 激活成功or失败弹窗
@@ -168,62 +168,60 @@ export default {
 
 		// 发送验证码
 		send() {
-            var me = this;
-            function getVerify (phone) {
-                var interval = window.setInterval(function() {
-                    if ((me.count--) == 0) {
-                        me.count = 60;
-                        me.vcodeBtnDisable = false;
-                        me.vcodeBtnMsg = '获取验证码';
-                        window.clearInterval(interval);
-                    } else {
-                         me.vcodeBtnMsg = me.count + '秒';
-                    }
-                }, 1000);
-                Http.get('/admin/login/getDynamicCode?oc=1&mobile=' + phone)
-                    .then(res => {
-                      var Data = res.data
-                      if (Data.ret != 200000) {
-                        alert(Data.message)
-                      } else {
-                        me.user.vcode = Data.data
-                      }
-                    })
-            }
-
-            //!me.vcodeBtnDisable
-            if (!this.isYanTai) {
-                me.vcodeBtnDisable = true;
-                me.vcodeInputDisable = false;
-                me.vcodeVerifyDisable = false;
-
-                getVerify(me.user.phoneNo);
-            }
-
-            // 烟台
-            if (this.isYanTai) {
-                this.ytVcodeBtnDisable = true;
-                getVerify(me.ytPhone);
-            }
-        },
-
-        // 烟台，验证码input事件
-        ytVcodeChange () {
-            if (this.ytVcode != '') {
-                this.ytVcodeVerifyDisable = false;
-            } else {
-                this.ytVcodeVerifyDisable = true;
-            }
-        },
-
-        // 验证码输入后的校验
-        verify () {
-            var me = this;
-    		function confirmSub (phone, code) {
-                Http.get('/admin/login/checkDynamicCode?mobile=' + phone + '&code=' + code)
+        var me = this;
+        function getVerify (phone) {
+            var interval = window.setInterval(function() {
+                if ((me.count--) == 0) {
+                    me.count = 60;
+                    me.vcodeBtnDisable = false;
+                    me.ytVcodeBtnDisable = false;
+                    me.vcodeBtnMsg = '获取验证码';
+                    window.clearInterval(interval);
+                } else {
+                     me.vcodeBtnMsg = me.count + '秒';
+                }
+            }, 1000);
+            Http.get('/admin/login/getDynamicCode?oc=1&mobile=' + phone)
                 .then(res => {
                   var Data = res.data
-                  // 原来
+                  if (Data.ret != 200000) {
+                    alert(Data.message)
+                  } else {
+                    me.user.vcode = Data.data
+                  }
+                })
+        }
+
+        //!me.vcodeBtnDisable
+        if (!this.isYanTai) {
+            me.vcodeBtnDisable = true;
+            me.vcodeInputDisable = false;
+            me.vcodeVerifyDisable = false;
+
+            getVerify(me.user.phoneNo);
+        } else { // 烟台
+          me.ytVcodeBtnDisable = true;
+          getVerify(me.ytPhone);
+        }
+    },
+
+    // 烟台，验证码input事件
+    ytVcodeChange () {
+        if (this.ytVcode != '') {
+            this.ytVcodeVerifyDisable = false;
+        } else {
+            this.ytVcodeVerifyDisable = true;
+        }
+    },
+
+    // 验证码输入后的校验
+    verify () {
+        var me = this;
+        function confirmSub (phone, code) {
+            Http.get('/admin/login/checkDynamicCode?mobile=' + phone + '&code=' + code)
+                .then(res => {
+                    var Data = res.data
+                    // 原来
                     if(!me.isYanTai) {
                         if (Data.data) {
                             me.codePop = false;
@@ -245,70 +243,70 @@ export default {
                 })
             }
 
-            // 原来：!this.vcodeVerifyDisable
-            if (!this.isYanTai) {
-                this.vcodeVerifyDisable = true;
-                confirmSub(me.user.phoneNo, me.vcode);
-            }
+        // 原来：!this.vcodeVerifyDisable
+        if (!this.isYanTai) {
+            this.vcodeVerifyDisable = true;
+            confirmSub(me.user.phoneNo, me.vcode);
+        }
 
-            // 烟台
-            if (this.isYanTai) {
-                this.ytVcodeVerifyDisable = true;
-                confirmSub(me.ytPhone, me.ytVcode);
-            }
-        },
+        // 烟台
+        if (this.isYanTai) {
+            this.ytVcodeVerifyDisable = true;
+            confirmSub(me.ytPhone, me.ytVcode);
+        }
+    },
 
-        // 确认激活
-        confirm () {
-            this.confirmDisable = true;
-            var me = this;
+    // 确认激活
+    confirm () {
+        this.confirmDisable = true;
+        var me = this;
+        // 原来
+        if (!this.isYanTai) {
+            var phone = me.user.phoneNo,
+            code = me.vcode;
+        } else { // 烟台
+            var phone = me.ytPhone,
+            code = me.ytVcode;
+        }
+        Http.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + code + phone + '1' + code.length)
+            .then(res => {
+                var Data = res.data;
+                me.confirmPop = true;
+                if (Data.ok) {
+                    // 激活成功
+                    me.successActivate = true;
+                    me.activateState.text = '恭喜您，激活成功！';
+                    if (!this.isYanTai) {
+                      me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
+                    } else {
+                      me.activateState.tips = '赶紧去完善基本信息吧！'
+                      this.sellerInfo.authStatus = 2;
+                      sessionStorage.setItem('user', JSON.stringify(this.sellerInfo))
+                    }
+                } else {
+                    // 激活失败
+                    me.activateState.text = '很抱歉激活失败！';
+                    me.activateState.tips = '请重新激活'
+                }
+            })
+    },
+
+    // 激活与否的弹窗，确认按钮
+    iget () {
+        if (this.successActivate) {
             // 原来
             if (!this.isYanTai) {
-                var phone = me.user.phoneNo,
-                code = me.vcode;
-            } else { // 烟台
-                var phone = me.ytPhone,
-                code = me.ytVcode;
-            }
-            Http.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + code + phone + '1' + code.length)
-                .then(res => {
-                    var Data = res.data;
-                    me.confirmPop = true;
-                    if (Data.ok) {
-                        // 激活成功
-                        me.successActivate = true;
-                        me.activateState.text = '恭喜您，激活成功！';
-                        if (!this.isYanTai) {
-                          me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
-                        } else {
-                          me.activateState.tips = '赶紧去完善基本信息吧！'
-                          this.sellerInfo.authStatus = 2;
-                          sessionStorage.setItem('user', JSON.stringify(this.sellerInfo))
-                        }
-                    } else {
-                        // 激活失败
-                        me.activateState.text = '很抱歉激活失败！';
-                        me.activateState.tips = '请重新激活'
-                    }
-                })
-        },
-
-        // 激活与否的弹窗，确认按钮
-        iget () {
-            if (this.successActivate) {
-                // 原来
-                if (!this.isYanTai) {
-                    this.$router.push({path:'/retailer/index?sellerId=' + this.$route.query.sellerId})
-                } else {
-                    // 烟台
-                    // 跳到填写信息
-                    this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
-                }
+                this.$router.push({path:'/retailer/index?sellerId=' + this.$route.query.sellerId})
             } else {
-                this.confirmPop = false;
-                this.confirmDisable = false
+                // 烟台
+                // 跳到填写信息
+                this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
             }
+        } else {
+            this.confirmPop = false;
+            this.confirmDisable = false
         }
+    }
 	},
 	computed: {
 
