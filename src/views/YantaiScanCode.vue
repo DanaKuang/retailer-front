@@ -16,10 +16,10 @@
 		}
 	},
   mounted() {
-
+    this.scan()
   },
   created() {
-    this.scan()
+
   },
 	methods: {
     scan() {
@@ -41,6 +41,7 @@
           },
           fail: function(res) {
             alert(3)
+            alert(res)
           }
 //          complete: function(res) {
 //            alert(4)
