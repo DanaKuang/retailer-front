@@ -155,8 +155,8 @@ import popModal from 'components/pop-modal'
 import LRZ from 'lrz'
 import LAREA from 'assets/lib/Larea.js'
 import 'assets/lib/Larea.css'
-import defaultHeadImg from 'assets/image/common/bg_store.png'
-import defaultLicenseImg from 'assets/image/common/bg_monopolysale.png'
+// import defaultHeadImg from 'assets/image/common/bg_store.png'
+// import defaultLicenseImg from 'assets/image/common/bg_monopolysale.png'
 
 export default {
   	name: 'Info',
@@ -169,8 +169,8 @@ export default {
   			buttonText: '',
   			submitFlag: false,
   			selectAddressPop: false,
-  			defaultHeadImg: defaultHeadImg,
-  			defaultLicenseImg: defaultLicenseImg,
+  			defaultHeadImg: 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/bg_store.png',
+  			defaultLicenseImg: 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/bg_monopolysale.png',
   			province: [],
   			city: [],
   			district: [],

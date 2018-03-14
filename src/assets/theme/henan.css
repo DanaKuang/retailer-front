@@ -38,41 +38,41 @@ input[type="radio"]:checked ~.radio {
 
 /* 门店中心 */
 .main-info, .credits .top {
-	background: url('../image/henan/h_index_bg.png') center repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/h_index_bg.png') center repeat;
 	background-size: 100%;
 }
 .menulist .credits .item {
-	background: url('../image/henan/icon_credits.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_credits.png') left no-repeat;
 	background-size: .48rem .48rem;
 }
 .menulist .wallet .item {
-	background: url('../image/henan/icon_wallet.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_wallet.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 .menulist .order .item {
-	background: url('../image/henan/icon_orderlist.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_orderlist.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 .menulist .qr .item {
-	background: url('../image/henan/icon_qrcode.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_qrcode.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 .menulist .sign .item {
-	background: url('../image/henan/icon_getlabel.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_getlabel.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 .menulist .promotion .item {
-	background: url('../image/henan/icon_info.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_info.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 .menulist .performance .item {
-	background: url('../image/henan/icon_info.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_info.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 
 /* 门店中心 */
 #info .title p {
-	background: url('../image/henan/icon_info.png') left no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_info.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 
@@ -80,25 +80,25 @@ input[type="radio"]:checked ~.radio {
 .icon-performance {
 	width: .6667rem;
 	height: .54667rem;
-	background: url('../image/henan/icon_performance.png');
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_performance.png');
 	background-size: cover;
 }
 .icon-down {
 	width: .493rem;
 	height: .493rem;
-	background: url('../image/henan/icon_down.png');
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_down.png');
 	background-size: cover;
 }
 .icon-rank {
 	width: 3.74667rem;
 	height: 1.38667rem;
-	background: url('../image/henan/icon_rank.png') center no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/icon_rank.png') center no-repeat;
 	background-size: contain;
 }
 
 .bg-wallet {
 	height: 5.227rem;
-	background: url('../image/henan/bg_wallet.png') no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/bg_wallet.png') no-repeat;
 	background-size: cover;
 }
 
@@ -109,14 +109,14 @@ input[type="radio"]:checked ~.radio {
 
 /* 扫码入库 */
 .warehouse {
-	background: url('../image/henan/bg_warehouse.png') no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/bg_warehouse.png') no-repeat;
 	background-position: 50% 30%;
 	background-size: 4.68rem 3rem;
 }
 
 /* 排行榜 */
 .rank {
-	background: url('../image/henan/h_rank_bg.png') top no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/h_rank_bg.png') top no-repeat;
 	background-size: cover;
 }
 
@@ -150,7 +150,7 @@ input[type="radio"]:checked ~.radio {
 	color: #6E3E2B;
 }
 .myqresult {
-	background: url('../image/henan/h_bg_myqresult.png') top no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/h_bg_myqresult.png') top no-repeat;
 	background-size: cover;
 	background-clip: border-box;
 }
@@ -158,14 +158,14 @@ input[type="radio"]:checked ~.radio {
 /* 成功弹窗 */
 .uni-pop.success .modal-wrap {
 	padding-top: 2rem;
-	background: url('../image/henan/success.png') no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/success.png') no-repeat;
 	background-position: 50% 10%;
 	background-size: 2.667rem 1.92rem;
 }
 /* 失败弹窗 */
 .uni-pop.fail .modal-wrap {
 	padding-top: 2rem;
-	background: url('../image/henan/fail.png') no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/fail.png') no-repeat;
 	background-position: 50% 10%;
 	background-size: 2.667rem 1.92rem;
 }
@@ -173,7 +173,7 @@ input[type="radio"]:checked ~.radio {
 /* 去认证弹窗 */
 .uni-pop.yetcertifiedpop .modal-wrap {
 	padding-top: 1.4rem;
-	background: url('../image/henan/verifyicon.png') no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/verifyicon.png') no-repeat;
 	background-position: 50% 6%;
 	background-size: 1.76rem 1.76rem;	
 }
@@ -181,7 +181,7 @@ input[type="radio"]:checked ~.radio {
 /* 完善资料弹窗 */
 .uni-pop.completeinfo .modal-wrap {
 	padding-top: 2rem;
-	background: url('../image/henan/verifyicon.png') no-repeat;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/verifyicon.png') no-repeat;
 	background-position: 50% 10%;
 	background-size: 1.76rem 1.76rem;
 }

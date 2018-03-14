@@ -165,8 +165,6 @@ export default {
 		console.log('进入storecenter页面')
   	},
   	update() {
-  		debugger
-		
 		console.log('进入storecenter页面')
   	}, 
   	beforeDestroy () {

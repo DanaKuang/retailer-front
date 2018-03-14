@@ -47,16 +47,16 @@
 <script>
 import Http from 'assets/lib/http.js'
 import { InfiniteScroll } from 'mint-ui';
-import trophy from 'assets/image/common/trophy.png'
-import first from 'assets/image/common/first.png'
-import second from 'assets/image/common/second.png'
-import third from 'assets/image/common/third.png'
+// import trophy from 'assets/image/common/trophy.png'
+// import first from 'assets/image/common/first.png'
+// import second from 'assets/image/common/second.png'
+// import third from 'assets/image/common/third.png'
 
 export default {
 	name: 'Rank',
 	data () {
 		return {
-			trophy: trophy,
+			trophy: 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/trophy.png',
 			myrank: '',
 			list: [],
 			overview: {
@@ -123,11 +123,11 @@ export default {
 								var item = this.list[i];
 								if (item) {
 									if (i == 0) {
-										this.topthreeImage[i] = first
+										this.topthreeImage[i] = 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/first.png'
 									} else if (i == 1) {
-										this.topthreeImage[i] = second
+										this.topthreeImage[i] = 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/second.png'
 									} else if (i == 2) {
-										this.topthreeImage[i] = third
+										this.topthreeImage[i] = 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/third.png'
 									}
 								}
 							}							
