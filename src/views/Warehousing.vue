@@ -33,6 +33,7 @@ export default {
     mounted() {
         let me = this;
         this.$bus.on('configready', function (val) {
+            alert(val);
             if (val) {
                 me.scan()
             } else {
