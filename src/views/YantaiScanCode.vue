@@ -24,7 +24,7 @@
 	methods: {
     scan() {
       wx.config({
-        debug: false,
+        debug: true,
         appId: sessionStorage.getItem('appid'),
         timestamp: sessionStorage.getItem('timestamp'),
         nonceStr: sessionStorage.getItem('noncestr'),
