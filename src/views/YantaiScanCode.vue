@@ -37,6 +37,28 @@
           }
         })
       })
+
+
+      (function(){
+        pushHistory();
+        setTimeout(function () {
+          window.addEventListener("popstate", function(e) {
+            alert(1)
+            wx.closeWindow();
+
+            // 扫码进来 直接到开奖页 返回 跳过过度页
+//            window.location.href = window.location.origin + "/app-hebei/views/menus/home.html?t="+(+new Date);
+          }, false);
+        }, 500)
+      })();
+
+      function pushHistory() {
+        var state = {
+          title: "title",
+          url: window.location.href
+        };
+        window.history.pushState(state, state.title, state.url);
+      }
     }
 	},
 }
