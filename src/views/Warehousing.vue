@@ -28,8 +28,21 @@ export default {
 	},
 	created() {
         this.$parent.loadingPage = false; //去掉loading
-        this.scan()
+        // this.scan()
 	},
+    mounted() {
+        let me = this;
+        this.$bus.on('configready', function (val) {
+            if (val) {
+                me.scan()
+            } else {
+                console.log('我是warehousing里面的，val不是true')
+            }
+        })
+    },
+    updated() {
+
+    },
 	//相关操作事件
 	methods: {
 		scanputinStorage() {
@@ -37,20 +50,23 @@ export default {
 		},
         scan() {
         	var me = this;
-            wx.scanQRCode({
-                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-                desc: 'scanQRCode desc',
-                scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
-                success: function(res) {
-                    me.successScan(res)
-                },
-                error: function (res) {
-                    me.failScan();
-                    if (res.errMsg.indexOf('function_not_exist') > 0) {
-                       alert('版本过低请升级')
-                       return
+            wx.ready(function () {
+                console.log('我是warehousing.vue里面wx.ready里面的scan方法');
+                wx.scanQRCode({
+                    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                    desc: 'scanQRCode desc',
+                    scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                    success: function(res) {
+                        me.successScan(res)
+                    },
+                    fail: function (res) {
+                        me.failScan();
+                        if (res.errMsg.indexOf('function_not_exist') > 0) {
+                           alert('版本过低请升级')
+                           return
+                        }
                     }
-                }
+                })
             })
         },
         successScan(res) {
