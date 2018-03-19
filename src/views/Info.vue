@@ -230,6 +230,9 @@ export default {
 	  			this.showselectaddress = this.user.addrProvinceName ? (this.user.addrProvinceName + ' ' + this.user.addrCityName + this.user.addrAreaName) : '请输入门店地址';
 	  			this.defaultAddr = false;
 	  			this.buttonText = '确定';
+	  			if (!this.user.district) {
+	  				this.user.district = 1;
+	  			}
   			} else {
   				this.user.district = 1;
   				this.buttonText = '提交审核';

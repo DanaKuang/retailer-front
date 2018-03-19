@@ -2,100 +2,101 @@
 	<div class="activation">
     <!-- kk：原来 -->
 		<div v-if="!isYanTai">
-      <div class="item-wrap">
-        <div class="item">
-          <span class="name">经营人姓名</span>：
-          <div class="content">{{user.ownerName}}</div>
-        </div>
-        <div class="item">
-          <span class="name">手机号</span>：
-          <div class="content">{{user.phoneNo}}</div>
-        </div>
-        <div class="item">
-          <span class="name">店铺名称</span>：
-          <div class="content">{{user.shopName}}</div>
-        </div>
-        <div class="item">
-          <span class="name">门店地址</span>：
-          <div class="content">{{user.addrDetail}}</div>
-        </div>
-        <div class="item certificate">
-          <span class="name">烟草专卖零售许可证件号</span>：
-          <div class="content">{{user.licenceNo}}</div>
-        </div>
-        <div class="item">
-          <span class="name">区域</span>：
-          <div class="content">{{user.districtName}}</div>
-        </div>
-        <div class="item">
-          <span class="name">业态</span>：
-          <div class="content">{{user.commercialName}}</div>
-        </div>
-      </div>
-      <button class="confirm theme-bg-color_lighter" :disabled="confirmDisable" :class="{'disabled-btn': confirmDisable}" @click="confirm">确认信息并激活</button>
+            <div class="item-wrap">
+                <div class="item">
+                    <span class="name">经营人姓名</span>：
+                    <div class="content">{{user.ownerName}}</div>
+                </div>
+                <div class="item">
+                    <span class="name">手机号</span>：
+                    <div class="content">{{user.phoneNo}}</div>
+                </div>
+                <div class="item">
+                    <span class="name">店铺名称</span>：
+                    <div class="content">{{user.shopName}}</div>
+                </div>
+                <div class="item">
+                    <span class="name">门店地址</span>：
+                    <div class="content">{{user.addrDetail}}</div>
+                </div>
+                <div class="item certificate">
+                    <span class="name">烟草专卖零售许可证件号</span>：
+                    <div class="content">{{user.licenceNo}}</div>
+                </div>
+                <div class="item">
+                    <span class="name">区域</span>：
+                    <div class="content">{{user.districtName}}</div>
+                </div>
+                <div class="item">
+                    <span class="name">业态</span>：
+                    <div class="content">{{user.commercialName}}</div>
+                </div>
+            </div>
 
-      <!-- 发送验证码弹窗 -->
-      <mt-popup
-        class="uni-pop pop border-box"
-        v-if="codePop"
-        v-model="codePop"
-        :closeOnClickModal="false"
-        position="center">
-        <pop-modal>
-          <div class="verify">
-            <label for="">
-              <input class="vcode border-box" type="text" v-model="vcode" :disabled="vcodeInputDisable">
-              <input class="theme-bg-color_lighter vcode-btn border-box" type="button" v-model="vcodeBtnMsg" readonly="true" @click="send" :disabled="vcodeBtnDisable" :class="{'disabled-btn': vcodeBtnDisable}">
-            </label>
-          </div>
-          <p class="font-color tip1">请获取验证码</p>
-          <p class="tip3">验证码会发送到<span class="font-color">{{user.phoneNo}}</span>手机里</p>
-          <button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
-        </pop-modal>
-      </mt-popup>
-    </div>
+            <button class="confirm theme-bg-color_lighter" :disabled="confirmDisable" :class="{'disabled-btn': confirmDisable}" @click="confirm">确认信息并激活</button>
 
-    <!-- 成功/失败弹窗 -->
-    <mt-popup
-      class="uni-pop pop border-box"
-      v-if="confirmPop"
-      v-model="confirmPop"
-      :class="{success: successActivate, fail: !successActivate}"
-      :closeOnClickModal="false"
-      position="center">
-      <pop-modal>
-        <p class="font-color tip1">{{activateState.text}}</p>
-        <p class="tip3">{{activateState.tips}}</p>
-        <button slot="button" class="theme-bg-color_lighter" @click="iget">确认</button>
-      </pop-modal>
-    </mt-popup>
+            <!-- 发送验证码弹窗 -->
+            <mt-popup
+            class="uni-pop pop border-box"
+            v-if="codePop"
+            v-model="codePop"
+            :closeOnClickModal="false"
+            position="center">
+            <pop-modal>
+              <div class="verify">
+                <label for="">
+                  <input class="vcode border-box" type="text" v-model="vcode" :disabled="vcodeInputDisable">
+                  <input class="theme-bg-color_lighter vcode-btn border-box" type="button" v-model="vcodeBtnMsg" readonly="true" @click="send" :disabled="vcodeBtnDisable" :class="{'disabled-btn': vcodeBtnDisable}">
+                </label>
+              </div>
+              <p class="font-color tip1">请获取验证码</p>
+              <p class="tip3">验证码会发送到<span class="font-color">{{user.phoneNo}}</span>手机里</p>
+              <button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
+            </pop-modal>
+            </mt-popup>
+        </div>
 
-    <!-- 老韩：烟台接到河南 -->
-    <div v-if="isYanTai" class="zhazhazha">
-      <!-- 发送验证码弹窗 -->
-      <mt-popup
-        class="uni-pop pop"
-        v-model="ytCodePop"
-        :closeOnClickModal="false"
-        position="center"
-        >
-        <pop-modal>
-          <!-- 烟草证号 -->
-          <input class="yt-licenceNo" type="text" v-model="ytLicenceNo" disabled="true" placeholder="烟草证号"/>
+        <!-- 成功/失败弹窗 -->
+        <mt-popup
+          class="uni-pop pop border-box"
+          v-if="confirmPop"
+          v-model="confirmPop"
+          :class="{success: successActivate, fail: !successActivate}"
+          :closeOnClickModal="false"
+          position="center">
+          <pop-modal>
+            <p class="font-color tip1">{{activateState.text}}</p>
+            <p class="tip3">{{activateState.tips}}</p>
+            <button slot="button" class="theme-bg-color_lighter" @click="iget">确认</button>
+          </pop-modal>
+        </mt-popup>
 
-          <!-- 手机号、获取验证码 -->
-          <label for="">
-            <input class="yt-phone vcode" type="text" v-model="ytPhone" disabled="true" placeholder="手机号"/>
-            <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" @click="send" :disabled="ytVcodeBtnDisable" :class="{'disabled-btn': ytVcodeBtnDisable}">
-          </label>
+        <!-- 老韩：烟台接到河南 -->
+        <div v-if="isYanTai" class="zhazhazha">
+          <!-- 发送验证码弹窗 -->
+          <mt-popup
+            class="uni-pop pop"
+            v-model="ytCodePop"
+            :closeOnClickModal="false"
+            position="center"
+            >
+            <pop-modal>
+              <!-- 烟草证号 -->
+              <input class="yt-licenceNo" type="text" v-model="ytLicenceNo" disabled="true" placeholder="烟草证号"/>
 
-          <!-- 验证码输入 -->
-          <input class="yt-vcode" @input="ytVcodeChange" type="text" v-model="ytVcode" placeholder="请输入验证码"/>
+              <!-- 手机号、获取验证码 -->
+              <label for="">
+                <input class="yt-phone vcode" type="text" v-model="ytPhone" disabled="true" placeholder="手机号"/>
+                <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" @click="send" :disabled="ytVcodeBtnDisable" :class="{'disabled-btn': ytVcodeBtnDisable}">
+              </label>
 
-          <button slot="button" class="theme-bg-color_lighter" :disabled="ytVcodeVerifyDisable" :class="{'disabled-btn': ytVcodeVerifyDisable}" @click="verify">确认</button>
-        </pop-modal>
-      </mt-popup>
-    </div>
+              <!-- 验证码输入 -->
+              <input class="yt-vcode" @input="ytVcodeChange" type="text" v-model="ytVcode" placeholder="请输入验证码"/>
+
+              <button slot="button" class="theme-bg-color_lighter" :disabled="ytVcodeVerifyDisable" :class="{'disabled-btn': ytVcodeVerifyDisable}" @click="verify">确认</button>
+            </pop-modal>
+          </mt-popup>
+        </div>
 	</div>
 </template>
 
@@ -125,22 +126,22 @@ export default {
 				text: ''
 			},
 
-      // 烟台接入河南
-      isYanTai: this.$route.query.actFlag == 't1', // 区分是否烟台，是的话为 t1
-      ytCodePop: true, // 弹窗
-      ytLicenceNo: this.$route.query.licenceNo, // 烟草证号
-      ytPhone: this.$route.query.phone, // 手机号
-      ytVcode: '', // 验证码
-      ytVcodeBtnDisable: false, // 验证码获取按钮
-      ytVcodeVerifyDisable: true, // 验证码校验按钮
-      sellerInfo: {}
+            // 烟台接入河南
+            isYanTai: this.$route.query.actFlag == 't1', // 区分是否烟台，是的话为 t1
+            ytCodePop: true, // 弹窗
+            ytLicenceNo: this.$route.query.licenceNo, // 烟草证号
+            ytPhone: this.$route.query.phone, // 手机号
+            ytVcode: '', // 验证码
+            ytVcodeBtnDisable: false, // 验证码获取按钮
+            ytVcodeVerifyDisable: true, // 验证码校验按钮
+            sellerInfo: {}
 		}
 	},
 	created () {
-    this.getRetailerInfo();
-    if(this.isYanTai) {
-      this.$parent.loadingPage = false; //去掉loading
-    }
+        this.getRetailerInfo();
+        if(this.isYanTai) {
+            this.$parent.loadingPage = false; //去掉loading
+        }
 	},
 	mounted () {
 
@@ -159,8 +160,8 @@ export default {
                 if (Data.ok) {
                     this.$parent.loadingPage = false; //去掉loading
                     this.user = Data.data;
-                    if(this.isYanTai) {
-                      this.sellerInfo = Data.data;
+                    if (this.isYanTai) {
+                        this.sellerInfo = Data.data;
                     }
                 }
             })
@@ -178,17 +179,17 @@ export default {
                     me.vcodeBtnMsg = '获取验证码';
                     window.clearInterval(interval);
                 } else {
-                     me.vcodeBtnMsg = me.count + '秒';
+                    me.vcodeBtnMsg = me.count + '秒';
                 }
             }, 1000);
             Http.get('/admin/login/getDynamicCode?oc=1&mobile=' + phone)
                 .then(res => {
-                  var Data = res.data
-                  if (Data.ret != 200000) {
-                    alert(Data.message)
-                  } else {
-                    me.user.vcode = Data.data
-                  }
+                    var Data = res.data
+                    if (Data.ret != 200000) {
+                        alert(Data.message)
+                    } else {
+                        me.user.vcode = Data.data
+                    }
                 })
         }
 
@@ -200,8 +201,8 @@ export default {
 
             getVerify(me.user.phoneNo);
         } else { // 烟台
-          me.ytVcodeBtnDisable = true;
-          getVerify(me.ytPhone);
+            me.ytVcodeBtnDisable = true;
+            getVerify(me.ytPhone);
         }
     },
 
@@ -222,7 +223,7 @@ export default {
                 .then(res => {
                     var Data = res.data
                     // 原来
-                    if(!me.isYanTai) {
+                    if (!me.isYanTai) {
                         if (Data.data) {
                             me.codePop = false;
                             me.confirmDisable = false;
@@ -276,12 +277,12 @@ export default {
                     // 激活成功
                     me.successActivate = true;
                     me.activateState.text = '恭喜您，激活成功！';
-                    if (!this.isYanTai) {
-                      me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
+                    if (!me.isYanTai) {
+                        me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
                     } else {
-                      me.activateState.tips = '赶紧去完善基本信息吧！'
-                      this.sellerInfo.authStatus = 2;
-                      sessionStorage.setItem('user', JSON.stringify(this.sellerInfo))
+                        me.activateState.tips = '赶紧去完善基本信息吧！'
+                        this.sellerInfo.authStatus = 2;
+                        sessionStorage.setItem('user', JSON.stringify(me.sellerInfo))
                     }
                 } else {
                     // 激活失败
