@@ -116,8 +116,8 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-var uri = 'http://172.16.1.192:' + port // 本地
-// var uri = 'http://172.17.15.176:' + port // 测试
+// var uri = 'http://172.16.1.192:' + port // 本地
+var uri = 'http://172.17.15.176:' + port // 测试
 // var uri = 'http://172.17.15.160:' + port; // 正式
 
 
