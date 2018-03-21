@@ -73,53 +73,6 @@ module.export = function () {
             return deferred.promise
         }
 
-        var BUILD = function () {
-            var defered = Q.defer();
-            process.stdout.write(colors.green('2、: build -> \n'));
-            process.stdout.write(colors.blue('\x20\x20\x20 build project...\n'));
-            exec('npm run build', function(error, stdout, stderr) {
-                process.stdout.write(colors.green('\x20\x20\x20 success\n'));
-                defered.resolve(true);
-            });
-            return defered.promise;
-        }
-
-        var COPYDISTFILE = function () {
-            var deferred = Q.defer();
-            process.stdout.write(colors.green('2. copy -> \n'));
-            process.stdout.write(colors.blue('\x20\x20\x20 copy...\n'));
-            gulp.src(['./dist/**'])
-                .pipe(gulp.dest('zip/retailer-front'))
-                .on('finish', function () {
-                    process.stdout.write(colors.green('\x20\x20\x20 copy successfully!\n'));
-                    deferred.resolve(true);
-                })
-                .on('error', function (error) {
-                    deferred.reject(new Error(error));
-                })
-            return deferred.promise
-        }
-
-        var ZIPDIST = function () {
-            var deferred = Q.defer();
-            process.stdout.write(colors.green('4. zipdist -> \n'));
-            process.stdout.write(colors.blue('\x20\x20\x20 zip packing... \n'));
-            gulp.src([
-                'dist/**'
-            ])
-            .pipe(zip(zipfile))
-            .pipe(gulp.dest('dist'))
-            .on('finish', function () {
-                process.stdout.write(colors.green('\x20\x20\x20 zip packed successfully!\n'));
-                deferred.resolve(zipfile);
-            })
-            .on('error', function () {
-                process.stdout.write(colors.red('\x20\x20\x20 zip packed field!\n'));
-                deferred.reject(new Error(error));
-            });
-            return deferred.promise;    
-        }
-
         // 第二步，文件拷贝
         var COPYFILE = function () {
             var deferred = Q.defer();
@@ -204,7 +157,6 @@ module.export = function () {
 
         // 第七步，解压文件
         var UNZIPFILE = function (file) {
-            console.log('解压文件：', file);
             var deferred = Q.defer();
             process.stdout.write(colors.green('7. unzip: \n'));
             center.exec('unzip -o ' + IPs[0].dist + '/' + file)
@@ -217,11 +169,9 @@ module.export = function () {
 
         // 第八步，将文件拷贝到服务器
         var COPYTOSERVER = function (file) {
-            console.log('copytoserver: ', file);
             var deferred = Q.defer();
             process.stdout.write(colors.green('8. copy to server: \n'));
             process.stdout.write(colors.blue('\x20\x20\x20 copy '+ O +' to ' + IPs[1].host + '!\n'));
-            console.log(IPs[0].dist + '/' + O + ' ' + IPs[1].host + ':' + IPs[1].dist);
             center.exec('scp -r ' + IPs[0].dist + '/' + O + ' ' + IPs[1].host + ':' + IPs[1].dist)
             .then(function (result) {
                 process.stdout.write(colors.blue('\x20\x20\x20 copy successfully!\n'));
@@ -255,22 +205,9 @@ module.export = function () {
             process.stdout.write(colors.red(error.message + '\n'))
         }
 
-        // Q.fcall(DELFILE)
-        //     .then(COPYFILE)
-        //     .then(DELMODULES)
-        //     .then(ZIPFILE)
-        //     .then(UPLOADFILE)
-        //     .then(CONNECT)
-        //     .then(UNZIPFILE)
-        //     .then(COPYTOSERVER)
-        //     .then(DELZIPSERVERFILE)
-        //     .then(SUCCESS)
-        //     .catch(ERROR_CATCH)
-        //     .done()
-
         Q.fcall(DELFILE)
-            .then(BUILD)
-            .then(COPYDISTFILE)
+            .then(COPYFILE)
+            .then(DELMODULES)
             .then(ZIPFILE)
             .then(UPLOADFILE)
             .then(CONNECT)
