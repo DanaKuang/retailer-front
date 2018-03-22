@@ -63,7 +63,7 @@ export default {
   		return {
   			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
   			overview: {
-  				overview: '0盒0条',
+  				overview: '0盒',
   				weekTotalNum: 0,
   				monthTotalNum: 0,
   				totalNum: 0
@@ -88,20 +88,14 @@ export default {
   	},
   	methods: {
   		showOverviewPerformance() {
-  			Http.get('/seller-web/seller/select/income/count')
+  			Http.get('/seller-web/achieve/scanSmokeCount?unit=1')
   				.then(res => {
   					var Data = res.data;
   					if (Data.ok) {
   						this.$parent.loadingPage = false; //去掉loading
-  						
   						var data = Data.data;
   						var me = this;
-  						if (data.unitNumList.length > 0) {
-  							me.overview.overview = '';
-  							data.unitNumList.forEach(function(n,i){
-  								me.overview.overview += n.num + n.unit 
-  							})
-  						}
+  						me.overview.overview = data.unit1Num;
   						this.overview.weekTotalNum = data.weekTotalNum;
   						this.overview.monthTotalNum = data.monthTotalNum;
   						this.overview.totalNum = data.totalNum;

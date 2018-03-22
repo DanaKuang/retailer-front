@@ -8,11 +8,6 @@ var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-  // if (process.env.NODE_ENV === 'development') {
-  //     baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
-  // } else {
-    // baseWebpackConfig.entry[name] = baseWebpackConfig.entry[name]
-  // }
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
 

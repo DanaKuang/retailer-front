@@ -19,9 +19,9 @@ var token = publicMethod.getCookie('uuu-token') || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJI
 
 // http请求拦截器
 axios.interceptors.request.use(config => {
-    // config.headers = Object.assign({}, config.headers, {
-    //     token: token
-    // }) 
+    config.headers = Object.assign({}, config.headers, {
+        token: token 
+    })
     config['X-Requested-With'] = 'XMLHttpRequest'
     config.timeout = 20000;
     return config

@@ -120,8 +120,7 @@ export default {
 	        this.startTime = this.formatShowDate(value);
 	        // this.emitStartTimeMM = value.getTime();
 	        this.emitStartTimeMM = this.startTime + ' 00:00:00';
-
-	        this.$emit('receiveStartDate', {receiveSTMM: this.emitStartTimeMM})
+	        this.$emit('receiveStartDate', {receiveSTMM: this.emitStartTimeMM});
 	    },
 	    handleETConfirm(value) {
 			this.endTime = this.formatShowDate(value);

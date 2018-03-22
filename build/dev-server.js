@@ -1,10 +1,8 @@
 require('./check-versions')()
 var config = require('../config')
 
-console.log('外面的环境：', process.env.NODE_ENV);
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-  console.log('里面的环境：', process.env.NODE_ENV);
 }
 
 var opn = require('opn')
@@ -118,8 +116,8 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-// var uri = 'http://172.16.1.192:' + port // 本地
-var uri = 'http://172.17.15.176:' + port // 测试
+var uri = 'http://172.16.1.192:' + port // 本地
+// var uri = 'http://172.17.15.176:' + port // 测试
 // var uri = 'http://172.17.15.160:' + port; // 正式
 
 

@@ -6,67 +6,20 @@ process.env.NODE_ENV = JSON.parse(config.build.env.NODE_ENV)
 
 var opn = require('opn')
 var path = require('path')
+
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.prod.conf')
 
-// var axios = require('axios')
-
-// default port where dev server listens for incoming traffic
+// default port where prod server listens for incoming traffic
 var port = process.env.PORT || config.build.port
-
-// automatically open browser, if not set will be false
-// var autoOpenBrowser = !!config.build.autoOpenBrowser
 
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
 var proxyTable = config.build.proxyTable
 
 var app = express()
-
-// var apiRoutes = express.Router()
-
-// apiRoutes.get('/getDiscList', function (req, res) {
-//   var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
-//   axios.get(url, {
-//     headers: {
-//       referer: 'https://c.y.qq.com/',
-//       host: 'c.y.qq.com'
-//     },
-//     params: req.query
-//   }).then((response) => {
-//     res.json(response.data)
-//   }).catch((e) => {
-//     console.log(e)
-//   })
-// })
-
-// apiRoutes.get('/lyric', function (req, res) {
-//   var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
-
-//   axios.get(url, {
-//     headers: {
-//       referer: 'https://c.y.qq.com/',
-//       host: 'c.y.qq.com'
-//     },
-//     params: req.query
-//   }).then((response) => {
-//     var ret = response.data
-//     if (typeof ret === 'string') {
-//       var reg = /^\w+\(({[^()]+})\)$/
-//       var matches = ret.match(reg)
-//       if (matches) {
-//         ret = JSON.parse(matches[1])
-//       }
-//     }
-//     res.json(ret)
-//   }).catch((e) => {
-//     console.log(e)
-//   })
-// })
-
-// app.use('/api', apiRoutes)
 
 var compiler = webpack(webpackConfig)
 
@@ -88,14 +41,6 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
-// proxy api requests
-// Object.keys(proxyTable).forEach(function (context) {
-//   var options = proxyTable[context]
-//   if (typeof options === 'string') {
-//     options = { target: options }
-//   }
-//   app.use(proxyMiddleware(options.filter || context, options))
-// })
 proxyTable.forEach(function (context) {
   app.use(proxyMiddleware(context.routepath, {
     target: context.proxyTarget,
@@ -115,15 +60,14 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 // serve pure static assets
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+var staticPath = path.posix.join(config.build.assetsPublicPath, config.build.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-// var uri = 'http://172.16.1.192:' + port // 本地
-var uri = 'http://172.17.15.176:' + port // 测试
+var uri = 'http://172.16.1.192:' + port // 本地
+// var uri = 'http://172.17.15.176:' + port // 测试
 // var uri = 'http://172.17.15.160:' + port; // 正式
 
-
-// var _resolve;
+var _resolve;
 var readyPromise = new Promise(resolve => {
   _resolve = resolve
 })
