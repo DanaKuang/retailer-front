@@ -22,7 +22,7 @@ module.export = function () {
             post: 22,
             user: 'root',
             dist: '/root',
-            privateKey: '/Users/Kuang/.ssh/id_rsa'
+            privateKey: '/Users/admin/.ssh/id_rsa'
         }],
         SERVER = {
             'test': {
