@@ -113,7 +113,7 @@ export default {
   		showPerformanceList(loading) {
   			Http.get('/seller-web/achieve/scanSmokeList', {
   				params: {
-  					unit: 1,
+  					// unit: 1,
   					startTime: this.startTimeMM,
   					endTime: this.endTimeMM,
   					pageNo: this.page,
