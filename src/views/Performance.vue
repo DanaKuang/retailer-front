@@ -95,7 +95,7 @@ export default {
   						this.$parent.loadingPage = false; //去掉loading
   						var data = Data.data;
   						var me = this;
-  						me.overview.overview = data.unit1Num;
+  						me.overview.overview = data.unit1Num + '盒';
   						this.overview.weekTotalNum = data.weekTotalNum;
   						this.overview.monthTotalNum = data.monthTotalNum;
   						this.overview.totalNum = data.totalNum;
