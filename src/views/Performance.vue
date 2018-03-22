@@ -107,7 +107,9 @@ export default {
   				params: {
   					unit: 1,
   					startTime: this.startTimeMM,
-  					endTime: this.endTimeMM
+  					endTime: this.endTimeMM,
+  					pageNo: this.page,
+  					pageSize: 10
   				}
   			}).then(res => {
   				var Data = res.data;
