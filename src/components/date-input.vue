@@ -61,8 +61,8 @@ export default {
 	created() {
 		this.startTime = this.defaultShowDate(3);
 		this.endTime = this.defaultShowDate();
-		this.emitStartTimeMM = this.defaultMMdate().receiveSTMM,
-		this.emitEndTimeMM = this.defaultMMdate().receiveETMM
+		this.emitStartTimeMM = this.startTime + ' 00:00:00';
+		this.emitEndTimeMM = this.endTime + ' 00:00:00'
 	},
 	mounted() {
 		
@@ -79,7 +79,6 @@ export default {
 				if (m - n < 0) {
 					y = y - 1;
 					m = (12 + (m - n) + 1) < 10 ? '0' + (12 + (m - n) + 1) : (12 + (m - n) + 1);
-					// (11 - (m - n) + 1) < 10 ? '0' + (11 - (m - n) + 1) : (11 - (m - n) + 1);
 				} else {
 					m = (m - n) + 1 < 10 ? '0' + (m - n + 1) : (m - n + 1);
 				}
@@ -88,8 +87,7 @@ export default {
 			}
 
 			d = d < 10 ? '0' + d : d;
-			thatday = [y, m, d].join('-');
-			return thatday
+			return [y, m, d].join('-');
 		},
 		defaultMMdate () {
 			var _a_splitTime = this.startTime.split('-');
@@ -103,34 +101,36 @@ export default {
 			this.endTime = this.defaultShowDate();
 			this.$emit('receiveDefaultDate', 
 				{
-					receiveSTMM: this.defaultMMdate().receiveSTMM,
-					receiveETMM: this.defaultMMdate().receiveETMM
+					receiveSTMM: this.defaultShowDate(3) + ' 00:00:00',
+					receiveETMM: this.defaultShowDate() + ' 00:00:00'
 				}
 			)
 		},
 		formatShowDate(val) {
 			// 转化标准时间的显示
-			val = val.toLocaleString();
-			val = val.slice(0, val.indexOf(' '));
-			val = val.replace(/\//g, '-');
-			val = val.trim();
-			return val
+			var y = val.getFullYear(),
+				m = (val.getMonth() + 1) > 10 ? (val.getMonth() + 1) : '0' + (val.getMonth() + 1),
+				d = val.getDate() > 10 ? val.getDate() : ('0' + val.getDate());
+			return [y,m,d].join('-')
 		},
 		open(picker) {
 	        this.$refs[picker].open();
 	    },
 	    handleSTConfirm(value) {
-	        this.startTime = this.formatShowDate(value)
-	        this.emitStartTimeMM = value.getTime();
+	        this.startTime = this.formatShowDate(value);
+	        // this.emitStartTimeMM = value.getTime();
+	        this.emitStartTimeMM = this.startTime + ' 00:00:00';
+
 	        this.$emit('receiveStartDate', {receiveSTMM: this.emitStartTimeMM})
 	    },
 	    handleETConfirm(value) {
 			this.endTime = this.formatShowDate(value);
-			console.log(value.getTime());
-			var t = 1000 * 60 * 60 * 15 + 1000 * 60 * 59 + 1000 * 59;
-			 // 插件是默认早上8点，需要加上15小时59分59秒等量的毫秒
-	        this.emitEndTimeMM = value.getTime() + t;
-	        console.log(this.emitEndTimeMM)
+			// console.log(value.getTime());
+			// var t = 1000 * 60 * 60 * 15 + 1000 * 60 * 59 + 1000 * 59;
+			//  // 插件是默认早上8点，需要加上15小时59分59秒等量的毫秒
+	  //       this.emitEndTimeMM = value.getTime() + t;
+	  //       console.log(this.emitEndTimeMM)
+	  		this.emitEndTimeMM = this.endTime + ' 00:00:00';
 	        this.$emit('receiveEndDate', {receiveETMM: this.emitEndTimeMM})
 	    }
 	}

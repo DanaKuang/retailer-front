@@ -6,7 +6,7 @@
 					<div class="icon-performance"></div>
 					<p class="desc">总销量：<em>{{overview.overview}}</em></p>
 				</div>
-				<div class="icon-rank flex-item"><router-link :to="{path: '/retailer/rank', query: {sellerId: '3000016'}}"></router-link></div>
+				<div class="icon-rank flex-item"><router-link :to="{path: '/retailer/rank'}"></router-link></div>
 			</div>
 			<div class="overview flex">
 				<div class="flex-item">本周扫码业绩<p class="week">{{overview.weekTotalNum}}</p></div>
@@ -21,8 +21,8 @@
 			<div class="result-wrap">
 				<div class="title flex">
 					<p class="flex-item product-name">商品名称</p>
-					<p class="flex-item exchange-date">日期</p>
-					<p class="flex-item exchange-number">数量</p>
+					<p class="flex-item exchange-date">时间</p>
+					<!-- <p class="flex-item exchange-number">数量</p> -->
 					<p class="flex-item return-money">返现</p>
 				</div>
 				<ul 
@@ -32,10 +32,10 @@
                 infinite-scroll-distance="0"
                 infinite-scroll-immediate-check="false">
 					<li class="flex" v-for="item in performancelist">
-						<p class="flex-item product-name">{{item.goods}}</p>
-						<p class="flex-item exchange-date">{{item.cousumerScTime | convertDate}}</p>
-						<p class="flex-item exchange-number">{{item.unit}}</p>
-						<p class="flex-item return-money">+{{item.fxAmount}}</p>
+						<p class="flex-item product-name">{{item.specification}}</p>
+						<p class="flex-item exchange-date">{{item.scanTime | convertDate}}</p>
+						<!-- <p class="flex-item exchange-number">{{item.scanTime | convertDate}}</p> -->
+						<p class="flex-item return-money">+{{item.income}}</p>
 					</li>
 				</ul>
 
@@ -109,12 +109,11 @@ export default {
   				})
   		},
   		showPerformanceList(loading) {
-  			Http.get('/seller-web/income/detail', {
+  			Http.get('/seller-web/achieve/scanSmokeList', {
   				params: {
+  					unit: 1,
   					startTime: this.startTimeMM,
-  					endTime: this.endTimeMM,
-  					pageNo: this.page,
-  					pageSize: 10
+  					endTime: this.endTimeMM
   				}
   			}).then(res => {
   				var Data = res.data;
@@ -123,9 +122,9 @@ export default {
   						if (loading) {
   							// push
   							var me = this;
-  							 Data.data.list.forEach(function (n, i){
+  							Data.data.list.forEach(function (n, i){
   							 	me.performancelist.push(n)
-  							 })
+  							})
   						} else {
   							this.performancelist = Data.data.list;
   						}

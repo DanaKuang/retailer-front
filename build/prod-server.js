@@ -1,27 +1,27 @@
 require('./check-versions')()
+
 var config = require('../config')
 
-console.log('外面的环境：', process.env.NODE_ENV);
-if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-  console.log('里面的环境：', process.env.NODE_ENV);
-}
+process.env.NODE_ENV = JSON.parse(config.build.env.NODE_ENV)
 
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = require('./webpack.dev.conf')
-var axios = require('axios')
+var webpackConfig = require('./webpack.prod.conf')
+
+// var axios = require('axios')
 
 // default port where dev server listens for incoming traffic
-var port = process.env.PORT || config.dev.port
+var port = process.env.PORT || config.build.port
+
 // automatically open browser, if not set will be false
-var autoOpenBrowser = !!config.dev.autoOpenBrowser
+// var autoOpenBrowser = !!config.build.autoOpenBrowser
+
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
-var proxyTable = config.dev.proxyTable
+var proxyTable = config.build.proxyTable
 
 var app = express()
 
@@ -123,18 +123,14 @@ var uri = 'http://172.17.15.176:' + port // 测试
 // var uri = 'http://172.17.15.160:' + port; // 正式
 
 
-var _resolve;
+// var _resolve;
 var readyPromise = new Promise(resolve => {
   _resolve = resolve
 })
 
-console.log('> Starting dev server...')
+console.log('> Starting prod server...')
 devMiddleware.waitUntilValid(() => {
   console.log('> Listening at ' + uri + '\n')
-  // when env is testing, don't need open it
-  if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-    opn(uri)
-  }
   _resolve()
 })
 
