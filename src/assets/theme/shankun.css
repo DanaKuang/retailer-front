@@ -179,3 +179,76 @@ input[type="radio"]:checked ~.radio {
 	background-position: 50% 10%;
 	background-size: 1.76rem 1.76rem;	
 }
+
+/* 业绩排行榜背景 */
+.rewardintro .rank-bg{
+	width: 100%;
+	height: 100%;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_bg.png') no-repeat;
+	z-index: 1;
+	background-size: 100%;
+	padding: .426rem .266rem .746rem;
+	box-sizing: border-box;
+}
+
+/* 业绩排行榜标题 */
+.rewardintro .rank-title{
+	width: 6.92rem;
+	height: 1.293rem;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_title.png') no-repeat;
+	background-size: 6.92rem 1.293rem;
+	margin: 0 auto;
+	z-index: 2;
+}
+
+/* 业绩排行榜奖品规则标题 */
+.rewardintro .rank-prize{
+	width: 3.653rem;
+	height: .786rem;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_prize.png') no-repeat;
+	background-size: 3.653rem .786rem;
+	margin: .466rem auto 0;
+	z-index: 3;
+}
+
+/* 业绩排行榜奖品规则字体颜色 */
+.rewardintro .prize-rule{
+	border: .026rem solid #7D1A53;
+}
+.rewardintro .prize-rule th{
+	color: #7D1A53;
+}
+.rewardintro .prize-rule td{
+	color: #666666;
+	border: .013rem solid #B96E88; 
+}
+.rewardintro .prize-rule tr td:last-child{
+	border-right: 0;
+	border-bottom: 0;
+}
+.rewardintro .prize-rule tr td:first-child{
+	border-left: 0;
+	border-bottom: 0;
+}
+.rewardintro .prize-rule tr td:nth-of-type(even){
+	border-right: 0;
+	border-left: 0;
+	border-bottom: 0;
+}
+
+/* 业绩排行榜奖品规则标题 */
+.rewardintro .rank-active{
+	width: 3.29rem;
+	height: .786rem;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_active.png') no-repeat;
+	background-size: 3.29rem .786rem;
+	margin: .506rem auto 0;
+	z-index: 3;
+}
+
+/* 业绩排行榜奖品规则说明 */
+.active-rule{
+	border: .026rem solid #7D1A53;
+	border-radius: .266rem;
+	color: #666666;
+}
