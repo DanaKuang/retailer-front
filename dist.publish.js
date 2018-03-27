@@ -1,71 +1,69 @@
 /**
- * Create Date: 2018-01-17
+ * Create Date: 2018-03-23
+ * Author: Kuang
  * Description: 前端一建打包部署到服务器
- * 不同于小屏端只放静态文件，零售户是把放源码放到服务器
+ * 把打包后的静态资源文件放置服务器
 **/
 
-module.export = function () {
-    'use strict';
-    var
-        O          = 'retailer-front',
-        Q          = require('q'), // "q"
-        del        = require('del'), // "del"
-        gulp       = require('gulp'), // "gulp"
-        zip        = require('gulp-zip'), // "gulp-zip"
-        node_ssh   = require('node-ssh'), // "node-ssh"
-        colors     = require('colors/safe'), //"colors"
-        dateFormat = require('dateformat'),
-        argv       = process.argv,
-        exec       = require('child_process').exec,
-        IPs = [{
-            host: '123.56.29.106',
+module.export = function (){
+	let O 			= 'retailer-front',
+		Q 			= require('q'),
+		del 		= require('del'),
+		gulp 		= require('gulp'),
+		zip			= require('gulp-zip'),
+		node_ssh	= require('node-ssh'),
+		colors 		= require('colors/safe'),
+		dateFormat 	= require('dateformat'),
+		argv 		= process.argv,
+		exec		= require('child_process').exec,
+		IPs			= [{
+			host: '123.56.29.106',
             post: 22,
             user: 'root',
             dist: '/root',
             privateKey: '/Users/Kuang/.ssh/id_rsa'
-        }],
-        SERVER = {
-            'test': {
-                type: 'test',
-                host: '172.17.15.176',
+		}],
+		SERVER 		= {
+			test: {
+				type: 'test',
+                host: '172.17.15.174',
                 port: 22,
                 user: '',
                 dist: '/opt/webapps',
                 privateKey: ''
-            },
-            'prod': {
-                type: 'prod',
+			},
+			prod: {
+				type: 'prod',
                 host: '172.17.15.160',
                 port: 22,
                 user: '',
                 dist: '/opt/webapps',
                 privateKey: ''
-            }
-        },
-        center  = new node_ssh(),
-        zipfile = O + '-' + dateFormat(new Date(), 'yyyy-mm-dd-HH-MM-ss') + '.zip';
+			}
+		},
+		center 		= new node_ssh(),
+		zipfile 	= O + '-' + dateFormat(new Date(), 'yyyy-mm-dd-HH-MM-ss') + '.zip';
 
-        // 判断指令是否正确
-        if ('publish' !== argv[2]) {
-            process.stdout.write(colors.green('Do you mean "publish"?\n'));
+		if ('publish' !== argv[2]) {
+			process.stdout.write(colors.green('Do you mean "publish"?\n'));
             return
-        }
+		}
 
-        if (!SERVER[argv[3]]) {
-            process.stdout.write(colors.green('\x20SERVER REQUIRED!\n'));
-            process.stdout.write(colors.blue('\x20-node retailer.publish.js test\n'));
-            process.stdout.write(colors.blue('\x20-node retailer.publish.js prod\n'));
+		if (!SERVER[argv[3]]) {
+			process.stdout.write(colors.green('\x20SERVER REQUIRED!\n'));
+            process.stdout.write(colors.blue('\x20-node dist.publish.js test\n'));
+            process.stdout.write(colors.blue('\x20-node dist.publish.js prod\n'));
             return
-        }
+		}
 
-        IPs.push(SERVER[argv[3]]);
+		IPs.push(SERVER[argv[3]]);
 
-        // 第一步，删除压缩包
+		// 第一步，删除zip目录
         var DELFILE = function() {
             var deferred = Q.defer();
             process.stdout.write(colors.green('ON STEPS: \n'));
-            process.stdout.write(colors.green('1. del -> \n'));
-            process.stdout.write(colors.blue('\x20\x20\x20 del zip ... \n'));
+            process.stdout.write(colors.green('1. zip -> \n'));
+            process.stdout.write(colors.blue('\x20\x20\x20 del dist ... \n'));
             del(['zip'], {force: true}, function (error, stdout, stderr) {
                 process.stdout.write(colors.green('\x20\x20\x20 del zip successfully! \n'));
                 deferred.resolve(true)
@@ -73,12 +71,24 @@ module.export = function () {
             return deferred.promise
         }
 
-        // 第二步，文件拷贝
-        var COPYFILE = function () {
-            var deferred = Q.defer();
-            process.stdout.write(colors.green('2. copy -> \n'));
+        // 第二步，重新打包生成dist目录
+        var BUILD = function () {
+        	var defered = Q.defer();
+	        process.stdout.write(colors.green('2、: build -> \n'));
+	        process.stdout.write(colors.blue('\x20\x20\x20 build project...\n'));
+	        exec('npm run build', function(error, stdout, stderr) {
+	            process.stdout.write(colors.green('\x20\x20\x20 success\n'));
+	            defered.resolve(true);
+	        });
+	        return defered.promise;
+        }
+
+        // 第三步，将打包后dist目录下的文件copy到zip，并命名retailer-front
+        var COPYTOZIP = function () {
+        	var deferred = Q.defer();
+            process.stdout.write(colors.green('3. copy -> \n'));
             process.stdout.write(colors.blue('\x20\x20\x20 copy...\n'));
-            gulp.src(['./**', '!dist/**', '!retailer.publish.js', '!node_modules/**'])
+            gulp.src(['./dist/**'])
                 .pipe(gulp.dest('zip/retailer-front'))
                 .on('finish', function () {
                     process.stdout.write(colors.green('\x20\x20\x20 copy successfully!\n'));
@@ -90,28 +100,13 @@ module.export = function () {
             return deferred.promise
         }
 
-        // 第三步，删除gulp遗留的坑，node_modules空文件夹
-        var DELMODULES = function () {
-            var deferred = Q.defer();
-            process.stdout.write(colors.green('3、del: \n'));
-            process.stdout.write(colors.blue('\x20\x20\x20 del node_modules/...\n'));
-            del([
-                'zip/retailer-front/node_modules'
-            ], {force: true}, function () {
-                process.stdout.write(colors.green('\x20\x20\x20 del node_modules/ successfully!\n'));
-                deferred.resolve(true);
-            });
-            return deferred.promise;
-        }
-
-        // 第四步，压缩文件
+        // 第四步，打包压缩zip文件夹里的retailer-front
         var ZIPFILE = function () {
-            var deferred = Q.defer();
-            process.stdout.write(colors.green('4. zip -> \n'));
-            process.stdout.write(colors.blue('\x20\x20\x20 zip packing... \n'));
+        	var deferred = Q.defer();
+            process.stdout.write(colors.green('4. zipfile -> \n'));
+            process.stdout.write(colors.blue('\x20\x20\x20 zip packing...\n'));
             gulp.src([
-                'zip/**',
-                '!zip/retailer-front/doc/**/*'
+                'zip/**'
             ])
             .pipe(zip(zipfile))
             .pipe(gulp.dest('zip'))
@@ -126,9 +121,9 @@ module.export = function () {
             return deferred.promise;
         }
 
-        // 第五步，将压缩文件上传至中控
-        var UPLOADFILE = function (file) {
-            var deferred = Q.defer();
+        // 第五步，上传至中控
+        var UPLOAD = function (file) {
+        	var deferred = Q.defer();
             process.stdout.write(colors.green('5. upload: \n'));
             process.stdout.write(colors.blue('\x20\x20\x20 upload ' + file + ' to ' + IPs[0].host + '...\n'));
             exec('scp ./zip/' + file + ' ' + IPs[0].user + '@' + IPs[0].host + ':' + IPs[0].dist, function (error, stdout, stderr) {
@@ -206,10 +201,10 @@ module.export = function () {
         }
 
         Q.fcall(DELFILE)
-            .then(COPYFILE)
-            .then(DELMODULES)
-            .then(ZIPFILE)
-            .then(UPLOADFILE)
+        	.then(BUILD)
+        	.then(COPYTOZIP)
+        	.then(ZIPFILE)
+        	.then(UPLOAD)
             .then(CONNECT)
             .then(UNZIPFILE)
             .then(COPYTOSERVER)
