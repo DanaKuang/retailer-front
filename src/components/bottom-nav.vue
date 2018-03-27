@@ -3,7 +3,7 @@
 		<transition name="fade">
 			<ul>
 				<li class="menu" v-for="(item,idx) in menu" :class="[{'font-color': path == item.className}, item.className]">
-					<router-link :to="{path: item.path, query: {sellerId: sellerId}}">
+					<router-link :to="{path: item.path}">
 						<img :src="path == item.className ? item.imgactive : item.img" alt="">
 						{{item.name}}
 					</router-link>

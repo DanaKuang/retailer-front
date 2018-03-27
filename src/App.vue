@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <router-view v-wechat-title='$route.meta.title' v-cloak />
-  <!--   <keep-alive>
-      <router-view v-wechat-title='$route.meta.title' v-cloak></router-view>
-    </keep-alive> -->
 
     <!-- 底部导航x组件 -->
     <bottom-nav></bottom-nav>

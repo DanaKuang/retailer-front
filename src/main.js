@@ -25,12 +25,9 @@ Vue.use(VueLazyload, {
   // loading: require('common/image/default.png')
 })
 
-/* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,
-  // store,
-  render: function (h) {
-  	return h(App)
-  } 
+  render: h => h(App)
 })

@@ -31,6 +31,9 @@ var routes = [{
     title: '扫码入库'
   }
 }, {
+  path: '/',
+  redirect: '/retailer/index',
+},  {
   path: '/retailer/index',
   component: StoreCenter,
   name: 'StoreCenter',
@@ -105,7 +108,7 @@ var routes = [{
   component: Myqresult,
   name: 'Myqresult',
   meta: {
-    title: '门店中心'
+    title: '零售户店码'
   }
 }, {
   path: '/retailer/myqrpost',
