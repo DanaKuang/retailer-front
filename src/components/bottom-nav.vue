@@ -41,12 +41,12 @@ export default {
 		getNav() {
 			var me = this;
 			if (me.orgId == 'shankunzhongyan') {
-				Http.get('/static/shankun/nav.json')
+				Http.get('/retailer/static/shankun/nav.json')
 					.then(res => {
 						me.$data.menu = res.data.menu; //注意刘萌萌的$data写法
 					})
 			} else {
-				Http.get('/static/henan/nav.json')
+				Http.get('/retailer/static/henan/nav.json')
 					.then(res => {
 						me.$data.menu = res.data.menu; //注意刘萌萌的$data写法
 					})
