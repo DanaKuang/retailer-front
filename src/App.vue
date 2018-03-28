@@ -32,6 +32,9 @@ export default {
             timestamp  : ''
         }
     },
+    beforeCreate() {
+        
+    },
     created() {
         this.getCommonConfig();
         this.getweixintoken();

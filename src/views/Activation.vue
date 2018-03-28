@@ -82,11 +82,11 @@
             >
             <pop-modal>
               <!-- 烟草证号 -->
-              <input class="yt-licenceNo" type="text" v-model="ytLicenceNo" disabled="true" placeholder="烟草证号"/>
+              <input class="yt-licenceNo" type="text" v-model="user.licenceNo" disabled="true" placeholder="烟草证号"/>
 
               <!-- 手机号、获取验证码 -->
               <label for="">
-                <input class="yt-phone vcode" type="text" v-model="ytPhone" disabled="true" placeholder="手机号"/>
+                <input class="yt-phone vcode" type="text" v-model="user.phoneNo" disabled="true" placeholder="手机号"/>
                 <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" @click="send" :disabled="ytVcodeBtnDisable" :class="{'disabled-btn': ytVcodeBtnDisable}">
               </label>
 
@@ -103,6 +103,7 @@
 <script>
 import Http from 'assets/lib/http.js'
 import popModal from 'components/pop-modal'
+import {getQueryString} from 'assets/lib/publicMethod'
 
 export default {
 	name: 'Activation',
@@ -129,8 +130,6 @@ export default {
             // 烟台接入河南
             isYanTai: this.$route.query.actFlag == 't1', // 区分是否烟台，是的话为 t1
             ytCodePop: true, // 弹窗
-            ytLicenceNo: this.$route.query.licenceNo, // 烟草证号
-            ytPhone: this.$route.query.phone, // 手机号
             ytVcode: '', // 验证码
             ytVcodeBtnDisable: false, // 验证码获取按钮
             ytVcodeVerifyDisable: true, // 验证码校验按钮
@@ -297,11 +296,11 @@ export default {
         if (this.successActivate) {
             // 原来
             if (!this.isYanTai) {
-                this.$router.push({path:'/retailer/index?sellerId=' + this.$route.query.sellerId})
+                this.$router.push({path:'/retailer/index'})
             } else {
                 // 烟台
                 // 跳到填写信息
-                this.$router.push({path:'/retailer/info?sellerId=' + this.$route.query.sellerId})
+                this.$router.push({path:'/retailer/info'})
             }
         } else {
             this.confirmPop = false;

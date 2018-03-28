@@ -133,6 +133,7 @@ import Http from 'assets/lib/http.js'
 import { Popup } from 'mint-ui'
 import popUp from 'components/pop-up'
 import popModal from 'components/pop-modal'
+import {getCookie, deleteCookie, getQueryString} from 'assets/lib/publicMethod'
 
 export default {
   	name: 'StoreCenter',
@@ -157,20 +158,34 @@ export default {
   			}, //零售户信息
   			waiting: {}, //待审核or审核未通过文案内容
   			activate: {}, //激活弹窗文案内容
-  			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || ''
+  			sellerId: sessionStorage.getItem('sellerId') || getQueryString('sellerId') || ''
   		}
   	},
   	created() {
-		this.getRetailerInfo();
-		console.log('进入storecenter页面')
+  		this.checkCookie();
   	},
-  	update() {
-		console.log('进入storecenter页面')
-  	}, 
   	beforeDestroy () {
 		// this.$bus.emit('infopage', this.user);
   	},
   	methods: {
+  		getSellerId() {
+
+  		},
+  		checkCookie() {
+  			let me = this;
+            var REDIRECT = getCookie('REDIRECT');
+            if (REDIRECT) {
+                deleteCookie('REDIRECT', '.cs.weiop.taozuike.com');
+                var routepath = (REDIRECT.match(/\/\w+$/))[0];
+                if (routepath === '/myqresult') {
+                	location.replace(location.origin + '/retailer/index.html#/retailer' + routepath + '?sellerId=' + me.sellerId)
+                } else if (routepath === '/activation') {
+                	location.replace(location.origin + '/retailer/index.html#/retailer' + routepath + '?sellerId=' + me.sellerId + '&actFlag=' + getQueryString('actFlag'))
+                }
+            } else {
+				me.getRetailerInfo();
+            }
+        },
   		// 判断是否认证，展示店家信息
   		getRetailerInfo() {
             Http.get('/seller-web/seller/main/' + this.sellerId).then(res => {

@@ -37,7 +37,7 @@
 				<li class="flex" v-for="(item, idx) in list">
 					<span class="flex-item num">{{ idx < 3 ? '' : idx + 1}}<img v-if="idx < 3" :src="topthreeImage[idx]" alt=""></span>
 					<span class="flex-item">{{item.shopName}}</span>
-					<span class="flex-item">{{item.num}}</span>
+					<span class="flex-item">{{item.achieveNum}}</span>
 				</li>
 			</ul>			
 		</div>
@@ -103,7 +103,7 @@ export default {
   				})
 		},
 		showranklist(loading) {
-			Http.get('/seller-web/income/statis', {
+			Http.get('/seller-web/achieve/periodResultList', {
 				params: {
 					pageNo: this.page,
   					pageSize: 10
@@ -111,7 +111,7 @@ export default {
 			}).then(res => {
 				var Data = res.data;
 				if (Data.ok) {
-					if (Data.data.list.length > 0) {
+					if (Data.data.list && Data.data.list.length > 0) {
 						if (loading) {
 							var me = this;
 							Data.data.list.forEach(function (n, i) {

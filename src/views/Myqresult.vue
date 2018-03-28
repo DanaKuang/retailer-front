@@ -90,8 +90,10 @@ export default {
 	left: 0;
 	right: 0;
 	.info {
+		display: -webkit-box;
+		-webkit-box-orient: horizontal;
 		display: flex;
-		margin: 6.3rem auto 0;
+		margin: 6rem auto 0;
 		padding: 0 .3rem;
 		width: 7.8667rem;
 		height: 5.33rem;
