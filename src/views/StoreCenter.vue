@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="edit flex-item">
-				<router-link class="theme-bg-color" :to="{path: '/retailer/info', query: {sellerId: this.sellerId}}">{{certifyoredit}}</router-link>
+				<router-link class="theme-bg-color" :to="{path: '/retailer/info'}">{{certifyoredit}}</router-link>
 			</div>
 		</div>
 		<div class="menulist">
@@ -26,26 +26,24 @@
 				<p class="item" @click="gotocredit">我的积分</p>
 			</div>
 			<div class="wallet menu bor-bt border-box">
-				<p class="item"><router-link :to="{path: '/retailer/wallet', query: {sellerId: sellerId}}">我的钱包</router-link></p>
+				<p class="item"><router-link :to="{path: '/retailer/wallet'}">我的钱包</router-link></p>
 			</div>
 			<div class="order menu mar-bt border-box">
-				<p class="item"><router-link :to="{path: '/retailer/orderdetail', query: {sellerId: sellerId}}">订单管理</router-link></p>
+				<p class="item"><router-link :to="{path: '/retailer/orderdetail'}">订单管理</router-link></p>
 			</div>
 			<div class="qr menu bor-bt border-box">
-				<p class="item"><router-link :to="{path: '/retailer/myqrpost', query: {sellerId: sellerId}}">我的二维码</router-link></p>
+				<p class="item"><router-link :to="{path: '/retailer/myqrpost'}">我的二维码</router-link></p>
 			</div>
 			<div class="sign menu mar-bt border-box">
 				<p class="item" @click="showLabelpopup">领取标牌</p>
 			</div>
 			<div class="promotion menu bor-bt border-box">
-				<p class="item"><router-link :to="{path: '/retailer/activityintro', query: {sellerId: sellerId}}">活动说明</router-link></p>
+				<p class="item"><router-link :to="{path: '/retailer/activityintro'}">活动说明</router-link></p>
 			</div>
 			<div class="performance menu border-box">
-				<p class="item"><router-link :to="{path: '/retailer/rewardintro', query: {sellerId: sellerId}}">业绩说明</router-link></p>
+				<p class="item"><router-link :to="{path: '/retailer/rewardintro'}">业绩说明</router-link></p>
 			</div>
 		</div>
-		<!-- 底部导航组件 -->
-		<!-- <bottom-nav :queryvariate="sellerId"></bottom-nav> -->
 
 		<!-- 激活过来的，已认证但还需完善信息弹窗 -->
 		<mt-popup
@@ -57,7 +55,7 @@
 			<pop-modal :variate="bool.completeInfo">
 				<p class="font-color tip1">恭喜您，已激活成功！</p>
   				<p class="tip2">完善资料信息后即可使用</p>
-  				<button slot="button" class="theme-bg-color_lighter button"><router-link :to="{path: '/retailer/info', query: {sellerId: this.sellerId}}">去完善资料</router-link></button>
+  				<button slot="button" class="theme-bg-color_lighter button"><router-link :to="{path: '/retailer/info'}">去完善资料</router-link></button>
     		</pop-modal>
 		</mt-popup>
 
@@ -114,7 +112,7 @@
 			<pop-modal>
 				<p class="font-color tip1">{{activate.text}}</p>
   				<p class="tip3">{{activate.tip}}</p>
-  				<button slot="button" class="theme-bg-color_lighter"><router-link :to="{path: '/retailer/activation', query: {sellerId: sellerId}}">去激活</router-link></button>
+  				<button slot="button" class="theme-bg-color_lighter"><router-link :to="{path: '/retailer/activation'}">去激活</router-link></button>
     		</pop-modal>
 		</mt-popup>
 
@@ -133,7 +131,7 @@ import Http from 'assets/lib/http.js'
 import { Popup } from 'mint-ui'
 import popUp from 'components/pop-up'
 import popModal from 'components/pop-modal'
-import {getCookie, deleteCookie, getQueryString} from 'assets/lib/publicMethod'
+import {getCookie, getQueryString} from 'assets/lib/publicMethod'
 
 export default {
   	name: 'StoreCenter',
@@ -168,14 +166,10 @@ export default {
 		// this.$bus.emit('infopage', this.user);
   	},
   	methods: {
-  		getSellerId() {
-
-  		},
   		checkCookie() {
   			let me = this;
             var REDIRECT = getCookie('REDIRECT');
             if (REDIRECT) {
-                deleteCookie('REDIRECT', '.cs.weiop.taozuike.com');
                 var routepath = (REDIRECT.match(/\/\w+$/))[0];
                 if (routepath === '/myqresult') {
                 	location.replace(location.origin + '/retailer/index.html#/retailer' + routepath + '?sellerId=' + me.sellerId)

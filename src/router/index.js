@@ -24,6 +24,9 @@ import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)
 
 var routes = [{
+  path: '*', 
+  redirect: '/'
+}, {
   path: '/retailer/scan',
   component: Scan,
   name: 'Scan',

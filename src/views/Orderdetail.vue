@@ -76,7 +76,7 @@ export default {
             }],
             changeclass: 'all',
             list: [],
-            sellerId: this.$route.query.sellerId || '',
+            sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
             isListTrue: false,
             loading: true,
             isEnd: false,

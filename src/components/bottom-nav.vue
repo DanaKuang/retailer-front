@@ -40,7 +40,7 @@ export default {
 	methods: {
 		getNav() {
 			var me = this;
-			if (me.orgId == 'shankunzhongyan') {
+			if (me.orgId === 'shankunzhongyan') {
 				Http.get('/retailer/static/shankun/nav.json')
 					.then(res => {
 						me.$data.menu = res.data.menu; //注意刘萌萌的$data写法

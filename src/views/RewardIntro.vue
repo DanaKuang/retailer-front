@@ -72,41 +72,46 @@ export default {
 </script>
 <style lang="scss" scoped>
 .rewardintro {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	.wholeimg {
 		width: 100%;
 		min-height: 100%;
 	}
-	.prize-rule{	
+	.prize-rule {	
 		width: 100%;
 		height: auto;
 		background-color: #FFFFFF;
 		border-radius: .266rem;
 		margin-top: .466rem;
 		box-sizing: border-box;
-		th{
+		th {
 			height: .84rem;
 			line-height: .84rem;
 			font-family: 'PingFangSC-Regular';
 			font-size: .4rem;
 			text-align: center;
 		}
-		th:nth-of-type(odd){
+		th:nth-of-type(odd) {
 			width: 25%;
 		}
-		th:nth-of-type(even){
+		th:nth-of-type(even) {
 			width: 50%;
 		}
-		td{
+		td {
 			height: 1.12rem;
 			line-height: 1.12rem;
 			font-family: 'PingFangSC-Medium';
 			font-size: .32rem;
 			text-align: center;
 		}
-		td:nth-of-type(odd){
+		td:nth-of-type(odd) {
 			width: 25%;
 		}
-		td:nth-of-type(even){
+		td:nth-of-type(even) {
 			width: 50%;
 		}
 	}

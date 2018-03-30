@@ -19,6 +19,7 @@ require('assets/public/common.css')
 import bottomNav from 'components/bottom-nav'
 import Http from 'assets/lib/http.js'
 import wx from 'weixin-js-sdk'
+import {getCookie, deleteCookie} from 'assets/lib/publicMethod'
 
 export default {
     name: 'app',
@@ -39,7 +40,20 @@ export default {
         this.getCommonConfig();
         this.getweixintoken();
     },
+    mounted() {
+        this.delCookie()
+    },
     methods: {
+        delCookie() {
+            var REDIRECT = getCookie('REDIRECT');
+            if (REDIRECT) {
+                if (sessionStorage.orgId === 'shankunzhongyan') {
+                    deleteCookie('REDIRECT', '.sk.saotx.cn');
+                } else if (sessionStorage.orgId === 'henanzhongyan') {
+                    deleteCookie('REDIRECT', '.weiop.taozuike.com');
+                }
+            }
+        },
         getCommonConfig() {
             var me = this;
             Http.get('/seller-web/seller/queryBaseConfig')

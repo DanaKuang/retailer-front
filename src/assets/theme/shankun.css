@@ -3,122 +3,122 @@ body {
   width: 100%;
   background: #F5F5F9;
 }
-.font-color {
+.shankun .font-color {
 	color: #7D1A53!important;
 }
-.font-color-lighter {
+.shankun .font-color-lighter {
 	color: #7D1A53!important;
 }
-.theme-bg-color {
+.shankun .theme-bg-color {
 	background: #7D1A53;
 }
-.theme-bg-color_lighter {
+.shankun .theme-bg-color_lighter {
 	background: #B96E88;
 }
-.disabled-btn {
+.shankun .disabled-btn {
 	background-color: #e8dfe2!important;
 }
-input[type="radio"]:checked ~.radio {
+.shankun input[type="radio"]:checked ~.radio {
 	background: #6A3314; /* 比如用在radio里面 */
 }
-.theme-mask-bgColor {
+.shankun .theme-mask-bgColor {
 	background: rgba(185,110,136,.6);
 }
-.border-color {
+.shankun .border-color {
 	border-color: #7D1A53;
 }
-.nav-bg-color {
+.shankun .nav-bg-color {
 	background: #fff;
 }
 
 /* 门店中心 */
-.main-info, .credits .top {
+.shankun .main-info, .shankun .credits .top {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/index_bg.png') top repeat;
 	background-size: 100%;
 }
-.menulist .credits .item {
+.shankun .menulist .credits .item {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_credits.png') left no-repeat;
 	background-size: .48rem .48rem;
 }
-.menulist .wallet .item {
+.shankun .menulist .wallet .item {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_wallet.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
-.menulist .order .item {
+.shankun .menulist .order .item {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_orderlist.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
-.menulist .qr .item {
+.shankun .menulist .qr .item {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_qrcode.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
-.menulist .sign .item {
+.shankun .menulist .sign .item {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_getlabel.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
-.menulist .promotion .item {
+.shankun .menulist .promotion .item {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_info.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
-.menulist .performance .item {
+.shankun .menulist .performance .item {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_performance_rule.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
 
 /* 填写信息 */
-#info .title p {
+.shankun #info .title p {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_info.png') left no-repeat;
 	background-size: .48rem .48rem;	
 }
-.info .button {
+.shankun .info .button {
 	/*background: #F5F5F9;*/
 }
 
 /* 我的业绩 */
-.icon-performance {
+.shankun .icon-performance {
 	width: .6667rem;
 	height: .54667rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_performance.png');
 	background-size: cover;
 }
-.icon-down {
+.shankun .icon-down {
 	width: .493rem;
 	height: .493rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_down.png');
 	background-size: cover;
 }
-.icon-rank {
+.shankun .icon-rank {
 	width: 3.74667rem;
 	height: 1.38667rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/icon_rank.png') center no-repeat;
 	background-size: contain;
 }
 
-.bg-wallet {
+.shankun .bg-wallet {
 	height: 5.227rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/bg_wallet.png') no-repeat;
 	background-size: cover;
 }
 
 /* 订单管理页 */
-.orderlist .tabpanel:after {
+.shankun .orderlist .tabpanel:after {
 	background: #7D1A53;
 }
 
 /* 扫码入库 */
-.warehouse {
+.shankun .warehouse {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/bg_warehouse.png') no-repeat;
 	background-position: 50% 30%;
 	background-size: 4.68rem 3rem;
 }
 
 /* 排行榜 */ 
-.rank {
+.shankun .rank {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_bg.png') top no-repeat;
 	background-size: cover;
 }
 
-.box-shadow-inner {
+.shankun .box-shadow-inner {
 	-webkit-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
 	-moz-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
 	-ms-box-shadow: inset 0 0 20px rgba(125, 26, 83, .4);
@@ -126,31 +126,24 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 我的二维码 */
-.myqrpost, .activityintro, .rewardintro {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-.myqrpost .storename {
+.shankun .myqrpost .storename {
 	color: #6E3E2B;
 }
-.myqresult {
+.shankun .myqresult {
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/bg_myqresult.png') top no-repeat;
 	background-size: cover;
 	background-clip: border-box;
 }
 
 /* 成功弹窗 */
-.uni-pop.success .modal-wrap {
+.shankun .uni-pop.success .modal-wrap {
 	padding-top: 2rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/success.png') no-repeat;
 	background-position: 50% 10%;
 	background-size: 2.667rem 1.92rem;
 }
 /* 失败弹窗 */
-.uni-pop.fail .modal-wrap {
+.shankun .uni-pop.fail .modal-wrap {
 	padding-top: 2rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/fail.png') no-repeat;
 	background-position: 50% 10%;
@@ -158,14 +151,14 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 去认证弹窗 */
-.yetcertifiedpop .modal-wrap {
+.shankun .yetcertifiedpop .modal-wrap {
 	padding-top: 1.4rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/verifyicon.png') no-repeat;
 	background-position: 50% 6%;
 	background-size: 1.76rem 1.76rem;	
 }
 /* 完善资料弹窗 */
-.uni-pop.completeinfo .modal-wrap {
+.shankun .uni-pop.completeinfo .modal-wrap {
 	padding-top: 2rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/verifyicon.png') no-repeat;
 	background-position: 50% 10%;
@@ -173,7 +166,7 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 去激活弹窗 */
-.uni-pop.activatepop .modal-wrap {
+.shankun .uni-pop.activatepop .modal-wrap {
 	padding-top: 2rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/verifyicon.png') no-repeat;
 	background-position: 50% 10%;
@@ -181,18 +174,18 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 业绩排行榜背景 */
-.rewardintro .rank-bg{
+.shankun .rewardintro .rank-bg{
 	width: 100%;
 	height: 100%;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_bg.png') no-repeat;
 	z-index: 1;
 	background-size: 100%;
-	padding: .426rem .266rem .746rem;
+	padding: .426rem .266rem 0;
 	box-sizing: border-box;
 }
 
 /* 业绩排行榜标题 */
-.rewardintro .rank-title{
+.shankun .rewardintro .rank-title{
 	width: 6.92rem;
 	height: 1.293rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_title.png') no-repeat;
@@ -202,7 +195,7 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 业绩排行榜奖品规则标题 */
-.rewardintro .rank-prize{
+.shankun .rewardintro .rank-prize {
 	width: 3.653rem;
 	height: .786rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_prize.png') no-repeat;
@@ -212,32 +205,32 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 业绩排行榜奖品规则字体颜色 */
-.rewardintro .prize-rule{
+.shankun .rewardintro .prize-rule {
 	border: .026rem solid #7D1A53;
 }
-.rewardintro .prize-rule th{
+.shankun .rewardintro .prize-rule th {
 	color: #7D1A53;
 }
-.rewardintro .prize-rule td{
+.shankun .rewardintro .prize-rule td {
 	color: #666666;
 	border: .013rem solid #B96E88; 
 }
-.rewardintro .prize-rule tr td:last-child{
+.shankun .rewardintro .prize-rule tr td:last-child{
 	border-right: 0;
 	border-bottom: 0;
 }
-.rewardintro .prize-rule tr td:first-child{
+.shankun .rewardintro .prize-rule tr td:first-child{
 	border-left: 0;
 	border-bottom: 0;
 }
-.rewardintro .prize-rule tr td:nth-of-type(even){
+.shankun .rewardintro .prize-rule tr td:nth-of-type(even){
 	border-right: 0;
 	border-left: 0;
 	border-bottom: 0;
 }
 
 /* 业绩排行榜奖品规则标题 */
-.rewardintro .rank-active{
+.shankun .rewardintro .rank-active {
 	width: 3.29rem;
 	height: .786rem;
 	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_active.png') no-repeat;
@@ -247,7 +240,7 @@ input[type="radio"]:checked ~.radio {
 }
 
 /* 业绩排行榜奖品规则说明 */
-.active-rule{
+.shankun .active-rule {
 	border: .026rem solid #7D1A53;
 	border-radius: .266rem;
 	color: #666666;

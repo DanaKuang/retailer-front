@@ -19,7 +19,7 @@
 		</div>
 		<div class="latest">
 			<span class="">最近三天明细</span>
-			<div class="show-more"><router-link :to="{path: '/retailer/exchangedetail', query: {sellerId: sellerId}}">更多 <em>>></em></router-link></div>
+			<div class="show-more"><router-link :to="{path: '/retailer/exchangedetail'}">更多 <em>>></em></router-link></div>
 		</div>
 		<div class="wallet-detail" v-if="isListTrue">
 			<wallet-detail
@@ -68,7 +68,7 @@ export default {
   	name: 'Wallet',
   	data () {
   		return {
-  			sellerId: this.$route.query.sellerId || '',
+  			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
   			popupVisible: false,
   			successWithdraw: false,
   			wallet: {},

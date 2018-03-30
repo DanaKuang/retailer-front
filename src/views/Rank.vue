@@ -20,7 +20,7 @@
 					<span>{{overview.totalNum}}</span>
 				</div>
 			</div>
-			<div class="rules"><router-link :to="{path: '/retailer/rewardintro', query: {sellerId: sellerId}}">活动规则</router-link></div>
+			<div class="rules"><router-link :to="{path: '/retailer/rewardintro'}">活动规则</router-link></div>
 			<div class="title">冠军排行榜</div>
 		</div>
 		<div class="page-infinite-wrapper list border-color border-box">
