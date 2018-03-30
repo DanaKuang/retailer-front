@@ -32,14 +32,30 @@ module.export = function (){
                 dist: '/opt/webapps',
                 privateKey: ''
 			},
-			prod: {
-				type: 'prod',
+            prod: {
+                type: 'prod',
                 host: '172.17.15.160',
                 port: 22,
                 user: '',
                 dist: '/opt/webapps',
                 privateKey: ''
-			}
+            },
+			prod1: {
+				type: 'prod1',
+                host: '172.17.15.153',
+                port: 22,
+                user: '',
+                dist: '/opt/webapps',
+                privateKey: ''
+			},
+            prod2: {
+                type: 'prod2',
+                host: '172.17.15.189',
+                port: 22,
+                user: '',
+                dist: '/opt/webapps',
+                privateKey: ''
+            }
 		},
 		center 		= new node_ssh(),
 		zipfile 	= O + '-' + dateFormat(new Date(), 'yyyy-mm-dd-HH-MM-ss') + '.zip';
@@ -71,7 +87,7 @@ module.export = function (){
             return deferred.promise
         }
 
-        // 第二步，重新打包生成dist目录
+        // 第二步，build
         var BUILD = function () {
         	var defered = Q.defer();
 	        process.stdout.write(colors.green('2、: build -> \n'));
@@ -83,7 +99,7 @@ module.export = function (){
 	        return defered.promise;
         }
 
-        // 第三步，将打包后dist目录下的文件copy到zip，并命名retailer-front
+        // 第三步，将build后dist目录下的文件copy到zip，并命名retailer-front
         var COPYTOZIP = function () {
         	var deferred = Q.defer();
             process.stdout.write(colors.green('3. copy -> \n'));
