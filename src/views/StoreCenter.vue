@@ -40,7 +40,7 @@
 			<div class="promotion menu bor-bt border-box">
 				<p class="item"><router-link :to="{path: '/retailer/activityintro'}">活动说明</router-link></p>
 			</div>
-			<div class="performance menu border-box">
+			<div class="performance menu border-box" v-if="location.hostname!=='sk.saotx.cn'">
 				<p class="item"><router-link :to="{path: '/retailer/rewardintro'}">业绩说明</router-link></p>
 			</div>
 		</div>
@@ -86,7 +86,7 @@
   				<p class="tip3">信息填写错误，请重新认证</p>
   				<button slot="button" class="theme-bg-color_lighter button"><router-link to="/retailer/info">重新认证</router-link></button>
     		</pop-modal>
-		</mt-popup>		
+		</mt-popup>
 
 		<!-- 审核中 -->
 		<mt-popup
@@ -457,7 +457,7 @@ export default {
 				@include border-radius(4px);
 			}
 		}
-	}	
+	}
 
 	/* 去认证弹窗 */
 	.yetcertifiedpop, .completeinfo {
