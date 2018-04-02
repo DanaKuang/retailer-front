@@ -7,13 +7,6 @@
 			"path": "/retailer/index"
 		},
 		{
-			"name": "我的业绩",
-			"className": "performance",
-			"img": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/nav_icon_performance.png",
-			"imgactive": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/nav_icon_performance-active.png",
-			"path": "/retailer/performance"
-		},
-		{
 			"name": "我的钱包",
 			"className": "wallet",
 			"img": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/nav_icon_wallet.png",

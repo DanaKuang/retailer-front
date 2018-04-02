@@ -40,7 +40,7 @@
 			<div class="promotion menu bor-bt border-box">
 				<p class="item"><router-link :to="{path: '/retailer/activityintro'}">活动说明</router-link></p>
 			</div>
-			<div class="performance menu border-box" v-if="location.hostname!=='sk.saotx.cn'">
+			<div class="performance menu border-box" v-if="isSK">
 				<p class="item"><router-link :to="{path: '/retailer/rewardintro'}">业绩说明</router-link></p>
 			</div>
 		</div>
@@ -156,7 +156,8 @@ export default {
   			}, //零售户信息
   			waiting: {}, //待审核or审核未通过文案内容
   			activate: {}, //激活弹窗文案内容
-  			sellerId: sessionStorage.getItem('sellerId') || getQueryString('sellerId') || ''
+  			sellerId: sessionStorage.getItem('sellerId') || getQueryString('sellerId') || '',
+            isSK: window.location.hostname !== 'sk.saotx.cn'
   		}
   	},
   	created() {
