@@ -9,6 +9,7 @@ test/e2e/reports
 selenium-debug.log
 *.log
 备份/
+zip/
 dist/
 ~tpl/
 .project
