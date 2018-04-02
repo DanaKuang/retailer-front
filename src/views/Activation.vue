@@ -87,13 +87,13 @@
               <!-- 手机号、获取验证码 -->
               <label for="">
                 <input class="yt-phone vcode" type="text" v-model="user.phoneNo" disabled="true" placeholder="手机号"/>
-                <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" @click="send" :disabled="ytVcodeBtnDisable" :class="{'disabled-btn': ytVcodeBtnDisable}">
+                <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" @click="send" :disabled="vcodeBtnDisable" :class="{'disabled-btn': vcodeBtnDisable}">
               </label>
 
               <!-- 验证码输入 -->
-              <input class="yt-vcode" @input="ytVcodeChange" type="text" v-model="ytVcode" placeholder="请输入验证码"/>
+              <input class="yt-vcode" @input="vcodeChange" type="text" v-model="vcode" placeholder="请输入验证码"/>
 
-              <button slot="button" class="theme-bg-color_lighter" :disabled="ytVcodeVerifyDisable" :class="{'disabled-btn': ytVcodeVerifyDisable}" @click="verify">确认</button>
+              <button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
             </pop-modal>
           </mt-popup>
         </div>
@@ -130,9 +130,9 @@ export default {
             // 烟台接入河南
             isYanTai: this.$route.query.actFlag == 't1', // 区分是否烟台，是的话为 t1
             ytCodePop: true, // 弹窗
-            ytVcode: '', // 验证码
-            ytVcodeBtnDisable: false, // 验证码获取按钮
-            ytVcodeVerifyDisable: true, // 验证码校验按钮
+            vcode: '', // 验证码
+            vcodeBtnDisable: false, // 验证码获取按钮
+            vcodeVerifyDisable: true, // 验证码校验按钮
             sellerInfo: {}
 		}
 	},
@@ -174,7 +174,7 @@ export default {
                 if ((me.count--) == 0) {
                     me.count = 60;
                     me.vcodeBtnDisable = false;
-                    me.ytVcodeBtnDisable = false;
+                    me.vcodeBtnDisable = false;
                     me.vcodeBtnMsg = '获取验证码';
                     window.clearInterval(interval);
                 } else {
@@ -200,17 +200,17 @@ export default {
 
             getVerify(me.user.phoneNo);
         } else { // 烟台
-            me.ytVcodeBtnDisable = true;
-            getVerify(me.ytPhone);
+            me.vcodeBtnDisable = true;
+            getVerify(me.user.phoneNo);
         }
     },
 
     // 烟台，验证码input事件
-    ytVcodeChange () {
-        if (this.ytVcode != '') {
-            this.ytVcodeVerifyDisable = false;
+    vcodeChange () {
+        if (this.vcode != '') {
+            this.vcodeVerifyDisable = false;
         } else {
-            this.ytVcodeVerifyDisable = true;
+            this.vcodeVerifyDisable = true;
         }
     },
 
@@ -251,8 +251,8 @@ export default {
 
         // 烟台
         if (this.isYanTai) {
-            this.ytVcodeVerifyDisable = true;
-            confirmSub(me.ytPhone, me.ytVcode);
+            this.vcodeVerifyDisable = true;
+            confirmSub(me.user.phoneNo, me.vcode);
         }
     },
 
@@ -265,8 +265,8 @@ export default {
             var phone = me.user.phoneNo,
             code = me.vcode;
         } else { // 烟台
-            var phone = me.ytPhone,
-            code = me.ytVcode;
+            var phone = me.user.phoneNo,
+            code = me.vcode;
         }
         Http.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + code + phone + '1' + code.length)
             .then(res => {
