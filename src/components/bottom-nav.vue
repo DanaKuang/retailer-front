@@ -39,8 +39,12 @@ export default {
 	},
 	methods: {
 		getNav() {
-			var me = this;
-			if (me.orgId === 'shankunzhongyan') {
+			var me = this, _orgId = '';
+			me.$bus.on('orgId', function (val) {
+				console.log(val);
+				_orgId = val;
+			});
+			if (_orgId === 'shankunzhongyan') {
 				Http.get('/retailer/static/shankun/nav.json')
 					.then(res => {
 						me.$data.menu = res.data.menu; //注意刘萌萌的$data写法

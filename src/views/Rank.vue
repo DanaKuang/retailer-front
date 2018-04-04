@@ -90,7 +90,7 @@ export default {
 				}) 
 		},
 		showOverview() {
-			Http.get('/seller-web/seller/select/income/count')
+			Http.get('/seller-web/achieve/scanSmokeCount?unit=1')
   				.then(res => {
   					var Data = res.data;
   					if (Data.ok) {
@@ -130,7 +130,7 @@ export default {
 										this.topthreeImage[i] = 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/third.png'
 									}
 								}
-							}							
+							}						
 						}
 					} else {
 						if (loading) {
@@ -155,7 +155,6 @@ export default {
 	}	
 }
 </script>
-
 <style lang="scss" scoped>
 @mixin border-radius($num) {
 	-webkit-border-radius: $num;

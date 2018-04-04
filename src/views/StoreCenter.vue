@@ -1,7 +1,7 @@
 <template>
 	<div id="storecenter" class="storecenter">
 		<div class="main-info flex border-box">
-			<div class="avatar flex-item" v-bind:class="{yetcertified: bool.yetcertified, certified: !bool.yetcertified, waiting: bool.waitingpop}">
+			<div class="avatar flex-item" :class="{yetcertified: bool.yetcertified, certified: !bool.yetcertified, waiting: bool.waitingpop}">
 				<a href="javascript:;"><img :src="user.headImg" alt=""></a>
 			</div>
 			<div class="brief flex-item">
@@ -131,7 +131,6 @@ import Http from 'assets/lib/http.js'
 import { Popup } from 'mint-ui'
 import popUp from 'components/pop-up'
 import popModal from 'components/pop-modal'
-import {getCookie, getQueryString} from 'assets/lib/publicMethod'
 
 export default {
   	name: 'StoreCenter',
@@ -156,31 +155,17 @@ export default {
   			}, //零售户信息
   			waiting: {}, //待审核or审核未通过文案内容
   			activate: {}, //激活弹窗文案内容
-  			sellerId: sessionStorage.getItem('sellerId') || getQueryString('sellerId') || '',
-            isSK: window.location.hostname !== 'sk.saotx.cn'
+  			sellerId: sessionStorage.getItem('sellerId') || '',
+            isSK: window.location.hostname !== 'sk.saotx.cn' //山昆先隐藏这个入口
   		}
   	},
   	created() {
-  		this.checkCookie();
+  		this.getRetailerInfo();
   	},
   	beforeDestroy () {
 		// this.$bus.emit('infopage', this.user);
   	},
   	methods: {
-  		checkCookie() {
-  			let me = this;
-            var REDIRECT = getCookie('REDIRECT');
-            if (REDIRECT) {
-                var routepath = (REDIRECT.match(/\/\w+$/))[0];
-                if (routepath === '/myqresult') {
-                	location.replace(location.origin + '/retailer/index.html#/retailer' + routepath + '?sellerId=' + me.sellerId)
-                } else if (routepath === '/activation') {
-                	location.replace(location.origin + '/retailer/index.html#/retailer' + routepath + '?sellerId=' + me.sellerId + '&actFlag=' + getQueryString('actFlag'))
-                }
-            } else {
-				me.getRetailerInfo();
-            }
-        },
   		// 判断是否认证，展示店家信息
   		getRetailerInfo() {
             Http.get('/seller-web/seller/main/' + this.sellerId).then(res => {

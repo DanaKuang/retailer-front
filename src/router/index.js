@@ -24,130 +24,116 @@ import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)
 
 var routes = [{
-  path: '*', 
-  redirect: '/'
-}, {
-  path: '/retailer/scan',
-  component: Scan,
-  name: 'Scan',
-  meta: {
-    title: '扫码入库'
-  }
-}, {
-  path: '/',
-  redirect: '/retailer/index',
+    path: '*', 
+    redirect: '/'
 },  {
-  path: '/retailer/index',
-  component: StoreCenter,
-  name: 'StoreCenter',
-  meta: {
-    title: '门店中心'
-  }
+    path: '/',
+    redirect: '/retailer/index',
+},  {
+    path: '/retailer/index',
+    component: StoreCenter,
+    name: 'StoreCenter',
+    meta: {
+        title: '门店中心'
+    }
+},  {
+    path: '/retailer/info',
+    component: Info,
+    name: 'Info',
+    meta: {
+        title: '门店中心'
+    }
+},  {
+    path: '/retailer/performance',
+    component: Performance,
+    name: 'Performance',
+    meta: {
+        title: '业绩排行榜'
+    }
+},  {
+    path: '/retailer/wallet',
+    component: Wallet,
+    name: 'Wallet',
+    meta: {
+        title: '我的钱包'
+    }
 }, {
-  path: '/retailer/info',
-  component: Info,
-  name: 'Info',
-  meta: {
-    title: '门店中心'
-  }
-}, {
-  path: '/retailer/performance',
-  component: Performance,
-  name: 'Performance',
-  meta: {
-    title: '业绩排行榜'
-  }
-}, {
-  path: '/retailer/wallet',
-  component: Wallet,
-  name: 'Wallet',
-  meta: {
-    title: '我的钱包'
-  }
-}, {
-  path: '/retailer/exchangedetail',
-  component: Exchangedetail,
-  name: 'Exchangedetail',
-  meta: {
-    title: '账单明细'
-  }
-}, {
-  path: '/retailer/credits',
-  component: Credits,
-  name: 'Credits',
-  meta: {
-    title: '我的积分'
-  }
-}, {
-  path: '/retailer/orderdetail',
-  component: Orderdetail,
-  name: 'Orderdetail',
-  meta: {
-    title: '订单列表'
-  }
-}, {
-  path: '/retailer/rank',
-  component: Rank,
-  name: 'Rank',
-  meta: {
-    title: '业绩排行榜'
-  }
-}, {
-  path: '/retailer/warehousing',
-  component: Warehousing,
-  name: 'Warehousing',
-  meta: {
-    title: '扫码入库'
-  }
-}, {
-  path: '/retailer/activation',
-  component: Activation,
-  name: 'Activation',
-  meta: {
-    title: '零售户激活'
-  }
-}, {
-  path: '/retailer/myqresult',
-  component: Myqresult,
-  name: 'Myqresult',
-  meta: {
-    title: '零售户店码'
-  }
-}, {
-  path: '/retailer/myqrpost',
-  component: MyQrpost,
-  name: 'MyQrpost',
-  meta: {
-    title: '我的二维码'
-  }
-}, {
-  path: '/retailer/activityintro',
-  component: ActivityIntro,
-  name: 'ActivityIntro',
-  meta: {
-    title: '活动说明'
-  }
-}, {
-  path: '/retailer/rewardintro',
-  component: RewardIntro,
-  name: 'RewardIntro',
-  meta: {
-    title: '业绩说明'
-  }
-}, {
-  path: '/retailer/abnormal',
-  component: Abnormal,
-  name: 'Abnormal',
-  meta: {
-    title: ''
-  }
-}, {
-  path: '/retailer/ytscancode',
-  component: YantaiScanCode,
-  name: 'YantaiScanCode',
-  meta: {
-    title: '扫码'
-  }
+    path: '/retailer/exchangedetail',
+    component: Exchangedetail,
+    name: 'Exchangedetail',
+    meta: {
+        title: '账单明细'
+    }
+},  {
+    path: '/retailer/credits',
+    component: Credits,
+    name: 'Credits',
+    meta: {
+        title: '我的积分'
+    }
+},  {
+    path: '/retailer/orderdetail',
+    component: Orderdetail,
+    name: 'Orderdetail',
+    meta: {
+        title: '订单列表'
+    }
+},  {
+    path: '/retailer/rank',
+    component: Rank,
+    name: 'Rank',
+    meta: {
+        title: '业绩排行榜'
+    }
+},  {
+    path: '/retailer/warehousing',
+    component: Warehousing,
+    name: 'Warehousing',
+    meta: {
+        title: '扫码入库'
+    }
+},  {
+    path: '/retailer/activation',
+    component: Activation,
+    name: 'Activation',
+    meta: {
+        title: '零售户激活'
+    }
+},  {
+    path: '/retailer/myqresult',
+    component: Myqresult,
+    name: 'Myqresult',
+    meta: {
+        title: '零售户店码'
+    }
+},  {
+    path: '/retailer/myqrpost',
+    component: MyQrpost,
+    name: 'MyQrpost',
+    meta: {
+        title: '我的二维码'
+    }
+},  {
+    path: '/retailer/activityintro',
+    component: ActivityIntro,
+    name: 'ActivityIntro',
+    meta: {
+        title: '活动说明'
+    }
+},  {
+    path: '/retailer/rewardintro',
+    component: RewardIntro,
+    name: 'RewardIntro',
+    meta: {
+        title: '业绩说明'
+    }
+},  {
+    path: '/retailer/abnormal',
+    component: Abnormal,
+    name: 'Abnormal',
+    meta: {
+        title: ''
+    }
 }]
 
 const scrollBehavior = (to, from, savedPosition) => {
@@ -159,8 +145,9 @@ const scrollBehavior = (to, from, savedPosition) => {
 }
 
 const router = new Router({
-  routes,
-  scrollBehavior
+    mode: 'history',
+    routes,
+    scrollBehavior
 })
 
 export default router

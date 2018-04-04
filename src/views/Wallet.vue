@@ -62,7 +62,8 @@ import popModal from 'components/pop-modal'
 import loadingIng from 'components/loading-ing'
 import noMore from 'components/no-more'
 import noThing from 'components/no-thing'
-import { InfiniteScroll } from 'mint-ui';
+import { InfiniteScroll } from 'mint-ui'
+import {mapGetters} from 'vuex'
 
 export default {
   	name: 'Wallet',
@@ -208,9 +209,9 @@ export default {
   			return val ? val.toFixed(2) : '0.00'
   		}
   	},
-  	computed: {
-
-  	},
+  	computed: mapGetters([
+  		'wxConfig'
+  	]),
    	components: { 
   		walletDetail,
   		popModal,

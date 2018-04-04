@@ -19,7 +19,8 @@ require('assets/public/common.css')
 import bottomNav from 'components/bottom-nav'
 import Http from 'assets/lib/http.js'
 import wx from 'weixin-js-sdk'
-import {getCookie, deleteCookie} from 'assets/lib/publicMethod'
+// import {getbaseInfo} from 'api/baseInfo'
+import {mapActions} from 'vuex'
 
 export default {
     name: 'app',
@@ -41,40 +42,31 @@ export default {
         this.getweixintoken();
     },
     mounted() {
-        this.delCookie()
+        
     },
     methods: {
-        delCookie() {
-            var REDIRECT = getCookie('REDIRECT');
-            if (REDIRECT) {
-                if (sessionStorage.orgId === 'shankunzhongyan') {
-                    deleteCookie('REDIRECT', '.sk.saotx.cn');
-                } else if (sessionStorage.orgId === 'henanzhongyan') {
-                    deleteCookie('REDIRECT', '.weiop.taozuike.com');
-                }
-            }
-        },
         getCommonConfig() {
             var me = this;
-            Http.get('/seller-web/seller/queryBaseConfig')
-                .then(res => {
-                    var Data = res.data;
-                    if (Data.ok) {
-                        var data = Data.data;
-                        me.orgId = data.orgId;
-                        sessionStorage.setItem('orgId', me.orgId);
-                        if (me.orgId === 'shankunzhongyan') {
-                            require('assets/theme/shankun.css');
-                            this.companyIdClass.classList.add('shankun')
-                        } else {
-                            require('assets/theme/henan.css');
-                            this.companyIdClass.classList.add('henan')
-                        }
+            Http.get('/seller-web/seller/queryBaseConfig').then(res => {
+                var Data = res.data;
+                if (Data.ok) {
+                    var data = Data.data;
+                    me.orgId = data.orgId;
+                    this.getBaseInfo(me.orgId);
+                    sessionStorage.setItem('orgId', me.orgId);
+                    me.$bus.emit('orgId', me.orgId);
+                    if (me.orgId === 'shankunzhongyan') {
+                        require('assets/theme/shankun.css');
+                        this.companyIdClass.classList.add('shankun')
                     } else {
-                        alert(Data.msg);
-                        return 
+                        require('assets/theme/henan.css');
+                        this.companyIdClass.classList.add('henan')
                     }
-                })
+                } else {
+                    alert(Data.msg);
+                    return 
+                }
+            })
         },
         getweixintoken () {
             let me = this;
@@ -87,11 +79,12 @@ export default {
                     me.noncestr = data.noncestr;
                     me.signature = data.signature
                     me.timestamp = data.timestamp;
+                    this.getWxInfo(data)
                     sessionStorage.setItem('appid', data.appid);
                     sessionStorage.setItem('noncestr', data.noncestr);
                     sessionStorage.setItem('signature', data.signature);
                     sessionStorage.setItem('timestamp', data.timestamp);
-
+                    
                     wx.config({
                         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要 查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                         appId: me.appid, // 必填，企业号的唯一标识，此处填写企业号corpid
@@ -205,7 +198,11 @@ export default {
 
                 }
             });
-        }
+        },
+        ...mapActions([
+            'getBaseInfo',
+            'getWxInfo'
+        ])
     },
     computed: {
         companyIdClass () {

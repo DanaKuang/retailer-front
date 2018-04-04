@@ -1,4 +1,7 @@
 const state = {
+	baseConfig: {},
 	wxConfig: {},
-	seller: {}
+	sellerInfo: {}
 }
+
+export default state

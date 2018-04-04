@@ -179,6 +179,14 @@ body {
 	background-size: 1.76rem 1.76rem;
 }
 
+/* 去激活弹窗 */
+.henan .uni-pop.activatepop .modal-wrap {
+	padding-top: 2rem;
+	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/verifyicon.png') no-repeat;
+	background-position: 50% 10%;
+	background-size: 1.76rem 1.76rem;	
+}
+
 /* 业绩排行榜背景 */
 .henan .rewardintro .rank-bg{
 	width: 100%;

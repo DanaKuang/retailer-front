@@ -88,8 +88,7 @@ export default {
   	},
   	methods: {
   		showOverviewPerformance() {
-  			// /seller-web/achieve/scanSmokeCount?unit=1
-  			Http.get('/seller-web/seller/select/income/count')
+  			Http.get('/seller-web/achieve/scanSmokeCount?unit=1')
   				.then(res => {
   					var Data = res.data;
   					if (Data.ok) {
