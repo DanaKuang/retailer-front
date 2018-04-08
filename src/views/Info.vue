@@ -421,6 +421,7 @@ export default {
 		        				}
 		        			} else {
 		        				// 激活失败
+		        				me.loadingpop = false;
 		        				this.submitFlag = false;
 		        				me.successState.text = Data.msg;
 		        			}
@@ -440,7 +441,7 @@ export default {
 	      		}
       		} else {
       			this.confirmPop = false;
-      			this.$router.push({path:'/retailer/index'})
+      			// this.$router.push({path:'/retailer/index'})
       		}
       	}
   	}
