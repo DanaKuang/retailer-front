@@ -155,7 +155,7 @@ export default {
   			}, //零售户信息
   			waiting: {}, //待审核or审核未通过文案内容
   			activate: {}, //激活弹窗文案内容
-  			sellerId: sessionStorage.getItem('sellerId') || '',
+  			sellerId: this.$route.query.sellerId || sessionStorage.getItem('sellerId') || '',
             isSK: window.location.hostname !== 'sk.saotx.cn' //山昆先隐藏这个入口
   		}
   	},
