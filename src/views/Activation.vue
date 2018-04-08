@@ -121,7 +121,7 @@ export default {
 			vcodeBtnMsg: '获取验证码',
 			count: 60,
 			timer: null,
-			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
+			sellerId: this.$route.query.sellerId || sessionStorage.getItem('sellerId') || '',
 			user: {},
 			activateState: {
 				text: ''
