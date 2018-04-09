@@ -2,22 +2,22 @@
 	"menu": [{
 			"name": "门店中心",
 			"className": "storecenter",
-			"img": "/src/assets/image/common/nav_icon_storecenter.png",
-			"imgactive": "/src/assets/image/henan/nav_icon_storecenter-active.png",
+			"img": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/nav_icon_storecenter.png",
+			"imgactive": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/nav_icon_storecenter-active.png",
 			"path": "/retailer/index"
 		},
 		{
 			"name": "我的业绩",
 			"className": "performance",
-			"img": "/src/assets/image/common/nav_icon_performance.png",
-			"imgactive": "/src/assets/image/henan/nav_icon_performance-active.png",
+			"img": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/nav_icon_performance.png",
+			"imgactive": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/nav_icon_performance-active.png",
 			"path": "/retailer/performance"
 		},
 		{
 			"name": "我的钱包",
 			"className": "wallet",
-			"img": "/src/assets/image/common/nav_icon_wallet.png",
-			"imgactive": "/src/assets/image/henan/nav_icon_wallet-active.png",
+			"img": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/nav_icon_wallet.png",
+			"imgactive": "https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/henan/nav_icon_wallet-active.png",
 			"path": "/retailer/wallet"
 		}
 	],

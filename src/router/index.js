@@ -2,11 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import StoreCenter from '@/views/StoreCenter.vue'
 import Info from '@/views/Info.vue'
-import Scan from '@/views/Scan.vue'
 import Performance from '@/views/Performance.vue'
 import Wallet from '@/views/Wallet.vue'
 import Exchangedetail from '@/views/Exchangedetail.vue'
-import Credits from '@/views/Credits.vue'
 import Orderdetail from '@/views/Orderdetail'
 import Rank from '@/views/Rank.vue'
 import Warehousing from '@/views/Warehousing.vue'
@@ -63,13 +61,6 @@ var routes = [{
     name: 'Exchangedetail',
     meta: {
         title: '账单明细'
-    }
-},  {
-    path: '/retailer/credits',
-    component: Credits,
-    name: 'Credits',
-    meta: {
-        title: '我的积分'
     }
 },  {
     path: '/retailer/orderdetail',

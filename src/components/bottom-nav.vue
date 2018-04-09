@@ -2,7 +2,7 @@
 	<nav id="nav" class="nav-bg-color" v-if="path == 'storecenter' || path == 'performance' || path == 'warehousing' || path == 'wallet' ">
 		<transition name="fade">
 			<ul>
-				<li class="menu" v-for="(item,idx) in menu" :class="[{'font-color': path == item.className}, item.className]">
+				<li class="menu" v-for="(item,idx) in navList" :class="[{'font-color': path == item.className}, item.className]">
 					<router-link :to="{path: item.path}">
 						<img :src="path == item.className ? item.imgactive : item.img" alt="">
 						{{item.name}}
@@ -14,19 +14,19 @@
 </template>
 
 <script>
-import Http from 'assets/lib/http.js'
+import {mapGetters} from 'vuex'
 
 export default {
 	name: 'bottom-nav',
 	data () {
 		return {
 			storecenter: true,
-			menu: [],
-			orgId: sessionStorage.getItem('orgId'),
-			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
 			path: ''
 		}
 	},
+	computed: mapGetters([
+        'navList'
+    ]),
 	watch: {
 		'$route' (to, from) {
             // 对路由变化作出响应...
@@ -34,28 +34,9 @@ export default {
         }
 	},
 	created() {
-		this.getNav();
 		this.initPath();
 	},
 	methods: {
-		getNav() {
-			var me = this, _orgId = '';
-			me.$bus.on('orgId', function (val) {
-				console.log(val);
-				_orgId = val;
-			});
-			if (_orgId === 'shankunzhongyan') {
-				Http.get('/retailer/static/shankun/nav.json')
-					.then(res => {
-						me.$data.menu = res.data.menu; //注意刘萌萌的$data写法
-					})
-			} else {
-				Http.get('/retailer/static/henan/nav.json')
-					.then(res => {
-						me.$data.menu = res.data.menu; //注意刘萌萌的$data写法
-					})
-			}
-		},
 		initPath() {
 			this.path = (this.$route.name).toLowerCase();
 		}
@@ -90,4 +71,3 @@ nav {
 	}
 }
 </style>
-

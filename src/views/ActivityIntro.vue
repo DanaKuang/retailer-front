@@ -1,15 +1,14 @@
 <template>
 	<div class="activityintro">
-		<img class="wholeimg" :src="image" alt="">
+		<img class="wholeimg" :src="seller.SELLER_CURRENT_ACTIVITY_DESC" alt="">
 	</div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default {
-	data() {
-		return {
-			image: sessionStorage.getItem('activityintro')
-		}
-	},
+	computed: mapGetters([
+		'seller'
+	]),
 	mounted() {
 		this.$parent.loadingPage = false; //去掉loading
 	}

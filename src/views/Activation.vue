@@ -1,180 +1,144 @@
 <template>
 	<div class="activation">
-    <!-- kk：原来 -->
-		<div v-if="!isYanTai">
-            <div class="item-wrap">
-                <div class="item">
-                    <span class="name">经营人姓名</span>：
-                    <div class="content">{{user.ownerName}}</div>
-                </div>
-                <div class="item">
-                    <span class="name">手机号</span>：
-                    <div class="content">{{user.phoneNo}}</div>
-                </div>
-                <div class="item">
-                    <span class="name">店铺名称</span>：
-                    <div class="content">{{user.shopName}}</div>
-                </div>
-                <div class="item">
-                    <span class="name">门店地址</span>：
-                    <div class="content">{{user.addrDetail}}</div>
-                </div>
-                <div class="item certificate">
-                    <span class="name">烟草专卖零售许可证件号</span>：
-                    <div class="content">{{user.licenceNo}}</div>
-                </div>
-                <div class="item">
-                    <span class="name">区域</span>：
-                    <div class="content">{{user.districtName}}</div>
-                </div>
-                <div class="item">
-                    <span class="name">业态</span>：
-                    <div class="content">{{user.commercialName}}</div>
-                </div>
+        <div class="item-wrap">
+            <div class="item">
+                <span class="name">经营人姓名</span>：
+                <div class="content">{{seller.sellerInfo && seller.sellerInfo.ownerName}}</div>
             </div>
-
-            <button class="confirm theme-bg-color_lighter" :disabled="confirmDisable" :class="{'disabled-btn': confirmDisable}" @click="confirm">确认信息并激活</button>
-
-            <!-- 发送验证码弹窗 -->
-            <mt-popup
-            class="uni-pop pop border-box"
-            v-if="codePop"
-            v-model="codePop"
-            :closeOnClickModal="false"
-            position="center">
-            <pop-modal>
-              <div class="verify">
-                <label for="">
-                  <input class="vcode border-box" type="text" v-model="vcode" :disabled="vcodeInputDisable">
-                  <input class="theme-bg-color_lighter vcode-btn border-box" type="button" v-model="vcodeBtnMsg" readonly="true" @click="send" :disabled="vcodeBtnDisable" :class="{'disabled-btn': vcodeBtnDisable}">
-                </label>
-              </div>
-              <p class="font-color tip1">请获取验证码</p>
-              <p class="tip3">验证码会发送到<span class="font-color">{{user.phoneNo}}</span>手机里</p>
-              <button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
-            </pop-modal>
-            </mt-popup>
+            <div class="item">
+                <span class="name">手机号</span>：
+                <div class="content">{{seller.sellerInfo && seller.sellerInfo.phoneNo}}</div>
+            </div>
+            <div class="item certificate">
+                <span class="name">烟草专卖零售许可证件号</span>：
+                <div class="content">{{seller.sellerInfo && seller.sellerInfo.licenceNo}}</div>
+            </div>
+            <div class="item">
+                <span class="name">店铺名称</span>：
+                <div class="content">{{seller.sellerInfo && seller.sellerInfo.shopName}}</div>
+            </div>
+            <div class="item">
+                <span class="name">门店地址</span>：
+                <div class="content">{{seller.sellerInfo && seller.sellerInfo.addrDetail}}</div>
+            </div>
+            <div class="item">
+                <span class="name">区域</span>：
+                <div class="content">{{seller.sellerInfo && seller.sellerInfo.districtName}}</div>
+            </div>
+            <div class="item">
+                <span class="name">业态</span>：
+                <div class="content">{{seller.sellerInfo && seller.sellerInfo.commercialName}}</div>
+            </div>
         </div>
+
+        <button class="confirm theme-bg-color_lighter" :disabled="confirmDisable" :class="{'disabled-btn': confirmDisable}" @click="confirm">确认信息并激活</button>
+
+        <!-- 发送验证码弹窗 -->
+        <mt-popup
+        class="uni-pop pop border-box"
+        v-if="codePop"
+        v-model="codePop"
+        :closeOnClickModal="false"
+        position="center">
+            <pop-modal>
+                <div class="verify">
+                    <label for="">
+                        <input class="vcode border-box" type="text" v-model="vcode" :disabled="vcodeInputDisable">
+                        <input class="theme-bg-color_lighter vcode-btn border-box" type="button" v-model="vcodeBtnMsg" readonly="true" @click="send" :disabled="vcodeBtnDisable" :class="{'disabled-btn': vcodeBtnDisable}">
+                    </label>
+                </div>
+                <p class="font-color tip1">请获取验证码</p>
+                <p class="tip3">验证码会发送到<span class="font-color">{{seller.sellerInfo && seller.sellerInfo.phoneNo}}</span>手机里</p>
+                <button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
+            </pop-modal>
+        </mt-popup>
 
         <!-- 成功/失败弹窗 -->
         <mt-popup
-          class="uni-pop pop border-box"
-          v-if="confirmPop"
-          v-model="confirmPop"
-          :class="{success: successActivate, fail: !successActivate}"
-          :closeOnClickModal="false"
-          position="center">
-          <pop-modal>
-            <p class="font-color tip1">{{activateState.text}}</p>
-            <p class="tip3">{{activateState.tips}}</p>
-            <button slot="button" class="theme-bg-color_lighter" @click="iget">确认</button>
-          </pop-modal>
-        </mt-popup>
-
-        <!-- 老韩：烟台接到河南 -->
-        <div v-if="isYanTai" class="zhazhazha">
-          <!-- 发送验证码弹窗 -->
-          <mt-popup
-            class="uni-pop pop"
-            v-model="ytCodePop"
-            :closeOnClickModal="false"
-            position="center"
-            >
+        class="uni-pop pop border-box"
+        v-if="confirmPop"
+        v-model="confirmPop"
+        :class="{success: successActivate, fail: !successActivate}"
+        :closeOnClickModal="false"
+        position="center">
             <pop-modal>
-              <!-- 烟草证号 -->
-              <input class="yt-licenceNo" type="text" v-model="user.licenceNo" disabled="true" placeholder="烟草证号"/>
-
-              <!-- 手机号、获取验证码 -->
-              <label for="">
-                <input class="yt-phone vcode" type="text" v-model="user.phoneNo" disabled="true" placeholder="手机号"/>
-                <input class="theme-bg-color_lighter vcode-btn" type="button" v-model="vcodeBtnMsg" @click="send" :disabled="ytVcodeBtnDisable" :class="{'disabled-btn': ytVcodeBtnDisable}">
-              </label>
-
-              <!-- 验证码输入 -->
-              <input class="yt-vcode" @input="ytVcodeChange" type="text" v-model="ytVcode" placeholder="请输入验证码"/>
-
-              <button slot="button" class="theme-bg-color_lighter" :disabled="ytVcodeVerifyDisable" :class="{'disabled-btn': ytVcodeVerifyDisable}" @click="verify">确认</button>
+                <p class="font-color tip1">{{activateState.text}}</p>
+                <p class="tip3">{{activateState.tips}}</p>
+                <button slot="button" class="theme-bg-color_lighter" @click="iget">确认</button>
             </pop-modal>
-          </mt-popup>
-        </div>
+        </mt-popup>
 	</div>
 </template>
 
 <script>
+import Fetch from 'api/fetch.js'
 import Http from 'assets/lib/http.js'
+import {mapGetters, mapMutations} from 'vuex'
 import popModal from 'components/pop-modal'
-import {getQueryString} from 'assets/lib/publicMethod'
 
 export default {
 	name: 'Activation',
+    computed: mapGetters([
+        'sellerId',
+        'seller'
+    ]),
 	data () {
 		return {
-      // 原来
 			vcode: '',
 			codePop: true, // 验证码弹窗
-			confirmPop: false, // 激活成功or失败弹窗
-			successActivate: false, // 激活成功的标识
-			confirmDisable: true, // 确认激活按钮
+			vcodeBtnMsg: '获取验证码',
 			vcodeInputDisable: true, // 填写验证码输入框
 			vcodeBtnDisable: false, // 获取验证码按钮
 			vcodeVerifyDisable: true, // 验证码校验按钮
-			vcodeBtnMsg: '获取验证码',
-			count: 60,
-			timer: null,
-			sellerId: this.$route.query.sellerId || sessionStorage.getItem('sellerId') || '',
-			user: {},
+			confirmDisable: true, // 确认激活按钮
+            confirmPop: false, // 激活成功or失败弹窗
+            successActivate: false, // 激活成功的标识
 			activateState: {
 				text: ''
 			},
-
             // 烟台接入河南
-            isYanTai: this.$route.query.actFlag == 't1', // 区分是否烟台，是的话为 t1
-            ytCodePop: true, // 弹窗
-            ytVcode: '', // 验证码
-            ytVcodeBtnDisable: false, // 验证码获取按钮
-            ytVcodeVerifyDisable: true, // 验证码校验按钮
-            sellerInfo: {}
+            isYanTai: this.$route.query.actFlag == 't1'
 		}
 	},
 	created () {
         this.getRetailerInfo();
-        if(this.isYanTai) {
-            this.$parent.loadingPage = false; //去掉loading
-        }
-	},
-	mounted () {
-
-	},
-	beforeUpdate () {
-
-	},
-	updated () {
-
 	},
 	methods: {
 		getRetailerInfo() {
-			Http.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId)
-            .then(res => {
-                var Data = res.data;
-                if (Data.ok) {
+            if (!this.sellerId && this.$route.query.sellerId) {
+                this.setSellerId(this.$route.query.sellerId)
+            }
+			Fetch.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId || '')
+                .then(res => {
                     this.$parent.loadingPage = false; //去掉loading
-                    this.user = Data.data;
-                    if (this.isYanTai) {
-                        this.sellerInfo = Data.data;
+                    if (res.ok) {
+                        var Data = res.data;
+                        if (!this.seller.sellerInfo) {
+                            // detail接口和main字段相同，但结构又不一样！
+                            var seller = {
+                                sellerInfo: Data
+                            }
+                            this.setRetailer(seller);
+                        }
                     }
-                }
-            })
+                })
 		},
 
 		// 发送验证码
 		send() {
-        var me = this;
-        function getVerify (phone) {
+            this.vcodeBtnDisable = true;
+            this.vcodeInputDisable = false;
+            this.vcodeVerifyDisable = false;
+            this.getVerify(this.seller.sellerInfo.phoneNo);
+        },
+
+        getVerify(phone) {
+            let me = this;
+            let count = 60;
             var interval = window.setInterval(function() {
-                if ((me.count--) == 0) {
-                    me.count = 60;
+                if ((count--) == 0) {
+                    count = 60;
                     me.vcodeBtnDisable = false;
-                    me.ytVcodeBtnDisable = false;
                     me.vcodeBtnMsg = '获取验证码';
                     window.clearInterval(interval);
                 } else {
@@ -186,130 +150,63 @@ export default {
                     var Data = res.data
                     if (Data.ret != 200000) {
                         alert(Data.message)
-                    } else {
-                        me.user.vcode = Data.data
                     }
                 })
-        }
+        },
 
-        //!me.vcodeBtnDisable
-        if (!this.isYanTai) {
-            me.vcodeBtnDisable = true;
-            me.vcodeInputDisable = false;
-            me.vcodeVerifyDisable = false;
-
-            getVerify(me.user.phoneNo);
-        } else { // 烟台
-            me.ytVcodeBtnDisable = true;
-            getVerify(me.user.phoneNo);
-        }
-    },
-
-    // 烟台，验证码input事件
-    ytVcodeChange () {
-        if (this.ytVcode != '') {
-            this.ytVcodeVerifyDisable = false;
-        } else {
-            this.ytVcodeVerifyDisable = true;
-        }
-    },
-
-    // 验证码输入后的校验
-    verify () {
-        var me = this;
-        function confirmSub (phone, code) {
-            Http.get('/admin/login/checkDynamicCode?mobile=' + phone + '&code=' + code)
-                .then(res => {
-                    var Data = res.data
-                    // 原来
-                    if (!me.isYanTai) {
+        // 校验验证码
+        verify () {
+            Http.get('/admin/login/checkDynamicCode?mobile=' + this.seller.sellerInfo.phoneNo + '&code=' + this.vcode)
+                    .then(res => {
+                        var Data = res.data
                         if (Data.data) {
-                            me.codePop = false;
-                            me.confirmDisable = false;
+                            this.codePop = false;
+                            this.confirmDisable = false;
+                            if (this.isYanTai) {
+                                this.confirm()
+                            }
                         } else {
                             alert(Data.message);
                             this.vcodeVerifyDisable = false;
                             return
                         }
-                    } else { // 烟台
-                        if (Data.data) { // true
-                        // 调用确认激活方法
-                            me.confirm();
-                        } else {
-                            alert(Data.message);
-                            return
-                        }
+                    })
+        },
+
+        // 确认激活
+        confirm () {
+            this.confirmDisable = true;
+            var me = this;
+            Http.get('/seller-web/consumer/active?sellerId=' + this.sellerId + '&valid=' + this.vcode + this.seller.sellerInfo.phoneNo + '1' + this.vcode.length)
+                .then(res => {
+                    var Data = res.data;
+                    me.confirmPop = true;
+                    if (Data.ok) {
+                        // 激活成功
+                        me.successActivate = true;
+                        me.activateState.text = '恭喜您，激活成功！';
+                        me.activateState.tips = '赶紧去完善基本信息吧！'
+                    } else {
+                        // 激活失败
+                        me.activateState.text = '很抱歉激活失败！';
+                        me.activateState.tips = '请重新激活'
                     }
                 })
-            }
+        },
 
-        // 原来：!this.vcodeVerifyDisable
-        if (!this.isYanTai) {
-            this.vcodeVerifyDisable = true;
-            confirmSub(me.user.phoneNo, me.vcode);
-        }
-
-        // 烟台
-        if (this.isYanTai) {
-            this.ytVcodeVerifyDisable = true;
-            confirmSub(me.user.phoneNo, me.ytVcode);
-        }
-    },
-
-    // 确认激活
-    confirm () {
-        this.confirmDisable = true;
-        var me = this;
-        // 原来
-        if (!this.isYanTai) {
-            var phone = me.user.phoneNo,
-            code = me.vcode;
-        } else { // 烟台
-            var phone = me.user.phoneNo,
-            code = me.ytVcode;
-        }
-        Http.get('/seller-web/consumer/active?sellerId=' + me.sellerId + '&valid=' + code + phone + '1' + code.length)
-            .then(res => {
-                var Data = res.data;
-                me.confirmPop = true;
-                if (Data.ok) {
-                    // 激活成功
-                    me.successActivate = true;
-                    me.activateState.text = '恭喜您，激活成功！';
-                    if (!me.isYanTai) {
-                        me.activateState.tips = '赶紧去零售户中心管理店铺吧！'
-                    } else {
-                        me.activateState.tips = '赶紧去完善基本信息吧！'
-                        this.sellerInfo.authStatus = 2;
-                        sessionStorage.setItem('user', JSON.stringify(me.sellerInfo))
-                    }
-                } else {
-                    // 激活失败
-                    me.activateState.text = '很抱歉激活失败！';
-                    me.activateState.tips = '请重新激活'
-                }
-            })
-    },
-
-    // 激活与否的弹窗，确认按钮
-    iget () {
-        if (this.successActivate) {
-            // 原来
-            if (!this.isYanTai) {
-                this.$router.push({path:'/retailer/index'})
-            } else {
-                // 烟台
-                // 跳到填写信息
+        // 激活与否的弹窗，确认按钮
+        iget () {
+            if (this.successActivate) {
                 this.$router.push({path:'/retailer/info'})
+            } else {
+                this.confirmPop = false;
+                this.confirmDisable = false
             }
-        } else {
-            this.confirmPop = false;
-            this.confirmDisable = false
-        }
-    }
-	},
-	computed: {
-
+        },
+        ...mapMutations({
+            setRetailer: 'setRetailer',
+            setSellerId: 'setSellerId'
+        })
 	},
 	components: {
 		popModal

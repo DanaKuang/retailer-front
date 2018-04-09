@@ -8,10 +8,10 @@
 module.exports = [
 	{
 	    routepath: '/seller-web',
-	    proxyTarget: 'https://cs.weiop.taozuike.com'
+	    proxyTarget: 'https://cs-weiop.saotianxia.vip'
 	}, {
 	    routepath: '/seller-manager',
-	    proxyTarget: 'https://cs.weiop.taozuike.com'    
+	    proxyTarget: 'https://cs-weiop.saotianxia.vip'    
 	}, {
 	    routepath: '/admin/login',
 	    proxyTarget: 'https://sk.saotx.cn'   

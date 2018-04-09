@@ -28,19 +28,22 @@
 				</div>
 			</div>
 		</div>
-		<button class="scan theme-bg-color" @click="scan"><img src="" alt="">扫一扫</button>
+		<button class="scan theme-bg-color" @click="scan">扫一扫</button>
 		<p class="tip font-color-lighter">绑定店码后，扫烟包二维码，中奖概率提升10%</p>
 	</div>
 </template>
 <script>
-import Http from 'assets/lib/http.js'
+import {showRetailerInfo} from 'api/myqresult'
 import wx from 'weixin-js-sdk'
+import {mapGetters} from 'vuex'
 
 export default {
 	name: 'Myresult',
+	computed: mapGetters([
+		'wxConfig'
+	]),
 	data() {
 		return {
-			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
 			user: {}
 		}
 	},
@@ -49,23 +52,21 @@ export default {
 	},
 	methods: {
 		showUserInfo() {
-			Http.get('/seller-web/seller/main/' + this.sellerId)
-			.then(res => {
-				const Data = res.data;
-				if (Data.ok) {
+			showRetailerInfo(this.$route.query.sellerId || '').then(res => {
+				if (res.ok) {
 					this.$parent.loadingPage = false; //去掉loading
-					this.user = Data.data.sellerInfo;
+					this.user = res.data.sellerInfo;
 				}
 			})
 		},
 		scan() {
 			// 调起微信扫一扫
 			wx.config({
-                debug: false,
-                appId: sessionStorage.getItem('appid'),
-                timestamp: sessionStorage.getItem('timestamp'),
-                nonceStr: sessionStorage.getItem('noncestr'),
-                signature: sessionStorage.getItem('signature'),
+                debug: true,
+                appId: wxConfig.appid,
+                timestamp: wxConfig.timestamp,
+                nonceStr: wxConfig.noncestr,
+                signature: wxConfig.signature,
                 jsApiList: ['scanQRCode']
             });
             wx.ready(function () {

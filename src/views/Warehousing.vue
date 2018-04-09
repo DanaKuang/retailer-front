@@ -12,10 +12,15 @@
 </template>
 
 <script>
-import Http from 'assets/lib/http.js'
+import {scanintowarehouse} from  'api/scanintostore.js'
 import wx from 'weixin-js-sdk'
+import {mapGetters} from 'vuex'
 
 export default {
+    computed: mapGetters([
+        'sellerId',
+        'wxConfig'
+    ]),
 	data () {
 		return {
 			text: '',
@@ -28,21 +33,8 @@ export default {
 	},
 	created() {
         this.$parent.loadingPage = false; //去掉loading
-        // this.scan()
+        this.scan()
 	},
-    mounted() {
-        let me = this;
-        this.$bus.on('configready', function (val) {
-            if (val) {
-                me.scan()
-            } else {
-                console.log('我是warehousing里面的，val不是true')
-            }
-        })
-    },
-    updated() {
-
-    },
 	//相关操作事件
 	methods: {
 		scanputinStorage() {
@@ -50,8 +42,15 @@ export default {
 		},
         scan() {
         	var me = this;
+            wx.config({
+                debug: true,
+                appId: wxConfig.appid,
+                timestamp: wxConfig.timestamp,
+                nonceStr: wxConfig.noncestr,
+                signature: wxConfig.signature,
+                jsApiList: ['scanQRCode']
+            });
             wx.ready(function () {
-                console.log('我是warehousing.vue里面wx.ready里面的scan方法');
                 wx.scanQRCode({
                     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                     desc: 'scanQRCode desc',
@@ -70,24 +69,17 @@ export default {
             })
         },
         successScan(res) {
-        	var me = this,
-        		resultStr = res.resultStr,
-                sellerId = sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '';
-        	Http.get('/seller-web/consumer/canInstoreQr', {
-                params: {
-                    content: resultStr,
-                    sellerId: sellerId
-                }
-        	}).then(res => {
-        		var Data = res.data;
-                if (Data.ok) {
+        	var me = this;
+            scanintostore({
+                content: res.resultStr,
+                sellerId: this.sellerId || this.$route.query.sellerId || ''
+            }).then(res => {
+                if (res.ok) {
                     me.text = '恭喜！成功入库1条';
                     me.tip = '积分可在个人中心查看或使用';
                 } else {
-                    me.text = Data.msg;
+                    me.text = res.msg;
                     me.tip = '点击右下方按钮继续扫码';
-                    // 此商品已入库，不可重复入库
-                    // 不支持此商品入库
                 }
         	})
         },

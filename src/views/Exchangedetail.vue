@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Http from 'assets/lib/http.js'
+import {getMyWallet, showIncome, showWithdraw} from 'api/wallet.js'
 import dateInput from 'components/date-input'
 import walletDetail from 'components/wallet-detail'
 import loadingIng from 'components/loading-ing'
@@ -43,6 +43,7 @@ export default {
  			widthdraw: [],
             latest: [],
  			isListTrue: false,
+            page: 1,
             loading: true,
             nomore: false,
             nothing: false,
@@ -58,12 +59,8 @@ export default {
  			}],
  			startTimeMM: '',
  			endTimeMM: '',
-            page: 1,
             changetabInterval: +new Date
  		}
-  	},
-  	watch: {
-
   	},
   	created () {
         this.showWalletOverview()
@@ -73,48 +70,39 @@ export default {
         this.endTimeMM = this.$refs.date.emitEndTimeMM;
         this.showIncomeList();
   	},
-  	beforeDestroy() {
-
-  	},
   	methods: {
         showWalletOverview() {
-            Http.get('/seller-web/seller/select/mywallet')
-                .then(res => {
-                    var Data = res.data;
-                    if (Data.ok) {
-                        var data = Data.data;
-                        this.$parent.loadingPage = false; //去掉loading
-                        
-                        this.wallet = data;
-                        var me = this;
-                        this.tabs.forEach(function (n, i) {
-                            n.num = i == 0 ? me.wallet.totalIncome : me.wallet.totalPay
-                        })                  
-                    }
-                })
+            getMyWallet().then(res => {
+                if (res.ok) {
+                    this.$parent.loadingPage = false; //去掉loading
+                    this.wallet = res.data;
+                    var me = this;
+                    this.tabs.forEach(function (n, i) {
+                        n.num = i == 0 ? me.wallet.totalIncome : me.wallet.totalPay
+                    })                  
+                }
+            })
         },
   		showIncomeList (bool) {
-  			Http.get('/seller-web/seller/select/income/list', {
-	 			params: {
-	 				startTime: this.startTimeMM,
-  					endTime: this.endTimeMM,
-					pageNo: this.page,
-  					pageSize: 10
-	 			}
-	 		}).then(res => {
-  				var Data = res.data;
-                if (Data.ok) {
+            showIncome({
+                startTime: this.startTimeMM,
+                endTime: this.endTimeMM,
+                pageNo: this.page,
+                pageSize: 10
+            }).then(res => {
+                if (res.ok) {
+                    var data = res.data;
                     var me = this;
                     me.isListTrue = true;
-                    if (Data.data && Data.data.length > 0) {
+                    if (data && data.length > 0) {
                         if (bool) {
                             // 说明不是第一次渲染数据，有过历史数据，则push
-                            Data.data.forEach(function(n) {
+                            data.forEach(function(n) {
                                 me.latest.push(n)
                             })  
                         } else {
                             // 重新渲染数据走这里
-                            me.latest = res.data.data;
+                            me.latest = data;
                         }
                     } else {
                         if (bool) {
@@ -131,25 +119,23 @@ export default {
 	 		})
   		},
   		showWithdrawList (bool) {
-			Http.get('/seller-web/seller/select/withdraw/list', {
-	 			params: {
-	 				startTime: this.startTimeMM,
-  					endTime: this.endTimeMM,
-					pageNo: this.page,
-  					pageSize: 10
-	 			}
-	 		}).then(res => {
-  				var Data = res.data;
-                if (Data.ok) {
+			showWithdraw({
+                startTime: this.startTimeMM,
+                endTime: this.endTimeMM,
+                pageNo: this.page,
+                pageSize: 10
+            }).then(res => {
+                if (res.ok) {
+                    var data = res.data;
                     var me = this;
                     me.isListTrue = true;
-                    if (Data.data && Data.data.length > 0) {
+                    if (data && data.length > 0) {
                         if (bool) {
-                            Data.data.forEach(function(n) {
+                            data.forEach(function(n) {
                                 me.latest.push(n)
                             })  
                         } else {
-                            this.latest = res.data.data;
+                            this.latest = data
                         }
                     } else {
                         if (bool) {

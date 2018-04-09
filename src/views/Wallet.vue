@@ -55,7 +55,7 @@
 	</div>
 </template>
 <script>
-import Http from 'assets/lib/http.js'
+import {getMyWallet, getLatestBalance, withdrawMoney} from 'api/wallet.js'
 import walletDetail from 'components/wallet-detail'
 import { Popup } from 'mint-ui'
 import popModal from 'components/pop-modal'
@@ -63,13 +63,11 @@ import loadingIng from 'components/loading-ing'
 import noMore from 'components/no-more'
 import noThing from 'components/no-thing'
 import { InfiniteScroll } from 'mint-ui'
-import {mapGetters} from 'vuex'
 
 export default {
   	name: 'Wallet',
   	data () {
   		return {
-  			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
   			popupVisible: false,
   			successWithdraw: false,
   			wallet: {},
@@ -84,43 +82,33 @@ export default {
 			tip2: '请注意查收'
   		}
   	},
-  	watch: {
-
-  	},
   	created () {
   		this.showWalletOverview();
   	},
   	mounted () {
 		this.latestThreeDays();
   	},
-  	beforeDestroy () {
-
-  	},
   	methods: {
   		showpopup: function () {
   			this.popupVisible = true;
   		},
   		showWalletOverview() {
-  			Http.get('/seller-web/seller/select/mywallet')
-  				.then(res => {
-  					var Data = res.data;
-  					if (Data.ok) {
-  						var data = Data.data;
-  						this.wallet = data;
-  						this.$parent.loadingPage = false; //去掉loading
-  					} 
-  				})
+  			getMyWallet().then(res => {
+				if (res.ok) {
+					this.$parent.loadingPage = false; //去掉loading
+					var data = res.data;
+					this.wallet = data;
+				} 
+			})
   		},
   		latestThreeDays(bool) {
   			var me = this;
-  			Http.get('/seller-web/seller/select/income-and-expenses', {
-  				params: {
-  					startTime: (+new Date() - 3*24*3600*1000),
-  					endTime: +new Date(),
-  					pageNo: this.page,
-  					pageSize: 10
-  				}
-  			}).then(res => {
+  			getLatestBalance({
+				startTime: (+new Date() - 3*24*3600*1000),
+				endTime: +new Date(),
+				pageNo: this.page,
+				pageSize: 10
+			}).then(res => {
   				var Data = res.data;
   				if (Data.ok) {
 	  				me.isListTrue = true;
@@ -164,23 +152,21 @@ export default {
 				this.tip1 = '余额不足1元无法提现';
 				this.tip2 = '';
 			} else {
-				Http.get('/seller-web/seller/wallet/tx', {
-					params: {
-						txAmount: txAmount
-					}
+				withdrawMoney({
+					txAmount: txAmount
 				}).then(res => {
 					var Data = res.data;
 					if (Data.ok) {
 						var detailData = Data.data;
-						if(detailData.status == 1){
+						if (detailData.status == 1) {
 							this.successWithdraw = true;
 							this.popupVisible = true;
 							this.tip1 = '工作人员会在24小时内将佣金打入到您的微信账户内。';
-						}else if(detailData.status == 2 && detailData.isFinish == 1){
+						} else if (detailData.status == 2 && detailData.isFinish == 1) {
 							this.successWithdraw = true;
 							this.popupVisible = true;
 							this.tip1 = '已成功提现至零钱包';
-						}else if(detailData.status == 3){
+						} else if (detailData.status == 3) {
 							this.successWithdraw = true;
 							this.popupVisible = true;
 							this.tip1 = '抱歉，您的提现已被拒绝';
@@ -209,9 +195,6 @@ export default {
   			return val ? val.toFixed(2) : '0.00'
   		}
   	},
-  	computed: mapGetters([
-  		'wxConfig'
-  	]),
    	components: { 
   		walletDetail,
   		popModal,

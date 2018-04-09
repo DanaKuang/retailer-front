@@ -1,18 +1,18 @@
 <template>
 	<div id="storecenter" class="storecenter">
 		<div class="main-info flex border-box">
-			<div class="avatar flex-item" :class="{yetcertified: bool.yetcertified, certified: !bool.yetcertified, waiting: bool.waitingpop}">
-				<a href="javascript:;"><img :src="user.headImg" alt=""></a>
+			<div class="avatar flex-item" :class="{yetcertified: pop.yetcertified, certified: !pop.yetcertified, waiting: pop.waitingpop}">
+				<a href="javascript:;"><img :src="seller.sellerInfo && seller.sellerInfo.headImg" alt=""></a>
 			</div>
 			<div class="brief flex-item">
-				<p class="store-name">{{user.shopName}}</p>
+				<p class="store-name">{{seller.sellerInfo && seller.sellerInfo.shopName}}</p>
 				<div class="account flex">
 					<div class="money">
-						<p class="num">{{user.wallet.balance}}元</p>
+						<p class="num">{{seller.sellerInfo && seller.sellerInfo.wallet && seller.sellerInfo.wallet.balance}}元</p>
 						<p class="unit">账户余额</p>
 					</div>
 					<div class="redpacket">
-						<p class="num">{{user.wallet.redPack}}个</p>
+						<p class="num">{{seller.sellerInfo && seller.sellerInfo.wallet && seller.sellerInfo.wallet.redPack}}个</p>
 						<p class="unit">红包</p>
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 			<div class="qr menu bor-bt border-box">
 				<p class="item"><router-link :to="{path: '/retailer/myqrpost'}">我的二维码</router-link></p>
 			</div>
-			<div class="sign menu mar-bt border-box">
+			<div class="sign menu mar-bt border-box" v-if="showLabel">
 				<p class="item" @click="showLabelpopup">领取标牌</p>
 			</div>
 			<div class="promotion menu bor-bt border-box">
@@ -48,11 +48,11 @@
 		<!-- 激活过来的，已认证但还需完善信息弹窗 -->
 		<mt-popup
 		class="uni-pop completeinfo border-box"
-		v-if="bool.completeInfo"
-		v-model="bool.completeInfo"
+		v-if="pop.completeInfo"
+		v-model="pop.completeInfo"
 		:closeOnClickModal="false"
 		position="center">
-			<pop-modal :variate="bool.completeInfo">
+			<pop-modal :variate="pop.completeInfo">
 				<p class="font-color tip1">恭喜您，已激活成功！</p>
   				<p class="tip2">完善资料信息后即可使用</p>
   				<button slot="button" class="theme-bg-color_lighter button"><router-link :to="{path: '/retailer/info'}">去完善资料</router-link></button>
@@ -62,11 +62,11 @@
 		<!-- 去认证弹窗 -->
 		<mt-popup
 		class="uni-pop yetcertifiedpop border-box"
-		v-if="bool.yetcertified"
-		v-model="bool.yetcertified"
+		v-if="pop.yetcertified"
+		v-model="pop.yetcertified"
 		:closeOnClickModal="false"
 		position="center">
-			<pop-modal :variate="bool.yetcertified">
+			<pop-modal :variate="pop.yetcertified">
 				<p class="font-color tip1">您还没有完成认证</p>
   				<p class="tip2">请点击<span class="font-color">“去认证”</span>，完善本店信息</p>
   				<p class="tip3">两分钟即可完成认证</p>
@@ -77,8 +77,8 @@
 		<!-- 审核未通过，重新去审核 -->
 		<mt-popup
 		class="uni-pop fail border-box"
-		v-if="bool.failpop"
-		v-model="bool.failpop"
+		v-if="pop.failpop"
+		v-model="pop.failpop"
 		:closeOnClickModal="false"
 		position="center">
 			<pop-modal>
@@ -91,8 +91,8 @@
 		<!-- 审核中 -->
 		<mt-popup
 		class="uni-pop waitingpop border-box success"
-		v-if="bool.waitingpop"
-		v-model="bool.waitingpop"
+		v-if="pop.waitingpop"
+		v-model="pop.waitingpop"
 		:closeOnClickModal="false"
 		position="center">
 			<pop-modal>
@@ -105,8 +105,8 @@
 		<!-- 去激活 -->
 		<mt-popup
 		class="uni-pop activatepop border-box"
-		v-if="bool.activatepop"
-		v-model="bool.activatepop"
+		v-if="pop.activatepop"
+		v-model="pop.activatepop"
 		:closeOnClickModal="false"
 		position="center">
 			<pop-modal>
@@ -119,24 +119,29 @@
 		<!-- 领取标牌弹窗 -->
 		<mt-popup
 		class="getlabelpop"
-		v-if="bool.getlabelpop"
-		v-model="bool.getlabelpop"
+		v-if="pop.getlabelpop"
+		v-model="pop.getlabelpop"
 		position="bottom">
 			<pop-up :variate="getlabelpopVariate" v-on:closeLabelpop="closeLabelpop"></pop-up>
 		</mt-popup>
 	</div>
 </template>
 <script>
-import Http from 'assets/lib/http.js'
+import Fetch from 'api/fetch.js'
+import {mapGetters, mapMutations} from 'vuex'
 import { Popup } from 'mint-ui'
 import popUp from 'components/pop-up'
 import popModal from 'components/pop-modal'
 
 export default {
   	name: 'StoreCenter',
+  	computed: mapGetters([
+  		'sellerId',
+  		'seller'
+  	]),
   	data () {
   		return {
-  			bool: {
+  			pop: {
   				yetcertified: false, // 去认证弹窗
   				activatepop: false, // 去激活弹窗
   				waitingpop: false, // 正在审核
@@ -144,19 +149,12 @@ export default {
   				completeInfo: false, // 去完善信息弹窗
 				getlabelpop: false	// 领取标牌弹窗
   			},
-  			getlabelpopVariate: {},
   			certifyoredit: '去认证', // 控制右上角按钮文字及认证icon显示
-  			maindata: {},
-  			user: {
-  				wallet: {
-  					balance: 0,
-  					redPack: 0
-  				}
-  			}, //零售户信息
   			waiting: {}, //待审核or审核未通过文案内容
   			activate: {}, //激活弹窗文案内容
-  			sellerId: this.$route.query.sellerId || sessionStorage.getItem('sellerId') || '',
-            isSK: window.location.hostname !== 'sk.saotx.cn' //山昆先隐藏这个入口
+            showLabel: false,
+            getlabelpopVariate: {},
+            isSK: window.location.hostname !== 'sk.saotx.cn', //山昆先隐藏这个入口
   		}
   	},
   	created() {
@@ -168,66 +166,63 @@ export default {
   	methods: {
   		// 判断是否认证，展示店家信息
   		getRetailerInfo() {
-            Http.get('/seller-web/seller/main/' + this.sellerId).then(res => {
-                const Data = res.data;
-                if (Data.ok) {
-                	this.$parent.loadingPage = false; //去掉loading
+  			if (this.$route.query.sellerId) {
+  				this.setSellerId(this.$route.query.sellerId)
+  			}
 
-                	const Data = this.maindata = res.data.data;
-                	let sellerInfo = this.user = Data.sellerInfo;
-                	sessionStorage.setItem('user', JSON.stringify(sellerInfo))
-                	sessionStorage.setItem('sellerId', sellerInfo.sellerId);
-                	sessionStorage.setItem('activityintro', Data.SELLER_CURRENT_ACTIVITY_DESC);
-                	sessionStorage.setItem('rewardintro',Data.SELLER_ACHIEVEMENT_DESC);
-                	sessionStorage.setItem('qrurl', sellerInfo.qrUrl);
-
-                	let authStatus = sellerInfo.authStatus;
-                	let me = this;
+  			Fetch.get('/seller-web/seller/main/' + (this.sellerId || ''))
+  				.then(res => {	
+  				this.$parent.loadingPage = false; //去掉loading	
+  				if (res.ok) {
+  					var Data = res.data;
+  					this.setRetailer(Data);
+  					
+                	this.sellerInfo = Data.sellerInfo;
+                	let authStatus = this.sellerInfo.authStatus;
                     if (authStatus == 2) {
                     	// 审核通过
-                    	me.certifyoredit = '重新编辑';
-                    	if (!sellerInfo.headImg) {
+                    	this.certifyoredit = '重新编辑';
+                    	if (!this.sellerInfo.headImg) {
                     		// 待完善
-                    		me.bool.completeInfo = true
+                    		this.pop.completeInfo = true
                     	}
                     } else if (authStatus == 1) {
                     	// 审核中
-                    	me.certifyoredit = '审核中';
-                		me.waiting.text = '您提交的申请正在审核中';
-                		me.waiting.tip = '请耐心等待通知';
-                		me.bool.waitingpop = true;
+                    	this.certifyoredit = '审核中';
+                		this.waiting.text = '您提交的申请正在审核中';
+                		this.waiting.tip = '请耐心等待通知';
+                		this.pop.waitingpop = true;
                     } else if (authStatus == 3) {
                     	// 没通过
-                    	me.bool.failpop = true;
-                    	me.waiting.text = Data.applyLog ? Data.applyLog.failReason : '审批未通过';
+                    	this.pop.failpop = true;
+                    	this.waiting.text = Data.applyLog ? Data.applyLog.failReason : '审批未通过';
                     } else {
                     	// 待激活
-                    	me.bool.activatepop = true;
-                    	me.activate.text = '您是认证用户，尚未激活';
-                    	me.activate.tip = '点击下方按钮去激活吧！'
+                    	this.pop.activatepop = true;
+                    	this.activate.text = '您是认证用户，尚未激活';
+                    	this.activate.tip = '点击下方按钮去激活吧！'
                     }
 
-                    if (Data.SELLER_QRPRINT_SHOW_ISSET == 0) {
-                    	document.getElementsByClassName('sign')[0].classList.add('hidden')
+                    if (Data.SELLER_QRPRINT_SHOW_ISSET != 0) {
+                    	this.showLabel = true
                     }
                 } else {
                 	// 去认证
-                	this.bool.yetcertified = true;
-                	this.$parent.loadingPage = false; //去掉loading
+                	this.pop.yetcertified = true;
                 }
-            })
+  			})
         },
   		// 领取标牌
 	    showLabelpopup() {
-	      	this.bool.getlabelpop = true;
+	      	this.pop.getlabelpop = true;
 	      	this.getlabelpopVariate = {
-	      		getlabelpop: this.bool.getlabelpop,
+	      		getlabelpop: this.pop.getlabelpop,
 	      		user: this.user,
 	      		price: this.maindata.SELLER_QRPRINT_CHARGE_STANDARD
 	      	}
 	    },
 	    closeLabelpop(val) {
-	    	this.bool.getlabelpop = val.getlabelpop;
+	    	this.pop.getlabelpop = val.getlabelpop;
 	    },
 	    gotocredit() {
 	    	var hostname = location.hostname;
@@ -241,14 +236,15 @@ export default {
 	    		// 河北
 	    		location.href = '/app-hebei/views/menus/shop-integral.html?t=' + (+new Date)
 	    	}
-	    }
+	    },
+	    ...mapMutations({
+	    	setRetailer: 'setRetailer',
+	    	setSellerId: 'setSellerId'
+	    })
 	},
 	components:{
 	    popUp,
 	    popModal
-	},
-	computed: {
-
 	}
 }
 </script>

@@ -1,7 +1,9 @@
 const state = {
-	baseConfig: {},
-	wxConfig: {},
-	sellerInfo: {}
+	orgId: '',
+	sellerId: '',
+	seller: {},
+	navList: [],
+	wxConfig: {}
 }
 
 export default state

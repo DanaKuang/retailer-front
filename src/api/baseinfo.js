@@ -1,13 +1,11 @@
-import XHR from './http.js'
+import Fetch from './fetch.js'
 
 // 包括sellerInfo, orgId
-
 export function getbaseInfo() {
-	const _url = '/seller-web/seller/queryBaseConfig'
-	return XHR({url: _url})
+	return Fetch.get('/seller-web/seller/queryBaseConfig') 
 }
 
-export function getRetailerInfo() {
-	const url = '/seller-web/seller/main/'
+export function getWxConfig () {
+	return Fetch.get('/seller-web/wechat/open/jstoken')
 }
 

@@ -28,12 +28,11 @@
 	</div>
 </template>
 <script>
-import Http from 'assets/lib/http.js'
+import {getRewardIntro} from 'api/activity.js'
 export default {
 	name: 'rewardintro',
 	data() {
 		return {
-			// image: sessionStorage.getItem('rewardintro')
 			prizeList: [],
 			activeRuleList : []
 		}
@@ -47,19 +46,18 @@ export default {
 	methods : {
 		getDetailInfo() {
 			let that = this;
-			Http.get('/seller-web/achieve/detail')
-			.then(res => {
-				if(res.data.ok){
-					this.prizeList = res.data.data.awards || [];
-					let ruleHtml = res.data.data.ruleHtml;
+			getRewardIntro().then(res => {
+				if (res.ok) {
+					this.prizeList = res.data.awards || [];
+					let ruleHtml = res.data.ruleHtml;
 					this.activeRuleList = that.splitStr(ruleHtml) || [];
 				}
 			})
 		},
-		splitStr(str){
+		splitStr(str) {
 			var temp = str.split(/[\n]/g);
-				for(var i =0;i<temp.length;i++){
-				if(temp[i] == ""){
+				for (var i = 0; i < temp.length; i++) {
+				if (temp[i] == "") {
 					temp.splice(i, 1);
 					//删除数组索引位置应保持不变
 					i--;

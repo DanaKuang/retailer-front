@@ -1,20 +1,17 @@
 <template>
 	<div class="myqrpost border-box">
-		<img class="wholeimg" :src="image" alt="">
+		<img class="wholeimg" :src="seller.sellerInfo && seller.sellerInfo.qrUrl" alt="">
 	</div>
 </template>
 <script>
-import Http from 'assets/lib/http.js'
+import {mapGetters} from 'vuex'
 
 export default {
 	name: 'MyQrpost',
-	data () {
-		return {
-			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
-			image: sessionStorage.getItem('qrurl')
-		}
-	},
-	mounte() {
+	computed: mapGetters([
+		'seller'
+	]),
+	mounted() {
 		this.$parent.loadingPage = false;
 	}
 }

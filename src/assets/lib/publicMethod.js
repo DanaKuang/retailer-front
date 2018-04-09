@@ -20,4 +20,16 @@ const getQueryString = function (name) {
     return str_arr != null ? str_arr[1] : null;
 }
 
-export {getCookie, setCookie, deleteCookie, getQueryString}
+const processParams = function (param) {
+    var stringlize = '';
+    Object.keys(param).forEach((n, i) => {
+        if (stringlize == '') {
+            stringlize += '?' + n + '=' + param[n]
+        } else {
+            stringlize += '&' + n + '=' + param[n]
+        }
+    })
+    return stringlize
+}
+
+export {getCookie, setCookie, deleteCookie, getQueryString, processParams}

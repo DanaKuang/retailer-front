@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import Http from 'assets/lib/http.js'
+import {getOrderList, confirmReceive, pay, cancel} from  'api/orderlist'
 import loadingIng from 'components/loading-ing'
 import noMore from 'components/no-more'
 import noThing from 'components/no-thing'
@@ -106,24 +106,22 @@ export default {
         },
         showList(bool) {
             let me = this;
-            Http.get('/seller-web/order/list', {
-                params: {
-                    sellerId: me.sellerId,
-                    pageNo: me.page,
-                    pageSize: 10,
-                    status: me.status
-                }
+            getOrderList({
+                sellerId: me.sellerId,
+                pageNo: me.page,
+                pageSize: 10,
+                status: me.status
             }).then(res => {
-                const Data = res.data;
-                if (Data.ok) {
+                if (res.ok) {
+                    const Data = res.data;
                     me.isListTrue = true;
-                    if (Data.data && Data.data.list && Data.data.list.length > 0) {
+                    if (Data && Data.list && Data.list.length > 0) {
                         if (bool) {
-                            Data.data.list.forEach(function(n) {
+                            Data.list.forEach(function(n) {
                                 me.list.push(n)
                             })  
                         } else {
-                            me.list = Data.data.list;
+                            me.list = Data.list;
                         }
                     } else {
                         if (bool) {
@@ -145,21 +143,27 @@ export default {
                 this.changetabInterval = +new Date; //更新现在的时间
                 this.init();
                 this.tab = idx;
-                if (idx == 0) {
-                    this.status = '';
-                    this.changeclass = 'all'
-                } else if (idx == 1) {
-                    this.status = '1';
-                    this.changeclass = 'yetpayed'
-                } else if (idx == 2) {
-                    this.status = '7';
-                    this.changeclass = 'yetsent'
-                } else if (idx == 3) {
-                    this.status = '2';
-                    this.changeclass = 'yetgotten'
-                } else {
-                    this.status = '6'
-                    this.changeclass = 'finished'
+                switch (idx) {
+                    case 0:
+                        this.status = '';
+                        this.changeclass = 'all'
+                    break;
+                    case 1:
+                        this.status = '1';
+                        this.changeclass = 'yetpayed'
+                    break;
+                    case 2:
+                        this.status = '7';
+                        this.changeclass = 'yetsent'
+                    break;
+                    case 3:
+                        this.status = '2';
+                        this.changeclass = 'yetgotten'
+                    break;
+                    default:
+                        this.status = '6'
+                        this.changeclass = 'finished'
+                    break; 
                 }
                 this.showList()
             }
@@ -181,13 +185,10 @@ export default {
         confirmgoods(e) {
             let dataset = e.target.dataset,
                 me = this;
-            Http.get('/seller-web/order/confirmRecieve', {
-                params: {
-                    orderId: dataset.orderid
-                }
+            confirmReceive({
+                orderId: dataset.orderid
             }).then(res => {
-                const Data = res.data;
-                if (Data.ok) {
+                if (res.ok) {
                     this.list.length = 0;
                     this.showList()
                 }
@@ -196,23 +197,20 @@ export default {
         gotopay(e) {
             let dataset = e.target.dataset,
                      me = this;
-            Http.get('/seller-web/wechat/open/prepay', {
-                params: {
-                    body: '店码标牌',
-                    orderId: dataset.orderid,
-                    money: dataset.money
-                }
+            pay({
+                body: '店码标牌',
+                orderId: dataset.orderid,
+                money: dataset.money
             }).then(res => {
-                const Data = res.data;
-                if (Data.ok) {
-                    let data = Data.data;
+                if (res.ok) {
+                    const Data = res.data;
                     wx.ready(function () {
                         wx.chooseWXPay({
-                            timestamp: data.timeStamp,
-                            nonceStr: data.nonceStr,
-                            package: data.package,
-                            signType: data.signType,
-                            paySign: data.paySign,
+                            timestamp: Data.timeStamp,
+                            nonceStr: Data.nonceStr,
+                            package: Data.package,
+                            signType: Data.signType,
+                            paySign: Data.paySign,
                             success: function () {
                                 alert('支付成功');
                                 me.list.length = 0;
@@ -226,13 +224,10 @@ export default {
         cancelorder(e) {
             let dataset = e.target.dataset,
                      me = this;
-            Http.get('/seller-web/order/cancelOrder', {
-                params: {
-                    orderId: dataset.orderid
-                }
+            cancel({
+                orderId: dataset.orderid
             }).then(res => {
-                const Data = res.data;
-                if (Data.ok) {
+                if (res.ok) {
                     alert('取消成功');
                     this.list.length = 0;
                     this.showList()

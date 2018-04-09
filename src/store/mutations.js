@@ -1,13 +1,20 @@
-import * as types from './mutation_type'
-
-const mutations = {
-	[types.GET_BASE_INFO](state, orgId) {
-		state.baseConfig.orgId = orgId
-	},
-	[types.GET_WX_INFO](state, wxInfo) {
-		state.wxConfig = wxInfo
-	}
+export const setOrgId = (state, orgId) => {
+	state.orgId = orgId
 }
 
+export const setNav = (state, navArr) => {
+	state.navList = navArr
+}
 
-export default mutations
+export const wxConfig = (state, data) => {
+	state.wxConfig = data;
+}
+
+export const setRetailer = (state, retailerData) => {
+	state.seller = retailerData
+}
+
+export const setSellerId = (state, sellerId) => {
+	state.sellerId = sellerId
+}
+
