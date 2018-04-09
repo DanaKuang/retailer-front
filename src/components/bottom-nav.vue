@@ -1,5 +1,5 @@
 <template>
-	<nav id="nav" class="nav-bg-color" v-if="path == 'storecenter' || path == 'performance' || path == 'warehousing' || path == 'wallet' ">
+	<nav id="nav" class="nav-bg-color" v-if="path == 'storecenter' || path == 'rank' || path == 'warehousing' || path == 'wallet' ">
 		<transition name="fade">
 			<ul>
 				<li class="menu" v-for="(item,idx) in navList" :class="[{'font-color': path == item.className}, item.className]">

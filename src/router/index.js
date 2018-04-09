@@ -125,6 +125,13 @@ var routes = [{
     meta: {
         title: ''
     }
+}, {
+    path: '/retailer/yantaiscancode',
+    component: YantaiScanCode,
+    name: 'YantaiScanCode',
+    meta: {
+        title: ''
+    }
 }]
 
 const scrollBehavior = (to, from, savedPosition) => {

@@ -12,9 +12,11 @@ var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjQwMzI3OTkyODQsIn
 
 // http请求拦截器
 axios.interceptors.request.use(config => {
-    config.headers = Object.assign({}, config.headers, {
-        token: token 
-    })
+    if (process && process.env && process.env.NODE_ENV === 'development') {
+        config.headers = Object.assign({}, config.headers, {
+            token: token 
+        })
+    }
     config['X-Requested-With'] = 'XMLHttpRequest'
     config.timeout = 20000;
     return config

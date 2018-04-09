@@ -1,10 +1,7 @@
 <template>
 	<div class="duration-wrap">
 		<div class="duration flex">
-			<div class="default flex-item" @click="setDefaultDate">
-				<i class="icon-down"></i>
-				<span>近三个月</span>
-			</div>
+			<i class="font-color">时间周期:</i>
 			<div class="time flex-item">
 				<div class="dateinput">
 					<span class="date start border-color" @click="open('startDate')">{{startTime}}</span>
@@ -55,17 +52,11 @@ export default {
       		start: ''
 		}
 	},
-	watch: {
-
-	},
 	created() {
 		this.startTime = this.defaultShowDate(3);
 		this.endTime = this.defaultShowDate();
 		this.emitStartTimeMM = this.startTime + ' 00:00:00';
 		this.emitEndTimeMM = this.endTime + ' 00:00:00'
-	},
-	mounted() {
-		
 	},
 	methods: {
 		defaultShowDate(n) {
@@ -95,16 +86,6 @@ export default {
 				receiveSTMM: new Date(_a_splitTime[0], Number(_a_splitTime[1])-1, _a_splitTime[2]).getTime(), // 这样处理比较恶心...
 				receiveETMM: +new Date
 			}
-		},
-		setDefaultDate () {
-			this.startTime = this.defaultShowDate(3);
-			this.endTime = this.defaultShowDate();
-			this.$emit('receiveDefaultDate', 
-				{
-					receiveSTMM: this.defaultShowDate(3) + ' 00:00:00',
-					receiveETMM: this.defaultShowDate() + ' 00:00:00'
-				}
-			)
 		},
 		formatShowDate(val) {
 			// 转化标准时间的显示
@@ -146,22 +127,17 @@ export default {
 	justify-content: flex-start;
 	height: 1.33rem;
 	line-height: 1.33rem;
-	.default {
-		.icon-down {
-			margin-right: .2rem;
-			display: inline-block;
-			vertical-align: -4%;
-		}
-		span {
-			font-size: .42667rem;
-		}
+	i {
+		font-size: .42rem;
 	}
 }
 .dateinput {
 	.date {
+		display: inline-block;
 		padding: .03rem .1rem .03rem;
-		width: 2.8rem;
+		width: 2.6rem;
 		height: .506rem;
+		line-height: .51rem;
 		border-width: 1px;
 		border-style: solid;
 		text-align: center;

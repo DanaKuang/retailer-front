@@ -24,11 +24,7 @@ export default {
 	data () {
 		return {
 			text: '',
-			tip: '',
-            appid: '',
-            noncestr: '',
-            signature: '',
-            timestamp: ''
+			tip: ''
 		}
 	},
 	created() {
@@ -43,11 +39,11 @@ export default {
         scan() {
         	var me = this;
             wx.config({
-                debug: true,
-                appId: wxConfig.appid,
-                timestamp: wxConfig.timestamp,
-                nonceStr: wxConfig.noncestr,
-                signature: wxConfig.signature,
+                debug: false,
+                appId: this.wxConfig.appid,
+                timestamp: this.wxConfig.timestamp,
+                nonceStr: this.wxConfig.noncestr,
+                signature: this.wxConfig.signature,
                 jsApiList: ['scanQRCode']
             });
             wx.ready(function () {

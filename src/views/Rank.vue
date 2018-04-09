@@ -1,40 +1,43 @@
 <template>
 	<div class="rank">
-		<div class="top border-box">
-			<div class="rough flex box-shadow-inner">
-				<div class="flex-item trophy">
-					<a href=""><img :src="trophy" alt=""></a>
-					<p class="trophy-name">我的排名</p>
-					<p class="my-rank">{{myrank}}</p>
-				</div>
-				<div class="flex-item">
-					<p>本周扫码业绩</p>
-					<span>{{overview.weekTotalNum}}</span>
-				</div>
-				<div class="flex-item">
-					<p>本月扫码业绩</p>
-					<span>{{overview.monthTotalNum}}</span>
-				</div>
-				<div class="flex-item">
-					<p>总扫码业绩</p>
-					<span>{{overview.totalNum}}</span>
-				</div>
+		<div class="top border-box flex">
+			<div class="flex-item trophy-item">
+				<a class="trophy" href=""><img src="https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/trophy.png" alt=""></a>
 			</div>
-			<div class="rules"><router-link :to="{path: '/retailer/rewardintro'}">活动规则</router-link></div>
-			<div class="title">冠军排行榜</div>
+			<div class="flex-item title-item">
+				<div class="title">冠军排行榜</div>
+				<div class="ranking font-color">您当前排名：<span>{{myrank}}</span></div>
+			</div>
+			<div class="flex-item rules-item">
+				<div class="rules"><router-link class="border-color font-color" :to="{path: '/retailer/rewardintro'}">活动规则</router-link></div>
+			</div>
 		</div>
-		<div class="page-infinite-wrapper list border-color border-box">
+		<div class="middle flex" @click="gotoperformance">
+			<div class="flex-item font-color">
+				<p>拉新扫码业绩</p>
+				<span>{{overview.newCount}}盒</span>
+			</div>
+			<div class="flex-item font-color">
+				<p>累积扫码业绩</p>
+				<span>{{overview.totalCount}}盒</span>
+			</div>
+			<div class="flex-item font-color">
+				<p>总扫码业绩</p>
+				<span>{{overview.allTotalCount}}盒</span>
+			</div>
+		</div>
+		<div class="page-infinite-wrapper list border-box">
 			<ul 
 				v-infinite-scroll="loadMore"
 		        infinite-scroll-disabled="loading"
 		        infinite-scroll-distance="50"
 		        infinite-scroll-immediate-check="false">
-				<li class="title flex">
-					<span class="flex-item">名次</span>
-					<span class="flex-item">零售店</span>
-					<span class="flex-item">扫码业绩</span>
+				<li class="title flex border-light-color">
+					<span class="flex-item font-color">名次</span>
+					<span class="flex-item font-color">零售店</span>
+					<span class="flex-item font-color">扫码业绩</span>
 				</li>
-				<li class="flex" v-for="(item, idx) in list">
+				<li class="flex border-light-color" v-for="(item, idx) in list">
 					<span class="flex-item num">{{ idx < 3 ? '' : idx + 1}}<img v-if="idx < 3" :src="topthreeImage[idx]" alt=""></span>
 					<span class="flex-item">{{item.shopName}}</span>
 					<span class="flex-item">{{item.achieveNum}}</span>
@@ -45,7 +48,7 @@
 </template>
 
 <script>
-import Http from 'assets/lib/http.js'
+import {showRanking, showOverall, showMyRank} from 'api/rank.js'
 import { InfiniteScroll } from 'mint-ui';
 // import trophy from 'assets/image/common/trophy.png'
 // import first from 'assets/image/common/first.png'
@@ -60,15 +63,14 @@ export default {
 			myrank: '',
 			list: [],
 			overview: {
-				weekTotalNum: 0,
-  				monthTotalNum: 0,
-  				totalNum: 0
+				newCount: 0,
+  				totalCount: 0,
+  				allTotalCount: 0
 			},
 			topthreeImage: [],
 			page: 1,
 			loading: true,
-  			isEnd: false,
-  			sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || ''
+  			isEnd: false
 		}
 	},
 	created() {
@@ -81,44 +83,38 @@ export default {
 	},
 	methods: {
 		showRank() {
-			Http.get('/seller-web/seller/rankPos')
-				.then(res => {
-					var Data = res.data;
-					if (Data.ok) {
-						this.myrank = Data.data;
+			showMyRank().then(res => {
+					if (res.ok) {
+						this.myrank = res.data;
 					}
 				}) 
 		},
 		showOverview() {
-			Http.get('/seller-web/achieve/scanSmokeCount?unit=1')
-  				.then(res => {
-  					var Data = res.data;
-  					if (Data.ok) {
-  						var data = Data.data;
+			showOverall().then(res => {
+  					if (res.ok) {
+  						var data = res.data;
   						var me = this;
-  						this.overview.weekTotalNum = data.weekTotalNum;
-  						this.overview.monthTotalNum = data.monthTotalNum;
-  						this.overview.totalNum = data.totalNum;
+  						this.overview.newCount = data.newCount;
+  						this.overview.totalCount = data.totalCount;
+  						this.overview.allTotalCount = data.allTotalCount;
   					}
   				})
 		},
 		showranklist(loading) {
-			Http.get('/seller-web/achieve/periodResultList', {
-				params: {
-					pageNo: this.page,
+			showRanking({
+				pageNo: this.page,
   					pageSize: 10
-	 			}
-			}).then(res => {
-				var Data = res.data;
-				if (Data.ok) {
-					if (Data.data.list && Data.data.list.length > 0) {
+  				}).then(res => {
+				if (res.ok) {
+					const Data = res.data;
+					if (Data.list && Data.list.length > 0) {
 						if (loading) {
 							var me = this;
-							Data.data.list.forEach(function (n, i) {
+							Data.list.forEach(function (n, i) {
 								me.list.push(n)
 							})
 						} else {
-							this.list = Data.data.list;
+							this.list = Data.list;
 							for (var i = 0; i < 3; i++) {
 								var item = this.list[i];
 								if (item) {
@@ -151,6 +147,9 @@ export default {
 			  	this.page = this.page + 1;
 			  	this.showranklist(true);
 			}
+		},
+		gotoperformance() {
+			this.$router.push({path: '/retailer/performance'})
 		}
 	}	
 }
@@ -172,143 +171,96 @@ export default {
 	z-index: -2;
 	-webkit-user-select: none;
 	.top {
-		position: relative;
-		padding-top: 3.4667rem;
-		height: 5rem;
-		.rough {
-			position: relative;
-			margin: 0 auto;
-			width: 9.7rem;
-			height: 1.493rem;
-			background: #fff;
-			@include border-radius(50px);
-			.flex-item {
-				width: 25%;
-				/*height: 100%;*/
-				text-align: center;
-				color: #eee;
-				span {
-					font-size: .453rem;
-					color: #333;
-					line-height: 1.2;
-				}
-				p {
-					color: #666;
-					font-size: .32rem;
-					line-height: .6rem;
-				}
-			}
-			.flex-item:nth-of-type(2), .flex-item:nth-of-type(3) {
-				border-right: 1px solid #eee;
-			}
-			.trophy {
-				position: relative;
-				a {
-					position: absolute;
-					bottom: -.6rem;
-					left: 0;
-				}
-				img {
-					bottom: .2rem;
-					width: 2.64rem;
-				}
-				.trophy-name {
-					position: absolute;
-					left: 50%;
-					bottom: -.25rem;
-					font-size: .18rem;
-					line-height: 1;
-					width: 100%;
-					-webkit-transform: scale(.75) translateX(-60%);
-					-moz-transform: scale(.75) translateX(-60%);
-					-ms-transform: scale(.75) translateX(-60%);
-					transform: scale(.75) translateX(-60%);
-				}
-				.my-rank {
-					position: absolute;
-					left: 50%;
-					top: -2.7rem;
-					-webkit-transform: translateX(-39%);
-					-moz-transform: translateX(-39%);
-					-ms-transform: translateX(-39%);
-					transform: translateX(-39%);
-					font-size: .813rem;
-					color: #eb0507;
-				}
-			}
-			&:before, &:after {
-				content: '';
-				position: absolute;
-				top: 50%;
-				z-index: -1;
-				width: 0.2667rem;
-				height: 0.52rem;
-				background-color: #32241A;
-				@include border-radius(50%);
-				-webkit-transform: translateY(-50%);
-				-moz-transform: translateY(-50%);
-				-ms-transform: translateY(-50%);
-				transform: translateY(-50%);
-			}
-			&:before {
-				left: -.11rem;
-			}
-			&:after {
-				right: -.11rem;
-			}
+		margin-bottom: .15rem;
+		justify-content: space-around;
+		height: 3.14667rem;
+		.trophy-item {
+			width: 30%;
 		}
-		.rules {
-			position: absolute;
-			right: .9rem;
-			top: 1.12rem;
-			border: 1px solid #ed0606;
-			width: 1.906rem;
-			height: .4667rem;
-			line-height: .48rem;
+		.title-item {
+			width: 50%;
+		}
+		.rules-item {
+			width: 20%;
+		}
+		.trophy {
+			display: block;
 			text-align: center;
-			color: #ed0606;
-			font-size: .373rem;
-			@include border-radius(4px);
+			img {
+				width: 1.4rem;
+				height: 2rem;
+			}
 		}
 		.title {
-			position: absolute;
-			top: 1.8rem;
-			right: .9rem;
-			font-size: 1.2rem;
+			line-height: 1.6;
+			font-size: .8rem;
+			font-weight: bold;
 			color: #ed0606;
 			-webkit-text-shadow: 3px 2px 4px rgba(0,0,0,.4);
 			-moz-text-shadow: 3px 2px 4px rgba(0,0,0,.4);
 			-ms-text-shadow: 3px 2px 4px rgba(0,0,0,.4);
 			text-shadow: 3px 2px 4px rgba(0,0,0,.4);
 		}
+		.ranking {
+			font-size: .45rem;
+			line-height: 1.5;
+			span {
+				vertical-align: middle;
+				color: #ed0606;
+			}
+		}
+		.rules {
+			a {
+				display: block;
+				margin-bottom: .6rem;
+				border-width: 1px;
+				border-style: solid;
+				padding: 3px;
+				width: 1.5rem;
+				@include border-radius(3px);
+				font-size: .37rem;
+			}
+		}
+	}
+	.middle {
+		margin-bottom: .15rem;
+		justify-content: space-around;
+		width: 100%;
+		height: 1.42667rem;
+		font-size: .32rem;
+		background: #fff;
+		text-align: center;
+		p {
+			line-height: 1.5;
+		}
+		.flex-item {
+			position: relative;
+		/*	&:after {
+				content: '';
+				position: absolute;
+				top: .1rem;
+				right: 0;
+				width: 
+			}*/
+		}
 	}
 	.list {
-		position: absolute;
-		top: 5rem;
-		left: 50%;
-		-webkit-transform: translateX(-50%);
-		-moz-transform: translateX(-50%);
-		-ms-transform: translateX(-50%);
-		transform: translateX(-50%);
 		overflow-y: scroll;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-overflow-scrolling: touch;
-		padding: 0 .2rem;
-		width: 9.2rem;
-		height: calc(100% - 5.2667rem);
-		border-width: .2667rem;
-		border-style: solid;
+		width: 100%;
+		height: calc(100% - 6.2667rem);
 		background: #fff;
-		border-bottom: 0 none;
 		li {
 			justify-content: space-around;
 			height: 1.38rem;
+			border-bottom: 1px solid;
 			.flex-item {
 				align-self: center;
 				height: 100%;
 				line-height: 1.39rem;
-				font-size: .42rem;
+				font-size: .37rem;
 				text-align: center;
 				img {
 					width: .8rem;
@@ -333,11 +285,6 @@ export default {
 			}
 			&:not(:last-child) {
 				border-bottom: 1px solid #eee;
-			}
-		}
-		.title {
-			.flex-item {
-				font-size: .47rem;
 			}
 		}
 	}
