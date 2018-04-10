@@ -82,20 +82,20 @@ export default {
 	methods: {
 		showRank() {
 			showMyRank().then(res => {
-					if (res.ok) {
-						this.myrank = res.data;
-					}
-				}) 
+				if (res.ok) {
+					this.myrank = res.data;
+				}
+			}) 
 		},
 		showOverview() {
 			showOverall().then(res => {
-  					if (res.ok) {
-  						var data = res.data;
-  						var me = this;
-  						this.overview.periodCount = data.periodCount;
-  						this.overview.allTotalCount = data.allTotalCount;
-  					}
-  				})
+				if (res.ok) {
+					var data = res.data;
+					var me = this;
+					this.overview.periodCount = data.periodCount;
+					this.overview.allTotalCount = data.allTotalCount;
+				}
+			})
 		},
 		showranklist(loading) {
 			showRanking({

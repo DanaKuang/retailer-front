@@ -73,10 +73,6 @@ export default {
   		this.getTypeandShowlist();
   		this.showOverviewPerformance()
   	},
-  	mounted () {
-  		this.startTimeMM = this.$refs.date.emitStartTimeMM;
-        this.endTimeMM = this.$refs.date.emitEndTimeMM;
-  	},
   	methods: {
   		init() {
 			// 日期重新搜索，init变量
@@ -100,7 +96,12 @@ export default {
   		getTypeandShowlist() {
   			getDetailType().then(res => {
   				if (res.ok) {
-  					this.countType = res.data.achievementType;
+  					const Data = res.data;
+  					this.countType = Data.achievementType;
+  					this.startTimeMM = Data.stimeStr;
+        			this.endTimeMM = Data.etimeStr;
+        			this.$refs.date.startTime = Data.stimeStr.slice(0, Data.stimeStr.indexOf(' '));
+        			this.$refs.date.endTime = Data.etimeStr.slice(0, Data.stimeStr.indexOf(' '));
   				}
   			}).then(() => {
   				this.showPerformanceList()
@@ -116,6 +117,11 @@ export default {
 			}).then(res => {
   				if (res.ok) {
   					const Data = res.data;
+  					if (this.countType == 2) {
+  						this.overview.newCount = Data.page.count
+  					} else {
+  						this.overview.totalCount = Data.page.count
+  					}
   					if (Data.list && Data.list.length > 0) {
   						if (loading) {
   							// push
@@ -124,7 +130,7 @@ export default {
   							 	me.performancelist.push(n)
   							})
   						} else {
-  							this.performancelist = Data.data.list;
+  							this.performancelist = Data.list;
   						}
   					} else {
   						if (loading) {
@@ -164,6 +170,7 @@ export default {
   		},
   		chooseType(type) {
   			if (this.countType == type) return
+  			this.init();
   			this.countType = type;
   			this.showPerformanceList();
   		}
@@ -196,7 +203,7 @@ export default {
 	.bottom-border {
 		position: absolute;
 		bottom: -2px;
-		width: 49%;
+		width: 50%;
 		height: 0;
 		border: 2px solid;
 		-webkit-transition: left .3s;
@@ -240,7 +247,6 @@ export default {
 	}
 }
 .result-wrap {
-	margin-bottom: 1.4rem;
 	background: #fff;
 	.flex {
 		justify-content: space-around;

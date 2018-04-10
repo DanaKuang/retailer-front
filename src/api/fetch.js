@@ -14,26 +14,26 @@ var defaultsConfig = {
 
 const Fetch = {};
 Fetch.get = function (url, config) {
-    //1、创建XHR对象
-    var xhr = new XMLHttpRequest();        
-
-    //2、为发送请求做准备
-    xhr.open('get', url, true);
-    xhr.timeout = 2000;
-
-    // setRequestHeader一定要在xhr opened以后执行，不然会报错
-    if (process && process.env && process.env.NODE_ENV === 'development') {
-        xhr.setRequestHeader('token', _mytoken)
-    }
-
-    //3、正式发送请求。
-    xhr.send(null);
-    // xhr.ontimeout = () => xhr.onabort();
-
     return new Promise((resolve, reject) => {
+        //1、创建XHR对象
+        var xhr = new XMLHttpRequest();        
+
+        //2、为发送请求做准备
+        xhr.open('get', url, true);
+        xhr.timeout = 2000;
+
+        // setRequestHeader一定要在xhr opened以后执行，不然会报错
+        if (process && process.env && process.env.NODE_ENV === 'development') {
+            xhr.setRequestHeader('token', _mytoken)
+        }
+
+        //3、正式发送请求。
+        xhr.send(null);
+        // xhr.ontimeout = () => xhr.onabort();
+
         xhr.onload = () => resolve(JSON.parse(xhr.responseText));
         xhr.onerror = () => reject(xhr.statusText);
     })
-} 
+}
 
 export default Fetch

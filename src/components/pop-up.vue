@@ -31,12 +31,16 @@
 	</div>
 </template>
 <script>
-import Http from 'assets/lib/http.js'
+import {querylatestorder, createorder} from 'api/getlabel.js'
 import { Popup } from 'mint-ui'
+import {mapGetters} from 'vuex'
 
 export default {
 	name: 'pop-up',
 	props: ['variate'],
+	computed: mapGetters([
+  		'sellerId'
+  	]),
 	data () {
 		return {
 			myvariate: this.variate,
@@ -44,45 +48,32 @@ export default {
 			status: ''
 		}
 	},
-	beforeCreate(){
-
-	},
-	//在挂载开始之前被调用
-	beforeMount(){
-		
-	},
 	created() {
 		this.checkLatestOrder()
-	},
-	//已成功挂载，相当ready()
-	mounted(){
-				
 	},
 	//相关操作事件
 	methods: {
 		// 查询当前用户最新一条店码订单
 		checkLatestOrder() {
 			var me = this;
-			Http.get('/seller-web/order/queryNewestOrder')
-				.then(res => {
-					var Data = res.data;
-					if (Data.ok) {
-						var data = Data.data;
-						if (data != null) {
-							me.status = data.status;
-							if (data.status != 6 && data.status != 4) {
-								// 按钮显示查询物流订单
-								me.buttonText = '查看订单详情'
-							}
+			querylatestorder().then(res => {
+				if (res.ok) {
+					const Data = res.data;
+					if (Data != null) {
+						me.status = Data.status;
+						if (Data.status != 6 && Data.status != 4) {
+							// 按钮显示查询物流订单
+							me.buttonText = '查看订单详情'
 						}
 					}
-				})
+				}
+			})
 		},
 		confirmOrder() {
 			if (this.status) {
 				if (this.status != 6 && this.status != 4) {
 					// 跳转到订单页面，查询订单
-					this.$router.push({path:'/retailer/orderdetail?sellerId=' + this.myvariate.user.sellerId})
+					this.$router.push({path:'/retailer/orderdetail'})
 				} else {
 					this.createOrder()
 				}
@@ -93,24 +84,21 @@ export default {
 		createOrder() {
 			var param = this.myvariate.user,
 				price = this.myvariate.price;
-			Http.get('/seller-web/order/createOrder', {
-				params: {
-					mobile: param.phoneNo,
-					username: param.ownerName,
-					province: param.addrProvince,
-					city: param.addrCity,
-					district: param.addrArea,
-					address: param.addrDetail,
-					totalFee: price,
-					sellerId: param.sellerId,
-					awardName: '店码标牌'
-				}
+			createorder({
+				mobile: param.phoneNo,
+				username: param.ownerName,
+				province: param.addrProvince,
+				city: param.addrCity,
+				district: param.addrArea,
+				address: param.addrDetail,
+				totalFee: price,
+				sellerId: param.sellerId,
+				awardName: '店码标牌'
 			}).then(res => {
-				var Data = res.data;
-				if (Data.ok) {
-					this.$router.push({path:'/retailer/orderdetail?sellerId=' + param.sellerId})
+				if (res.ok) {
+					this.$router.push({path:'/retailer/orderdetail'})
 				} else {
-					alert(Data.msg);
+					alert(res.data.msg);
 				}
 			})
 		},

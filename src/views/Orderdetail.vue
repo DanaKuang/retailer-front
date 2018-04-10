@@ -48,9 +48,13 @@ import noMore from 'components/no-more'
 import noThing from 'components/no-thing'
 import { InfiniteScroll } from 'mint-ui';
 import wx from 'weixin-js-sdk'
+import {mapGetters} from 'vuex'
 
 export default {
     name: 'Orderdetail',
+    computed: mapGetters([
+        'sellerId'
+    ]),
     data () {
         return {
             tabs: [{
@@ -76,7 +80,6 @@ export default {
             }],
             changeclass: 'all',
             list: [],
-            sellerId: sessionStorage.getItem('sellerId') || this.$route.query.sellerId || '',
             isListTrue: false,
             loading: true,
             isEnd: false,
