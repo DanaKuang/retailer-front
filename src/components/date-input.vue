@@ -13,26 +13,26 @@
 		<!-- 开始时间 -->
 		<mt-datetime-picker
 			class="startPop"
-		    ref="startDate"
-		    type="date"
-		    year-format="{value} 年"
+		    	ref="startDate"
+		    	type="date"
+		    	year-format="{value} 年"
 			month-format="{value} 月"
 			date-format="{value} 日"
-		    :startDate="startDate"
+		    	:startDate="startDate"
       		:endDate="endDate"
-		    @confirm="handleSTConfirm">
+		    	@confirm="handleSTConfirm">
 		</mt-datetime-picker>
 		<!-- 结束时间 -->
 		<mt-datetime-picker
 			class="startPop"
-		    ref="endDate"
-		    type="date"
-		    year-format="{value} 年"
+		    	ref="endDate"
+		    	type="date"
+		    	year-format="{value} 年"
 			month-format="{value} 月"
 			date-format="{value} 日"
-		    :startDate="startDate"
+		    	:startDate="startDate"
       		:endDate="endDate"
-		    @confirm="handleETConfirm">
+		    	@confirm="handleETConfirm">
 		</mt-datetime-picker>
 	</div>
 </template>
@@ -96,14 +96,14 @@ export default {
 		},
 		open(picker) {
 	        this.$refs[picker].open();
-	    },
-	    handleSTConfirm(value) {
+	    	},
+	    	handleSTConfirm(value) {
 	        this.startTime = this.formatShowDate(value);
 	        // this.emitStartTimeMM = value.getTime();
 	        this.emitStartTimeMM = this.startTime + ' 00:00:00';
 	        this.$emit('receiveStartDate', {receiveSTMM: this.emitStartTimeMM});
-	    },
-	    handleETConfirm(value) {
+	    	},
+	    	handleETConfirm(value) {
 			this.endTime = this.formatShowDate(value);
 			// console.log(value.getTime());
 			// var t = 1000 * 60 * 60 * 15 + 1000 * 60 * 59 + 1000 * 59;
@@ -111,8 +111,8 @@ export default {
 	  //       this.emitEndTimeMM = value.getTime() + t;
 	  //       console.log(this.emitEndTimeMM)
 	  		this.emitEndTimeMM = this.endTime + ' 00:00:00';
-	        this.$emit('receiveEndDate', {receiveETMM: this.emitEndTimeMM})
-	    }
+	        	this.$emit('receiveEndDate', {receiveETMM: this.emitEndTimeMM})
+	    	}
 	}
  }
 </script>
@@ -125,8 +125,8 @@ export default {
 }
 .duration {
 	justify-content: flex-start;
-	height: 1.33rem;
-	line-height: 1.33rem;
+	height: 1.53rem;
+	line-height: 1.53rem;
 	i {
 		font-size: .42rem;
 	}

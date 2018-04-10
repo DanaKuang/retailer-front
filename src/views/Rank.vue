@@ -12,19 +12,18 @@
 				<div class="rules"><router-link class="border-color font-color" :to="{path: '/retailer/rewardintro'}">活动规则</router-link></div>
 			</div>
 		</div>
-		<div class="middle flex" @click="gotoperformance">
-			<div class="flex-item font-color">
-				<p>拉新扫码业绩</p>
-				<span>{{overview.newCount}}盒</span>
+		<div class="middle box-shadow-inner" @click="gotoperformance">
+			<div class="flex">
+				<div class="flex-item font-color">
+					<p>本期扫码业绩</p>
+					<span>{{overview.periodCount}}</span>盒
+				</div>
+				<div class="flex-item font-color">
+					<p>总扫码业绩</p>
+					<span>{{overview.allTotalCount}}</span>盒
+				</div>
 			</div>
-			<div class="flex-item font-color">
-				<p>累积扫码业绩</p>
-				<span>{{overview.totalCount}}盒</span>
-			</div>
-			<div class="flex-item font-color">
-				<p>总扫码业绩</p>
-				<span>{{overview.allTotalCount}}盒</span>
-			</div>
+			<i class="middle-border border-light-color"></i>	
 		</div>
 		<div class="page-infinite-wrapper list border-box">
 			<ul 
@@ -63,8 +62,7 @@ export default {
 			myrank: '',
 			list: [],
 			overview: {
-				newCount: 0,
-  				totalCount: 0,
+				periodCount: 0,
   				allTotalCount: 0
 			},
 			topthreeImage: [],
@@ -94,8 +92,7 @@ export default {
   					if (res.ok) {
   						var data = res.data;
   						var me = this;
-  						this.overview.newCount = data.newCount;
-  						this.overview.totalCount = data.totalCount;
+  						this.overview.periodCount = data.periodCount;
   						this.overview.allTotalCount = data.allTotalCount;
   					}
   				})
@@ -223,25 +220,33 @@ export default {
 		}
 	}
 	.middle {
+		position: relative;
 		margin-bottom: .15rem;
-		justify-content: space-around;
 		width: 100%;
 		height: 1.42667rem;
 		font-size: .32rem;
 		background: #fff;
 		text-align: center;
+		.middle-border {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			border-left: 2px solid #000;
+			width: 0;
+			height: 100%;
+		}
+		.flex {
+			justify-content: space-around;
+			width: 100%;
+			height: 100%;
+		}
 		p {
 			line-height: 1.5;
 		}
-		.flex-item {
-			position: relative;
-		/*	&:after {
-				content: '';
-				position: absolute;
-				top: .1rem;
-				right: 0;
-				width: 
-			}*/
+		span {
+			margin-right: .1rem;
+			font-size: .37rem;
+			font-weight: bold;
 		}
 	}
 	.list {

@@ -1,7 +1,7 @@
 <template>
 	<div class="exchange-detail">
 		<div class="date-input-wrap">
-			<date-input ref="date" v-on:receiveStartDate="receiveStartDate" v-on:receiveEndDate="receiveEndDate" v-on:receiveDefaultDate="receiveDefaultDate"></date-input>
+			<date-input ref="date" v-on:receiveStartDate="receiveStartDate" v-on:receiveEndDate="receiveEndDate"></date-input>
 		</div>
 		<ul class="tabpanel">
 			<li class="tab font-color" v-for="(item, idx) in tabs" :class="[{'theme-bg-color': tab == idx}, {'active': tab == idx}]" @click="changeTab(idx)"><span>{{item.name}}</span>（￥<em>{{item.num}}</em>）</li>

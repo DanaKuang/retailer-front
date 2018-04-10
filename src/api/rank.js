@@ -16,3 +16,7 @@ export function showOverall() {
 export function showexchangeList(params) {
 	return Fetch.get('/seller-web/achieve/scanSmokeList' + processParams(params))
 }
+
+export function getDetailType() {
+	return Fetch.get('/seller-web/achieve/detail')
+}

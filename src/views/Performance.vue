@@ -2,13 +2,14 @@
 	<div id="performance">
 		<form class="search-form" @submit.prevent="submit" name="searchform">
 			<div class="date-input-wrap">
-				<date-input ref="date" v-on:receiveStartDate="receiveStartDate" v-on:receiveEndDate="receiveEndDate" v-on:receiveDefaultDate="receiveDefaultDate"></date-input>
+				<date-input ref="date" v-on:receiveStartDate="receiveStartDate" v-on:receiveEndDate="receiveEndDate"></date-input>
 			</div>
-			<div class="overview-wrap">
+			<div class="overview-wrap" :class="[{'first': countType == 2}, {'second': countType == 1}]">
 				<div class="overview flex">
-					<div class="flex-item">拉新扫码业绩<p class="week font-color">{{overview.newCount}}</p></div>
-					<div class="flex-item">累计扫码业绩<p class="month font-color">{{overview.totalCount}}</p></div>
+					<div class="flex-item border-color active" @click="chooseType(2)">拉新扫码业绩<br><span class="week">{{overview.newCount}}</span>盒</div>
+					<div class="flex-item border-color" @click="chooseType(1)">累计扫码业绩<br><span class="month">{{overview.totalCount}}</span>盒</div>
 				</div>
+				<i class="bottom-border border-color"></i>
 			</div>
 			<div class="result-wrap">
 				<div class="title flex border-light-color">
@@ -42,7 +43,7 @@
 	</div>
 </template>
 <script>
-import {showexchangeList, showOverall} from 'api/rank.js'
+import {showexchangeList, showOverall, getDetailType} from 'api/rank.js'
 import dateInput from 'components/date-input'
 import loadingIng from 'components/loading-ing'
 import noMore from 'components/no-more'
@@ -57,6 +58,7 @@ export default {
   				newCount: 0,
   				totalCount: 0
   			},
+  			countType: '',
   			performancelist: [],
   			startTimeMM: '',
  			endTimeMM: '',
@@ -68,31 +70,49 @@ export default {
   		}
   	},
   	created () {
+  		this.getTypeandShowlist();
   		this.showOverviewPerformance()
   	},
   	mounted () {
   		this.startTimeMM = this.$refs.date.emitStartTimeMM;
         this.endTimeMM = this.$refs.date.emitEndTimeMM;
-        this.showPerformanceList();
   	},
   	methods: {
-  		showOverviewPerformance() {
-  			showOverall().then(res => {
-				if (res.ok) {
-					this.$parent.loadingPage = false; //去掉loading
-					const Data = res.data;
-					var me = this;
-					this.overview.newCount = Data.newCount;
-					this.overview.totalCount = Data.totalCount;
-				}
-			})
+  		init() {
+			// 日期重新搜索，init变量
+            this.page = 1;
+            this.isEnd = false;
+            this.loading = true;
+            this.nomore = false;
+            this.nothing = false;
+            this.performancelist.length = 0;
+  		},
+        receiveStartDate (val) {
+  			this.init();
+            this.startTimeMM = val.receiveSTMM;
+            this.showPerformanceList()
+        },
+        receiveEndDate (val) {
+        	this.init();
+            this.endTimeMM = val.receiveETMM;
+            this.showPerformanceList()
+        },
+  		getTypeandShowlist() {
+  			getDetailType().then(res => {
+  				if (res.ok) {
+  					this.countType = res.data.achievementType;
+  				}
+  			}).then(() => {
+  				this.showPerformanceList()
+  			})
   		},
   		showPerformanceList(loading) {
   			showexchangeList({
   				startTime: this.startTimeMM,
 				endTime: this.endTimeMM,
 				pageNo: this.page,
-				pageSize: 10
+				pageSize: 10,
+				countType: this.countType
 			}).then(res => {
   				if (res.ok) {
   					const Data = res.data;
@@ -120,15 +140,6 @@ export default {
   				}
   			})
   		},
-  		init() {
-			// 日期重新搜索，init变量
-            this.page = 1;
-            this.isEnd = false;
-            this.loading = true;
-            this.nomore = false;
-            this.nothing = false;
-            this.performancelist.length = 0;
-  		},
   		loadMore() {
   			if (this.performancelist.length == 0) {
 	  			return 
@@ -140,22 +151,22 @@ export default {
 	  			}
   			}
 		},
-  		receiveStartDate (val) {
-  			this.init();
-            this.startTimeMM = val.receiveSTMM;
-            this.showPerformanceList()
-        },
-        receiveEndDate (val) {
-        	this.init();
-            this.endTimeMM = val.receiveETMM;
-            this.showPerformanceList()
-        },
-        receiveDefaultDate (val) {
-        	this.init();
-            this.startTimeMM = val.receiveSTMM;
-            this.endTimeMM = val.receiveETMM;
-            this.showPerformanceList();
-        }
+        showOverviewPerformance() {
+  			showOverall().then(res => {
+				if (res.ok) {
+					this.$parent.loadingPage = false; //去掉loading
+					const Data = res.data;
+					var me = this;
+					this.overview.newCount = Data.newCount;
+					this.overview.totalCount = Data.totalCount;
+				}
+			})
+  		},
+  		chooseType(type) {
+  			if (this.countType == type) return
+  			this.countType = type;
+  			this.showPerformanceList();
+  		}
   	},
   	filters: {
   		convertDate(val) {
@@ -179,20 +190,53 @@ export default {
 	border-bottom: 1px solid #ccc;
 }
 .overview-wrap {
+	position: relative;
 	margin-bottom: .3rem;
-	padding-left: .3rem;
-	padding-right: .3rem;
 	background: #fff;
+	.bottom-border {
+		position: absolute;
+		bottom: -2px;
+		width: 49%;
+		height: 0;
+		border: 2px solid;
+		-webkit-transition: left .3s;
+		-moz-transition: left .3s;
+		-ms-transition: left .3s;
+		transition: left .3s;
+	}
 	.overview {
 		justify-content: space-around;
-		height: 1.733rem;
+		height: 1.533rem;
 		font-size: .42667rem;
 		text-align: center;
-		line-height: 1.5;
+		line-height: 1.8;
 		color: #666;
 		p {
 			color: #000;
 		}
+		span {
+			margin-right: .1rem;
+			color: #EE0405;
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			right: 50%;
+			top: 0;
+			height: 100%;
+			width: 0;
+			border-left: 1px solid #ccc;
+		}
+	}
+}
+.overview-wrap.first {
+	.bottom-border {
+		left: 0;
+	}
+}
+.overview-wrap.second {
+	.bottom-border {
+		left: 50%;
 	}
 }
 .result-wrap {
