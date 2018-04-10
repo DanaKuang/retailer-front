@@ -76,7 +76,6 @@ export default {
 			} else {
 				m = m + 1 < 10 ? '0' + (m + 1) : m + 1;
 			}
-
 			d = d < 10 ? '0' + d : d;
 			return [y, m, d].join('-');
 		},
@@ -90,28 +89,28 @@ export default {
 		formatShowDate(val) {
 			// 转化标准时间的显示
 			var y = val.getFullYear(),
-				m = (val.getMonth() + 1) > 10 ? (val.getMonth() + 1) : '0' + (val.getMonth() + 1),
-				d = val.getDate() > 10 ? val.getDate() : ('0' + val.getDate());
+				m = (val.getMonth() + 1) >= 10 ? (val.getMonth() + 1) : '0' + (val.getMonth() + 1),
+				d = val.getDate() >= 10 ? val.getDate() : ('0' + val.getDate());
 			return [y,m,d].join('-')
 		},
 		open(picker) {
 	        this.$refs[picker].open();
 	    	},
 	    	handleSTConfirm(value) {
-	        this.startTime = this.formatShowDate(value);
-	        // this.emitStartTimeMM = value.getTime();
-	        this.emitStartTimeMM = this.startTime + ' 00:00:00';
-	        this.$emit('receiveStartDate', {receiveSTMM: this.emitStartTimeMM});
+		        this.startTime = this.formatShowDate(value);
+		        // this.emitStartTimeMM = value.getTime();
+		        this.emitStartTimeMM = this.startTime + ' 00:00:00';
+		        this.$emit('receiveStartDate', {receiveSTMM: this.emitStartTimeMM});
 	    	},
 	    	handleETConfirm(value) {
-			this.endTime = this.formatShowDate(value);
-			// console.log(value.getTime());
-			// var t = 1000 * 60 * 60 * 15 + 1000 * 60 * 59 + 1000 * 59;
-			//  // 插件是默认早上8点，需要加上15小时59分59秒等量的毫秒
-	  //       this.emitEndTimeMM = value.getTime() + t;
-	  //       console.log(this.emitEndTimeMM)
-	  		this.emitEndTimeMM = this.endTime + ' 00:00:00';
-	        	this.$emit('receiveEndDate', {receiveETMM: this.emitEndTimeMM})
+				this.endTime = this.formatShowDate(value);
+				// console.log(value.getTime());
+				// var t = 1000 * 60 * 60 * 15 + 1000 * 60 * 59 + 1000 * 59;
+				//  // 插件是默认早上8点，需要加上15小时59分59秒等量的毫秒
+		  //       this.emitEndTimeMM = value.getTime() + t;
+		  //       console.log(this.emitEndTimeMM)
+		  		this.emitEndTimeMM = this.endTime + ' 00:00:00';
+		        	this.$emit('receiveEndDate', {receiveETMM: this.emitEndTimeMM})
 	    	}
 	}
  }
