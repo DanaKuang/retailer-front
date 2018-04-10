@@ -25,7 +25,10 @@ body {
 	background: rgba(185,110,136,.6);
 }
 .shankun .border-color {
-	border-color: #7D1A53;
+	border-color: #7D1A53!important;
+}
+.shankun .border-light-color {
+	border-color: #E5E5E5!important;
 }
 .shankun .nav-bg-color {
 	background: #fff;
@@ -113,9 +116,8 @@ body {
 }
 
 /* 排行榜 */ 
-.shankun .rank {
-	background: url('https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_bg.png') top no-repeat;
-	background-size: cover;
+.shankun .rank .top {
+	background: url(https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/shankun/rank_bg.png) 100% 100%;
 }
 
 .shankun .box-shadow-inner {
