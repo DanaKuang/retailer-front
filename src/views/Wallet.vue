@@ -79,7 +79,8 @@ export default {
   			page: 1,
   			isEnd: false,
   			tip1: '余额不足1元无法提现',
-			tip2: '请注意查收'
+			tip2: '请注意查收',
+			withdrawFlag: true
   		}
   	},
   	created () {
@@ -96,8 +97,7 @@ export default {
   			getMyWallet().then(res => {
 				if (res.ok) {
 					this.$parent.loadingPage = false; //去掉loading
-					var data = res.data;
-					this.wallet = data;
+					this.wallet = res.data;
 				} 
 			})
   		},
@@ -109,16 +109,16 @@ export default {
 				pageNo: this.page,
 				pageSize: 10
 			}).then(res => {
-  				var Data = res.data;
-  				if (Data.ok) {
+  				if (res.ok) {
+  					const Data = res.data;
 	  				me.isListTrue = true;
-	  				if (Data.data.list && Data.data.list.length > 0) {
+	  				if (Data.list && Data.list.length > 0) {
 	  					if (bool) {
-							Data.data.forEach(function(n) {
+							Data.forEach(function(n) {
 	                            me.latest.push(n)
 	                        })  
 	  					} else {
-							me.latest = Data.data.list
+							me.latest = Data.list
 	  					}
 	  				} else { 
 	  					if (bool) {
@@ -152,38 +152,41 @@ export default {
 				this.tip1 = '余额不足1元无法提现';
 				this.tip2 = '';
 			} else {
-				withdrawMoney({
-					txAmount: txAmount
-				}).then(res => {
-					var Data = res.data;
-					if (Data.ok) {
-						var detailData = Data.data;
-						if (detailData.status == 1) {
-							this.successWithdraw = true;
-							this.popupVisible = true;
-							this.tip1 = '工作人员会在24小时内将佣金打入到您的微信账户内。';
-						} else if (detailData.status == 2 && detailData.isFinish == 1) {
-							this.successWithdraw = true;
-							this.popupVisible = true;
-							this.tip1 = '已成功提现至零钱包';
-						} else if (detailData.status == 3) {
-							this.successWithdraw = true;
-							this.popupVisible = true;
-							this.tip1 = '抱歉，您的提现已被拒绝';
+				if (this.withdrawFlag) {
+					this.withdrawFlag = false;
+					withdrawMoney({
+						txAmount: txAmount
+					}).then(res => {
+						if (res.ok) {
+							this.withdrawFlag = true;
+							const detailData = res.data;
+							if (detailData.status == 1) {
+								this.successWithdraw = true;
+								this.popupVisible = true;
+								this.tip1 = '工作人员会在24小时内将佣金打入到您的微信账户内。';
+							} else if (detailData.status == 2 && detailData.isFinish == 1) {
+								this.successWithdraw = true;
+								this.popupVisible = true;
+								this.tip1 = '已成功提现至零钱包';
+							} else if (detailData.status == 3) {
+								this.successWithdraw = true;
+								this.popupVisible = true;
+								this.tip1 = '抱歉，您的提现已被拒绝';
+								this.tip2 = '';
+							}
+							
+							// 再调用一次最近三天明细接口
+							this.latest.length = 0;
+							this.isListTrue = false;
+							this.showWalletOverview();
+							this.latestThreeDays();
+						} else {
+							this.tip1 = res.msg
 							this.tip2 = '';
+							this.popupVisible = true;
 						}
-						
-						// 再调用一次最近三天明细接口
-						this.latest.length = 0;
-						this.isListTrue = false;
-						this.showWalletOverview();
-						this.latestThreeDays();
-					} else {
-						this.tip1 = Data.msg
-						this.tip2 = '';
-						this.popupVisible = true;
-					}
-				})
+					})
+				}
 			}
 		},
 		iget() {

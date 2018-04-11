@@ -8,4 +8,3 @@ export function getbaseInfo() {
 export function getWxConfig () {
 	return Fetch.get('/seller-web/wechat/open/jstoken')
 }
-

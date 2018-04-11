@@ -11,7 +11,7 @@ export const getBase = ({commit}) => {
 	    	if (orgId === 'henanzhongyan') {
 	    		require('assets/theme/henan.css');
 	    		var navArr = require('assets/data/henan/nav.json').menu;
-	    	} else if (orgId === 'zhankunzhongyan') {
+	    	} else if (orgId === 'shankunzhongyan') {
 	    		require('assets/theme/shankun.css');
 	    		var navArr = require('assets/data/shankun/nav.json').menu;
 	    	}

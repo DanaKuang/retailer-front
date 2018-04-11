@@ -72,8 +72,8 @@
 
 <script>
 import Fetch from 'api/fetch.js'
-import Http from 'assets/lib/http.js'
-import {mapGetters, mapMutations} from 'vuex'
+import {getVcode, verifyVcode, activate} from 'api/activate.js'
+import {mapGetters, mapActions, mapMutations} from 'vuex'
 import popModal from 'components/pop-modal'
 
 export default {
@@ -142,56 +142,56 @@ export default {
                     me.vcodeBtnMsg = '获取验证码';
                     window.clearInterval(interval);
                 } else {
-                    me.vcodeBtnMsg = me.count + '秒';
+                    me.vcodeBtnMsg = count + '秒';
                 }
             }, 1000);
-            Http.get('/admin/login/getDynamicCode?oc=1&mobile=' + phone)
-                .then(res => {
-                    var Data = res.data
-                    if (Data.ret != 200000) {
-                        alert(Data.message)
-                    }
-                })
+            getVcode(phone).then(res => {
+                if (res.ret != 200000) {
+                    alert(res.message)
+                }
+            })
         },
 
         // 校验验证码
         verify () {
-            Http.get('/admin/login/checkDynamicCode?mobile=' + this.seller.sellerInfo.phoneNo + '&code=' + this.vcode)
-                    .then(res => {
-                        var Data = res.data
-                        if (Data.data) {
-                            this.codePop = false;
-                            this.confirmDisable = false;
-                            if (this.isYanTai) {
-                                this.confirm()
-                            }
-                        } else {
-                            alert(Data.message);
-                            this.vcodeVerifyDisable = false;
-                            return
-                        }
-                    })
+            verifyVcode({
+                mobile: this.seller.sellerInfo.phoneNo,
+                code: this.vcode
+            }).then(res => {
+                if (res.data) {
+                    this.codePop = false;
+                    this.confirmDisable = false;
+                    if (this.isYanTai) {
+                        this.confirm()
+                    }
+                } else {
+                    alert(res.message);
+                    this.vcodeVerifyDisable = false;
+                    return
+                }
+            })
         },
 
         // 确认激活
         confirm () {
             this.confirmDisable = true;
             var me = this;
-            Http.get('/seller-web/consumer/active?sellerId=' + this.sellerId + '&valid=' + this.vcode + this.seller.sellerInfo.phoneNo + '1' + this.vcode.length)
-                .then(res => {
-                    var Data = res.data;
-                    me.confirmPop = true;
-                    if (Data.ok) {
-                        // 激活成功
-                        me.successActivate = true;
-                        me.activateState.text = '恭喜您，激活成功！';
-                        me.activateState.tips = '赶紧去完善基本信息吧！'
-                    } else {
-                        // 激活失败
-                        me.activateState.text = '很抱歉激活失败！';
-                        me.activateState.tips = '请重新激活'
-                    }
-                })
+            activate({
+                sellerId: this.sellerId,
+                valid: this.vcode + this.seller.sellerInfo.phoneNo + '1' + this.vcode.length
+            }).then(res => {
+                me.confirmPop = true;
+                if (res.ok) {
+                    // 激活成功
+                    me.successActivate = true;
+                    me.activateState.text = '恭喜您，激活成功！';
+                    me.activateState.tips = '赶紧去完善基本信息吧！'
+                } else {
+                    // 激活失败
+                    me.activateState.text = '很抱歉激活失败！';
+                    me.activateState.tips = '请重新激活'
+                }
+            })
         },
 
         // 激活与否的弹窗，确认按钮

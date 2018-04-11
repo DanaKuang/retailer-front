@@ -10,7 +10,7 @@ export function getLatestBalance(params) {
 }
 
 export function withdrawMoney(params) {
-	return Fetch.get('/seller-web/seller/select/income-and-expenses' + processParams(params))
+	return Fetch.get('/seller-web/seller/wallet/tx' + processParams(params))
 }
 
 export function showIncome(params) {

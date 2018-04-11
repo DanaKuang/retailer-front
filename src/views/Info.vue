@@ -34,7 +34,7 @@
 				<div class="field store-address item">
 					<label for="" class="desc"><em class="font-color">*</em>门店地址：
 						<span id="lareaselectid"><span :class="{fakeselect: defaultAddr, trueselect: !defaultAddr}">{{(seller.sellerInfo && seller.sellerInfo.addrProvinceName && seller.sellerInfo.addrProvinceName + seller.sellerInfo.addrCityName + seller.sellerInfo.addrAreaName) || '请输入门店地址'}}</span></span>
-            			<input id="lareaselectval" type="hidden" />
+            <input id="lareaselectval" type="hidden" />
 					</label> 
 				</div>
 				<div class="field store-address-detail item">
@@ -264,13 +264,11 @@ export default {
   			var area = new LAREA();
   			var me = this;
 			getGeo().then(res => {
-				var Data = res.data;
-				if (Data.ok) {
-					var data = Data.data;
-					var provs_data = data.provinces,
-						citys_data = data.cities,
-						dists_data = data.areas;
-
+				if (res.ok) {
+					const Data = res.data;
+					var provs_data = Data.provinces,
+						citys_data = Data.cities,
+						dists_data = Data.areas;
 		        	area.init({
 				        'trigger': '#lareaselectid',
 				        'valueTo': '#lareaselectval',
@@ -340,7 +338,6 @@ export default {
   	}
 }
 </script>
-
 <style lang="scss" scoped>
 @mixin border-radius($num) {
 	-webkit-border-radius: $num;
