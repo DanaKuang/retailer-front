@@ -127,7 +127,6 @@
 	</div>
 </template>
 <script>
-import Fetch from 'api/fetch.js'
 import {mapGetters, mapMutations} from 'vuex'
 import { Popup } from 'mint-ui'
 import popUp from 'components/pop-up'
@@ -158,6 +157,9 @@ export default {
   		}
   	},
   	created() {
+  		this.$store.dispatch('getSeller', this.sellerId);
+  	},
+  	updated() {
   		this.getRetailerInfo();
   	},
   	beforeDestroy () {
@@ -166,51 +168,41 @@ export default {
   	methods: {
   		// 判断是否认证，展示店家信息
   		getRetailerInfo() {
-  			if (this.$route.query.sellerId) {
-  				this.setSellerId(this.$route.query.sellerId)
-  			}
-
-  			Fetch.get('/seller-web/seller/main/' + (this.sellerId || ''))
-  				.then(res => {	
-  				this.$parent.loadingPage = false; //去掉loading	
-  				if (res.ok) {
-  					var Data = res.data;
-  					this.setRetailer(Data);
-  					
-                	this.sellerInfo = Data.sellerInfo;
-                	let authStatus = this.sellerInfo.authStatus;
-                    if (authStatus == 2) {
-                    	// 审核通过
-                    	this.certifyoredit = '重新编辑';
-                    	if (!this.sellerInfo.headImg) {
-                    		// 待完善
-                    		this.pop.completeInfo = true
-                    	}
-                    } else if (authStatus == 1) {
-                    	// 审核中
-                    	this.certifyoredit = '审核中';
-                		this.waiting.text = '您提交的申请正在审核中';
-                		this.waiting.tip = '请耐心等待通知';
-                		this.pop.waitingpop = true;
-                    } else if (authStatus == 3) {
-                    	// 没通过
-                    	this.pop.failpop = true;
-                    	this.waiting.text = Data.applyLog ? Data.applyLog.failReason : '审批未通过';
-                    } else {
-                    	// 待激活
-                    	this.pop.activatepop = true;
-                    	this.activate.text = '您是认证用户，尚未激活';
-                    	this.activate.tip = '点击下方按钮去激活吧！'
-                    }
-
-                    if (Data.SELLER_QRPRINT_SHOW_ISSET != 0) {
-                    	this.showLabel = true
-                    }
+  			this.$parent.loadingPage = false; //去掉loading	
+  			if (this.seller.sellerInfo) {
+  				const sellerInfo = this.seller.sellerInfo;
+  				let authStatus = sellerInfo.authStatus;
+                if (authStatus == 2) {
+                	// 审核通过
+                	this.certifyoredit = '重新编辑';
+                	if (!sellerInfo.headImg) {
+                		// 待完善
+                		this.pop.completeInfo = true
+                	}
+                } else if (authStatus == 1) {
+                	// 审核中
+                	this.certifyoredit = '审核中';
+            		this.waiting.text = '您提交的申请正在审核中';
+            		this.waiting.tip = '请耐心等待通知';
+            		this.pop.waitingpop = true;
+                } else if (authStatus == 3) {
+                	// 没通过
+                	this.pop.failpop = true;
+                	this.waiting.text = Data.applyLog ? Data.applyLog.failReason : '审批未通过';
                 } else {
-                	// 去认证
-                	this.pop.yetcertified = true;
+                	// 待激活
+                	this.pop.activatepop = true;
+                	this.activate.text = '您是认证用户，尚未激活';
+                	this.activate.tip = '点击下方按钮去激活吧！'
                 }
-  			})
+
+                if (this.seller.SELLER_QRPRINT_SHOW_ISSET != 0) {
+                	this.showLabel = true
+                }
+  			} else {
+  				// 去认证
+            	this.pop.yetcertified = true;
+  			}
         },
   		// 领取标牌
 	    showLabelpopup() {
@@ -238,9 +230,8 @@ export default {
 	    	}
 	    },
 	    ...mapMutations({
-	    	setRetailer: 'setRetailer',
-	    	setSellerId: 'setSellerId'
-	    })
+            setRetailer: 'setRetailer'
+        })
 	},
 	components:{
 	    popUp,
@@ -437,6 +428,11 @@ export default {
 				color: #fff;
 				font-size: .613rem;
 				@include border-radius(4px);
+				a {
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
 	}

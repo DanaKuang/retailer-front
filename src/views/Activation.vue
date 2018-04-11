@@ -105,9 +105,6 @@ export default {
 	},
 	methods: {
 		getRetailerInfo() {
-            if (!this.sellerId && this.$route.query.sellerId) {
-                this.setSellerId(this.$route.query.sellerId)
-            }
 			Fetch.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId || '')
                 .then(res => {
                     this.$parent.loadingPage = false; //去掉loading
@@ -204,8 +201,7 @@ export default {
             }
         },
         ...mapMutations({
-            setRetailer: 'setRetailer',
-            setSellerId: 'setSellerId'
+            setRetailer: 'setRetailer'
         })
 	},
 	components: {

@@ -1,4 +1,4 @@
-import {getbaseInfo, getWxConfig} from 'api/baseInfo'
+import {getbaseInfo, getWxConfig, getSellerInfo} from 'api/baseInfo'
 
 export const getBase = ({commit}) => {
 	getbaseInfo()
@@ -20,10 +20,21 @@ export const getBase = ({commit}) => {
 	    .catch(() => {console.log('getbaseInfo出错')})
 }
 
+export const getSeller = ({commit}, sellerId) => {
+	getSellerInfo(sellerId)
+		.then(res => {
+			if (res.ok) {
+				const Data = res.data;
+				commit('setRetailer', Data);
+			}
+		})
+		.catch(() => {console.log('getSeller出错')})
+}
+
 export const getWX = ({commit}) => {
 	getWxConfig()
 		.then(res => {
-			var data = res.data;
+			const data = res.data;
 			commit('wxConfig', data)
 		})
 		.catch(() => {console.log('getWX出错')})

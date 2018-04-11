@@ -8,3 +8,7 @@ export function getbaseInfo() {
 export function getWxConfig () {
 	return Fetch.get('/seller-web/wechat/open/jstoken')
 }
+
+export function getSellerInfo(sellerId) {
+	return Fetch.get('/seller-web/seller/main/' + sellerId)
+}

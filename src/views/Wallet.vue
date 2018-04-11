@@ -157,8 +157,8 @@ export default {
 					withdrawMoney({
 						txAmount: txAmount
 					}).then(res => {
+						this.withdrawFlag = true;
 						if (res.ok) {
-							this.withdrawFlag = true;
 							const detailData = res.data;
 							if (detailData.status == 1) {
 								this.successWithdraw = true;
