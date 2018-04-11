@@ -112,7 +112,7 @@
 			<pop-modal>
 				<p class="font-color tip1">{{activate.text}}</p>
   				<p class="tip3">{{activate.tip}}</p>
-  				<button slot="button" class="theme-bg-color_lighter"><router-link :to="{path: '/retailer/activation'}">去激活</router-link></button>
+  				<button slot="button" class="theme-bg-color_lighter"><router-link :to="{path: '/retailer/activation', query: {sellerId: sellerId}}">去激活</router-link></button>
     		</pop-modal>
 		</mt-popup>
 

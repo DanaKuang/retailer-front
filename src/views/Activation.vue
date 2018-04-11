@@ -112,8 +112,7 @@ export default {
     },
 	methods: {
 		getRetailerInfo() {
-            console.log(this.sellerId);
-			Fetch.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId || '')
+			Fetch.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId || this.$route.query.sellerId)
                 .then(res => {
                     this.$parent.loadingPage = false; //去掉loading
                     if (res.ok) {
