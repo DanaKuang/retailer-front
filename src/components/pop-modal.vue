@@ -51,6 +51,11 @@
 		text-align: center;
 		font-size: .48rem;
 		@include border-radius(4px);
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
 </style>

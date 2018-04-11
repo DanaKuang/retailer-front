@@ -428,11 +428,6 @@ export default {
 				color: #fff;
 				font-size: .613rem;
 				@include border-radius(4px);
-				a {
-					display: block;
-					width: 100%;
-					height: 100%;
-				}
 			}
 		}
 	}

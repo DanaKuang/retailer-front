@@ -3,31 +3,31 @@
         <div class="item-wrap">
             <div class="item">
                 <span class="name">经营人姓名</span>：
-                <div class="content">{{seller.sellerInfo && seller.sellerInfo.ownerName}}</div>
+                <div class="content">{{user.ownerName}}</div>
             </div>
             <div class="item">
                 <span class="name">手机号</span>：
-                <div class="content">{{seller.sellerInfo && seller.sellerInfo.phoneNo}}</div>
+                <div class="content">{{user.phoneNo}}</div>
             </div>
             <div class="item certificate">
                 <span class="name">烟草专卖零售许可证件号</span>：
-                <div class="content">{{seller.sellerInfo && seller.sellerInfo.licenceNo}}</div>
+                <div class="content">{{user.licenceNo}}</div>
             </div>
             <div class="item">
                 <span class="name">店铺名称</span>：
-                <div class="content">{{seller.sellerInfo && seller.sellerInfo.shopName}}</div>
+                <div class="content">{{user.shopName}}</div>
             </div>
             <div class="item">
                 <span class="name">门店地址</span>：
-                <div class="content">{{seller.sellerInfo && seller.sellerInfo.addrDetail}}</div>
+                <div class="content">{{user.addrDetail}}</div>
             </div>
             <div class="item">
                 <span class="name">区域</span>：
-                <div class="content">{{seller.sellerInfo && seller.sellerInfo.districtName}}</div>
+                <div class="content">{{user.districtName}}</div>
             </div>
             <div class="item">
                 <span class="name">业态</span>：
-                <div class="content">{{seller.sellerInfo && seller.sellerInfo.commercialName}}</div>
+                <div class="content">{{user.commercialName}}</div>
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                     </label>
                 </div>
                 <p class="font-color tip1">请获取验证码</p>
-                <p class="tip3">验证码会发送到<span class="font-color">{{seller.sellerInfo && seller.sellerInfo.phoneNo}}</span>手机里</p>
+                <p class="tip3">验证码会发送到<span class="font-color">{{user.phoneNo}}</span>手机里</p>
                 <button slot="button" class="theme-bg-color_lighter" :disabled="vcodeVerifyDisable" :class="{'disabled-btn': vcodeVerifyDisable}" @click="verify">确认</button>
             </pop-modal>
         </mt-popup>
@@ -84,6 +84,7 @@ export default {
     ]),
 	data () {
 		return {
+            user: {},
 			vcode: '',
 			codePop: true, // 验证码弹窗
 			vcodeBtnMsg: '获取验证码',
@@ -101,15 +102,23 @@ export default {
 		}
 	},
 	created () {
-        this.getRetailerInfo();
+        
 	},
+    mounted () {
+        this.getRetailerInfo();
+    },
+    updated() {
+        
+    },
 	methods: {
 		getRetailerInfo() {
+            console.log(this.sellerId);
 			Fetch.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId || '')
                 .then(res => {
                     this.$parent.loadingPage = false; //去掉loading
                     if (res.ok) {
                         var Data = res.data;
+                        this.user = Data;
                         if (!this.seller.sellerInfo) {
                             // detail接口和main字段相同，但结构又不一样！
                             var seller = {
@@ -126,7 +135,7 @@ export default {
             this.vcodeBtnDisable = true;
             this.vcodeInputDisable = false;
             this.vcodeVerifyDisable = false;
-            this.getVerify(this.seller.sellerInfo.phoneNo);
+            this.getVerify(this.user.phoneNo);
         },
 
         getVerify(phone) {
@@ -152,7 +161,7 @@ export default {
         // 校验验证码
         verify () {
             verifyVcode({
-                mobile: this.seller.sellerInfo.phoneNo,
+                mobile: this.user.phoneNo,
                 code: this.vcode
             }).then(res => {
                 if (res.data) {
@@ -175,7 +184,7 @@ export default {
             var me = this;
             activate({
                 sellerId: this.sellerId,
-                valid: this.vcode + this.seller.sellerInfo.phoneNo + '1' + this.vcode.length
+                valid: this.vcode + this.user.phoneNo + '1' + this.vcode.length
             }).then(res => {
                 me.confirmPop = true;
                 if (res.ok) {
