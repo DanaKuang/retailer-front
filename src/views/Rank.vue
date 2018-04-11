@@ -233,7 +233,7 @@ export default {
 			left: 50%;
 			border-left: 2px solid #000;
 			width: 0;
-			height: 100%;
+			height: 94%;
 		}
 		.flex {
 			justify-content: space-around;

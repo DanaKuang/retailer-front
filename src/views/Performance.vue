@@ -228,7 +228,7 @@ export default {
 		&:after {
 			content: '';
 			position: absolute;
-			right: 50%;
+			left: 50.5%;
 			top: 0;
 			height: 100%;
 			width: 0;
@@ -243,7 +243,7 @@ export default {
 }
 .overview-wrap.second {
 	.bottom-border {
-		left: 50%;
+		left: 50.5%;
 	}
 }
 .result-wrap {
