@@ -6,7 +6,7 @@
 			</div>
 			<div class="flex-item title-item">
 				<div class="title">冠军排行榜</div>
-				<div class="ranking font-color">您当前排名：<span>{{myrank}}</span></div>
+				<div class="ranking font-color">您当前排名：<span>{{myrank || 0}}</span></div>
 			</div>
 			<div class="flex-item rules-item">
 				<div class="rules"><router-link class="border-color font-color" :to="{path: '/retailer/rewardintro'}">活动规则</router-link></div>
