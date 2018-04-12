@@ -307,7 +307,7 @@ export default {
 		        				// 激活成功
 		        				me.success = true;
 		        				me.loadingpop = false;
-		        				if (me.sellerId && me.seller.sellerInfo.authStatus == 2) {
+		        				if (me.sellerId && (me.seller.sellerInfo.authStatus == 2 || me.seller.sellerInfo.authStatus == 4)) {
 		        					me.successState.text = '信息完善成功！';
 		        				} else {
 		        					me.successState.text = '已申请，请等待审核通知！'
