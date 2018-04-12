@@ -20,18 +20,18 @@ export const getBase = ({commit}) => {
 	    .catch(() => {console.log('getbaseInfo出错')})
 }
 
-export const getSeller = ({commit}, sellerId) => {
-	getSellerInfo(sellerId)
-		.then(res => {
-			if (res.ok) {
-				const Data = res.data;
-				commit('setRetailer', Data);
-			} else {
-				console.log('未认证')
-			}
-		})
-		.catch(() => {console.log('getSeller出错')})
-}
+// export const getSeller = ({commit}, sellerId) => {
+// 	getSellerInfo(sellerId)
+// 		.then(res => {
+// 			if (res.ok) {
+// 				const Data = res.data;
+// 				commit('setRetailer', Data);
+// 			} else {
+// 				console.log('未认证')
+// 			}
+// 		})
+// 		.catch(() => {console.log('getSeller出错')})
+// }
 
 export const getWX = ({commit}) => {
 	getWxConfig()
