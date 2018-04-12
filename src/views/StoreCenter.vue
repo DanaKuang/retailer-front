@@ -158,6 +158,7 @@ export default {
   	},
   	created() {
   		this.$store.dispatch('getSeller', this.sellerId);
+  		this.hasornotSellerId()
   	},
   	updated() {
   		this.getRetailerInfo();
@@ -166,7 +167,14 @@ export default {
 		// this.$bus.emit('infopage', this.user);
   	},
   	methods: {
-  		// 判断是否认证，展示店家信息
+  		// 判断是否认证
+  		hasornotSellerId() {
+  			if (!this.sellerId) {
+  				this.$parent.loadingPage = false;
+  				this.pop.yetcertified = true;
+  			}
+  		},
+  		// 展示店家信息
   		getRetailerInfo() {
   			this.$parent.loadingPage = false; //去掉loading	
   			if (this.seller.sellerInfo) {

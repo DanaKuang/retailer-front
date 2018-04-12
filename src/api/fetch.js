@@ -20,7 +20,7 @@ Fetch.get = function (url, config) {
 
         //2、为发送请求做准备
         xhr.open('get', url, true);
-        xhr.timeout = 5000;
+        xhr.timeout = 20000;
 
         // setRequestHeader一定要在xhr opened以后执行，不然会报错
         if (process && process.env && process.env.NODE_ENV === 'development') {

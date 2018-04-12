@@ -107,9 +107,6 @@ export default {
     mounted () {
         this.getRetailerInfo();
     },
-    updated() {
-        
-    },
 	methods: {
 		getRetailerInfo() {
 			Fetch.get('/seller-web/consumer/seller/detail?sellerId=' + this.sellerId || this.$route.query.sellerId)

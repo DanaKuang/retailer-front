@@ -26,6 +26,8 @@ export const getSeller = ({commit}, sellerId) => {
 			if (res.ok) {
 				const Data = res.data;
 				commit('setRetailer', Data);
+			} else {
+				console.log('未认证')
 			}
 		})
 		.catch(() => {console.log('getSeller出错')})
