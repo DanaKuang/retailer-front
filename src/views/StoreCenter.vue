@@ -40,7 +40,7 @@
 			<div class="promotion menu bor-bt border-box">
 				<p class="item"><router-link :to="{path: '/retailer/activityintro'}">活动说明</router-link></p>
 			</div>
-			<div class="performance menu border-box" v-if="isSK">
+			<div class="performance menu border-box">
 				<p class="item"><router-link :to="{path: '/retailer/rewardintro'}">业绩说明</router-link></p>
 			</div>
 		</div>
@@ -153,8 +153,7 @@ export default {
   			waiting: {}, //待审核or审核未通过文案内容
   			activate: {}, //激活弹窗文案内容
             showLabel: false,
-            getlabelpopVariate: {},
-            isSK: window.location.hostname !== 'sk.saotx.cn', //山昆先隐藏这个入口
+            getlabelpopVariate: {}
   		}
   	},
   	created() {
