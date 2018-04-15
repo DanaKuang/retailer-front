@@ -6,6 +6,10 @@ import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 import store from './store'
 
+import 'assets/lib/flexible.js'
+import 'assets/public/reset.css'
+import 'assets/public/common.css'
+
 // import 'common/stylus/index.styl'
 
 /* eslint-disable no-unused-vars */
@@ -27,8 +31,8 @@ Vue.use(VueLazyload, {
 
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
+  	el: '#app',
+  	router,
+  	store,
+  	render: h => h(App)
 })

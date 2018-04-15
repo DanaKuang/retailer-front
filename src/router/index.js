@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import StoreCenter from '@/views/StoreCenter.vue'
 import Info from '@/views/Info.vue'
 import Performance from '@/views/Performance.vue'
@@ -126,11 +127,11 @@ var routes = [{
         title: ''
     }
 }, {
-    path: '/retailer/yantaiscancode',
+    path: '/retailer/ytscancode',
     component: YantaiScanCode,
     name: 'YantaiScanCode',
     meta: {
-        title: ''
+        title: '扫一扫'
     }
 }]
 

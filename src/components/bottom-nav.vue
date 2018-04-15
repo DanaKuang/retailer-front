@@ -4,7 +4,7 @@
 			<ul>
 				<li class="menu" v-for="(item,idx) in navList" :class="[{'font-color': path == item.className}, item.className]">
 					<router-link :to="{path: item.path}">
-						<img :src="path == item.className ? item.imgactive : item.img" alt="">
+						<img :src="path == item.className ? item.image_active : item.img" alt="">
 						{{item.name}}
 					</router-link>
 				</li>
@@ -20,7 +20,6 @@ export default {
 	name: 'bottom-nav',
 	data () {
 		return {
-			storecenter: true,
 			path: ''
 		}
 	},
@@ -30,7 +29,7 @@ export default {
 	watch: {
 		'$route' (to, from) {
             // 对路由变化作出响应...
-            this.path = to.name.toLowerCase();
+            this.path = to.name && to.name.toLowerCase();
         }
 	},
 	created() {
@@ -38,7 +37,7 @@ export default {
 	},
 	methods: {
 		initPath() {
-			this.path = (this.$route.name).toLowerCase();
+			this.path = this.$route.name && (this.$route.name).toLowerCase() || '';
 		}
 	}
 }
