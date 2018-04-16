@@ -10,8 +10,6 @@ import 'assets/lib/flexible.js'
 import 'assets/public/reset.css'
 import 'assets/public/common.css'
 
-// import 'common/stylus/index.styl'
-
 /* eslint-disable no-unused-vars */
 // import vConsole from 'vconsole'
 

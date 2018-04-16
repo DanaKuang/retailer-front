@@ -6,8 +6,8 @@
 			</div>
 			<div class="overview-wrap" :class="[{'first': countType == 2}, {'second': countType == 1}]">
 				<div class="overview flex">
-					<div class="flex-item border-color active" @click="chooseType(2)">拉新扫码业绩<br><span class="week">{{overview.newCount}}</span>盒</div>
-					<div class="flex-item border-color" @click="chooseType(1)">累计扫码业绩<br><span class="month">{{overview.totalCount}}</span>盒</div>
+					<div class="flex-item border-color active" @click="chooseType(2)">拉新扫码业绩<br><span class="week">{{overview.newCount || 0}}</span>盒</div>
+					<div class="flex-item border-color" @click="chooseType(1)">累计扫码业绩<br><span class="month">{{overview.totalCount || 0}}</span>盒</div>
 				</div>
 				<i class="bottom-border border-color"></i>
 			</div>
@@ -97,11 +97,13 @@ export default {
   			getDetailType().then(res => {
   				if (res.ok) {
   					const Data = res.data;
-  					this.countType = Data.achievementType;
-  					this.startTimeMM = Data.stimeStr;
-        			this.endTimeMM = Data.etimeStr;
-        			this.$refs.date.startTime = Data.stimeStr.slice(0, Data.stimeStr.indexOf(' '));
-        			this.$refs.date.endTime = Data.etimeStr.slice(0, Data.stimeStr.indexOf(' '));
+  					if (Data) {
+						this.countType = Data.achievementType;
+	  					this.startTimeMM = Data.stimeStr;
+	        			this.endTimeMM = Data.etimeStr;
+	        			this.$refs.date.startTime = Data.stimeStr.slice(0, Data.stimeStr.indexOf(' '));
+	        			this.$refs.date.endTime = Data.etimeStr.slice(0, Data.stimeStr.indexOf(' '));
+  					}
   				}
   			}).then(() => {
   				this.showPerformanceList()
@@ -109,11 +111,11 @@ export default {
   		},
   		showPerformanceList(loading) {
   			showexchangeList({
-  				startTime: this.startTimeMM,
-				endTime: this.endTimeMM,
+  				startTime: this.startTimeMM || this.$refs.date.emitStartTimeMM,
+				endTime: this.endTimeMM || this.$refs.date.emitEndTimeMM,
 				pageNo: this.page,
 				pageSize: 10,
-				countType: this.countType
+				countType: this.countType || 2
 			}).then(res => {
   				if (res.ok) {
   					const Data = res.data;

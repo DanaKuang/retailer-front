@@ -53,7 +53,7 @@ export default {
 		}
 	},
 	created() {
-		this.startTime = this.defaultShowDate(3);
+		this.startTime = this.defaultShowDate(1);
 		this.endTime = this.defaultShowDate();
 		this.emitStartTimeMM = this.startTime + ' 00:00:00';
 		this.emitEndTimeMM = this.endTime + ' 23:59:59'
@@ -64,8 +64,7 @@ export default {
 			var date = new Date(),
 				y    = date.getFullYear(),
 				m    = date.getMonth(),
-				d    = date.getDate(),
-				thatday;
+				d    = date.getDate();
 			if (n) {
 				if (m - n < 0) {
 					y = y - 1;
@@ -79,19 +78,12 @@ export default {
 			d = d < 10 ? '0' + d : d;
 			return [y, m, d].join('-');
 		},
-		defaultMMdate () {
-			var _a_splitTime = this.startTime.split('-');
-			return {
-				receiveSTMM: new Date(_a_splitTime[0], Number(_a_splitTime[1])-1, _a_splitTime[2]).getTime(), // 这样处理比较恶心...
-				receiveETMM: +new Date
-			}
-		},
 		formatShowDate(val) {
 			// 转化标准时间的显示
 			var y = val.getFullYear(),
 				m = (val.getMonth() + 1) >= 10 ? (val.getMonth() + 1) : '0' + (val.getMonth() + 1),
 				d = val.getDate() >= 10 ? val.getDate() : ('0' + val.getDate());
-			return [y,m,d].join('-')
+			return [y, m, d].join('-')
 		},
 		open(picker) {
 	        this.$refs[picker].open();
@@ -107,7 +99,7 @@ export default {
 	        this.$emit('receiveEndDate', {receiveETMM: this.emitEndTimeMM})
     	}
 	}
- }
+}
 </script>
 
 <style lang="scss" scoped>
