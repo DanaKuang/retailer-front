@@ -44,10 +44,6 @@
 </template>
 <script>
 import {showexchangeList, showOverall, getDetailType} from 'api/rank.js'
-import dateInput from 'components/date-input'
-import loadingIng from 'components/loading-ing'
-import noMore from 'components/no-more'
-import noThing from 'components/no-thing'
 import { InfiniteScroll } from 'mint-ui';
 
 export default {
@@ -181,12 +177,6 @@ export default {
   		convertDate(val) {
 			return val ? new Date(val).toLocaleString().replace(/\//g, '-') : ''
 		}
-  	},
-  	components: { 
-  		dateInput,
-  		loadingIng,
-        noMore,
-        noThing
   	}
 }
 </script>

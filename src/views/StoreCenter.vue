@@ -130,8 +130,6 @@
 import Fetch from 'api/fetch.js'
 import {mapGetters, mapMutations} from 'vuex'
 import { Popup } from 'mint-ui'
-import popUp from 'components/pop-up'
-import popModal from 'components/pop-modal'
 
 export default {
   	name: 'StoreCenter',
@@ -171,7 +169,8 @@ export default {
   					if (res.ok) {
 						const Data = res.data;
 						this.setRetailer(Data);
-
+						this.setSellerId(Data.sellerInfo.sellerId);
+						
 						const sellerInfo = Data.sellerInfo;
 		  				let authStatus = sellerInfo.authStatus;
 		                if (authStatus == 2) {
@@ -233,12 +232,9 @@ export default {
 	    	}
 	    },
 	    ...mapMutations({
-            setRetailer: 'setRetailer'
+            setRetailer: 'setRetailer',
+            setSellerId: 'setSellerId'
         })
-	},
-	components:{
-	    popUp,
-	    popModal
 	}
 }
 </script>

@@ -43,9 +43,6 @@
 
 <script>
 import {getOrderList, confirmReceive, pay, cancel} from  'api/orderlist'
-import loadingIng from 'components/loading-ing'
-import noMore from 'components/no-more'
-import noThing from 'components/no-thing'
 import { InfiniteScroll } from 'mint-ui';
 import wx from 'weixin-js-sdk'
 import {mapGetters} from 'vuex'
@@ -245,11 +242,6 @@ export default {
         filtertoFixed(val) {
             return val ? val.toFixed(2) : '0.00'
         }
-    },
-    components: { 
-        loadingIng,
-        noMore,
-        noThing
     }
 }   	
 </script>

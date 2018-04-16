@@ -28,11 +28,6 @@
 
 <script>
 import {getMyWallet, showIncome, showWithdraw} from 'api/wallet.js'
-import dateInput from 'components/date-input'
-import walletDetail from 'components/wallet-detail'
-import loadingIng from 'components/loading-ing'
-import noMore from 'components/no-more'
-import noThing from 'components/no-thing'
 import { InfiniteScroll } from 'mint-ui';
 
 export default {
@@ -229,13 +224,6 @@ export default {
                 this.showWithdrawList()
             }
         }
-  	},
-  	components: { 
-  		dateInput,
-  		walletDetail,
-        loadingIng,
-        noMore,
-        noThing
   	}
 }
 </script>

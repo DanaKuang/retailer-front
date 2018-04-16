@@ -113,7 +113,6 @@ import Http from 'assets/lib/http.js'
 import {mapGetters} from 'vuex'
 import {getGeo} from 'api/geo.js'
 import { Popup } from 'mint-ui'
-import popModal from 'components/pop-modal'
 import LRZ from 'lrz'
 import LAREA from 'assets/lib/Larea.js'
 import 'assets/lib/Larea.css'
@@ -122,12 +121,10 @@ import 'assets/lib/Larea.css'
 
 export default {
   	name: 'Info',
-  	computed: {
-  		...mapGetters([
-	  		'seller',
-	  		'sellerId'
-	  	])
-  	},
+  	computed: mapGetters([
+  		'sellerId',
+  		'seller'
+  	]),
   	data () {
   		return {
   			isReadonly: false,
@@ -161,7 +158,7 @@ export default {
   				let sellerInfo = this.seller.sellerInfo;
   				this.isReadonly = (sellerInfo.authStatus == 2 && sellerInfo.licenceImg) ? true : false;
   				this.defaultAddr = sellerInfo.addrProvince ? false : true
-  				if (!this.isReadonly) {
+  				if (this.isReadonly) {
 					this.buttonText = '确定';
   				} else {
   					this.seller.sellerInfo.district = 1;
@@ -283,6 +280,7 @@ export default {
 			})
   		},
   		submit () {
+  			var me = this;
   			if (form.checkValidity()) {
   				var a_lareaselectval = document.getElementById('lareaselectval').value.split(',');
   				if (a_lareaselectval != '') {
@@ -295,7 +293,6 @@ export default {
 	  			if (!this.submitFlag) {
 	  				this.submitFlag = true;
 	  				this.loadingpop = true;
-	  				var me = this;
 	  				Http.post('/seller-web/seller/apply/certificate', submitData, {
 	  						headers: {
 	        					'Content-Type': 'application/json; charset=UTF-8'
@@ -332,9 +329,6 @@ export default {
       			this.confirmPop = false;
       		}
       	}
-  	},
-  	components: {
-  		popModal
   	}
 }
 </script>

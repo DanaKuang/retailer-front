@@ -6,6 +6,8 @@ import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 import store from './store'
 
+import 'components/global.js'
+
 import 'assets/lib/flexible.js'
 import 'assets/public/reset.css'
 import 'assets/public/common.css'
@@ -26,7 +28,6 @@ fastclick.attach(document.body)
 Vue.use(VueLazyload, {
   // loading: require('common/image/default.png')
 })
-
 
 new Vue({
   	el: '#app',

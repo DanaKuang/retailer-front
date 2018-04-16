@@ -74,7 +74,6 @@
 import Fetch from 'api/fetch.js'
 import {getVcode, verifyVcode, activate} from 'api/activate.js'
 import {mapGetters, mapActions, mapMutations} from 'vuex'
-import popModal from 'components/pop-modal'
 
 export default {
 	name: 'Activation',
@@ -208,9 +207,6 @@ export default {
         ...mapMutations({
             setRetailer: 'setRetailer'
         })
-	},
-	components: {
-		popModal
 	}
 }
 </script>

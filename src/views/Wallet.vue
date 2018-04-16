@@ -56,12 +56,7 @@
 </template>
 <script>
 import {getMyWallet, getLatestBalance, withdrawMoney} from 'api/wallet.js'
-import walletDetail from 'components/wallet-detail'
 import { Popup } from 'mint-ui'
-import popModal from 'components/pop-modal'
-import loadingIng from 'components/loading-ing'
-import noMore from 'components/no-more'
-import noThing from 'components/no-thing'
 import { InfiniteScroll } from 'mint-ui'
 
 export default {
@@ -197,13 +192,6 @@ export default {
   		filtertoFixed(val) {
   			return val ? val.toFixed(2) : '0.00'
   		}
-  	},
-   	components: { 
-  		walletDetail,
-  		popModal,
-  		loadingIng,
-        noMore,
-        noThing
   	}
 }
 </script>

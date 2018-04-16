@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import bottomNav from 'components/bottom-nav'
 import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 export default {
@@ -39,9 +38,6 @@ export default {
         ...mapMutations({
             setSellerId: 'setSellerId'
         })
-    },
-    components: {
-        bottomNav
     }
 }
 
