@@ -109,7 +109,7 @@ export default {
 	  				me.isListTrue = true;
 	  				if (Data.list && Data.list.length > 0) {
 	  					if (bool) {
-							Data.forEach(function(n) {
+							Data.list.forEach(function(n) {
 	                            me.latest.push(n)
 	                        })  
 	  					} else {

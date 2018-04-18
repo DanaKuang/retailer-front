@@ -212,7 +212,7 @@ export default {
 						// 使用本地 progress 事件做任何你想要做的
 						if (progressEvent.lengthComputable) {
 							me.percent = (progressEvent.loaded / progressEvent.total) * 100;
-						} 
+						}
 					}
 				}, {
 		        	headers: {
