@@ -223,7 +223,7 @@ export default {
 	    	if (hostname == 'sk.saotx.cn') {
 	    		// 山昆
 	    		location.href = '/a/p/scoremall002-score-integral.html?t=' + (+new Date)
-	    	} else if (hostname == 'weiop.taozuike.com') {
+	    	} else if (hostname == 'weiop.saotianxia.club') {
 		    	// 河南
 		    	location.href = '/a/p/score-integral.html?sourceId=3001?t=' + (+new Date);
 	    	} else if (hostname === 'hbz.saotx.cn') {

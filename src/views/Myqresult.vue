@@ -91,12 +91,20 @@ export default {
 	left: 0;
 	right: 0;
 	.info {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translateX(-50%) translateY(-58%);
+		-moz-transform: translateX(-50%) translateY(-58%);
+		-ms-transform: translateX(-50%) translateY(-58%);
+		transform: translateX(-50%) translateY(-58%);
 		display: -webkit-box;
 		-webkit-box-orient: horizontal;
 		display: flex;
-		margin: 6rem auto 0;
+		justify-content: space-around;
+    	align-items: center;
 		padding: 0 .3rem;
-		width: 7.8667rem;
+		width: 9.2rem;
 		height: 5.33rem;
 		.left {
 			margin-right: .3rem;
@@ -126,7 +134,6 @@ export default {
 				margin: .4rem auto;
 				width: 1.76rem;
 				height: 1.2rem;
-				border: 1px solid #ccc;
 				text-align: center;
 				img {
 					max-width: 100%;
@@ -169,8 +176,13 @@ export default {
 		}
 	}
 	.scan {
-		display: block;
-		margin: 1rem auto .4rem;
+		position: absolute;
+		bottom: 4rem;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		transform: translateX(-50%);
 		width: 4.54667rem;
 		height: 1.1733rem;
 		font-size: .613rem;
@@ -181,6 +193,14 @@ export default {
 		border-radius: 4px;
 	}
 	.tip {
+		position: absolute;
+		bottom: 3.4rem;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		transform: translateX(-50%);
+		width: 100%;
 		text-align: center;
 		font-size: .32rem;
 	}
