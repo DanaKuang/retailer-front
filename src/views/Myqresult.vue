@@ -108,7 +108,7 @@ export default {
 		height: 5.33rem;
 		.left {
 			margin-right: .3rem;
-			width: 2rem;
+			width: 3rem;
 			.avatar {
 				position: relative;
 				width: 100%;
