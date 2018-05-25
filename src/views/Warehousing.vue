@@ -87,10 +87,10 @@ export default {
             if (hostname == 'sk.saotx.cn') {
                 // 山昆
                 location.href = '/a/p/scoremall002-score-integral.html?t=' + (+new Date)
-            } else if (hostname == 'weiop.saotianxia.club') {
+            } else if (hostname == 'weiop.taozuike.com') {
                 // 河南
                 location.href = '/a/p/score-integral.html?sourceId=3001?t=' + (+new Date);
-            } else if (hostname === 'hbz.saotx.cn') {
+            } else if (hostname == 'hbz.saotx.cn') {
                 // 河北
                 location.href = '/app-hebei/views/menus/shop-integral.html?t=' + (+new Date)
             }

@@ -34,7 +34,7 @@ module.export = function (){
 			},
             prod: {
                 type: 'prod',
-                host: '172.17.15.160',
+                host: '172.17.15.160', //弃用
                 port: 22,
                 user: '',
                 dist: '/opt/webapps',

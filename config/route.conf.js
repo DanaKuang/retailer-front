@@ -11,9 +11,9 @@ module.exports = [
 	    proxyTarget: 'https://cs-weiop.saotianxia.vip'
 	}, {
 	    routepath: '/seller-manager',
-	    proxyTarget: 'https://cs-weiop.saotianxia.vip'    
+	    proxyTarget: 'https://cs-weiop.saotianxia.vip'   
 	}, {
 	    routepath: '/admin/login',
-	    proxyTarget: 'https://sk.saotx.cn'   
+	    proxyTarget: 'https://sk.saotx.cn'  
 	}
 ];
