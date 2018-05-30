@@ -113,11 +113,12 @@ export default {
                     this.$parent.loadingPage = false; //去掉loading
                     if (res.ok) {
                         var Data = res.data;
-                        this.user = Data;
+                        this.user = Data.sellerInfo;
+
                         if (!this.seller.sellerInfo) {
                             // detail接口和main字段相同，但结构又不一样！
                             var seller = {
-                                sellerInfo: Data
+                                sellerInfo: Data.sellerInfo
                             }
                             this.setRetailer(seller);
                         }

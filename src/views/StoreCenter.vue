@@ -88,6 +88,18 @@
     		</pop-modal>
 		</mt-popup>
 
+		<!-- 异常错误/被下架的用户 -->
+		<mt-popup
+		class="uni-pop fail border-box"
+		v-if="pop.errpop"
+		v-model="pop.errpop"
+		:closeOnClickModal="false"
+		position="center">
+			<pop-modal>
+				<p class="font-color tip1">{{err.text}}</p>
+    		</pop-modal>
+		</mt-popup>		
+
 		<!-- 审核中 -->
 		<mt-popup
 		class="uni-pop waitingpop border-box success"
@@ -145,11 +157,13 @@ export default {
   				waitingpop: false, // 正在审核
   				failpop: false,	// 审核未通过
   				completeInfo: false, // 去完善信息弹窗
-				getlabelpop: false	// 领取标牌弹窗
+				getlabelpop: false,	// 领取标牌弹窗
+				errpop: false
   			},
   			certifyoredit: '去认证', // 控制右上角按钮文字及认证icon显示
   			waiting: {}, //待审核or审核未通过文案内容
   			activate: {}, //激活弹窗文案内容
+  			err: {},
             showLabel: false,
             getlabelpopVariate: {}
   		}
@@ -202,7 +216,14 @@ export default {
 		                }
 
 					} else {
-						this.pop.yetcertified = true;
+						if (res.errorCode == 400403) {
+							// 去认证 400403 
+							this.pop.yetcertified = true;
+						} else {
+							// 其他，程序抛出的异常 400400
+							this.pop.errpop = true;
+							this.err.text = res.msg
+						}
 					}
   				})
         },

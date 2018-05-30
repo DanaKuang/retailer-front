@@ -24,7 +24,6 @@ Fetch.get = function (url, config) {
         //3、正式发送请求。
         xhr.send(null);
         // xhr.ontimeout = () => xhr.onabort();
-
     })
 }
 

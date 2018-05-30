@@ -8,6 +8,12 @@ export const setNav = (state, navArr) => {
 
 export const wxConfig = (state, data) => {
 	state.wxConfig = data;
+	wx.getNetworkType({
+		success: function (res) {
+			var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
+			alert(networkType)
+		}
+	});
 }
 
 export const setRetailer = (state, retailerData) => {

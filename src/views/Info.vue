@@ -14,13 +14,13 @@
 					</div>
 				</div>
 				<div class="field businessman item">
-					<label class="desc" for=""><em class="font-color">*</em>经营人姓名：<input name="ownername" type="text" placeholder="请输入名称" v-model.trim="seller.sellerInfo && seller.sellerInfo.ownerName" :readonly="isReadonly" minlength="2" maxlength="6" required></label>
+					<label class="desc" for=""><em class="font-color">*</em>经营人姓名：<input name="ownername" type="text" placeholder="请输入名称" v-model.trim="seller.sellerInfo && seller.sellerInfo.ownerName" :readonly="isReadonly" minlength="2" maxlength="10" required></label>
 				</div>
 				<div class="field telephone item">
 					<label class="desc" for=""><em class="font-color">*</em>手机号：<input type="tel" placeholder="请输入手机号" v-model.trim="seller.sellerInfo && seller.sellerInfo.phoneNo" :readonly="isReadonly" minlength="11" maxlength="11" required></label>
 				</div>
 				<div class="field contact-name item">
-					<label class="desc" for="">联系人姓名：<input type="text" placeholder="请输入联系人姓名" v-model.trim="seller.sellerInfo && seller.sellerInfo.contactName" minlength="2" maxlength="6"></label>
+					<label class="desc" for="">联系人姓名：<input type="text" placeholder="请输入联系人姓名" v-model.trim="seller.sellerInfo && seller.sellerInfo.contactName" minlength="2" maxlength="10"></label>
 				</div>
 				<div class="field contact-tel item">
 					<label class="desc" for="">联系人电话：<input type="tel" placeholder="请输入联系人电话" v-model.trim="seller.sellerInfo && seller.sellerInfo.contactPhone" minlength="11" maxlength="11"></label>
@@ -67,13 +67,12 @@
 				<div class="field pattern item">
 					<label class="desc" for=""><em class="font-color">*</em>业态：
 					<select v-if="!isReadonly" name="commercialType" v-model="seller.sellerInfo && seller.sellerInfo.commercial" required>
-						<option value="">请选择</option>
 						<option v-for="item in commercialTypes" :value="item.type">{{item.name}}</option>
 					</select>
 					<input v-if="isReadonly" type="text" :readonly="isReadonly" v-model="seller.sellerInfo && seller.sellerInfo.commercialName" value="seller.sellerInfo && seller.sellerInfo.commercial"></label>
 				</div>
 				<div class="field clerk item">
-					<label class="desc" for=""><em class="font-color">*</em>业务员：<input type="text" placeholder="请填写名称" v-model="seller.sellerInfo && seller.sellerInfo.salesManNames" required></label>
+					<label class="desc" for="">业务员：<input type="text" placeholder="请填写名称" v-model="seller.sellerInfo && seller.sellerInfo.salesManNames" minlength="2" maxlength="10"></label>
 				</div>
 			</div>
 			<div class="button">
@@ -176,7 +175,8 @@ export default {
   			}
   		},
   		getCommercialType() {
-  			this.commercialTypes = require('assets/data/common/commercialtype.json').commercial
+  			this.commercialTypes = require('assets/data/common/commercialtype.json').commercial;
+  			this.seller.sellerInfo.commercial = 1;
   		},
   		uploadfile (flag) {
   			var file = event.target.files[0];
@@ -513,6 +513,13 @@ export default {
 	}
 	.basic-info {
 		.contact-name, .contact-tel {
+			label {
+				padding-left: .36rem;
+			}
+		}
+	}
+	.business-info {
+		.clerk {
 			label {
 				padding-left: .36rem;
 			}
