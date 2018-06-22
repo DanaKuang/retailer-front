@@ -141,6 +141,9 @@ export default {
   			}
 		},
 		withdrawmoney() {
+      // 余额不足，直接跳转维护页。
+      window.location.href = 'https://weiop.taozuike.com/app/index-weihu.html';
+
 			var txAmount = this.wallet.balance;
 			if (txAmount < 1) {
 				this.popupVisible = true;
