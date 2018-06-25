@@ -17,7 +17,7 @@ module.export = function (){
 		argv 		= process.argv,
 		exec		= require('child_process').exec,
 		IPs			= [{
-			host: '123.56.29.106',
+			host: '123.56.29.106', //39.107.89.72
             post: 22,
             user: 'root',
             dist: '/root',
@@ -42,7 +42,7 @@ module.export = function (){
             },
 			prod1: {
 				type: 'prod1',
-                host: '172.17.15.153',
+                host: '172.17.15.172', //172.16.1.81
                 port: 22,
                 user: '',
                 dist: '/opt/webapps',
@@ -50,7 +50,7 @@ module.export = function (){
 			},
             prod2: {
                 type: 'prod2',
-                host: '172.17.15.189',
+                host: '172.17.15.173', //172.16.1.82
                 port: 22,
                 user: '',
                 dist: '/opt/webapps',
