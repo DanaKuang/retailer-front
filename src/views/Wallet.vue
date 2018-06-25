@@ -141,51 +141,48 @@ export default {
   			}
 		},
 		withdrawmoney() {
-      // 余额不足，直接跳转维护页。
-      window.location.href = 'https://weiop.taozuike.com/app/index-weihu.html';
+			var txAmount = this.wallet.balance;
+			if (txAmount < 1) {
+				this.popupVisible = true;
+				this.tip1 = '余额不足1元无法提现';
+				this.tip2 = '';
+			} else {
+				if (this.withdrawFlag) {
+					this.withdrawFlag = false;
+					withdrawMoney({
+						txAmount: txAmount
+					}).then(res => {
+						this.withdrawFlag = true;
+						if (res.ok) {
+							const detailData = res.data;
+							if (detailData.status == 1) {
+								this.successWithdraw = true;
+								this.popupVisible = true;
+								this.tip1 = '工作人员会在24小时内将佣金打入到您的微信账户内。';
+							} else if (detailData.status == 2 && detailData.isFinish == 1) {
+								this.successWithdraw = true;
+								this.popupVisible = true;
+								this.tip1 = '已成功提现至零钱包';
+							} else if (detailData.status == 3) {
+								this.successWithdraw = true;
+								this.popupVisible = true;
+								this.tip1 = '抱歉，您的提现已被拒绝';
+								this.tip2 = '';
+							}
 
-//			var txAmount = this.wallet.balance;
-//			if (txAmount < 1) {
-//				this.popupVisible = true;
-//				this.tip1 = '余额不足1元无法提现';
-//				this.tip2 = '';
-//			} else {
-//				if (this.withdrawFlag) {
-//					this.withdrawFlag = false;
-//					withdrawMoney({
-//						txAmount: txAmount
-//					}).then(res => {
-//						this.withdrawFlag = true;
-//						if (res.ok) {
-//							const detailData = res.data;
-//							if (detailData.status == 1) {
-//								this.successWithdraw = true;
-//								this.popupVisible = true;
-//								this.tip1 = '工作人员会在24小时内将佣金打入到您的微信账户内。';
-//							} else if (detailData.status == 2 && detailData.isFinish == 1) {
-//								this.successWithdraw = true;
-//								this.popupVisible = true;
-//								this.tip1 = '已成功提现至零钱包';
-//							} else if (detailData.status == 3) {
-//								this.successWithdraw = true;
-//								this.popupVisible = true;
-//								this.tip1 = '抱歉，您的提现已被拒绝';
-//								this.tip2 = '';
-//							}
-//
-//							// 再调用一次最近三天明细接口
-//							this.latest.length = 0;
-//							this.isListTrue = false;
-//							this.showWalletOverview();
-//							this.latestThreeDays();
-//						} else {
-//							this.tip1 = res.msg
-//							this.tip2 = '';
-//							this.popupVisible = true;
-//						}
-//					})
-//				}
-//			}
+							// 再调用一次最近三天明细接口
+							this.latest.length = 0;
+							this.isListTrue = false;
+							this.showWalletOverview();
+							this.latestThreeDays();
+						} else {
+							this.tip1 = res.msg
+							this.tip2 = '';
+							this.popupVisible = true;
+						}
+					})
+				}
+			}
 		},
 		iget() {
 			this.popupVisible = false;
