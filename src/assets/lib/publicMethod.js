@@ -32,4 +32,5 @@ const processParams = function (param) {
     return stringlize
 }
 
+
 export {getCookie, setCookie, deleteCookie, getQueryString, processParams}

@@ -17,6 +17,8 @@ import RewardIntro from '@/views/RewardIntro.vue'
 import Abnormal from '@/views/Abnormal.vue'
 import YantaiScanCode from '@/views/YantaiScanCode.vue'
 
+import Kk from '@/views/Kk.vue'
+
 Vue.use(Router)
 
 import VueWechatTitle from 'vue-wechat-title'
@@ -133,6 +135,13 @@ var routes = [{
     meta: {
         title: '扫一扫'
     }
+}, {
+    path: '/retailer/kk',
+    component: Kk,
+    name: 'Kk',
+    meta: {
+        title: 'Kk'
+    }
 }]
 
 const scrollBehavior = (to, from, savedPosition) => {
@@ -148,5 +157,5 @@ const router = new Router({
     routes,
     scrollBehavior
 })
-
+ 
 export default router
