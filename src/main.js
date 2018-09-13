@@ -12,9 +12,6 @@ import 'assets/lib/flexible.js'
 import 'assets/public/reset.css'
 import 'assets/public/common.css'
 
-/* eslint-disable no-unused-vars */
-// import vConsole from 'vconsole'
-
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import 'mint-ui/lib/index.js'
@@ -25,16 +22,14 @@ Vue.use(VueBus)
 
 fastclick.attach(document.body)
 
-// Vue.use(VueLazyload, {
-  	// loading: require('common/loading.gif')
-// })
 
 router.beforeEach((to, from, next) => {
-	store.commit('updateLoadingStatus', {isLoading: true})
-	if (!store.state.sellerId && to.name !== 'StoreCenter' && to.name !== 'Info') {
-		next({ path: '/retailer/index' }); 
+	store.commit('updateLoadingStatus', {isLoading: true});
+	console.log('store.state.sellerId', store.state.sellerId);
+	if (store.state.sellerId === '' && to.name !== 'StoreCenter' && to.name !== 'Info') {
+		next({path: '/retailer/index'}); 
 	} else {
-		next()
+		next();
 	}
 })
 
