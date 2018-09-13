@@ -3,7 +3,8 @@ const state = {
 	sellerId: '',
 	seller: {},
 	navList: [],
-	wxConfig: {}
+	wxConfig: {},
+	isLoading: false
 }
 
 export default state

@@ -8,12 +8,13 @@
 module.exports = [
 	{
 	    routepath: '/seller-web',
-	    proxyTarget: 'https://cs-weiop.saotianxia.vip'
+	    proxyTarget: 'http://cs-yxc.saotianxia.vip/'
 	}, {
 	    routepath: '/seller-manager',
-	    proxyTarget: 'https://cs-weiop.saotianxia.vip'   
+	    proxyTarget: 'http://cs-yxc.saotianxia.vip/'   
 	}, {
 	    routepath: '/admin/login',
 	    proxyTarget: 'https://sk.saotx.cn'  
 	}
 ];
+// seller-web/seller/enterHome

@@ -24,3 +24,7 @@ export const setSellerId = (state, sellerId) => {
 	state.sellerId = sellerId
 }
 
+export const updateLoadingStatus = (state, payload) => {
+	state.isLoading = payload.isLoading
+}
+

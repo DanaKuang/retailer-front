@@ -1,13 +1,12 @@
 <template>
   <div id="app" :class="[{'henan': orgId === 'henanzhongyan'}, {'shankun': orgId === 'shankunzhongyan'}]">
+    
     <router-view v-wechat-title='$route.meta.title' v-cloak />
+    
     <!-- 底部导航组件 -->
     <bottom-nav></bottom-nav>
 
-    <!-- loading -->
-    <div class="spinner-wrap" v-if="loadingPage">
-        <mt-spinner type="triple-bounce"></mt-spinner>        
-    </div>
+    <loading-ing v-if="isLoading"></loading-ing>
   </div>
 </template>
 
@@ -16,13 +15,9 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 export default {
     name: 'app',
-    data () {
-        return {
-            loadingPage: true,
-        }
-    },
     computed: mapGetters([
-        'orgId'
+        'orgId',
+        'isLoading'
     ]),
     created() {
         this.getSellerId();

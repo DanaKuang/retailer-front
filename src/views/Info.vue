@@ -34,7 +34,7 @@
 				<div class="field store-address item">
 					<label for="" class="desc"><em class="font-color">*</em>门店地址：
 						<span id="lareaselectid"><span :class="{fakeselect: defaultAddr, trueselect: !defaultAddr}">{{(seller.sellerInfo && seller.sellerInfo.addrProvinceName && seller.sellerInfo.addrProvinceName + seller.sellerInfo.addrCityName + seller.sellerInfo.addrAreaName) || '请输入门店地址'}}</span></span>
-            <input id="lareaselectval" type="hidden" />
+            		<input id="lareaselectval" type="hidden" />
 					</label> 
 				</div>
 				<div class="field store-address-detail item">
@@ -95,15 +95,7 @@
 		</mt-popup>
 	
 		<!-- 进度条 -->
-		<div class="loading-wrap" v-show="loadingpop">
-			<div class="loading">
-		        <span class="theme-bg-color_lighter"></span>
-		        <span class="theme-bg-color_lighter"></span>
-		        <span class="theme-bg-color_lighter"></span>
-		        <span class="theme-bg-color_lighter"></span>
-		        <span class="theme-bg-color_lighter"></span>
-			</div>			
-		</div>
+		<!-- <loading-ing v-if="loadingpop"></loading-ing> -->
 	</div>
 </template>
 
@@ -115,8 +107,6 @@ import { Popup } from 'mint-ui'
 import LRZ from 'lrz'
 import LAREA from 'assets/lib/Larea.js'
 import 'assets/lib/Larea.css'
-// import defaultHeadImg from 'assets/image/common/bg_store.png'
-// import defaultLicenseImg from 'assets/image/common/bg_monopolysale.png'
 
 export default {
   	name: 'Info',
@@ -138,21 +128,15 @@ export default {
 	  		defaultHeadImg: 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/bg_store.png',
 	  		defaultLicenseImg: 'https://weiopn.oss-cn-beijing.aliyuncs.com/wx_retailer/common/bg_monopolysale.png',
 			defaultAddr: true, // 选择门店地址用来占位的default值
-			loadingpop: false,
+			loadingpop: true,
 			percent: 0 // 上传照片进度
   		}
   	},
   	created () {
 		this.getInfoFromIndex();
   	},
-	validators: {
-        mobile: function (val) {
-            // return /^[A-Za-z0-9_\-\u4e00-\u9fa5]{1,10}$/.test(val);
-        }
-    },
   	methods: {
   		getInfoFromIndex() {
-  			this.$parent.loadingPage = false;
   			if (this.seller.sellerInfo) {
   				let sellerInfo = this.seller.sellerInfo;
   				this.isReadonly = (sellerInfo.authStatus == 2 && sellerInfo.licenceImg) ? true : false;
@@ -299,11 +283,12 @@ export default {
 	        				}
 	        			}).then(res => {
 		  					var Data = res.data;
-		  					me.confirmPop = true;
+							  me.confirmPop = true;
+							  me.loadingpop = false;
 		        			if (Data.ok) {
 		        				// 激活成功
 		        				me.success = true;
-		        				me.loadingpop = false;
+		        				
 		        				if (me.sellerId && (me.seller.sellerInfo.authStatus == 2 || me.seller.sellerInfo.authStatus == 4)) {
 		        					me.successState.text = '信息完善成功！';
 		        				} else {
@@ -311,7 +296,6 @@ export default {
 		        				}
 		        			} else {
 		        				// 激活失败
-		        				me.loadingpop = false;
 		        				this.submitFlag = false;
 		        				me.successState.text = Data.msg;
 		        			}

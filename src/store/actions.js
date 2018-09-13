@@ -14,10 +14,15 @@ export const getBase = ({commit}) => {
 	    	} else if (orgId === 'shankunzhongyan') {
 	    		require('assets/theme/shankun.css');
 	    		var navArr = require('assets/data/shankun/nav.json').menu;
-	    	}
+	    	} else {
+				require('assets/theme/shankun.css');
+	    		var navArr = require('assets/data/shankun/nav.json').menu;
+			}
 	    	commit('setNav', navArr);
 	    })
-	    .catch(() => {console.log('getbaseInfo出错')})
+	    .catch(() => {
+			console.log('getbaseInfo出错')
+		})
 }
 
 // export const getSeller = ({commit}, sellerId) => {

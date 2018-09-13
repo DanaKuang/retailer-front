@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastclick from 'fastclick'
-import VueLazyload from 'vue-lazyload'
+// import VueLazyload from 'vue-lazyload'
 import store from './store'
 
 import 'components/global.js'
@@ -25,8 +25,23 @@ Vue.use(VueBus)
 
 fastclick.attach(document.body)
 
-Vue.use(VueLazyload, {
-  // loading: require('common/image/default.png')
+// Vue.use(VueLazyload, {
+  	// loading: require('common/loading.gif')
+// })
+
+router.beforeEach((to, from, next) => {
+	store.commit('updateLoadingStatus', {isLoading: true})
+	if (!store.state.sellerId && to.name !== 'StoreCenter' && to.name !== 'Info') {
+		next({ path: '/retailer/index' }); 
+	} else {
+		next()
+	}
+})
+
+router.afterEach(function (to, from) {
+	setTimeout(_=>{
+		store.commit('updateLoadingStatus', {isLoading: false})
+	}, 500)
 })
 
 new Vue({

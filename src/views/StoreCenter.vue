@@ -97,6 +97,7 @@
 		position="center">
 			<pop-modal>
 				<p class="font-color tip1">{{err.text}}</p>
+				<button slot="button" v-hide="true"></button>
     		</pop-modal>
 		</mt-popup>		
 
@@ -147,7 +148,7 @@ export default {
   	name: 'StoreCenter',
   	computed: mapGetters([
   		'sellerId',
-  		'seller'
+		'seller'
   	]),
   	data () {
   		return {
@@ -170,7 +171,7 @@ export default {
   	},
   	created() {
   		this.getRetailerInfo()
-  	},
+	},
   	beforeDestroy () {
 		// this.$bus.emit('infopage', this.user);
   	},
@@ -179,7 +180,6 @@ export default {
   		getRetailerInfo() {
   			Fetch.get('/seller-web/seller/main/' + this.sellerId)
   				.then(res => {
-  					this.$parent.loadingPage = false;
   					if (res.ok) {
 						const Data = res.data;
 						this.setRetailer(Data);
@@ -222,7 +222,8 @@ export default {
 						} else {
 							// 其他，程序抛出的异常 400400
 							this.pop.errpop = true;
-							this.err.text = res.msg
+							this.err.text = res.msg;
+
 						}
 					}
   				})
