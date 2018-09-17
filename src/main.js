@@ -26,7 +26,7 @@ fastclick.attach(document.body)
 router.beforeEach((to, from, next) => {
 	store.commit('updateLoadingStatus', {isLoading: true});
 	console.log('store.state.sellerId', store.state.sellerId);
-	if (store.state.sellerId === '' && to.name !== 'StoreCenter' && to.name !== 'Info') {
+	if (store.state.sellerId === '' && to.name !== 'StoreCenter' && to.name !== 'Info' && to.name !== 'Myqresult') {
 		next({path: '/retailer/index'}); 
 	} else {
 		next();
